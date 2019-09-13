@@ -6,6 +6,7 @@ import backgroundImage from '../../assets/dashboard/thailand.JPG';
 import { GlobalStyle } from '../../assets/globalStyles';
 import Navbar from '../../components/Navbar';
 import ProfileCard from './ProfileCard';
+import NewsFeedCard from './NewsFeedCard';
 
 const CardContainer = styled.div`
   display: flex;
@@ -28,6 +29,7 @@ const App = () => (
       <Navbar />
       <CardContainer>
         <ProfileCard />
+        <NewsFeedCard />
       </CardContainer>
     </BlurImageLoader>
   </>

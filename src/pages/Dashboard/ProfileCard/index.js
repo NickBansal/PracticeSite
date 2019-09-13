@@ -5,7 +5,7 @@ import profilePicture from '../../../assets/profile/me.JPG';
 import BlurImageLoader from '../../../components/BlurImageLoader';
 import { HR } from '../../../assets/globalStyles/index';
 import Button from '../../../components/Button';
-import { spacing } from '../../../assets/globalStyles/constants/index';
+import { spacing, fontSize } from '../../../assets/globalStyles/constants/index';
 
 const Image = styled(BlurImageLoader)`
     -webkit-box-shadow: 4px 11px 55px -21px rgba(0,0,0,0.75);
@@ -18,20 +18,20 @@ const Image = styled(BlurImageLoader)`
 
 const ProfileText = styled.p`
     text-align: center;
-    font-size: 24px;
+    font-size: ${fontSize.title};
     margin: ${spacing.s1};
     font-family: 'Dancing Script', cursive;
 `;
 
 const Name = styled.p`
     text-align: center;
-    font-size: 24px;
+    font-size: ${fontSize.title};;
     margin: ${spacing.s3} ${spacing.s1} ${spacing.s1};
     font-family: 'Dancing Script', cursive;
 `;
 
 const ProfileCard = () => (
-  <Card fadeIn="1.5s">
+  <Card fadeIn="1.0s">
     <Image
       width="210px"
       height="220px"
