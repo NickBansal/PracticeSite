@@ -12,7 +12,8 @@ const LoadableImage = styled.div`
     background-origin: border-box;
     background-size: cover;
     flex-shrink: 0;
-    text-align:justify
+    text-align:justify;
+    overflow: scroll;
 `;
 
 const BlurImageLoader = ({ placeholder, image, ...props }) => {
