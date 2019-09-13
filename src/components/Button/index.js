@@ -1,5 +1,5 @@
 import React from 'react';
-import { node } from 'prop-types';
+import { node, func } from 'prop-types';
 import styled from 'styled-components';
 
 const DashboardBtns = styled.button`
@@ -21,16 +21,15 @@ const DashboardBtns = styled.button`
     }
 `;
 
-const Button = ({ children, onClick }) =>
-  <DashboardBtns type="button" onClick={onClick}>{children}</DashboardBtns>;
+const Button = ({ children, onClick }) => <DashboardBtns type="button" onClick={onClick}>{children}</DashboardBtns>;
 
 Button.propTypes = {
   children: node.isRequired,
-  onClick: func
+  onClick: func,
 };
 
 Button.defaultProps = {
-  onClick: () => { }
-}
+  onClick: () => { },
+};
 
 export default Button;
