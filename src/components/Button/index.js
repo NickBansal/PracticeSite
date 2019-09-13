@@ -21,10 +21,16 @@ const DashboardBtns = styled.button`
     }
 `;
 
-const Button = ({ children }) => <DashboardBtns type="button">{children}</DashboardBtns>;
+const Button = ({ children, onClick }) =>
+  <DashboardBtns type="button" onClick={onClick}>{children}</DashboardBtns>;
 
 Button.propTypes = {
   children: node.isRequired,
+  onClick: func
 };
+
+Button.defaultProps = {
+  onClick: () => { }
+}
 
 export default Button;

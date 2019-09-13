@@ -1,16 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 import { string, node } from 'prop-types';
+import { spacing } from '../../assets/globalStyles/constants/index';
 
 const StyledCard = styled.div`
     height: 400px;
     width: 300px;
     background: white;
     border: 3px solid #00000040;
-    border-radius: 16px;
+    border-radius: ${spacing.s2};
     margin: 26px;
         display: inline-block;
-    padding: 16px;
+    padding: ${spacing.s2};
     animation: ${({ fadeIn }) => `${fadeIn} linear fade`};
     position: relative;
     @keyframes fade {

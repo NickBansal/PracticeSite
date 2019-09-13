@@ -32,7 +32,7 @@ const Name = styled.p`
 
 const ProfileCard = () => (
   <Card fadeIn="1.5s">
-      <Image
+    <Image
       width="210px"
       height="220px"
       image={profilePicture}

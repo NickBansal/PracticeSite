@@ -4,7 +4,12 @@ module.exports = {
         "es6": true,
         "jest": true
     },
-    "extends": "airbnb",
+    "extends": [
+        "airbnb",
+        "plugin:jest/recommended",
+        "plugin:eslint-comments/recommended",
+        "prettier"
+    ],
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
@@ -17,7 +22,9 @@ module.exports = {
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "jest",
+        "react",
+        "prettier",
     ],
     "rules": {
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
