@@ -27,15 +27,11 @@ const App = () => (
     >
       <Navbar />
       <CardContainer>
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        <Card fadeIn="0.4s" />
+        <Card fadeIn="0.8s" />
+        <Card fadeIn="1.2s" />
+        <Card fadeIn="1.6s" />
+        <Card fadeIn="2.0s" />
       </CardContainer>
     </BlurImageLoader>
   </>
