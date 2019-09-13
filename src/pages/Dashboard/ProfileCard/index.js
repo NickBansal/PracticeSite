@@ -4,44 +4,48 @@ import Card from '../../../components/Card';
 import profilePicture from '../../../assets/profile/me.JPG';
 import BlurImageLoader from '../../../components/BlurImageLoader';
 import { HR } from '../../../assets/globalStyles/index';
+import Button from '../../../components/Button';
+import { spacing } from '../../../assets/globalStyles/constants/index';
 
 const Image = styled(BlurImageLoader)`
     -webkit-box-shadow: 4px 11px 55px -21px rgba(0,0,0,0.75);
     -moz-box-shadow: 4px 11px 55px -21px rgba(0,0,0,0.75);
     box-shadow: 4px 11px 55px -21px rgba(0,0,0,0.75);
     border-radius: 10px;
-    margin-bottom: 16px;
+    margin-bottom: ${spacing.s2};
+    border: 2px solid #00000030;
 `;
 
 const ProfileText = styled.p`
     text-align: center;
     font-size: 24px;
-    margin: 8px;
+    margin: ${spacing.s1};
     font-family: 'Dancing Script', cursive;
 `;
 
 const Name = styled.p`
     text-align: center;
     font-size: 24px;
-    margin: 8px;
+    margin: ${spacing.s3} ${spacing.s1} ${spacing.s1};
     font-family: 'Dancing Script', cursive;
 `;
 
 const ProfileCard = () => (
-    <Card fadeIn={`${Math.random().toFixed(2)}s`}>
-        <Image
-            width="210px"
-            height="220px"
-            image={profilePicture}
-            alt="Profile picture"
-            placeholder="Profile picture"
-        />
-        <HR />
-        <div>
-            <Name>Nick Bansal</Name>
-            <ProfileText>Junior Web Developer</ProfileText>
-        </div>
-    </Card>
+  <Card fadeIn="1.5s">
+      <Image
+      width="210px"
+      height="220px"
+      image={profilePicture}
+      alt="Profile picture"
+      placeholder="Profile picture"
+    />
+    <HR />
+
+    <Name>Nick Bansal</Name>
+    <ProfileText>Junior Web Developer</ProfileText>
+
+    <Button>Find out more</Button>
+  </Card>
 );
 
 export default ProfileCard;

@@ -12,7 +12,7 @@ const StyledCard = styled.div`
         display: inline-block;
     padding: 16px;
     animation: ${({ fadeIn }) => `${fadeIn} linear fade`};
-
+    position: relative;
     @keyframes fade {
         from {
             opacity: 0;
