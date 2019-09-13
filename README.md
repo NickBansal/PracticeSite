@@ -6,7 +6,7 @@ The dream is - in time this should represent a good collection of ideas and skil
 
 ### Ideas to implement
 
-- [ ] Lazy load images
+- [X] Lazy load images
 - [ ] Profile card
 - [ ] Live news feed
 - [ ] Live chat app

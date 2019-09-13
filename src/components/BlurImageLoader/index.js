@@ -33,6 +33,7 @@ const BlurImageLoader = ({ placeholder, image, ...props }) => {
     };
 
     img.src = image;
+    // eslint-disable-next-line
   }, [runOnce]);
 
   // eslint-disable-next-line react/jsx-props-no-spreading
