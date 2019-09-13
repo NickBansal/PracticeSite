@@ -27,11 +27,11 @@ const App = () => (
     >
       <Navbar />
       <CardContainer>
-        <Card fadeIn="0.4s" />
-        <Card fadeIn="0.8s" />
-        <Card fadeIn="1.2s" />
-        <Card fadeIn="1.6s" />
-        <Card fadeIn="2.0s" />
+        <Card fadeIn={`${Math.random().toFixed(2)}s`} />
+        <Card fadeIn={`${Math.random().toFixed(2)}s`} />
+        <Card fadeIn={`${Math.random().toFixed(2)}s`} />
+        <Card fadeIn={`${Math.random().toFixed(2)}s`} />
+        <Card fadeIn={`${Math.random().toFixed(2)}s`} />
       </CardContainer>
     </BlurImageLoader>
   </>

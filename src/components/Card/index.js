@@ -23,7 +23,7 @@ const StyledCard = styled.div`
     }
 `;
 
-const Card = ({ fadeIn }) => <StyledCard fadeIn={fadeIn} />;
+const Card = ({ fadeIn }) => <StyledCard fadeIn={fadeIn} aria-label="Display card" />;
 
 Card.propTypes = {
   fadeIn: string.isRequired,
