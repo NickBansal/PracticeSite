@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { string } from 'prop-types';
+import { string, node } from 'prop-types';
 
 const StyledCard = styled.div`
     height: 400px;
@@ -23,10 +23,11 @@ const StyledCard = styled.div`
     }
 `;
 
-const Card = ({ fadeIn }) => <StyledCard fadeIn={fadeIn} aria-label="Display card" />;
+const Card = ({ fadeIn, children }) => <StyledCard fadeIn={fadeIn} aria-label="Display card">{children}</StyledCard>;
 
 Card.propTypes = {
   fadeIn: string.isRequired,
+  children: node.isRequired,
 };
 
 export default Card;

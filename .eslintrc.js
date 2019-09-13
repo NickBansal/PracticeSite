@@ -21,6 +21,6 @@ module.exports = {
     ],
     "rules": {
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-        "indent": ["error", 2, { "ignoredNodes": ["JSXElement"] }],
+        "react/jsx-props-no-spreading": 0,
     }
 };

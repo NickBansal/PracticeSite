@@ -4,10 +4,10 @@ import { string } from 'prop-types';
 
 const LoadableImage = styled.div`
     background-image: url(${({ src }) => src});
-    filter: ${({ loaded }) => (!loaded ? 'blur(30px)' : 'grayscale(0.8)')};
+    filter: ${({ loaded }) => (!loaded ? 'blur(30px)' : 'none')};
     width: ${({ width }) => width};
     height: ${({ height }) => height};
-    transition: filter 2s ease;
+    transition: filter 1s ease;
     background-position: 50% 50%;
     background-origin: border-box;
     background-size: cover;
@@ -16,7 +16,9 @@ const LoadableImage = styled.div`
     overflow: scroll;
 `;
 
-const BlurImageLoader = ({ placeholder, image, ...props }) => {
+const BlurImageLoader = ({
+  placeholder, image, ...props
+}) => {
   const runOnce = true;
 
   const [loadState, setLoadState] = useState({
@@ -38,7 +40,6 @@ const BlurImageLoader = ({ placeholder, image, ...props }) => {
     // eslint-disable-next-line
   }, [runOnce]);
 
-  // eslint-disable-next-line react/jsx-props-no-spreading
   return <LoadableImage {...props} {...loadState} />;
 };
 

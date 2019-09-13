@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import BlurImageLoader from '../../components/BlurImageLoader';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import backgroundImage from '../../assets/dashboard/thailand.JPG';
-import GlobalStyle from '../../assets/globalStyles';
-import Card from '../../components/Card';
+import { GlobalStyle } from '../../assets/globalStyles';
 import Navbar from '../../components/Navbar';
+import ProfileCard from './ProfileCard';
 
 const CardContainer = styled.div`
   display: flex;
@@ -27,11 +27,7 @@ const App = () => (
     >
       <Navbar />
       <CardContainer>
-        <Card fadeIn={`${Math.random().toFixed(2)}s`} />
-        <Card fadeIn={`${Math.random().toFixed(2)}s`} />
-        <Card fadeIn={`${Math.random().toFixed(2)}s`} />
-        <Card fadeIn={`${Math.random().toFixed(2)}s`} />
-        <Card fadeIn={`${Math.random().toFixed(2)}s`} />
+        <ProfileCard />
       </CardContainer>
     </BlurImageLoader>
   </>
