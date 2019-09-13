@@ -6,14 +6,10 @@ const StyledCard = styled.div`
     width: 300px;
     background: white;
     border: 3px solid #00000040;
-    border-radius: 15px;
-    margin: 16px auto;
-    display: block;
-
-    @media (min-width: 650px) {
-        margin: 16px;
+    border-radius: 16px;
+    margin: 16px;
         display: inline-block;
-    }
+    padding: 16px;
 `;
 
 const Card = () => <StyledCard />;
