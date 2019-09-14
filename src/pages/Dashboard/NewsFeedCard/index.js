@@ -12,22 +12,33 @@ const Title = styled.h1`
     margin: 0;
 `;
 
+const NewsContainer = styled.div`
+  height: 290px;
+  overflow: scroll;
+`;
+
 const NewsFeedCard = () => {
   const [newsFeed, setNewsFeed] = useState([]);
 
   useEffect(() => {
     axios.get(url)
       .then((res) => {
-        setNewsFeed(res.data.articles);
+        setNewsFeed([res.data.articles]);
       });
     // eslint-disable-next-line
-    }, newsFeed.slice(0, 10));
+  }, newsFeed);
+  console.log(newsFeed);
   return (
-      <Card fadeIn="1.5s">
-          <Title>News feed</Title>
-          <HR />
-          <Button onClick={() => console.log('hello')}>Find out more</Button>
-        </Card>
+    <Card fadeIn="1.5s">
+      <Title>News feed</Title>
+      <HR />
+      <NewsContainer>
+        {newsFeed[0] && newsFeed[0].map((news) => (
+          <p>{news.title}</p>
+        ))}
+      </NewsContainer>
+      <Button onClick={() => console.log('hello')}>Find out more</Button>
+    </Card>
   );
 };
 
