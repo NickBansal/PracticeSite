@@ -27,17 +27,17 @@ const NewsFeedCard = () => {
       });
     // eslint-disable-next-line
   }, newsFeed);
-  console.log(newsFeed);
+
   return (
     <Card fadeIn="1.5s">
       <Title>News feed</Title>
       <HR />
       <NewsContainer>
         {newsFeed[0] && newsFeed[0].map((news) => (
-          <p>{news.title}</p>
+          <p key={news.title}>{news.title}</p>
         ))}
       </NewsContainer>
-      <Button onClick={() => console.log('hello')}>Find out more</Button>
+      <Button>Filter news</Button>
     </Card>
   );
 };
