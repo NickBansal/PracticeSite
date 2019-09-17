@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { shape, string } from 'prop-types';
 import BlurImageLoader from '../../../../components/BlurImageLoader';
 import { spacing } from '../../../../assets/globalStyles/constants';
+import placeholderImage from '../../../../assets/news/placeholder.png';
 
 const Container = styled.div`
     display: flex;
@@ -45,17 +46,17 @@ const Links = styled.p`
     }
 `;
 
-const NewsItem = ({ news }) => (
-    <Container onClick={() => window.open(news.url)} aria-label="News item">
+const NewsItem = ({ news: { urlToImage, url, title } }) => (
+    <Container onClick={() => window.open(url)} aria-label="News item">
         <Image
             width="110px"
             height="120px"
-            image={news.urlToImage}
+            image={urlToImage || placeholderImage}
             alt="Profile picture"
             placeholder="Profile picture"
         />
         <Information>
-            <Title>{news.title}</Title>
+            <Title>{title}</Title>
             <Links>Read more</Links>
         </Information>
     </Container>

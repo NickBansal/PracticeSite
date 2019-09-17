@@ -21,7 +21,14 @@ const DashboardBtns = styled.button`
     }
 `;
 
-const Button = ({ children, onClick }) => <DashboardBtns type="button" onClick={onClick}>{children}</DashboardBtns>;
+const Button = ({ children, onClick, props }) => (
+    <DashboardBtns
+        type="button"
+        onClick={onClick}
+        {...props}
+    >{children}
+    </DashboardBtns>
+);
 
 Button.propTypes = {
     children: node.isRequired,

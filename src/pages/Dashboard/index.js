@@ -7,6 +7,7 @@ import { GlobalStyle } from '../../assets/globalStyles';
 import Navbar from '../../components/Navbar';
 import ProfileCard from './ProfileCard';
 import NewsFeedCard from './NewsFeedCard';
+import BlogCard from './BlogCard';
 
 const CardContainer = styled.div`
   display: flex;
@@ -17,22 +18,23 @@ const CardContainer = styled.div`
 `;
 
 const App = () => (
-  <>
-    <GlobalStyle />
-    <BlurImageLoader
-      width="100%"
-      height="100vh"
-      image={backgroundImage}
-      alt="Thailand picture"
-      placeholder="Thailand picture"
-    >
-      <Navbar />
-      <CardContainer>
-        <ProfileCard />
-        <NewsFeedCard />
-      </CardContainer>
-    </BlurImageLoader>
-  </>
+    <>
+        <GlobalStyle />
+        <BlurImageLoader
+            width="100%"
+            height="100vh"
+            image={backgroundImage}
+            alt="Thailand picture"
+            placeholder="Thailand picture"
+        >
+            <Navbar />
+            <CardContainer>
+                <ProfileCard />
+                <NewsFeedCard />
+                <BlogCard />
+            </CardContainer>
+        </BlurImageLoader>
+    </>
 );
 
 export default App;

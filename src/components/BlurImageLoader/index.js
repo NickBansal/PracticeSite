@@ -37,8 +37,8 @@ const BlurImageLoader = ({
         };
 
         img.src = image;
-    // eslint-disable-next-line
-  }, [runOnce]);
+        // eslint-disable-next-line
+    }, [runOnce]);
 
     return <LoadableImage {...props} {...loadState} />;
 };

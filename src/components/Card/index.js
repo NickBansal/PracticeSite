@@ -27,7 +27,15 @@ const StyledCard = styled.div`
     }
 `;
 
-const Card = ({ fadeIn, children, ...props }) => <StyledCard fadeIn={fadeIn} aria-label="Display card" {...props}>{children}</StyledCard>;
+const Card = ({ fadeIn, children, ...props }) => (
+    <StyledCard
+        fadeIn={fadeIn}
+        aria-label="Display card"
+        {...props}
+    >
+        {children}
+    </StyledCard>
+);
 
 Card.propTypes = {
     fadeIn: string.isRequired,
