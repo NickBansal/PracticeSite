@@ -26,7 +26,8 @@ module.exports = {
         "react/jsx-filename-extension": 0,
         "react/jsx-one-expression-per-line": 0,
         "react/jsx-indent": ["error", 4],
-        "indent": ["error", 4]
+        "indent": ["error", 4],
+        "react/jsx-props-no-spreading": 0,
     }
 };
 

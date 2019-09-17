@@ -45,7 +45,7 @@ const Links = styled.p`
 `;
 
 const NewsItem = ({ news }) => (
-    <Container onClick={() => window.open(news.url)}>
+    <Container onClick={() => window.open(news.url)} aria-label="News item">
         <Image
             width="110px"
             height="120px"
