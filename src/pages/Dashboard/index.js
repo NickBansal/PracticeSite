@@ -13,8 +13,7 @@ const CardContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  overflow: scroll;
-  padding: 50px;
+  padding: 20px;
 `;
 
 const App = () => (

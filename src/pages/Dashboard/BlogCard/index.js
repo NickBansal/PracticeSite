@@ -14,7 +14,7 @@ const BlogCard = () => (
     <Card fadeIn="2.0s">
         <Title>My blog</Title>
         <HR />
-        <Button>See full blog</Button>
+        <Button>View full blog</Button>
     </Card>
 );
 

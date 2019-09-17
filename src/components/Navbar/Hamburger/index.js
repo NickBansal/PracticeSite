@@ -5,6 +5,7 @@ const Container = styled.div`
     position: absolute;
     top: 10px;
     right: 16px;
+
     &:hover {
         cursor: pointer;
     }
@@ -23,20 +24,20 @@ const Container = styled.div`
         background: #0000008a;
         transform: rotate(${({ open }) => (open ? '45deg' : '0')});
         top: ${({ open }) => (!open ? '10px' : '25px')};
-        transition: 0.3s
+        transition: 0.3s;
     }
 
     div:nth-child(2) {
         opacity: ${({ open }) => (open ? '0' : '1')};
         top: 25px;
-        transition: 0.3s
+        transition: 0.3s;
     }
 
     div:last-child {
         background: #0000008a;
         transform: rotate(${({ open }) => (open ? '-45deg' : '0')});
         top: ${({ open }) => (open ? '25px' : '40px')};
-        transition: 0.3s
+        transition: 0.3s;
     }
 `;
 

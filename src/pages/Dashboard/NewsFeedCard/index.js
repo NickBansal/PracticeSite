@@ -26,8 +26,8 @@ const NewsFeedCard = () => {
             .then((res) => {
                 setNewsFeed([res.data.articles]);
             });
-    // eslint-disable-next-line
-  }, newsFeed);
+        // eslint-disable-next-line
+    }, []);
 
     return (
         <Card fadeIn="1.5s">
@@ -38,7 +38,7 @@ const NewsFeedCard = () => {
                     <NewsItem news={news} key={news.title} />
                 ))}
             </NewsContainer>
-            <Button>Filter news</Button>
+            <Button onClick={() => { }}>Refresh news</Button>
         </Card>
     );
 };

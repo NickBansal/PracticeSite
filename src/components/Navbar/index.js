@@ -5,12 +5,15 @@ import Hamburger from './Hamburger';
 const StyledNavbar = styled.div`
     width: 100%;
     height: 50px;
-    background: none;
     text-align: right;
+    position: sticky;
+    top: 0px;
 `;
 
 const Navbar = () => (
-    <StyledNavbar><Hamburger /></StyledNavbar>
+    <StyledNavbar>
+        <Hamburger />
+    </StyledNavbar>
 );
 
 export default Navbar;

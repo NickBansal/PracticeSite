@@ -44,7 +44,7 @@ const ProfileCard = () => (
         <Name>Nick Bansal</Name>
         <ProfileText>Junior Web Developer</ProfileText>
 
-        <Button onClick={() => { }}>See full profile</Button>
+        <Button onClick={() => { }}>View full profile</Button>
     </Card>
 );
 
