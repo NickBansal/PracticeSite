@@ -10,7 +10,7 @@ const StyledNavbar = styled.div`
 `;
 
 const Navbar = () => (
-  <StyledNavbar><Hamburger /></StyledNavbar>
+    <StyledNavbar><Hamburger /></StyledNavbar>
 );
 
 export default Navbar;

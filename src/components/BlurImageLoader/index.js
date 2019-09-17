@@ -17,35 +17,35 @@ const LoadableImage = styled.div`
 `;
 
 const BlurImageLoader = ({
-  placeholder, image, ...props
+    placeholder, image, ...props
 }) => {
-  const runOnce = true;
+    const runOnce = true;
 
-  const [loadState, setLoadState] = useState({
-    src: placeholder,
-    loaded: false,
-  });
+    const [loadState, setLoadState] = useState({
+        src: placeholder,
+        loaded: false,
+    });
 
-  useEffect(() => {
-    const img = new Image();
+    useEffect(() => {
+        const img = new Image();
 
-    img.onload = () => {
-      setLoadState({
-        src: img.src,
-        loaded: true,
-      });
-    };
+        img.onload = () => {
+            setLoadState({
+                src: img.src,
+                loaded: true,
+            });
+        };
 
-    img.src = image;
+        img.src = image;
     // eslint-disable-next-line
   }, [runOnce]);
 
-  return <LoadableImage {...props} {...loadState} />;
+    return <LoadableImage {...props} {...loadState} />;
 };
 
 BlurImageLoader.propTypes = {
-  placeholder: string.isRequired,
-  image: string.isRequired,
+    placeholder: string.isRequired,
+    image: string.isRequired,
 };
 
 export default BlurImageLoader;

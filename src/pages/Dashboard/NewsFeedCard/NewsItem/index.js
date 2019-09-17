@@ -2,10 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { shape, string } from 'prop-types';
 import BlurImageLoader from '../../../../components/BlurImageLoader';
+import { spacing } from '../../../../assets/globalStyles/constants';
 
 const Container = styled.div`
     display: flex;
-    margin-bottom: 8px;
+    margin-bottom: ${spacing.s1};
     
     &:hover {
         cursor: pointer;
@@ -16,7 +17,7 @@ const Container = styled.div`
 `;
 
 const Image = styled(BlurImageLoader)`
-    margin-right: 16px;
+    margin-right: ${spacing.s2};
 `;
 
 const Title = styled.p`
