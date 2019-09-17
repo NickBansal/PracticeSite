@@ -6,7 +6,7 @@ describe('<Card />', () => {
   it('should animate with the correct fadein times', () => {
     const fadeInTime = '0.5s';
     const { getByLabelText } = render(<Card fadeIn={fadeInTime}>Hello</Card>);
-    expect(getByLabelText('Display card')).toHaveStyleRule('animation', `${fadeInTime} linear fade`);
+    expect(getByLabelText('Display card')).toHaveStyleRule('animation', `${fadeInTime} linear fade 1`);
   });
   it('should render the correct children', () => {
     const fadeInTime = '0.5s';

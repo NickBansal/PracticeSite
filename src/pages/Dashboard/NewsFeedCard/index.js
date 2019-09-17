@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import NewsItem from './NewsItem';
 import Card from '../../../components/Card';
 import Button from '../../../components/Button';
 import { fontSize } from '../../../assets/globalStyles/constants/index';
@@ -18,28 +19,28 @@ const NewsContainer = styled.div`
 `;
 
 const NewsFeedCard = () => {
-  const [newsFeed, setNewsFeed] = useState([]);
+    const [newsFeed, setNewsFeed] = useState([]);
 
-  useEffect(() => {
-    axios.get(url)
-      .then((res) => {
-        setNewsFeed([res.data.articles]);
-      });
+    useEffect(() => {
+        axios.get(url)
+            .then((res) => {
+                setNewsFeed([res.data.articles]);
+            });
     // eslint-disable-next-line
   }, newsFeed);
 
-  return (
-    <Card fadeIn="1.5s">
-      <Title>News feed</Title>
-      <HR />
-      <NewsContainer>
-        {newsFeed[0] && newsFeed[0].map((news) => (
-          <p key={news.title}>{news.title}</p>
-        ))}
-      </NewsContainer>
-      <Button>Filter news</Button>
-    </Card>
-  );
+    return (
+        <Card fadeIn="1.5s">
+            <Title>News feed</Title>
+            <HR />
+            <NewsContainer>
+                {newsFeed[0] && newsFeed[0].map((news) => (
+                    <NewsItem news={news} key={news.title} />
+                ))}
+            </NewsContainer>
+            <Button>Filter news</Button>
+        </Card>
+    );
 };
 
 export default NewsFeedCard;

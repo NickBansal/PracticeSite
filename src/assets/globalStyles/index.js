@@ -3,10 +3,11 @@ import { spacing } from './constants/index';
 
 export const GlobalStyle = createGlobalStyle`
   body {
-    margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
     filter: grayscale(0.3);
+    max-width: 1500px;
+    margin: 0 auto;
   }
 `;
 

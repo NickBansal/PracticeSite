@@ -12,13 +12,16 @@ const StyledCard = styled.div`
     margin: 26px;
         display: inline-block;
     padding: ${spacing.s2};
-    animation: ${({ fadeIn }) => `${fadeIn} linear fade`};
+    animation: ${({ fadeIn }) => `${fadeIn} linear fade`} 1;
     position: relative;
     @keyframes fade {
-        from {
+        0% {
             opacity: 0;
         }
-        to {
+        50% {
+            opacity: 0;
+        }
+        100% {
             opacity: 1;
         }
     }

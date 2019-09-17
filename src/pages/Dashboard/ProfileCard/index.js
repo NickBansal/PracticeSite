@@ -31,21 +31,21 @@ const Name = styled.p`
 `;
 
 const ProfileCard = () => (
-  <Card fadeIn="1.0s">
-    <Image
-      width="210px"
-      height="220px"
-      image={profilePicture}
-      alt="Profile picture"
-      placeholder="Profile picture"
-    />
-    <HR />
+    <Card fadeIn="1.0s">
+        <Image
+            width="210px"
+            height="220px"
+            image={profilePicture}
+            alt="Profile picture"
+            placeholder="Profile picture"
+        />
+        <HR />
 
-    <Name>Nick Bansal</Name>
-    <ProfileText>Junior Web Developer</ProfileText>
+        <Name>Nick Bansal</Name>
+        <ProfileText>Junior Web Developer</ProfileText>
 
-    <Button onClick={() => console.log('hello')}>See full profile</Button>
-  </Card>
+        <Button onClick={() => { }}>See full profile</Button>
+    </Card>
 );
 
 export default ProfileCard;
