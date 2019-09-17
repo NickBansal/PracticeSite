@@ -18,7 +18,7 @@ describe('<NewsItem />', () => {
         expect(getByText('Read more')).toBeInTheDocument();
     });
 
-    it('should render an image', () => {
+    it('should open a new window on the onClick', () => {
         const props = {
             news: {
                 title: 'test title',
