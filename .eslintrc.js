@@ -28,6 +28,7 @@ module.exports = {
         "react/jsx-indent": ["error", 4],
         "indent": ["error", 4],
         "react/jsx-props-no-spreading": 0,
+        "import/no-extraneous-dependencies": 0
     }
 };
 

@@ -21,10 +21,10 @@ const DashboardBtns = styled.button`
     }
 `;
 
-const Button = ({ children, onClick, props }) => (
+const Button = ({ children, handleClick, props }) => (
     <DashboardBtns
         type="button"
-        onClick={onClick}
+        onClick={handleClick}
         {...props}
     >{children}
     </DashboardBtns>

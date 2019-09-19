@@ -4,10 +4,9 @@ import BlurImageLoader from '../../components/BlurImageLoader';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import backgroundImage from '../../assets/dashboard/thailand.JPG';
 import { GlobalStyle } from '../../assets/globalStyles';
-import Navbar from '../../components/Navbar';
 import ProfileCard from './ProfileCard';
 import NewsFeedCard from './NewsFeedCard';
-import BlogCard from './BlogCard';
+import LiveChatCard from './LiveChatCard';
 
 const CardContainer = styled.div`
   display: flex;
@@ -26,11 +25,10 @@ const App = () => (
             alt="Thailand picture"
             placeholder="Thailand picture"
         >
-            <Navbar />
             <CardContainer>
                 <ProfileCard />
                 <NewsFeedCard />
-                <BlogCard />
+                <LiveChatCard />
             </CardContainer>
         </BlurImageLoader>
     </>

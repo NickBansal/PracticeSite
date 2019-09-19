@@ -2,11 +2,13 @@ import styled, { createGlobalStyle } from 'styled-components';
 import { spacing } from './constants/index';
 
 export const GlobalStyle = createGlobalStyle`
+  html {
+    background: #1e3127;
+  }
   body {
     padding: 0;
     font-family: 'Poppins', sans-serif;
-    filter: grayscale(0.3);
-    max-width: 1500px;
+    filter: grayscale(0.5);
     margin: 0 auto;
   }
 `;

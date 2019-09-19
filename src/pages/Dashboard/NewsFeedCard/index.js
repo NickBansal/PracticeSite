@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
+import useForceUpdate from 'use-force-update';
 import NewsItem from './NewsItem';
 import Card from '../../../components/Card';
 import Button from '../../../components/Button';
@@ -21,6 +22,10 @@ const NewsContainer = styled.div`
 const NewsFeedCard = () => {
     const [newsFeed, setNewsFeed] = useState([]);
 
+    const forceUpdate = useForceUpdate();
+
+    const handleClick = () => forceUpdate();
+
     useEffect(() => {
         axios.get(url)
             .then((res) => {
@@ -38,7 +43,7 @@ const NewsFeedCard = () => {
                     <NewsItem news={news} key={news.title} />
                 ))}
             </NewsContainer>
-            <Button onClick={() => { }}>Refresh news</Button>
+            <Button handleClick={handleClick}>Refresh news</Button>
         </Card>
     );
 };

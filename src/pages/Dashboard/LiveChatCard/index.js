@@ -12,9 +12,9 @@ const Title = styled.h1`
 
 const BlogCard = () => (
     <Card fadeIn="2.0s">
-        <Title>My blog</Title>
+        <Title>Live chat</Title>
         <HR />
-        <Button>View full blog</Button>
+        <Button>Click to enter</Button>
     </Card>
 );
 
