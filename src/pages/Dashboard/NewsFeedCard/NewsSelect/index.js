@@ -14,7 +14,7 @@ const ModalStyled = styled.div`
     width: 90%;
     overflow: scroll;
     text-align: center;
-    transition: height 0.5s ease-in;
+    transition: height 0.4s ease-out;
 `;
 
 const Image = styled(BlurImageLoader)`
@@ -24,10 +24,7 @@ const Image = styled(BlurImageLoader)`
 
     &:hover {
         cursor: pointer;
-        filter: filter: grayscale(0.5);
     }
-
-    transition: 0.3s
 `;
 
 const NewsSelect = ({ show, handleClick }) => (

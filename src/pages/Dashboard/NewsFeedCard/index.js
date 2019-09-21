@@ -31,6 +31,10 @@ const Image = styled.img`
     height: 30px;
     width: 30px;
     border-radius: 4px;
+
+    &:hover {
+        cursor: pointer;
+    }
 `;
 
 const NewsFeedCard = () => {
@@ -58,6 +62,7 @@ const NewsFeedCard = () => {
             <TitleContainer>
                 <Title><LiveText>Live</LiveText> news feed</Title>
                 <Image
+                    onClick={() => setModal(!modal)}
                     src={currentCountry[0]}
                     alt={`${country} flag`}
                     placeholder={`${country} flag`}
