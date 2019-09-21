@@ -8,14 +8,14 @@ describe('<Button />', () => {
         expect(getByText('Button Text')).toBeInTheDocument();
     });
     it('should call the correct function on the onClick event handler', () => {
-        const onClick = jest.fn();
-        const { getByText } = render(<Button onClick={onClick}>Submit</Button>);
+        const handleClick = jest.fn();
+        const { getByText } = render(<Button handleClick={handleClick}>Submit</Button>);
         const submitBtn = getByText('Submit');
 
-        expect(onClick).not.toHaveBeenCalled();
+        expect(handleClick).not.toHaveBeenCalled();
 
         fireEvent.click(submitBtn);
 
-        expect(onClick).toHaveBeenCalledTimes(1);
+        expect(handleClick).toHaveBeenCalledTimes(1);
     });
 });
