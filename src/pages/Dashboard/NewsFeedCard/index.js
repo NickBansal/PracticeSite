@@ -19,6 +19,28 @@ const NewsContainer = styled.div`
   overflow: scroll;
 `;
 
+const Live = styled.div`
+    color: red
+    animation: pulsate 2.0s infinite;
+    width: 45px;
+    display: inline-block;
+
+    @keyframes pulsate {
+        0% { 
+            opacity: 0.5;
+            font-size: 1.45rem;
+        }
+        50% { 
+            opacity: 1.0;
+            font-size: 1.5rem;
+        }
+        100% { 
+            opacity: 0.5;
+            font-size: 1.45rem;
+        }
+    }
+`;
+
 const NewsFeedCard = () => {
     const [newsFeed, setNewsFeed] = useState({ res: [], loading: true });
 
@@ -32,7 +54,7 @@ const NewsFeedCard = () => {
 
     return (
         <Card fadeIn="1.5s">
-            <Title>News feed</Title>
+            <Title><Live>Live</Live> news feed</Title>
             <HR />
             <NewsContainer>
                 {loading && <p>Loading</p>}

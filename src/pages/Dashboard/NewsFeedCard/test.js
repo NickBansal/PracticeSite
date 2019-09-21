@@ -1,9 +1,13 @@
 import React from 'react';
 import axios from 'axios';
 import { render } from '@testing-library/react';
+// import mockio, { serverSocket, cleanUp } from 'socket.io-client';
 import NewsFeedCard from '.';
 
 jest.mock('axios');
+jest.mock('socket.io-client');
+
+jest.useFakeTimers();
 
 describe('<NewsFeedCard />', () => {
     it('should render a title', () => {
@@ -13,7 +17,8 @@ describe('<NewsFeedCard />', () => {
             },
         });
         const { getByText } = render(<NewsFeedCard />);
-        expect(getByText('News feed')).toBeInTheDocument();
+        // serverSocket.on();
+        expect(getByText('Live news feed')).toBeInTheDocument();
         expect(getByText('Refresh news')).toBeInTheDocument();
     });
 });
