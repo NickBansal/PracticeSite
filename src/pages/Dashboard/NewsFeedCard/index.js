@@ -20,59 +20,29 @@ const NewsContainer = styled.div`
 `;
 
 const NewsFeedCard = () => {
-    const [newsFeed, setNewsFeed] = useState([]);
-
-    const handleClick = () => { };
+    const [newsFeed, setNewsFeed] = useState({ res: [], loading: true });
 
     useEffect(() => {
         const socket = socketIOClient(endpoint);
-        socket.on('FromAPI', (res) => setNewsFeed(res));
+        socket.on('FromAPI', (res) => setNewsFeed({ res, loading: false }));
         // eslint-disable-next-line
     }, []);
 
-    console.log(newsFeed);
+    const { res, loading } = newsFeed;
 
     return (
         <Card fadeIn="1.5s">
             <Title>News feed</Title>
             <HR />
             <NewsContainer>
-                {newsFeed.map((news) => (
+                {loading && <p>Loading</p>}
+                {res.map((news) => (
                     <NewsItem news={news} key={news.title} />
                 ))}
             </NewsContainer>
-            <Button handleClick={handleClick}>Refresh news</Button>
+            <Button>Refresh news</Button>
         </Card>
     );
 };
 
 export default NewsFeedCard;
-
-/*
-import socketIOClient from "socket.io-client";
-class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      response: false,
-      endpoint: "http://127.0.0.1:4001"
-    };
-  }
-  componentDidMount() {
-    const { endpoint } = this.state;
-    const socket = socketIOClient(endpoint);
-    socket.on("FromAPI", data => this.setState({ response: data }));
-  }
-  render() {
-    const { response } = this.state;
-    return (
-        <div style={{ textAlign: "center" }}>
-          {response
-              ? <p>
-                The temperature in Florence is: {response} °F
-              </p>
-              : <p>Loading...</p>}
-        </div>
-    );
-  }
-*/
