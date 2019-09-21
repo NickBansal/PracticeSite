@@ -36,7 +36,7 @@ const NewsSelect = ({ show, handleClick }) => (
             const country = JSON.stringify(flag).split('media/')[1].split('.')[0];
             return (
                 <Image
-                    onClick={() => handleClick(false)}
+                    onClick={() => handleClick(country)}
                     key={flag}
                     width="110px"
                     height="100px"

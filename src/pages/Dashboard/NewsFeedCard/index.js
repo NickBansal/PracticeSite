@@ -22,6 +22,7 @@ const NewsContainer = styled.div`
 
 const NewsFeedCard = () => {
     const [newsFeed, setNewsFeed] = useState([]);
+    const [country, setCountry] = useState('spain');
 
     const [modal, setModal] = useState(false);
 
@@ -33,6 +34,13 @@ const NewsFeedCard = () => {
 
     const btnText = modal ? 'Show news' : 'Select country';
 
+    const handleClick = (value) => {
+        setModal(false);
+        setCountry(value);
+    };
+
+    console.log(country);
+
     return (
         <Card fadeIn="1.5s">
             <Title><LiveText>Live</LiveText> news feed</Title>
@@ -41,7 +49,7 @@ const NewsFeedCard = () => {
                 {newsFeed.map((news) => (
                     <NewsItem news={news} key={news.title} />
                 ))}
-                <NewsSelect show={modal} handleClick={setModal} />
+                <NewsSelect show={modal} handleClick={handleClick} />
             </NewsContainer>
             <Button handleClick={() => setModal(!modal)}>{btnText}</Button>
         </Card>
