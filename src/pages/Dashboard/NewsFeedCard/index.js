@@ -6,6 +6,8 @@ import Card from '../../../components/Card';
 import Button from '../../../components/Button';
 import { fontSize } from '../../../assets/globalStyles/constants/index';
 import { HR } from '../../../assets/globalStyles/index';
+import LiveText from '../../../components/LiveText';
+import NewsSelect from './NewsSelect';
 
 const endpoint = 'http://127.0.0.1:8080/';
 
@@ -19,50 +21,28 @@ const NewsContainer = styled.div`
   overflow: scroll;
 `;
 
-const Live = styled.div`
-    color: red
-    animation: pulsate 2.0s infinite;
-    width: 45px;
-    display: inline-block;
-
-    @keyframes pulsate {
-        0% { 
-            opacity: 0.5;
-            font-size: 1.45rem;
-        }
-        50% { 
-            opacity: 1.0;
-            font-size: 1.5rem;
-        }
-        100% { 
-            opacity: 0.5;
-            font-size: 1.45rem;
-        }
-    }
-`;
-
 const NewsFeedCard = () => {
-    const [newsFeed, setNewsFeed] = useState({ res: [], loading: true });
+    const [newsFeed, setNewsFeed] = useState([]);
+
+    const [modal, setModal] = useState(false);
 
     useEffect(() => {
         const socket = socketIOClient(endpoint);
-        socket.on('FromAPI', (res) => setNewsFeed({ res, loading: false }));
+        socket.on('FromAPI', (res) => setNewsFeed(res));
         // eslint-disable-next-line
     }, []);
 
-    const { res, loading } = newsFeed;
-
     return (
         <Card fadeIn="1.5s">
-            <Title><Live>Live</Live> news feed</Title>
+            <Title><LiveText /> news feed</Title>
             <HR />
             <NewsContainer>
-                {loading && <p>Loading</p>}
-                {res.map((news) => (
+                {newsFeed.map((news) => (
                     <NewsItem news={news} key={news.title} />
                 ))}
+                <NewsSelect show={modal} />
             </NewsContainer>
-            <Button>Refresh news</Button>
+            <Button handleClick={() => setModal(!modal)}>Select news</Button>
         </Card>
     );
 };

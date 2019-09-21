@@ -4,6 +4,7 @@ import Card from '../../../components/Card';
 import Button from '../../../components/Button';
 import { fontSize } from '../../../assets/globalStyles/constants/index';
 import { HR } from '../../../assets/globalStyles/index';
+import LiveText from '../../../components/LiveText';
 
 const Title = styled.h1`
     font-size: ${fontSize.title};
@@ -12,7 +13,7 @@ const Title = styled.h1`
 
 const BlogCard = () => (
     <Card fadeIn="2.0s">
-        <Title>Live chat</Title>
+        <Title><LiveText /> chat</Title>
         <HR />
         <Button>Click to enter</Button>
     </Card>

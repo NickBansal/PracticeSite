@@ -19,6 +19,6 @@ describe('<NewsFeedCard />', () => {
         const { getByText } = render(<NewsFeedCard />);
         // serverSocket.on();
         expect(getByText('Live news feed')).toBeInTheDocument();
-        expect(getByText('Refresh news')).toBeInTheDocument();
+        expect(getByText('Select news')).toBeInTheDocument();
     });
 });
