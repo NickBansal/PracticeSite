@@ -10,6 +10,7 @@ import israel from './israel.svg';
 import norway from './norway.svg';
 import southKorea from './south-korea.svg';
 import spain from './spain.svg';
+import switzerland from './switzerland.svg';
 import thailand from './thailand.svg';
 import uk from './united-kingdom.svg';
 import us from './united-states-of-america.svg';
@@ -26,6 +27,7 @@ export default [
     israel,
     norway,
     southKorea,
+    switzerland,
     spain,
     thailand,
     uk,
