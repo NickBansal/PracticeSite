@@ -12,7 +12,7 @@ const ModalStyled = styled.div`
     z-index: 100;
     bottom: 74px;
     width: 90%;
-    overflow: hidden;
+    overflow: scroll;
     text-align: center;
     transition: height 0.5s ease-in;
 `;
