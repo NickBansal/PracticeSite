@@ -9,7 +9,7 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     font-family: 'Poppins', sans-serif;
     filter: grayscale(0.5);
-    margin: 0 auto;
+    margin: 0;
   }
 `;
 
@@ -22,4 +22,26 @@ export const HR = styled.hr`
   border-color: initial;
   border-image: initial;
   margin: ${spacing.s1} auto;  
+`;
+
+export const LiveText = styled.div`
+    color: red
+    animation: pulsate 2.0s infinite;
+    width: 45px;
+    display: inline-block;
+
+    @keyframes pulsate {
+        0% { 
+            opacity: 0.5;
+            font-size: 1.45rem;
+        }
+        50% { 
+            opacity: 1.0;
+            font-size: 1.5rem;
+        }
+        100% { 
+            opacity: 0.5;
+            font-size: 1.45rem;
+        }
+    }
 `;

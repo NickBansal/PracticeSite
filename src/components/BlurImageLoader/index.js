@@ -14,6 +14,7 @@ const LoadableImage = styled.div`
     flex-shrink: 0;
     text-align:justify;
     overflow: scroll;
+    display: inline-block;
 `;
 
 const BlurImageLoader = ({

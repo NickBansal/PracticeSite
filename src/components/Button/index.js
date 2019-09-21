@@ -19,6 +19,8 @@ const DashboardBtns = styled.button`
         color: white;
         cursor: pointer;
     }
+
+    transition: 0.3s
 `;
 
 const Button = ({ children, handleClick, props }) => (

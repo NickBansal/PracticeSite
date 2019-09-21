@@ -5,8 +5,7 @@ import NewsItem from './NewsItem';
 import Card from '../../../components/Card';
 import Button from '../../../components/Button';
 import { fontSize } from '../../../assets/globalStyles/constants/index';
-import { HR } from '../../../assets/globalStyles/index';
-import LiveText from '../../../components/LiveText';
+import { HR, LiveText } from '../../../assets/globalStyles/index';
 import NewsSelect from './NewsSelect';
 
 const endpoint = 'http://127.0.0.1:8080/';
@@ -32,17 +31,19 @@ const NewsFeedCard = () => {
         // eslint-disable-next-line
     }, []);
 
+    const btnText = modal ? 'Show news' : 'Select country';
+
     return (
         <Card fadeIn="1.5s">
-            <Title><LiveText /> news feed</Title>
+            <Title><LiveText>Live</LiveText> news feed</Title>
             <HR />
             <NewsContainer>
                 {newsFeed.map((news) => (
                     <NewsItem news={news} key={news.title} />
                 ))}
-                <NewsSelect show={modal} />
+                <NewsSelect show={modal} handleClick={setModal} />
             </NewsContainer>
-            <Button handleClick={() => setModal(!modal)}>Select news</Button>
+            <Button handleClick={() => setModal(!modal)}>{btnText}</Button>
         </Card>
     );
 };
