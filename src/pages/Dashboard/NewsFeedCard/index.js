@@ -7,10 +7,13 @@ import Button from '../../../components/Button';
 import { fontSize } from '../../../assets/globalStyles/constants/index';
 import { HR, LiveText } from '../../../assets/globalStyles/index';
 import NewsSelect from './NewsSelect';
+import flags from '../../../assets/flags';
+import BlurImageLoader from '../../../components/BlurImageLoader';
 
 const endpoint = 'http://127.0.0.1:8080/';
 
 const Title = styled.h1`
+display: inline-block;
     font-size: ${fontSize.title};
     margin: 0;
 `;
@@ -20,9 +23,14 @@ const NewsContainer = styled.div`
   overflow: scroll;
 `;
 
+const TitleContainer = styled.div`
+    display: flex;
+    justify-content: space-between;
+`;
+
 const NewsFeedCard = () => {
     const [newsFeed, setNewsFeed] = useState([]);
-    const [country, setCountry] = useState('spain');
+    const [country, setCountry] = useState('united-kingdom');
 
     const [modal, setModal] = useState(false);
 
@@ -41,9 +49,20 @@ const NewsFeedCard = () => {
 
     console.log(country);
 
+    const currentCountry = flags.filter((flag) => JSON.stringify(flag).includes(country));
+
     return (
         <Card fadeIn="1.5s">
-            <Title><LiveText>Live</LiveText> news feed</Title>
+            <TitleContainer>
+                <Title><LiveText>Live</LiveText> news feed</Title>
+                <BlurImageLoader
+                    width="30px"
+                    height="30px"
+                    image={currentCountry[0]}
+                    alt={`${currentCountry} flag`}
+                    placeholder={`${currentCountry} flag`}
+                />
+            </TitleContainer>
             <HR />
             <NewsContainer>
                 {newsFeed.map((news) => (
