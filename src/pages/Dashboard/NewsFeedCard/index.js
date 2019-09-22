@@ -10,6 +10,7 @@ import NewsSelect from './NewsSelect';
 import flags from '../../../assets/flags';
 
 const endpoint = 'http://127.0.0.1:8080/';
+const socket = socketIOClient(endpoint);
 
 const Title = styled.h1`
 display: inline-block;
@@ -43,7 +44,6 @@ const NewsFeedCard = () => {
     const [modal, setModal] = useState(false);
 
     useEffect(() => {
-        const socket = socketIOClient(endpoint);
         socket.on('FromAPI', (res) => setNewsFeed(res));
         // eslint-disable-next-line
     }, []);
@@ -53,6 +53,10 @@ const NewsFeedCard = () => {
     const handleClick = (value) => {
         setModal(false);
         setCountry(value);
+
+        socket.emit('sendCountry', value, () => {
+            console.log(value);
+        });
     };
 
     const currentCountry = flags.filter((flag) => JSON.stringify(flag).includes(country));
