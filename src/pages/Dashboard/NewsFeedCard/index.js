@@ -54,9 +54,7 @@ const NewsFeedCard = () => {
         setModal(false);
         setCountry(value);
 
-        socket.emit('sendCountry', value, () => {
-            console.log(value);
-        });
+        socket.emit('sendCountry', value);
     };
 
     const currentCountry = flags.filter((flag) => JSON.stringify(flag).includes(country));
