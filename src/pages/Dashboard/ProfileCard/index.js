@@ -14,6 +14,12 @@ const Image = styled(BlurImageLoader)`
     border-radius: 10px;
     margin-bottom: ${spacing.s2};
     border: 2px solid #00000030;
+    opacity: ${({ mouseEnter }) => (mouseEnter ? '0.8' : '1')};
+    transition: opacity 0.3s;
+
+    &:hover {
+        cursor: pointer;
+    }
 `;
 
 const ProfileText = styled.p`
@@ -67,6 +73,7 @@ const ProfileCard = () => {
                     image={profilePicture}
                     alt="Profile picture"
                     placeholder="Profile picture"
+                    mouseEnter={showLinks}
                 />
                 <Links show={showLinks}>
                     <LinkIcon>

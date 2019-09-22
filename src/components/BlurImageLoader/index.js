@@ -6,9 +6,9 @@ const LoadableImage = styled.div.attrs((props) => ({
     style: {
         width: `${props.width}`,
         height: `${props.height}`,
+        backgroundImage: `url(${props.src})`,
     },
 }))`
-    background-image: url(${({ src }) => src});
     filter: ${({ loaded }) => (!loaded ? 'blur(30px)' : 'none')};
     transition: filter 1s ease;
     background-position: 50% 50%;
@@ -23,7 +23,7 @@ const LoadableImage = styled.div.attrs((props) => ({
 const BlurImageLoader = ({
     placeholder, image, ...props
 }) => {
-    const runOnce = true;
+    // const runOnce = true;
 
     const [loadState, setLoadState] = useState({
         src: placeholder,
@@ -31,6 +31,7 @@ const BlurImageLoader = ({
     });
 
     useEffect(() => {
+        const abortController = new AbortController();
         const img = new Image();
 
         img.onload = () => {
@@ -41,8 +42,12 @@ const BlurImageLoader = ({
         };
 
         img.src = image;
+
+        return function cleanup() {
+            abortController.abort();
+        };
         // eslint-disable-next-line
-    }, [runOnce]);
+    }, []);
 
     return <LoadableImage {...props} {...loadState} />;
 };
