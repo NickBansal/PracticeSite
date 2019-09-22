@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { string } from 'prop-types';
 
-const LoadableImage = styled.div`
+const LoadableImage = styled.div.attrs((props) => ({
+    style: {
+        width: `${props.width}`,
+        height: `${props.height}`,
+    },
+}))`
     background-image: url(${({ src }) => src});
     filter: ${({ loaded }) => (!loaded ? 'blur(30px)' : 'none')};
-    width: ${({ width }) => width};
-    height: ${({ height }) => height};
     transition: filter 1s ease;
     background-position: 50% 50%;
     background-origin: border-box;
