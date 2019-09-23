@@ -40,6 +40,8 @@ const BlurImageLoader = ({
             });
         };
 
+        img.onerror = () => console.log('ERRROROROR');
+
         img.src = image;
         // eslint-disable-next-line
     }, []);
