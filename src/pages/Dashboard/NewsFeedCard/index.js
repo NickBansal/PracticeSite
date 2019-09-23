@@ -44,8 +44,10 @@ const NewsFeedCard = () => {
     const [modal, setModal] = useState(false);
 
     useEffect(() => {
-        socket.on('FromAPI', (res) => setNewsFeed(res));
+        socket.on('FromAPI', setNewsFeed);
         // eslint-disable-next-line
+
+        return () => socket.off('FromAPI', setNewsFeed);
     }, []);
 
     const btnText = modal ? 'Show news' : 'Select country';
@@ -75,7 +77,7 @@ const NewsFeedCard = () => {
                 {newsFeed.map((news) => (
                     <NewsItem news={news} key={news.title} />
                 ))}
-                <NewsSelect show={modal} handleClick={handleClick} />
+                <NewsSelect show={modal} handleClick={handleClick} flags={flags} />
             </NewsContainer>
             <Button handleClick={() => setModal(!modal)}>{btnText}</Button>
         </Card>

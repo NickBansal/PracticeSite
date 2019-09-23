@@ -31,7 +31,6 @@ const BlurImageLoader = ({
     });
 
     useEffect(() => {
-        const abortController = new AbortController();
         const img = new Image();
 
         img.onload = () => {
@@ -42,10 +41,6 @@ const BlurImageLoader = ({
         };
 
         img.src = image;
-
-        return function cleanup() {
-            abortController.abort();
-        };
         // eslint-disable-next-line
     }, []);
 

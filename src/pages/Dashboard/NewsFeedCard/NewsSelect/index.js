@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { bool } from 'prop-types';
-import flags from '../../../../assets/flags';
+import {
+    bool, arrayOf, string, func,
+} from 'prop-types';
 import BlurImageLoader from '../../../../components/BlurImageLoader';
 import { spacing } from '../../../../assets/globalStyles/constants';
 
@@ -29,10 +30,10 @@ const Image = styled(BlurImageLoader)`
     }
 `;
 
-const NewsSelect = ({ show, handleClick }) => (
-    <ModalStyled show={show} aria-label="Country news select">
+const NewsSelect = ({ show, handleClick, flags }) => (
+    <ModalStyled show={show} aria-label="Country news selector">
         {flags.map((flag) => {
-            const country = JSON.stringify(flag).split('media/')[1].split('.')[0];
+            const country = flag.split('media/')[1].split('.')[0];
             return (
                 <Image
                     onClick={() => handleClick(country)}
@@ -50,6 +51,12 @@ const NewsSelect = ({ show, handleClick }) => (
 
 NewsSelect.propTypes = {
     show: bool.isRequired,
+    flags: arrayOf(string).isRequired,
+    handleClick: func,
+};
+
+NewsSelect.defaultProps = {
+    handleClick: () => { },
 };
 
 export default NewsSelect;
