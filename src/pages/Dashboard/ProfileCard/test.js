@@ -20,5 +20,10 @@ describe('<ProfileCard />', () => {
 
         expect(getByLabelText('Profile picture')).toHaveStyleRule('opacity', '0.8');
         expect(getByLabelText('Links icons')).toHaveStyleRule('opacity', '1');
+
+        fireEvent.mouseLeave(profileContainer);
+
+        expect(getByLabelText('Profile picture')).toHaveStyleRule('opacity', '1');
+        expect(getByLabelText('Links icons')).toHaveStyleRule('opacity', '0');
     });
 });
