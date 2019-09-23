@@ -64,6 +64,7 @@ const ProfileCard = () => {
     return (
         <Card fadeIn="1.0s">
             <div
+                aria-label="Profile picture and links"
                 onMouseEnter={() => setShowLinks(true)}
                 onMouseLeave={() => setShowLinks(false)}
             >
@@ -71,11 +72,11 @@ const ProfileCard = () => {
                     width="210px"
                     height="220px"
                     image={profilePicture}
-                    alt="Profile picture"
+                    aria-label="Profile picture"
                     placeholder="Profile picture"
                     mouseEnter={showLinks}
                 />
-                <Links show={showLinks}>
+                <Links aria-label="Links icons" show={showLinks}>
                     <LinkIcon>
                         <a
                             rel="noopener noreferrer"
