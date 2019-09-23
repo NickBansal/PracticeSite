@@ -41,7 +41,7 @@ const NewsSelect = ({ show, handleClick, flags }) => (
                     width="110px"
                     height="100px"
                     image={flag}
-                    alt={`${country} flag`}
+                    aria-label={`${country} flag`}
                     placeholder={`${country} flag`}
                 />
             );
