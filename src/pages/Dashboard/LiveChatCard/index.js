@@ -15,7 +15,7 @@ const BlogCard = () => (
     <Card fadeIn="2.0s">
         <Title><LiveText>Live</LiveText> chat</Title>
         <HR />
-        <Button>Click to enter</Button>
+        <Button onClick={() => { }}>Click to enter</Button>
     </Card>
 );
 

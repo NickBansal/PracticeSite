@@ -79,7 +79,7 @@ const NewsFeedCard = () => {
                 ))}
                 <NewsSelect show={modal} handleClick={handleClick} flags={flags} />
             </NewsContainer>
-            <Button handleClick={() => setModal(!modal)}>{btnText}</Button>
+            <Button onClick={() => setModal(!modal)}>{btnText}</Button>
         </Card>
     );
 };
