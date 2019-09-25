@@ -23,7 +23,7 @@ const DashboardBtns = styled.button`
     transition: 0.3s
 `;
 
-const Button = ({ children, onClick, props }) => (
+const CardButton = ({ children, onClick, props }) => (
     <DashboardBtns
         type="button"
         onClick={onClick}
@@ -32,9 +32,9 @@ const Button = ({ children, onClick, props }) => (
     </DashboardBtns>
 );
 
-Button.propTypes = {
+CardButton.propTypes = {
     children: node.isRequired,
     onClick: func.isRequired,
 };
 
-export default Button;
+export default CardButton;
