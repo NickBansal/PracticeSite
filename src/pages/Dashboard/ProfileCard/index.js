@@ -4,7 +4,6 @@ import Card from '../../../components/Card';
 import profilePicture from '../../../assets/profile/me.JPG';
 import BlurImageLoader from '../../../components/BlurImageLoader';
 import { HR } from '../../../assets/globalStyles/index';
-import Links from './Links';
 import {
 	spacing,
 	fontSize
@@ -19,13 +18,6 @@ const Image = styled(BlurImageLoader)`
 	border-radius: 10px;
 	margin-bottom: ${spacing.s2};
 	border: 2px solid #00000030;
-	opacity: ${({ mouseEnter }) => (mouseEnter ? '0.8' : '1')};
-	filter: ${({ mouseEnter }) => (mouseEnter ? 'blur(2px)' : 'none')};
-	transition: 0.3s;
-
-	&:hover {
-		cursor: pointer;
-	}
 `;
 
 const ProfileText = styled.p`
@@ -43,26 +35,17 @@ const Name = styled.p`
 `;
 
 const ProfileCard = () => {
-	const [showLinks, setShowLinks] = useState(false);
 	const [showOverlay, setShowOverlay] = useState(false);
 
 	return (
 		<Card fadeIn="1.0s">
-			<div
-				aria-label="Profile picture and links"
-				onMouseEnter={() => setShowLinks(true)}
-				onMouseLeave={() => setShowLinks(false)}
-			>
-				<Image
-					width="210px"
-					height="220px"
-					image={profilePicture}
-					aria-label="Profile picture"
-					placeholder="Profile picture"
-					mouseEnter={showLinks}
-				/>
-				<Links showlinks={showLinks} />
-			</div>
+			<Image
+				width="210px"
+				height="220px"
+				image={profilePicture}
+				aria-label="Profile picture"
+				placeholder="Profile picture"
+			/>
 			<HR />
 
 			<Overlay showOverlay={showOverlay} handleClick={setShowOverlay}>
