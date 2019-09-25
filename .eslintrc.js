@@ -4,7 +4,11 @@ module.exports = {
         "es6": true,
         "jest": true
     },
-    "extends": "airbnb",
+    "extends": [
+        "airbnb",
+        "prettier",
+        "prettier/react"
+    ],
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
@@ -17,18 +21,36 @@ module.exports = {
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react",
+        "prettier"
     ],
     "rules": {
-        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+        "no-underscore-dangle": 0,
+        "jest/no-identical-title": 0,
+        "react/jsx-indent": 0,
+        "react/no-typos": 0,
         "react/prop-types": 0,
         "react/jsx-indent-props": 0,
         "react/jsx-filename-extension": 0,
         "react/jsx-one-expression-per-line": 0,
-        "react/jsx-indent": ["error", 4],
-        "indent": ["error", 4],
-        "react/jsx-props-no-spreading": 0,
-        "import/no-extraneous-dependencies": 0
+        "no-alert": 1,
+        "prettier/prettier": [
+            "error",
+            {
+                "useTabs": true,
+                "tabWidth": 4,
+                "singleQuote": true
+            }
+        ],
+        "consistent-return": 0,
+        "no-tabs": 0,
+        "no-plusplus": 0,
+        "import/no-extraneous-dependencies": [
+            "error",
+            {
+                "devDependencies": true
+            }
+        ]
     }
 };
 

@@ -9,7 +9,7 @@ const StyledCard = styled.div`
     background: white;
     border: 3px solid #00000040;
     border-radius: ${spacing.s2};
-    margin: 26px;
+    margin: ${spacing.s3};
     display: inline-block;
     padding: ${spacing.s2};
     animation: ${({ fadeIn }) => `${fadeIn} linear fade`} 1;

@@ -41,7 +41,7 @@ const Name = styled.p`
 
 const ProfileCard = () => {
     const [showLinks, setShowLinks] = useState(false);
-    const [showOverlay, setShowOverlay] = useState(false);
+    const [showOverlay, setShowOverlay] = useState(true);
 
     return (
         <Card fadeIn="1.0s">

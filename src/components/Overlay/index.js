@@ -49,6 +49,8 @@ const Close = styled(TransitionEffects)`
         color: white;
         border: white solid 2px;
     }
+
+    transition: 0.3s
 `;
 
 const Information = styled(TransitionEffects)`
