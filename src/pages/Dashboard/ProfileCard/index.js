@@ -38,7 +38,7 @@ const ProfileText = styled.p`
 const Name = styled.p`
 	text-align: center;
 	font-size: ${fontSize.title};
-	margin: ${spacing.s3} ${spacing.s1} ${spacing.s1};
+	margin: ${spacing.s2} ${spacing.s1} ${spacing.s1};
 	font-family: 'Dancing Script', cursive;
 `;
 

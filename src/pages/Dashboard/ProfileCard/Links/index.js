@@ -23,6 +23,12 @@ const LinkIcon = styled.div`
 
 const Icon = styled.i`
 	color: #ff3300;
+
+	&:hover {
+		color: #a92301;
+	}
+
+	transition: 0.3s;
 `;
 
 const Links = ({ showlinks }) => (
