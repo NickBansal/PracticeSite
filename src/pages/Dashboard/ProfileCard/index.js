@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { CSSTransition } from 'react-transition-group';
 import Card from '../../../components/Card';
 import profilePicture from '../../../assets/profile/me.JPG';
 import BlurImageLoader from '../../../components/BlurImageLoader';
@@ -8,8 +7,8 @@ import { HR } from '../../../assets/globalStyles/index';
 import Button from '../../../components/Button';
 import Links from './Links';
 import { spacing, fontSize } from '../../../assets/globalStyles/constants/index';
-
-import '../../../assets/globalStyles/styles.css';
+import Overlay from '../../../components/Overlay';
+import ProfileInformation from './ProfileInformation';
 
 const Image = styled(BlurImageLoader)`
     -webkit-box-shadow: 4px 11px 55px -21px rgba(0,0,0,0.75);
@@ -40,30 +39,9 @@ const Name = styled.p`
     font-family: 'Dancing Script', cursive;
 `;
 
-const ABC = styled.div`
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    background: white;
-    z-index: 500;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-`;
-
-const Background = styled.div`
-    width: 100%;
-    height: 100%;
-    background: #00000099;
-    z-index: 400;
-    position: fixed;
-    top: 0;
-    left: 0;
-`;
-
 const ProfileCard = () => {
     const [showLinks, setShowLinks] = useState(false);
-    const [showMessage, setShowMessage] = useState(false);
+    const [showOverlay, setShowOverlay] = useState(false);
 
     return (
         <Card fadeIn="1.0s">
@@ -84,30 +62,14 @@ const ProfileCard = () => {
             </div>
             <HR />
 
-            <CSSTransition
-                in={showMessage}
-                timeout={500}
-                classNames="alert"
-                unmountOnExit
-            // onEnter={() => setShowButton(false)}
-            // onExited={() => setShowButton(true)}
-            >
-                <Background>
-                    <ABC>
-                        <Button onClick={() => setShowMessage(false)}>
-                            Close
-                        </Button>
+            <Overlay showOverlay={showOverlay} handleClick={setShowOverlay}>
+                <ProfileInformation />
+            </Overlay>
 
-                    </ABC>
+            <Name><strong>Nick Bansal</strong></Name>
+            <ProfileText><strong>Junior Web Developer</strong></ProfileText>
 
-                </Background>
-
-            </CSSTransition>
-
-            <Name>Nick Bansal</Name>
-            <ProfileText>Junior Web Developer</ProfileText>
-
-            <Button onClick={() => setShowMessage(true)}>View full profile</Button>
+            <Button onClick={() => setShowOverlay(true)}>View full profile</Button>
         </Card>
     );
 };
