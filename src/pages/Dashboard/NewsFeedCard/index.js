@@ -3,7 +3,6 @@ import socketIOClient from 'socket.io-client';
 import styled from 'styled-components';
 import NewsItem from './NewsItem';
 import Card from '../../../components/Card';
-import Button from '../../../components/Button';
 import { LiveText } from '../../../assets/globalStyles/index';
 import NewsSelect from './NewsSelect';
 import flags from '../../../assets/flags';
@@ -52,15 +51,14 @@ const NewsFeedCard = () => {
 
     return (
         <Card fadeIn="1.5s">
-            <Card.Title><LiveText>Live</LiveText> chat
-
+            <Card.Title>
+                <LiveText>Live</LiveText> chat
                 <Image
                     onClick={() => setModal(!modal)}
                     src={currentCountry[0]}
                     alt={`${country} flag`}
                     placeholder={`${country} flag`}
                 />
-
             </Card.Title>
             <NewsContainer>
                 {newsFeed.map((news) => (
@@ -68,7 +66,7 @@ const NewsFeedCard = () => {
                 ))}
                 <NewsSelect show={modal} handleClick={handleClick} flags={flags} />
             </NewsContainer>
-            <Button onClick={() => setModal(!modal)}>{btnText}</Button>
+            <Card.Button onClick={() => setModal(!modal)}>{btnText}</Card.Button>
         </Card>
     );
 };

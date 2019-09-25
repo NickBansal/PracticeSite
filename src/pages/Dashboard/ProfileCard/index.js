@@ -4,7 +4,6 @@ import Card from '../../../components/Card';
 import profilePicture from '../../../assets/profile/me.JPG';
 import BlurImageLoader from '../../../components/BlurImageLoader';
 import { HR } from '../../../assets/globalStyles/index';
-import Button from '../../../components/Button';
 import Links from './Links';
 import { spacing, fontSize } from '../../../assets/globalStyles/constants/index';
 import Overlay from '../../../components/Overlay';
@@ -69,7 +68,7 @@ const ProfileCard = () => {
             <Name><strong>Nick Bansal</strong></Name>
             <ProfileText><strong>Junior Web Developer</strong></ProfileText>
 
-            <Button onClick={() => setShowOverlay(true)}>View full profile</Button>
+            <Card.Button onClick={() => setShowOverlay(true)}>View full profile</Card.Button>
         </Card>
     );
 };

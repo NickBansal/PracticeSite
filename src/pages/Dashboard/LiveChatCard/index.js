@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Card from '../../../components/Card';
-import Button from '../../../components/Button';
 import { LiveText } from '../../../assets/globalStyles/index';
 import Overlay from '../../../components/Overlay';
 
@@ -21,7 +20,7 @@ const BlogCard = () => {
             <Overlay showOverlay={showOverlay} handleClick={setShowOverlay}>
                 <Info />
             </Overlay>
-            <Button onClick={() => setShowOverlay(true)}> Click to enter</Button>
+            <Card.Button onClick={() => setShowOverlay(true)}> Click to enter</Card.Button>
         </Card>
     );
 };
