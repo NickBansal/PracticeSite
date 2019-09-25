@@ -26,4 +26,13 @@ describe('<ProfileCard />', () => {
         expect(getByLabelText('Profile picture')).toHaveStyleRule('opacity', '1');
         expect(getByLabelText('Links icons')).toHaveStyleRule('opacity', '0');
     });
+    it('should show the overlay when the button is clicked', () => {
+        const { getByText, queryByLabelText, getByLabelText } = render(<ProfileCard />);
+
+        expect(queryByLabelText('Overlay modal')).toBeNull();
+
+        fireEvent.click(getByText('View full profile'));
+
+        expect(getByLabelText('Overlay modal')).toBeInTheDocument();
+    });
 });

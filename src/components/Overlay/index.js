@@ -45,19 +45,19 @@ const Information = styled.div`
         width: 650px;
     }
 
-    .alert-enter & {
+    .transition-enter & {
         opacity: 0;
         transform: scale(0.3), translate(-50%, -50%);
     }
-    .alert-enter-active  &{
+    .transition-enter-active  &{
         opacity: 1;
         transform: translateX(0), translate(-50%, -50%);
         transition: opacity 500ms, transform 500ms;
     }
-    .alert-exit & {
+    .transition-exit & {
         opacity: 1;
     }
-    .alert-exit-active & {
+    .transition-exit-active & {
         opacity: 0;
         transform: scale(0.3), translate(-50%, -50%);
         transition: opacity 500ms, transform 500ms  
@@ -68,8 +68,9 @@ const Overlay = ({ showOverlay, handleClick, children }) => (
     <CSSTransition
         in={showOverlay}
         timeout={500}
-        classNames="alert"
+        classNames="transition"
         unmountOnExit
+        aria-label="Overlay modal"
     >
         <Background>
             <Close onClick={() => handleClick(false)}>X</Close>
