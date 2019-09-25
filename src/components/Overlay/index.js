@@ -1,6 +1,7 @@
 import React from 'react';
 import { CSSTransition } from 'react-transition-group';
 import styled from 'styled-components';
+import { breakPoints } from '../../assets/globalStyles/constants';
 
 const Background = styled.div`
 	width: 100%;
@@ -58,7 +59,13 @@ const Information = styled(TransitionEffects)`
 	z-index: 500;
 	top: 30%;
 	left: 50%;
+	border-radius: 8px;
 	transform: translate(-50%, -50%);
+	width: 90%;
+
+	@media (min-width: ${breakPoints.mobileMax}) {
+		width: 700px;
+	}
 `;
 
 const Overlay = ({ showOverlay, handleClick, children }) => (

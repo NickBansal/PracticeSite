@@ -7,3 +7,8 @@ export const spacing = {
 export const fontSize = {
 	title: '1.5rem'
 };
+
+export const breakPoints = {
+	mobile: '320px',
+	mobileMax: '767px'
+};
