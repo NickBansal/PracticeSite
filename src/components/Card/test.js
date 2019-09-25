@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import Card from '.';
 
 describe('<Card />', () => {
@@ -12,5 +12,22 @@ describe('<Card />', () => {
         const fadeInTime = '0.5s';
         const { getByText } = render(<Card fadeIn={fadeInTime}>Hello</Card>);
         expect(getByText('Hello')).toBeInTheDocument();
+    });
+    it('should call the correct function when the button is clicked', () => {
+        const handleClick = jest.fn();
+        const fadeInTime = '0.5s';
+        const { getByText } = render(
+            <Card fadeIn={fadeInTime}>
+                <Card.Title>Test Title</Card.Title>
+                Hello
+                <Card.Button onClick={handleClick}>Test Button</Card.Button>
+            </Card>,
+        );
+
+        expect(handleClick).not.toHaveBeenCalled();
+
+        fireEvent.click(getByText('Test Button'));
+
+        expect(handleClick).toHaveBeenCalledTimes(1);
     });
 });
