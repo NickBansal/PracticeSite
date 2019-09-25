@@ -10,11 +10,6 @@ import flags from '../../../assets/flags';
 const endpoint = 'http://127.0.0.1:8080/';
 const socket = socketIOClient(endpoint);
 
-const NewsContainer = styled.div`
-  height: 290px;
-  overflow: scroll;
-`;
-
 const Image = styled.img`
     height: 30px;
     width: 30px;
@@ -53,7 +48,7 @@ const NewsFeedCard = () => {
     return (
         <Card fadeIn="1.5s">
             <Card.Title>
-                <LiveText>Live</LiveText> chat
+                <LiveText>Live</LiveText> news feed
             </Card.Title>
             <Image
                 onClick={() => setModal(!modal)}
@@ -61,12 +56,12 @@ const NewsFeedCard = () => {
                 alt={`${country} flag`}
                 placeholder={`${country} flag`}
             />
-            <NewsContainer>
+            <Card.Content>
                 {newsFeed.map((news) => (
                     <NewsItem news={news} key={news.title} />
                 ))}
                 <NewsSelect show={modal} handleClick={handleClick} flags={flags} />
-            </NewsContainer>
+            </Card.Content>
             <Card.Button onClick={() => setModal(!modal)}>{btnText}</Card.Button>
         </Card>
     );
