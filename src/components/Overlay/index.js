@@ -41,10 +41,6 @@ const Information = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
 
-    @media (min-width: 700px) {
-        width: 650px;
-    }
-
     .transition-enter & {
         opacity: 0;
         transform: scale(0.3), translate(-50%, -50%);

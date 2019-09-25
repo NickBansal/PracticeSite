@@ -4,35 +4,24 @@ import styled from 'styled-components';
 import NewsItem from './NewsItem';
 import Card from '../../../components/Card';
 import Button from '../../../components/Button';
-import { fontSize } from '../../../assets/globalStyles/constants/index';
-import { HR, LiveText } from '../../../assets/globalStyles/index';
+import { LiveText } from '../../../assets/globalStyles/index';
 import NewsSelect from './NewsSelect';
 import flags from '../../../assets/flags';
 
 const endpoint = 'http://127.0.0.1:8080/';
 const socket = socketIOClient(endpoint);
 
-const Title = styled.h1`
-display: inline-block;
-    font-size: ${fontSize.title};
-    margin: 0;
-`;
-
 const NewsContainer = styled.div`
   height: 290px;
   overflow: scroll;
-`;
-
-const TitleContainer = styled.div`
-    display: flex;
-    justify-content: space-between;
 `;
 
 const Image = styled.img`
     height: 30px;
     width: 30px;
     border-radius: 4px;
-
+    position: absolute;
+    right: 16px;
     &:hover {
         cursor: pointer;
     }
@@ -63,16 +52,16 @@ const NewsFeedCard = () => {
 
     return (
         <Card fadeIn="1.5s">
-            <TitleContainer>
-                <Title><LiveText>Live</LiveText> news feed</Title>
+            <Card.Title><LiveText>Live</LiveText> chat
+
                 <Image
                     onClick={() => setModal(!modal)}
                     src={currentCountry[0]}
                     alt={`${country} flag`}
                     placeholder={`${country} flag`}
                 />
-            </TitleContainer>
-            <HR />
+
+            </Card.Title>
             <NewsContainer>
                 {newsFeed.map((news) => (
                     <NewsItem news={news} key={news.title} />
