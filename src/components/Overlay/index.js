@@ -34,6 +34,36 @@ const Close = styled.div`
     transition: 0.3s
 `;
 
+const Information = styled.div`
+    position: absolute;
+    z-index: 500;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    @media (min-width: 700px) {
+        width: 650px;
+    }
+
+    .alert-enter & {
+        opacity: 0;
+        transform: scale(0.3), translate(-50%, -50%);
+    }
+    .alert-enter-active  &{
+        opacity: 1;
+        transform: translateX(0), translate(-50%, -50%);
+        transition: opacity 500ms, transform 500ms;
+    }
+    .alert-exit & {
+        opacity: 1;
+    }
+    .alert-exit-active & {
+        opacity: 0;
+        transform: scale(0.3), translate(-50%, -50%);
+        transition: opacity 500ms, transform 500ms  
+    }
+`;
+
 const Overlay = ({ showOverlay, handleClick, children }) => (
     <CSSTransition
         in={showOverlay}
@@ -43,7 +73,9 @@ const Overlay = ({ showOverlay, handleClick, children }) => (
     >
         <Background>
             <Close onClick={() => handleClick(false)}>X</Close>
-            {children}
+            <Information>
+                {children}
+            </Information>
         </Background>
     </CSSTransition>
 );
