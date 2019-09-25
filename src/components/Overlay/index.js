@@ -12,7 +12,27 @@ const Background = styled.div`
     left: 0;
 `;
 
-const Close = styled.div`
+const TransitionEffects = styled.div`
+.transition-enter & {
+    opacity: 0;
+    transform: scale(0.3), translate(-50%, -50%);
+}
+.transition-enter-active  &{
+    opacity: 1;
+    transform: translateX(0), translate(-50%, -50%);
+    transition: opacity 500ms, transform 500ms;
+}
+.transition-exit & {
+    opacity: 1;
+}
+.transition-exit-active & {
+    opacity: 0;
+    transform: scale(0.3), translate(-50%, -50%);
+    transition: opacity 500ms, transform 500ms  
+}
+`;
+
+const Close = styled(TransitionEffects)`
     width: 60px;
     height: auto;
     font-size: 40px;
@@ -29,34 +49,14 @@ const Close = styled.div`
         color: white;
         border: white solid 2px;
     }
-
-    transition: 0.3s
 `;
 
-const Information = styled.div`
+const Information = styled(TransitionEffects)`
     position: absolute;
     z-index: 500;
     top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
-
-    .transition-enter & {
-        opacity: 0;
-        transform: scale(0.3), translate(-50%, -50%);
-    }
-    .transition-enter-active  &{
-        opacity: 1;
-        transform: translateX(0), translate(-50%, -50%);
-        transition: opacity 500ms, transform 500ms;
-    }
-    .transition-exit & {
-        opacity: 1;
-    }
-    .transition-exit-active & {
-        opacity: 0;
-        transform: scale(0.3), translate(-50%, -50%);
-        transition: opacity 500ms, transform 500ms  
-    }
 `;
 
 const Overlay = ({ showOverlay, handleClick, children }) => (

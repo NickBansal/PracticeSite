@@ -17,7 +17,8 @@ const Image = styled(BlurImageLoader)`
     margin-bottom: ${spacing.s2};
     border: 2px solid #00000030;
     opacity: ${({ mouseEnter }) => (mouseEnter ? '0.8' : '1')};
-    transition: opacity 0.3s;
+    filter: ${({ mouseEnter }) => (mouseEnter ? 'blur(2px)' : 'none')};
+    transition: 0.3s;
 
     &:hover {
         cursor: pointer;

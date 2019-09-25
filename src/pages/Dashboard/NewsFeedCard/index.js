@@ -21,6 +21,7 @@ const Image = styled.img`
     border-radius: 4px;
     position: absolute;
     right: 16px;
+    top: 16px;
     &:hover {
         cursor: pointer;
     }
@@ -53,13 +54,13 @@ const NewsFeedCard = () => {
         <Card fadeIn="1.5s">
             <Card.Title>
                 <LiveText>Live</LiveText> chat
-                <Image
-                    onClick={() => setModal(!modal)}
-                    src={currentCountry[0]}
-                    alt={`${country} flag`}
-                    placeholder={`${country} flag`}
-                />
             </Card.Title>
+            <Image
+                onClick={() => setModal(!modal)}
+                src={currentCountry[0]}
+                alt={`${country} flag`}
+                placeholder={`${country} flag`}
+            />
             <NewsContainer>
                 {newsFeed.map((news) => (
                     <NewsItem news={news} key={news.title} />
