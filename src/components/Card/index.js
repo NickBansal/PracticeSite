@@ -7,10 +7,6 @@ Card.Title = CardTitle;
 Card.Button = CardButton;
 Card.Content = CardContent;
 
-export {
-    CardTitle,
-    CardButton,
-    CardContent,
-};
+export { CardTitle, CardButton, CardContent };
 
 export default Card;

@@ -6,68 +6,68 @@ import { spacing } from '../../../../assets/globalStyles/constants';
 import placeholderImage from '../../../../assets/news/placeholder.png';
 
 const Container = styled.div`
-    display: flex;
-    margin-bottom: ${spacing.s1};
-    
-    &:hover {
-        cursor: pointer;
-        background: lightgrey
-    }
+	display: flex;
+	margin-bottom: ${spacing.s1};
 
-    transition: 0.3s
+	&:hover {
+		cursor: pointer;
+		background: lightgrey;
+	}
+
+	transition: 0.3s;
 `;
 
 const Image = styled(BlurImageLoader)`
-    margin-right: ${spacing.s2};
+	margin-right: ${spacing.s2};
 `;
 
 const Title = styled.p`
-    margin: 0;
-    font-size: 13px;
-    text-align: left;
-    height: 100px;
-    overflow: hidden;
-    text-overflow: ellipsis;
+	margin: 0;
+	font-size: 13px;
+	text-align: left;
+	height: 100px;
+	overflow: hidden;
+	text-overflow: ellipsis;
 `;
 
 const Information = styled.div`
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 `;
 
 const Links = styled.p`
-    font-size: 13px;
-    margin: 0;
-    text-decoration: underline;
-    color: slategrey;
+	font-size: 13px;
+	margin: 0;
+	text-decoration: underline;
+	color: slategrey;
 
-    &:hover {
-        cursor: pointer
-    }
+	&:hover {
+		cursor: pointer;
+	}
 `;
 
 const NewsItem = ({ news: { urlToImage, url, title } }) => (
-    <Container onClick={() => window.open(url)} aria-label="News item">
-        <Image
-            width="110px"
-            height="120px"
-            image={urlToImage || placeholderImage}
-            alt="Profile picture"
-            placeholder="Profile picture"
-        />
-        <Information>
-            <Title>{title}</Title>
-            <Links>Read more</Links>
-        </Information>
-    </Container>
+	<Container onClick={() => window.open(url)} aria-label="News item">
+		<Image
+			width="110px"
+			height="120px"
+			image={urlToImage || placeholderImage}
+			alt="Profile picture"
+			placeholder="Profile picture"
+		/>
+		<Information>
+			<Title>{title}</Title>
+			<Links>Read more</Links>
+		</Information>
+	</Container>
 );
 
 NewsItem.propTypes = {
-    news: shape({
-        title: string,
-        urlToImage: string,
-        url: string,
-    }).isRequired,
+	news: shape({
+		title: string,
+		urlToImage: string,
+		url: string
+	}).isRequired
 };
 
 export default NewsItem;

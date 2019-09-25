@@ -3,36 +3,47 @@ import { render, fireEvent } from '@testing-library/react';
 import ProfileCard from '.';
 
 describe('<ProfileCard />', () => {
-    it('should render a title', () => {
-        const { getByText } = render(<ProfileCard />);
-        expect(getByText('Nick Bansal')).toBeInTheDocument();
-        expect(getByText('Junior Web Developer')).toBeInTheDocument();
-    });
-    it('should apply new styles depending on where the mouse is placed', () => {
-        const { getByLabelText } = render(<ProfileCard />);
+	it('should render a title', () => {
+		const { getByText } = render(<ProfileCard />);
+		expect(getByText('Nick Bansal')).toBeInTheDocument();
+		expect(getByText('Junior Web Developer')).toBeInTheDocument();
+	});
+	it('should apply new styles depending on where the mouse is placed', () => {
+		const { getByLabelText } = render(<ProfileCard />);
 
-        expect(getByLabelText('Profile picture')).toHaveStyleRule('opacity', '1');
-        expect(getByLabelText('Links icons')).toHaveStyleRule('opacity', '0');
+		expect(getByLabelText('Profile picture')).toHaveStyleRule(
+			'opacity',
+			'1'
+		);
+		expect(getByLabelText('Links icons')).toHaveStyleRule('opacity', '0');
 
-        const profileContainer = getByLabelText('Profile picture and links');
+		const profileContainer = getByLabelText('Profile picture and links');
 
-        fireEvent.mouseEnter(profileContainer);
+		fireEvent.mouseEnter(profileContainer);
 
-        expect(getByLabelText('Profile picture')).toHaveStyleRule('opacity', '0.8');
-        expect(getByLabelText('Links icons')).toHaveStyleRule('opacity', '1');
+		expect(getByLabelText('Profile picture')).toHaveStyleRule(
+			'opacity',
+			'0.8'
+		);
+		expect(getByLabelText('Links icons')).toHaveStyleRule('opacity', '1');
 
-        fireEvent.mouseLeave(profileContainer);
+		fireEvent.mouseLeave(profileContainer);
 
-        expect(getByLabelText('Profile picture')).toHaveStyleRule('opacity', '1');
-        expect(getByLabelText('Links icons')).toHaveStyleRule('opacity', '0');
-    });
-    it('should show the overlay when the button is clicked', () => {
-        const { getByText, queryByLabelText, getByLabelText } = render(<ProfileCard />);
+		expect(getByLabelText('Profile picture')).toHaveStyleRule(
+			'opacity',
+			'1'
+		);
+		expect(getByLabelText('Links icons')).toHaveStyleRule('opacity', '0');
+	});
+	it('should show the overlay when the button is clicked', () => {
+		const { getByText, queryByLabelText, getByLabelText } = render(
+			<ProfileCard />
+		);
 
-        expect(queryByLabelText('Overlay modal')).toBeNull();
+		expect(queryByLabelText('Overlay modal')).toBeNull();
 
-        fireEvent.click(getByText('View full profile'));
+		fireEvent.click(getByText('View full profile'));
 
-        expect(getByLabelText('Overlay modal')).toBeInTheDocument();
-    });
+		expect(getByLabelText('Overlay modal')).toBeInTheDocument();
+	});
 });
