@@ -34,9 +34,9 @@ const TransitionEffects = styled.div`
 `;
 
 const Close = styled(TransitionEffects)`
-	width: 60px;
+	width: 50px;
 	height: auto;
-	font-size: 40px;
+	font-size: 34px;
 	text-align: center;
 	right: 0;
 	position: absolute;
@@ -52,12 +52,17 @@ const Close = styled(TransitionEffects)`
 	}
 
 	transition: 0.3s;
+
+	@media (min-width: ${breakPoints.mobileMax}) {
+		width: 60px;
+		font-size: 40px;
+	}
 `;
 
 const Information = styled(TransitionEffects)`
 	position: absolute;
 	z-index: 500;
-	top: 30%;
+	top: 45%;
 	left: 50%;
 	border-radius: 8px;
 	transform: translate(-50%, -50%);
