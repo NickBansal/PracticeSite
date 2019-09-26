@@ -21,8 +21,6 @@ const LoadableImage = styled.div.attrs(props => ({
 `;
 
 const BlurImageLoader = ({ placeholder, image, ...props }) => {
-	// const runOnce = true;
-
 	const [loadState, setLoadState] = useState({
 		src: placeholder,
 		loaded: false

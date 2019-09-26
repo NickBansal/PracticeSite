@@ -23,7 +23,6 @@ const LiveChatCard = () => {
 				<Info />
 			</Overlay>
 			<Card.Button onClick={() => setShowOverlay(true)}>
-				{' '}
 				Click to enter
 			</Card.Button>
 		</Card>

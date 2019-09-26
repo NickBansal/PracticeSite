@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Card from '../../../components/Card';
 import BlurImageLoader from '../../../components/BlurImageLoader';
 import drums from '../../../assets/drumMachine/drums.JPG';
 import { boxShadow } from '../../../assets/globalStyles/constants/index';
+import Overlay from '../../../components/Overlay';
 
 const Image = styled(BlurImageLoader)`
 	-webkit-box-shadow: ${boxShadow};
@@ -12,23 +13,26 @@ const Image = styled(BlurImageLoader)`
 	border-radius: 10px;
 `;
 
-const DrumMachineCard = () => (
-	<Card fadeIn="2.5s">
-		<Card.Title>Drum Machine</Card.Title>
-		<Card.Content>
-			<Image
-				width="100%"
-				height="85%"
-				image={drums}
-				aria-label="Profile picture"
-				placeholder="Profile picture"
-			/>
-		</Card.Content>
-		<Card.Button onClick={() => console.log('true')}>
-			{' '}
-			Click to play
-		</Card.Button>
-	</Card>
-);
+const DrumMachineCard = () => {
+	const [showOverlay, setShowOverlay] = useState(false);
+	return (
+		<Card fadeIn="2.5s">
+			<Card.Title>Drum Machine</Card.Title>
+			<Card.Content>
+				<Image
+					width="100%"
+					height="85%"
+					image={drums}
+					aria-label="Profile picture"
+					placeholder="Profile picture"
+				/>
+			</Card.Content>
+			<Overlay showOverlay={showOverlay} handleClick={setShowOverlay} />
+			<Card.Button onClick={() => setShowOverlay(true)}>
+				Click to play
+			</Card.Button>
+		</Card>
+	);
+};
 
 export default DrumMachineCard;
