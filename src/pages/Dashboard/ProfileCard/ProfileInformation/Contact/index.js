@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { breakPoints } from '../../../../../assets/globalStyles/constants';
 
 const ContactContainer = styled.div`
 	width: 100%;
@@ -12,12 +13,20 @@ const ContactContainer = styled.div`
 
 const Icon = styled.i`
 	color: white;
-	font-size: 30px;
-	margin: auto 20px;
+	font-size: 25px;
+	margin: auto 15px;
 
 	&:hover {
 		cursor: pointer;
+		color: #cac7c7;
 	}
+
+	@media (min-width: ${breakPoints.mobileMax}) {
+		font-size: 30px;
+		margin: auto 20px;
+	}
+
+	transition: color 0.3s;
 `;
 
 const Contact = () => (
