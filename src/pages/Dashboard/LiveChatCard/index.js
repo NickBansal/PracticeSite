@@ -10,7 +10,7 @@ const Info = styled.div`
 	background: yellow;
 `;
 
-const BlogCard = () => {
+const LiveChatCard = () => {
 	const [showOverlay, setShowOverlay] = useState(false);
 
 	return (
@@ -30,4 +30,4 @@ const BlogCard = () => {
 	);
 };
 
-export default BlogCard;
+export default LiveChatCard;

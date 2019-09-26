@@ -6,15 +6,16 @@ import BlurImageLoader from '../../../components/BlurImageLoader';
 import { HR } from '../../../assets/globalStyles/index';
 import {
 	spacing,
-	fontSize
+	fontSize,
+	boxShadow
 } from '../../../assets/globalStyles/constants/index';
 import Overlay from '../../../components/Overlay';
 import ProfileInformation from './ProfileInformation';
 
 const Image = styled(BlurImageLoader)`
-	-webkit-box-shadow: 4px 11px 55px -21px rgba(0, 0, 0, 0.75);
-	-moz-box-shadow: 4px 11px 55px -21px rgba(0, 0, 0, 0.75);
-	box-shadow: 4px 11px 55px -21px rgba(0, 0, 0, 0.75);
+	-webkit-box-shadow: ${boxShadow};
+	-moz-box-shadow: ${boxShadow};
+	box-shadow: ${boxShadow};
 	border-radius: 10px;
 	margin-bottom: ${spacing.s2};
 	border: 2px solid #00000030;

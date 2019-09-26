@@ -44,6 +44,7 @@ const Title = styled.h1`
 	top: -20px;
 	left: 0;
 	font-size: 1.5rem;
+	color: #ff3300;
 
 	@media (min-width: ${breakPoints.mobileMax}) {
 		font-size: 2.5rem;

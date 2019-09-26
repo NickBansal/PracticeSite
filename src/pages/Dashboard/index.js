@@ -7,6 +7,7 @@ import { GlobalStyle } from '../../assets/globalStyles';
 import ProfileCard from './ProfileCard';
 import NewsFeedCard from './NewsFeedCard';
 import LiveChatCard from './LiveChatCard';
+import DrumMachineCard from './DrumMachineCard';
 
 const CardContainer = styled.div`
 	display: flex;
@@ -29,6 +30,7 @@ const App = () => (
 				<ProfileCard />
 				<NewsFeedCard />
 				<LiveChatCard />
+				<DrumMachineCard />
 			</CardContainer>
 		</BlurImageLoader>
 	</>

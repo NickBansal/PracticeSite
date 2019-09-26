@@ -12,3 +12,5 @@ export const breakPoints = {
 	mobile: '320px',
 	mobileMax: '767px'
 };
+
+export const boxShadow = '0 10px 20px rgba(0, 0, 0, 0.19)';
