@@ -47,13 +47,17 @@ const SkillsContainer = styled.div`
 	}
 `;
 
+const SkillsArray = ['css3', 'react', 'js-square', 'node', 'python'];
+
 const Skills = () => (
 	<SkillsContainer>
-		<Icon className="i-link fab fa-css3" />
-		<Icon className="i-link fab fa-react" />
-		<Icon className="i-link fab fa-js-square" />
-		<Icon className="i-link fab fa-node" />
-		<Icon className="i-link fab fa-python" />
+		{SkillsArray.map(skill => (
+			<Icon
+				key={skill}
+				className={`i-link fab fa-${skill}`}
+				aria-label="programming icons"
+			/>
+		))}
 	</SkillsContainer>
 );
 

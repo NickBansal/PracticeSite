@@ -22,7 +22,7 @@ describe('<NewsItem />', () => {
 		const props = {
 			news: {
 				title: 'test title',
-				urlToImage: 'test image',
+				urlToImage: null,
 				url: 'Test url'
 			}
 		};
@@ -30,7 +30,7 @@ describe('<NewsItem />', () => {
 
 		expect(window.open).not.toBeCalled();
 
-		fireEvent.click(getByLabelText('News item'));
+		fireEvent.click(getByLabelText('News headline'));
 		expect(window.open).toBeCalledWith('Test url');
 	});
 });
