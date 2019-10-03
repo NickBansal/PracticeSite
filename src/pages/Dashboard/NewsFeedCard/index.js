@@ -27,14 +27,8 @@ const NewsFeedCard = () => {
 	const [country, setCountry] = useState('united-kingdom');
 	const [modal, setModal] = useState(false);
 
-	const newsFeedFn = e => {
-		setNewsFeed(e);
-		console.log('Hello');
-	};
-
 	useEffect(() => {
-		socket.on('FromAPI', newsFeedFn);
-		// eslint-disable-next-line
+		socket.on('FromAPI', setNewsFeed);
 
 		return () => socket.off('FromAPI', setNewsFeed);
 	}, []);
