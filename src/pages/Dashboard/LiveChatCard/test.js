@@ -13,7 +13,6 @@ describe('<LiveChatCard />', () => {
 
 		expect(queryByRole('form')).not.toBeInTheDocument();
 		expect(getByText('Click to Enter')).toBeInTheDocument();
-
 		fireEvent.click(getByText('Click to Enter'));
 
 		expect(queryByRole('form')).toBeInTheDocument();
