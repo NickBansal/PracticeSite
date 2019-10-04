@@ -5,6 +5,8 @@
   "dependencies": {
     "@testing-library/react": "^9.1.4",
     "axios": "^0.19.0",
+    "formik": "^1.5.8",
+    "lodash.get": "^4.4.2",
     "prop-types": "^15.7.2",
     "pusher-js": "^5.0.1",
     "pushid": "^1.0.0",
@@ -16,7 +18,8 @@
     "socket.io-client": "^2.3.0",
     "styled-components": "^4.3.2",
     "stylelint": "^10.1.0",
-    "stylelint-processor-styled-components": "^1.8.0"
+    "stylelint-processor-styled-components": "^1.8.0",
+    "yup": "^0.27.0"
   },
   "scripts": {
     "start": "react-scripts start",

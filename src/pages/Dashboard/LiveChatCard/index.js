@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 import Card from '../../../components/Card';
 import { LiveText } from '../../../assets/globalStyles/index';
+import ChatForm from './ChatForm';
 
 const LiveChatCard = () => {
 	const [showOverlay, setShowOverlay] = useState(false);
@@ -12,7 +12,7 @@ const LiveChatCard = () => {
 				<LiveText>Live</LiveText> chat
 			</Card.Title>
 
-			<Card.Content>{showOverlay && <p>Live news feed</p>}</Card.Content>
+			<Card.Content>{showOverlay && <ChatForm />}</Card.Content>
 
 			<Card.Button onClick={() => setShowOverlay(!showOverlay)}>
 				{`Click to ${chatRoomText}`}
