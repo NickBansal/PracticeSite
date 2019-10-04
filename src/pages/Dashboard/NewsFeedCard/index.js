@@ -28,9 +28,9 @@ const NewsFeedCard = () => {
 	const [modal, setModal] = useState(false);
 
 	useEffect(() => {
-		socket.on('FromAPI', setNewsFeed);
+		socket.on('LiveNewsFeed', setNewsFeed);
 
-		return () => socket.off('FromAPI', setNewsFeed);
+		return () => socket.off('LiveNewsFeed', setNewsFeed);
 	}, []);
 
 	const btnText = modal ? 'Show news' : 'Select country';

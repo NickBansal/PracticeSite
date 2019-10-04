@@ -3,8 +3,16 @@ import alphaNumeric from '../../../../utils/validation/alphaNumeric';
 
 const schema = yup
 	.object({
-		username: alphaNumeric().required(),
-		room: alphaNumeric().required()
+		username: alphaNumeric({
+			max: 50
+		})
+			.required()
+			.label('Username'),
+		room: alphaNumeric({
+			max: 50
+		})
+			.required()
+			.label('Chat room')
 	})
 	.required();
 

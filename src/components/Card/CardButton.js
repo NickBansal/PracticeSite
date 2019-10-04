@@ -9,10 +9,11 @@ const DashboardBtns = styled.button`
 	background: none;
 	font-size: 16px;
 	position: absolute;
-	bottom: 20px;
-	right: 20px;
+	left: 50%;
+	bottom: 5px;
 	border: 2px solid #00000040;
 	color: grey
+	transform: translate(-50%, -50%);
 
     &:hover {
 		background: grey;

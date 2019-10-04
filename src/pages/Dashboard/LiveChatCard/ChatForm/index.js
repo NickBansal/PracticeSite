@@ -12,7 +12,7 @@ const Label = styled.label`
 
 const Input = styled(Field)`
 	width: 98%;
-	margin: 8px auto;
+	margin: ${spacing.s1} auto;
 	height: 30px;
 	border-radius: 4px;
 	border: 1px solid black;
@@ -31,18 +31,19 @@ const Error = styled(ErrorMessage)`
 
 const Button = styled.button`
 	position: absolute;
-	bottom: 80px;
+	bottom: 70px;
 	width: 80%;
-	left: 32px;
+	left: 50%;
 	height: 27px;
 	border-radius: 8px;
 	font-size: 16px;
-	color: #212c27;
-	border: 2px solid #212c27;
+	color: #87518b;
+	border: 2px solid #87518b;
+	transform: translate(-50%, -50%);
 
 	&:hover {
 		cursor: pointer;
-		background: #212c27;
+		background: #87518b;
 		color: white;
 	}
 
@@ -52,7 +53,10 @@ const Button = styled.button`
 const ChatForm = () => (
 	<Formik
 		initialValues={{ username: '', room: '' }}
-		onSubmit={values => console.log(values)}
+		onSubmit={(values, actions) => {
+			actions.validateForm();
+			console.log(values);
+		}}
 		validationSchema={schema}
 	>
 		{() => (
@@ -60,7 +64,7 @@ const ChatForm = () => (
 				<Label htmlFor="username">Username: </Label>
 				<Input type="text" name="username" />
 				<Error name="username" component="div" />
-				<Label htmlFor="room">Room: </Label>
+				<Label htmlFor="room">Chat Room: </Label>
 				<Input type="text" name="room" />
 				<Error name="room" component="div" />
 				<Button type="submit">Submit</Button>
