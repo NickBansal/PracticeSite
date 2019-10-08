@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { breakPoints } from '../../../../../assets/globalStyles/constants';
+import {
+	breakPoints,
+	colors,
+	transitionSpeed
+} from '../../../../../assets/globalStyles/constants';
 
 const LinkIcon = styled.div`
 	display: inline-block;
@@ -8,13 +12,13 @@ const LinkIcon = styled.div`
 `;
 
 const Icon = styled.i`
-	color: #ff3300;
+	color: ${colors.orange};
 
 	&:hover {
 		color: #a92301;
 	}
 
-	transition: 0.3s;
+	transition: ${transitionSpeed};
 `;
 
 const LinksContainer = styled.div`

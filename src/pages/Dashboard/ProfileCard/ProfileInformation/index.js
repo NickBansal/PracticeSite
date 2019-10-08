@@ -2,7 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import nc from '../../../../assets/profile/nc.JPG';
 import background from '../../../../assets/profile/background.JPG';
-import { breakPoints } from '../../../../assets/globalStyles/constants';
+import {
+	breakPoints,
+	colors,
+	fontSize
+} from '../../../../assets/globalStyles/constants';
 
 import Skills from './Skills';
 import Links from './Links';
@@ -43,11 +47,11 @@ const Title = styled.h1`
 	position: relative;
 	top: -20px;
 	left: 0;
-	font-size: 1.5rem;
-	color: #ff3300;
+	font-size: ${fontSize.title};
+	color: ${colors.orange};
 
 	@media (min-width: ${breakPoints.mobileMax}) {
-		font-size: 2.5rem;
+		font-size: ${fontSize.large};
 		display: inline-block;
 		left: 60px;
 		top: -30px;
@@ -55,7 +59,7 @@ const Title = styled.h1`
 `;
 
 const Content = styled.div`
-	background-image: linear-gradient(white, white, #c27f82);
+	background-image: linear-gradient(white, white, ${colors.pink});
 	height: 350px;
 	border-bottom-right-radius: 8px;
 	border-bottom-left-radius: 8px;

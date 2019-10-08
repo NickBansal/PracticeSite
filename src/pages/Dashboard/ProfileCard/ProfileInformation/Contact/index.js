@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { breakPoints } from '../../../../../assets/globalStyles/constants';
+import {
+	breakPoints,
+	transitionSpeed,
+	fontSize
+} from '../../../../../assets/globalStyles/constants';
 
 const ContactContainer = styled.div`
 	width: 100%;
@@ -13,7 +17,7 @@ const ContactContainer = styled.div`
 
 const Icon = styled.i`
 	color: white;
-	font-size: 25px;
+	font-size: ${fontSize.title};
 	margin: auto 15px;
 
 	&:hover {
@@ -26,7 +30,7 @@ const Icon = styled.i`
 		margin: auto 20px;
 	}
 
-	transition: color 0.3s;
+	transition: color ${transitionSpeed};
 `;
 
 const Contact = () => (

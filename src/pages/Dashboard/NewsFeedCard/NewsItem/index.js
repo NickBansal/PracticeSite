@@ -2,7 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { shape, string } from 'prop-types';
 import BlurImageLoader from '../../../../components/BlurImageLoader';
-import { spacing } from '../../../../assets/globalStyles/constants';
+import {
+	spacing,
+	transitionSpeed,
+	fontSize
+} from '../../../../assets/globalStyles/constants';
 import placeholderImage from '../../../../assets/news/placeholder.png';
 
 const Container = styled.div`
@@ -14,7 +18,7 @@ const Container = styled.div`
 		background: lightgrey;
 	}
 
-	transition: 0.3s;
+	transition: ${transitionSpeed};
 `;
 
 const Image = styled(BlurImageLoader)`
@@ -23,7 +27,7 @@ const Image = styled(BlurImageLoader)`
 
 const Title = styled.p`
 	margin: 0;
-	font-size: 13px;
+	font-size: ${fontSize.small};
 	text-align: left;
 	height: 100px;
 	overflow: hidden;
@@ -36,7 +40,7 @@ const Information = styled.div`
 `;
 
 const Links = styled.p`
-	font-size: 13px;
+	font-size: ${fontSize.small};
 	margin: 0;
 	text-decoration: underline;
 	color: slategrey;

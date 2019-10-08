@@ -2,11 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import {
 	spacing,
-	breakPoints
+	breakPoints,
+	colors
 } from '../../../../../assets/globalStyles/constants';
 
 const Icon = styled.i`
-	color: #ff3300;
+	color: ${colors.orange};
 	margin: ${spacing.s1};
 
 	&:nth-child(1),

@@ -1,7 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { spacing } from '../../../../assets/globalStyles/constants';
+import {
+	spacing,
+	colors,
+	fontSize,
+	transitionSpeed
+} from '../../../../assets/globalStyles/constants';
 
 import schema from './schema';
 
@@ -11,12 +16,13 @@ const Label = styled.label`
 `;
 
 const Input = styled(Field)`
-	width: 98%;
+	width: 96%;
 	margin: ${spacing.s1} auto;
 	height: 30px;
 	border-radius: 4px;
 	border: 1px solid black;
-	font-size: 16px;
+	font-size: ${fontSize.regular};
+	padding-left: ${spacing.s1};
 `;
 
 const StyledForm = styled(Form)`
@@ -24,7 +30,7 @@ const StyledForm = styled(Form)`
 `;
 
 const Error = styled(ErrorMessage)`
-	font-size: 12px;
+	font-size: ${fontSize.small};
 	text-align: center;
 	color: red;
 `;
@@ -36,18 +42,18 @@ const Button = styled.button`
 	left: 50%;
 	height: 27px;
 	border-radius: 8px;
-	font-size: 16px;
-	color: #87518b;
-	border: 2px solid #87518b;
+	font-size: ${fontSize.regular};
+	color: ${colors.purple};
+	border: 2px solid ${colors.purple};
 	transform: translate(-50%, -50%);
 
 	&:hover {
 		cursor: pointer;
-		background: #87518b;
+		background: ${colors.purple};
 		color: white;
 	}
 
-	transition: 0.3s;
+	transition: ${transitionSpeed};
 `;
 
 const ChatForm = () => (
