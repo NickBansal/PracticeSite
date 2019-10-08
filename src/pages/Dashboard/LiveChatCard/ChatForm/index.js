@@ -55,7 +55,6 @@ const ChatForm = () => (
 		initialValues={{ username: '', room: '' }}
 		onSubmit={(values, actions) => {
 			actions.validateForm();
-			console.log(values);
 		}}
 		validationSchema={schema}
 	>

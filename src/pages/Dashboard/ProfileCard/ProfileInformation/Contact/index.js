@@ -31,14 +31,12 @@ const Icon = styled.i`
 
 const Contact = () => (
 	<ContactContainer>
-		<Icon
-			onClick={() => {
-				window.location.href = `mailto:bansal32182@gmail.com`;
-			}}
-			className="i-link far fa-envelope-open"
-			aria-label="contact icons"
-		/>
-		<Icon className="i-link fas fa-phone" aria-label="contact icons" />
+		<a href="mailto:bansal32182@gmail.com">
+			<Icon className="i-link far fa-envelope-open" />
+		</a>
+		<a href="tel:+447824158048">
+			<Icon className="i-link fas fa-phone" />
+		</a>
 	</ContactContainer>
 );
 
