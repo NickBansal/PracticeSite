@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import socketIOClient from 'socket.io-client';
+import {
+	spacing,
+	fontSize,
+	colors
+} from '../../../../assets/globalStyles/constants';
 
 const endpoint = 'http://127.0.0.1:8080/';
 const socket = socketIOClient(endpoint);
@@ -12,12 +17,12 @@ const ChatScreen = styled.div`
 
 const Input = styled.input`
 	height: 7%;
-	margin-top: 8px;
+	margin-top: ${spacing.s1};
 	width: 94%;
 	border-radius: 4px;
-	font-size: 14px;
+	font-size: ${fontSize.small};
 	border: 1px solid black;
-	padding: 8px;
+	padding: ${spacing.s1};
 `;
 
 const Form = styled.form`
@@ -29,22 +34,37 @@ const Container = styled.div`
 `;
 
 const SingleMessage = styled.p`
-	margin: 0;
+	margin: 4px 0;
+	font-size: ${fontSize.small};
+	line-height: 20px;
+	word-spacing: -1px;
+`;
+
+const TimeStamp = styled.p`
+	margin: 0 0 0 ${spacing.s1};
+	color: ${colors.pink};
 `;
 
 const MessageScreen = () => {
 	const [viewMessages, setViewMessages] = useState([]);
 
 	socket.on('message', message => {
-		const newMes = viewMessages.concat(message);
-		setViewMessages(newMes);
+		if (viewMessages.find(item => item === message)) {
+			setViewMessages(viewMessages);
+		} else {
+			const newMes = viewMessages.concat(message);
+			setViewMessages(newMes);
+		}
 	});
 
 	return (
 		<Container>
 			<ChatScreen>
 				{viewMessages.map((message, index) => (
-					<SingleMessage key={String(index)}>{message}</SingleMessage>
+					<SingleMessage key={String(index)}>
+						{message.message}{' '}
+						<TimeStamp>{`- ${message.time}`}</TimeStamp>
+					</SingleMessage>
 				))}
 			</ChatScreen>
 			<Form

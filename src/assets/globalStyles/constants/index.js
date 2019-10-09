@@ -8,7 +8,7 @@ export const fontSize = {
 	large: '2.5rem',
 	title: '1.5rem',
 	regular: '1rem',
-	small: '0.75rem'
+	small: '0.875rem'
 };
 
 export const breakPoints = {
