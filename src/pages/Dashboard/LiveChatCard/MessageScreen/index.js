@@ -43,8 +43,8 @@ const MessageScreen = () => {
 	return (
 		<Container>
 			<ChatScreen>
-				{viewMessages.map(message => (
-					<SingleMessage key={Date.now()}>{message}</SingleMessage>
+				{viewMessages.map((message, index) => (
+					<SingleMessage key={String(index)}>{message}</SingleMessage>
 				))}
 			</ChatScreen>
 			<Form

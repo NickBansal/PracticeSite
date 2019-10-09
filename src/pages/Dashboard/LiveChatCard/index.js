@@ -15,7 +15,11 @@ const LiveChatCard = () => {
 
 			<Card.Content>{showOverlay && <MessageScreen />}</Card.Content>
 
-			<Card.Button onClick={() => setShowOverlay(!showOverlay)}>
+			<Card.Button
+				onClick={() => {
+					setShowOverlay(!showOverlay);
+				}}
+			>
 				{`Click to ${chatRoomText}`}
 			</Card.Button>
 		</Card>
