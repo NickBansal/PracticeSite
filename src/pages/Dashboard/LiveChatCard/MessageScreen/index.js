@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import socketIOClient from 'socket.io-client';
+
+const endpoint = 'http://127.0.0.1:8080/';
+const socket = socketIOClient(endpoint);
 
 const ChatScreen = styled.div`
-	height: 74%;
+	height: 83%;
+	overflow: scroll;
 `;
 
-const Input = styled.textarea`
-	height: 17%;
+const Input = styled.input`
+	height: 7%;
 	margin-top: 8px;
 	width: 94%;
 	border-radius: 4px;
@@ -19,18 +24,36 @@ const Form = styled.form`
 	height: 100%;
 `;
 
-const MessageScreen = () => (
-	<>
-		<ChatScreen />
-		<Form
-			onSubmit={e => {
-				e.preventDefault();
-				console.log(e.target[0].value);
-			}}
-		>
-			<Input type="text" />
-		</Form>
-	</>
-);
+const SingleMessage = styled.p`
+	margin: 0;
+`;
+
+const MessageScreen = () => {
+	const [viewMessages, setViewMessages] = useState([]);
+
+	socket.on('message', message => {
+		const messageHistory = viewMessages.concat(message);
+		setViewMessages(messageHistory);
+	});
+
+	return (
+		<>
+			<ChatScreen>
+				{viewMessages.map(message => (
+					<SingleMessage key={Date.now()}>{message}</SingleMessage>
+				))}
+			</ChatScreen>
+			<Form
+				onSubmit={e => {
+					e.preventDefault();
+					socket.emit('sendMessage', e.target[0].value);
+					e.target[0].value = '';
+				}}
+			>
+				<Input type="text" />
+			</Form>
+		</>
+	);
+};
 
 export default MessageScreen;
