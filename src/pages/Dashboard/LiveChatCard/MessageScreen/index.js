@@ -36,6 +36,8 @@ const MessageScreen = () => {
 		setViewMessages(messageHistory);
 	});
 
+	console.log(viewMessages[viewMessages.length - 1]);
+
 	return (
 		<>
 			<ChatScreen>
@@ -50,7 +52,7 @@ const MessageScreen = () => {
 					e.target[0].value = '';
 				}}
 			>
-				<Input type="text" />
+				<Input type="text" autoFocus />
 			</Form>
 		</>
 	);
