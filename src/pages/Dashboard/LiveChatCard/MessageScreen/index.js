@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import socketIOClient from 'socket.io-client';
 import {
@@ -12,7 +12,8 @@ const socket = socketIOClient(endpoint);
 
 const ChatScreen = styled.div`
 	height: 83%;
-	overflow: scroll;
+	overflow-y: scroll;
+	scroll-behavior: smooth;
 `;
 
 const Input = styled.input`
@@ -48,6 +49,15 @@ const TimeStamp = styled.p`
 const MessageScreen = () => {
 	const [viewMessages, setViewMessages] = useState([]);
 
+	useEffect(() => {
+		const elem = document.getElementById(`item_${viewMessages.length}`);
+		elem &&
+			elem.scrollIntoView({
+				behavior: 'smooth',
+				block: 'end'
+			});
+	});
+
 	socket.on('message', message => {
 		if (viewMessages.find(item => item === message)) {
 			setViewMessages(viewMessages);
@@ -61,9 +71,11 @@ const MessageScreen = () => {
 		<Container>
 			<ChatScreen>
 				{viewMessages.map((message, index) => (
-					<SingleMessage key={String(index)}>
+					<SingleMessage key={String(index)} id={`item_${index + 1}`}>
 						{message.message}{' '}
-						<TimeStamp>{`- ${message.time}`}</TimeStamp>
+						{message.time && (
+							<TimeStamp>{`- ${message.time}`}</TimeStamp>
+						)}
 					</SingleMessage>
 				))}
 			</ChatScreen>
