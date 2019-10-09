@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable no-unused-expressions */
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import socketIOClient from 'socket.io-client';
 import {
@@ -35,28 +36,24 @@ const Container = styled.div`
 `;
 
 const SingleMessage = styled.p`
-	margin: 4px 0;
 	font-size: ${fontSize.small};
 	line-height: 20px;
 	word-spacing: -1px;
+	margin: 0 0 0 ${spacing.s1};
 `;
 
 const TimeStamp = styled.p`
-	margin: 0 0 0 ${spacing.s1};
+	margin: 0;
 	color: ${colors.pink};
+	font-size: ${fontSize.small};
+`;
+
+const SingleChat = styled.div`
+	margin: 4px 0 0;
 `;
 
 const MessageScreen = () => {
 	const [viewMessages, setViewMessages] = useState([]);
-
-	useEffect(() => {
-		const elem = document.getElementById(`item_${viewMessages.length}`);
-		elem &&
-			elem.scrollIntoView({
-				behavior: 'smooth',
-				block: 'end'
-			});
-	});
 
 	socket.on('message', message => {
 		if (viewMessages.find(item => item === message)) {
@@ -71,12 +68,14 @@ const MessageScreen = () => {
 		<Container>
 			<ChatScreen>
 				{viewMessages.map((message, index) => (
-					<SingleMessage key={String(index)} id={`item_${index + 1}`}>
-						{message.message}{' '}
+					<SingleChat key={String(index)}>
 						{message.time && (
-							<TimeStamp>{`- ${message.time}`}</TimeStamp>
+							<TimeStamp>
+								{`Some username - ${message.time}`}
+							</TimeStamp>
 						)}
-					</SingleMessage>
+						<SingleMessage>{message.message} </SingleMessage>
+					</SingleChat>
 				))}
 			</ChatScreen>
 			<Form
