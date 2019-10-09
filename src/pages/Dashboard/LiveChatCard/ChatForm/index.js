@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import socketIOClient from 'socket.io-client';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import {
 	spacing,
@@ -9,6 +10,9 @@ import {
 } from '../../../../assets/globalStyles/constants';
 
 import schema from './schema';
+
+const endpoint = 'http://127.0.0.1:8080/';
+const socket = socketIOClient(endpoint);
 
 const Label = styled.label`
 	display: block;
@@ -38,10 +42,10 @@ const Error = styled(ErrorMessage)`
 const Button = styled.button`
 	position: absolute;
 	bottom: 70px;
-	width: 80%;
+	width: 30%;
+	height: 30px;
 	left: 50%;
-	height: 27px;
-	border-radius: 8px;
+	border-radius: 4px;
 	font-size: ${fontSize.regular};
 	color: ${colors.purple};
 	border: 2px solid ${colors.purple};
@@ -51,16 +55,22 @@ const Button = styled.button`
 		cursor: pointer;
 		background: ${colors.purple};
 		color: white;
+		border: 2px solid black;
 	}
 
 	transition: ${transitionSpeed};
 `;
 
+const registerUser = (name, cb) => {
+	socket.emit('register', name, cb);
+};
+
 const ChatForm = () => (
 	<Formik
-		initialValues={{ username: '', room: '' }}
+		initialValues={{ username: '' }}
 		onSubmit={(values, actions) => {
 			actions.validateForm();
+			registerUser(values);
 		}}
 		validationSchema={schema}
 	>
@@ -72,7 +82,7 @@ const ChatForm = () => (
 				<Label htmlFor="room">Chat Room: </Label>
 				<Input type="text" name="room" />
 				<Error name="room" component="div" />
-				<Button type="submit">Submit</Button>
+				<Button type="submit">Join room</Button>
 			</StyledForm>
 		)}
 	</Formik>
