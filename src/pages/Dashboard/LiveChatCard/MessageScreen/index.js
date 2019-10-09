@@ -24,6 +24,10 @@ const Form = styled.form`
 	height: 100%;
 `;
 
+const Container = styled.div`
+	height: 100%;
+`;
+
 const SingleMessage = styled.p`
 	margin: 0;
 `;
@@ -32,14 +36,12 @@ const MessageScreen = () => {
 	const [viewMessages, setViewMessages] = useState([]);
 
 	socket.on('message', message => {
-		const messageHistory = viewMessages.concat(message);
-		setViewMessages(messageHistory);
+		const newMes = viewMessages.concat(message);
+		setViewMessages(newMes);
 	});
 
-	console.log(viewMessages[viewMessages.length - 1]);
-
 	return (
-		<>
+		<Container>
 			<ChatScreen>
 				{viewMessages.map(message => (
 					<SingleMessage key={Date.now()}>{message}</SingleMessage>
@@ -54,7 +56,7 @@ const MessageScreen = () => {
 			>
 				<Input type="text" autoFocus />
 			</Form>
-		</>
+		</Container>
 	);
 };
 
