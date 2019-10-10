@@ -50,3 +50,5 @@ export const LiveText = styled.div`
         }
     }
 `;
+
+// export const TitleImage = styled

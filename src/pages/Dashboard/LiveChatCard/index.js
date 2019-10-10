@@ -19,7 +19,6 @@ const LiveChatCard = () => {
 			<Card.Title>
 				<LiveText>Live</LiveText> chat
 			</Card.Title>
-
 			<Card.Content>
 				{!messageScreen && userDetails && (
 					<ChatForm showMessageScreen={showMessageScreen} />

@@ -50,8 +50,23 @@ const SingleChat = styled.div`
 	margin: 4px 0 0;
 `;
 
+const Icon = styled.i`
+	height: 30px;
+	width: 30px;
+	border-radius: 4px;
+	position: absolute;
+	right: 16px;
+	top: 16px;
+	transform: rotate(${({ showInfo }) => (showInfo ? '90deg' : '270deg')});
+	transition: transform 0.3s;
+	&:hover {
+		cursor: pointer;
+	}
+`;
+
 const MessageScreen = () => {
 	const [viewMessages, setViewMessages] = useState([]);
+	const [showInfo, setShowInfo] = useState(false);
 
 	socket.on('message', message => {
 		if (viewMessages.some(item => item.message === message.message)) {
@@ -64,6 +79,11 @@ const MessageScreen = () => {
 
 	return (
 		<Container>
+			<Icon
+				className="i-link fas fa-chevron-up fa-2x"
+				onClick={() => setShowInfo(!showInfo)}
+				showInfo={showInfo}
+			/>
 			<ChatScreen>
 				{viewMessages.map((message, index) => (
 					<SingleChat key={String(index)}>
