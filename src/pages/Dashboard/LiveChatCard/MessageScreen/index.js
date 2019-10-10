@@ -60,6 +60,7 @@ const Icon = styled.i`
 	width: 30px;
 	border-radius: 4px;
 	position: absolute;
+	color: ${colors.cardOverlay};
 	right: 16px;
 	top: 16px;
 	transform: rotate(${({ showInfo }) => (showInfo ? '90deg' : '270deg')});

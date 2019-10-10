@@ -10,10 +10,11 @@ import { HR } from '../../../../../assets/globalStyles';
 const Container = styled.div`
 	position: absolute;
 	z-index: 200;
-	height: 67%;
-	width: 60%;
+	height: 290px;
+	width: 50%;
 	background: ${colors.cardOverlay};
 	text-align: center;
+	bottom: 72px;
 	right: 10px;
 	overflow: hidden;
 	padding: ${spacing.s1};
@@ -26,7 +27,7 @@ const Container = styled.div`
 			width: 0;
 		}
 		to {
-			width: 60%;
+			width: 50%;
 		}
 	}
 `;
@@ -46,17 +47,18 @@ const RoomName = styled.p`
 
 const Icon = styled.i`
 	color: white;
-	margin-right: ${spacing.s1};
+	margin: 0 ${spacing.s1};
 `;
 
 const Table = styled.table`
-	margin: ${spacing.s2} ${spacing.s1};
+	margin: ${spacing.s2} 0;
 `;
 
 const Description = styled.p`
 	margin: 0;
 	overflow: hidden;
 	white-space: nowrap;
+	font-size: ${fontSize.small};
 
 	&:hover {
 		cursor: pointer;
