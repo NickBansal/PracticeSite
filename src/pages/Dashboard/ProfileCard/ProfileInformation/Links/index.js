@@ -60,9 +60,9 @@ const Links = () => (
 			<a
 				rel="noopener noreferrer"
 				target="_blank"
-				href="https://codepen.io/NickyBee/"
+				href="https://soundcloud.com/bansal321/"
 			>
-				<Icon className="i-link fab fa-codepen fa-2x" />
+				<Icon className="i-link fab fa-soundcloud fa-2x" />
 			</a>
 		</LinkIcon>
 	</LinksContainer>

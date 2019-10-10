@@ -16,7 +16,7 @@ describe('<ChatForm />', () => {
 		expect(queryByText('Username is a required field')).toBeNull();
 		expect(queryByText('Chat room is a required field')).toBeNull();
 
-		fireEvent.click(getByText('Submit'));
+		fireEvent.click(getByText('Join room'));
 
 		await wait();
 
@@ -37,7 +37,7 @@ describe('<ChatForm />', () => {
 			}
 		});
 
-		fireEvent.click(getByText('Submit'));
+		fireEvent.click(getByText('Join room'));
 
 		await wait();
 
@@ -59,7 +59,7 @@ describe('<ChatForm />', () => {
 			}
 		});
 
-		fireEvent.click(getByText('Submit'));
+		fireEvent.click(getByText('Join room'));
 
 		await wait();
 

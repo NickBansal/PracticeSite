@@ -59,7 +59,7 @@ const Button = styled.button`
 
 const ChatForm = ({ showMessageScreen }) => (
 	<Formik
-		initialValues={{ username: '' }}
+		initialValues={{ username: '', room: '' }}
 		onSubmit={(values, actions) => {
 			actions.validateForm();
 			showMessageScreen();

@@ -7,7 +7,7 @@ import MessageScreen from './MessageScreen';
 const LiveChatCard = () => {
 	const [messageScreen, setMessageScreen] = useState(false);
 	const [userDetails, setuserDetails] = useState(false);
-	const chatRoomText = messageScreen ? 'Leave' : 'Enter';
+	const chatRoomText = messageScreen || userDetails ? 'Leave' : 'Enter';
 
 	const showMessageScreen = () => {
 		setMessageScreen(true);
