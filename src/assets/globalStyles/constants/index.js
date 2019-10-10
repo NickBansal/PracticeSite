@@ -19,7 +19,8 @@ export const breakPoints = {
 export const colors = {
 	pink: '#c27f82',
 	purple: '#87518b',
-	orange: '#ff3300'
+	orange: '#ff3300',
+	cardOverlay: '#b2bbc5'
 };
 
 export const transitionSpeed = '0.3s';

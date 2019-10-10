@@ -1,13 +1,13 @@
 /* eslint-disable no-unused-expressions */
 import React, { useState } from 'react';
 import styled from 'styled-components';
-
 import socket from '../../../../utils/socketIO';
 import {
 	spacing,
 	fontSize,
 	colors
 } from '../../../../assets/globalStyles/constants';
+import ExtraInfo from './ExtraInfo';
 
 const ChatScreen = styled.div`
 	height: 83%;
@@ -84,6 +84,8 @@ const MessageScreen = () => {
 				onClick={() => setShowInfo(!showInfo)}
 				showInfo={showInfo}
 			/>
+			{showInfo && <ExtraInfo />}
+
 			<ChatScreen>
 				{viewMessages.map((message, index) => (
 					<SingleChat key={String(index)}>
