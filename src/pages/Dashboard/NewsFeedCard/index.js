@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import socketIOClient from 'socket.io-client';
 import styled from 'styled-components';
+import socket from '../../../utils/socketIO';
 import NewsItem from './NewsItem';
 import Card from '../../../components/Card';
 import { LiveText } from '../../../assets/globalStyles/index';
 import NewsSelect from './NewsSelect';
 import flags from '../../../assets/flags';
-
-const endpoint = 'http://127.0.0.1:8080/';
-const socket = socketIOClient(endpoint);
 
 const Image = styled.img`
 	height: 30px;

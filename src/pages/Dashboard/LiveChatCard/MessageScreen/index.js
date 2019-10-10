@@ -1,15 +1,13 @@
 /* eslint-disable no-unused-expressions */
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import socketIOClient from 'socket.io-client';
+
+import socket from '../../../../utils/socketIO';
 import {
 	spacing,
 	fontSize,
 	colors
 } from '../../../../assets/globalStyles/constants';
-
-const endpoint = 'http://127.0.0.1:8080/';
-const socket = socketIOClient(endpoint);
 
 const ChatScreen = styled.div`
 	height: 83%;
@@ -56,7 +54,7 @@ const MessageScreen = () => {
 	const [viewMessages, setViewMessages] = useState([]);
 
 	socket.on('message', message => {
-		if (viewMessages.find(item => item === message)) {
+		if (viewMessages.some(item => item.message === message.message)) {
 			setViewMessages(viewMessages);
 		} else {
 			const newMes = viewMessages.concat(message);
