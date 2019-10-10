@@ -2,12 +2,12 @@ import React from 'react';
 import styled from 'styled-components';
 import { bool, arrayOf, string, func } from 'prop-types';
 import BlurImageLoader from '../../../../components/BlurImageLoader';
-import { spacing } from '../../../../assets/globalStyles/constants';
+import { spacing, colors } from '../../../../assets/globalStyles/constants';
 
 const ModalStyled = styled.div`
 	height: ${({ show }) => (show ? '300px' : '0px')};
 	position: absolute;
-	background: #b2bbc5;
+	background: ${colors.cardOverlay};
 	z-index: 100;
 	bottom: 74px;
 	width: 90%;

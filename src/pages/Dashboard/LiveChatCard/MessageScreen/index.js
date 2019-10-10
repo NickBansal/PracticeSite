@@ -16,17 +16,22 @@ const ChatScreen = styled.div`
 `;
 
 const Input = styled.input`
-	height: 7%;
+	height: 100%;
 	margin-top: ${spacing.s1};
 	width: 94%;
 	border-radius: 4px;
 	font-size: ${fontSize.small};
 	border: 1px solid black;
 	padding: ${spacing.s1};
+	${({ showInfo }) => (showInfo ? 'pointer-events: none' : null)};
+
+	&:hover {
+		cursor: ${({ showInfo }) => (showInfo ? 'not-allowed' : 'pointer')};
+	}
 `;
 
 const Form = styled.form`
-	height: 100%;
+	height: 8%;
 `;
 
 const Container = styled.div`
@@ -105,7 +110,7 @@ const MessageScreen = () => {
 					e.target[0].value = '';
 				}}
 			>
-				<Input type="text" autoFocus />
+				<Input type="text" autoFocus showInfo={showInfo} />
 			</Form>
 		</Container>
 	);

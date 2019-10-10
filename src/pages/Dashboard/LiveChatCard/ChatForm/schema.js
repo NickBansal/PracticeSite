@@ -18,7 +18,7 @@ const alphaNumeric = options => {
 const schema = yup
 	.object({
 		username: alphaNumeric().label('Username'),
-		room: alphaNumeric().label('Chat room')
+		room: alphaNumeric({ max: 15 }).label('Chat room')
 	})
 	.required();
 
