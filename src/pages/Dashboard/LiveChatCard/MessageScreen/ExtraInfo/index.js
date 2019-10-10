@@ -10,7 +10,7 @@ import { HR } from '../../../../../assets/globalStyles';
 const Container = styled.div`
 	position: absolute;
 	z-index: 200;
-	height: 290px;
+	height: 282px;
 	width: 50%;
 	background: ${colors.cardOverlay};
 	text-align: center;
@@ -66,28 +66,30 @@ const Description = styled.p`
 	}
 `;
 
-const ExtraInfo = () => (
+const ExtraInfo = ({ showInfo }) => (
 	<Container>
 		<ChatRoom>Chat room:</ChatRoom>
 		<RoomName>Blah</RoomName>
 		<HR />
 		<Table>
-			<tr>
-				<td>
-					<Icon className="i-link fas fa-globe-europe fa-2x" />
-				</td>
-				<td>
-					<Description>Share location</Description>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<Icon className="i-link fas fa-cloud-sun-rain fa-2x" />
-				</td>
-				<td>
-					<Description>Share weather</Description>
-				</td>
-			</tr>
+			<tbody>
+				<tr onClick={() => showInfo(false)}>
+					<td>
+						<Icon className="i-link fas fa-globe-europe fa-2x" />
+					</td>
+					<td>
+						<Description>Share location</Description>
+					</td>
+				</tr>
+				<tr onClick={() => showInfo(false)}>
+					<td>
+						<Icon className="i-link fas fa-cloud-sun-rain fa-2x" />
+					</td>
+					<td>
+						<Description>Share weather</Description>
+					</td>
+				</tr>
+			</tbody>
 		</Table>
 	</Container>
 );

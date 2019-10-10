@@ -20,6 +20,7 @@ export const colors = {
 	pink: '#c27f82',
 	purple: '#87518b',
 	orange: '#ff3300',
+	red: '#C33C23',
 	cardOverlay: '#FECBA5'
 };
 

@@ -17,6 +17,7 @@ const ChatScreen = styled.div`
 
 const Input = styled.input`
 	height: 100%;
+	outline: none;
 	margin-top: ${spacing.s1};
 	width: 94%;
 	border-radius: 4px;
@@ -90,7 +91,7 @@ const MessageScreen = () => {
 				onClick={() => setShowInfo(!showInfo)}
 				showInfo={showInfo}
 			/>
-			{showInfo && <ExtraInfo />}
+			{showInfo && <ExtraInfo showInfo={setShowInfo} />}
 
 			<ChatScreen>
 				{viewMessages.map((message, index) => (
