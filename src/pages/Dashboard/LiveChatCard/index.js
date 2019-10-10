@@ -1,21 +1,42 @@
 import React, { useState } from 'react';
 import Card from '../../../components/Card';
 import { LiveText } from '../../../assets/globalStyles/index';
-// import ChatForm from './ChatForm';
+import ChatForm from './ChatForm';
 import MessageScreen from './MessageScreen';
 
 const LiveChatCard = () => {
-	const [showOverlay, setShowOverlay] = useState(false);
-	const chatRoomText = showOverlay ? 'Leave' : 'Enter';
+	const [messageScreen, setMessageScreen] = useState(false);
+	const [userDetails, setuserDetails] = useState(false);
+	const chatRoomText = messageScreen ? 'Leave' : 'Enter';
+
+	const showMessageScreen = () => {
+		setMessageScreen(true);
+		setuserDetails(false);
+	};
+
 	return (
 		<Card fadeIn="2.0s">
 			<Card.Title>
 				<LiveText>Live</LiveText> chat
 			</Card.Title>
 
-			<Card.Content>{showOverlay && <MessageScreen />}</Card.Content>
+			<Card.Content>
+				{!messageScreen && userDetails && (
+					<ChatForm showMessageScreen={showMessageScreen} />
+				)}
+				{messageScreen && !userDetails && <MessageScreen />}
+			</Card.Content>
 
-			<Card.Button onClick={() => setShowOverlay(!showOverlay)}>
+			<Card.Button
+				onClick={() => {
+					if (!messageScreen && !userDetails) {
+						setuserDetails(true);
+					} else {
+						setuserDetails(false);
+						setMessageScreen(false);
+					}
+				}}
+			>
 				{`Click to ${chatRoomText}`}
 			</Card.Button>
 		</Card>

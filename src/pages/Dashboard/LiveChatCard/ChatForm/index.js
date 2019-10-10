@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import socketIOClient from 'socket.io-client';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import {
 	spacing,
@@ -10,9 +9,6 @@ import {
 } from '../../../../assets/globalStyles/constants';
 
 import schema from './schema';
-
-const endpoint = 'http://127.0.0.1:8080/';
-const socket = socketIOClient(endpoint);
 
 const Label = styled.label`
 	display: block;
@@ -61,21 +57,17 @@ const Button = styled.button`
 	transition: ${transitionSpeed};
 `;
 
-const registerUser = (name, cb) => {
-	socket.emit('register', name, cb);
-};
-
-const ChatForm = () => (
+const ChatForm = ({ showMessageScreen }) => (
 	<Formik
 		initialValues={{ username: '' }}
 		onSubmit={(values, actions) => {
 			actions.validateForm();
-			registerUser(values);
+			showMessageScreen();
 		}}
 		validationSchema={schema}
 	>
-		{() => (
-			<StyledForm>
+		{formik => (
+			<StyledForm onSubmit={formik.handleSubmit}>
 				<Label htmlFor="username">Username: </Label>
 				<Input type="text" name="username" />
 				<Error name="username" component="div" />
