@@ -76,8 +76,10 @@ const Icon = styled.i`
 const MessageScreen = () => {
 	const [viewMessages, setViewMessages] = useState([]);
 	const [showInfo, setShowInfo] = useState(false);
+	const [room, setRoom] = useState(undefined);
 
 	socket.on('message', message => {
+		setRoom(message.room);
 		if (viewMessages.some(item => item.message === message.message)) {
 			setViewMessages(viewMessages);
 		} else {
@@ -93,14 +95,14 @@ const MessageScreen = () => {
 				onClick={() => setShowInfo(!showInfo)}
 				showInfo={showInfo}
 			/>
-			{showInfo && <ExtraInfo showInfo={setShowInfo} />}
+			{showInfo && <ExtraInfo showInfo={setShowInfo} room={room} />}
 
 			<ChatScreen>
 				{viewMessages.map((message, index) => (
 					<SingleChat key={String(index)}>
 						{message.time && (
 							<TimeStamp>
-								{`Some username - ${message.time}`}
+								{`${message.username} - ${message.time}`}
 							</TimeStamp>
 						)}
 						<SingleMessage>{message.message} </SingleMessage>

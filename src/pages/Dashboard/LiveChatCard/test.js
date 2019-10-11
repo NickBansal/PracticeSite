@@ -1,6 +1,5 @@
 import React from 'react';
 import { render, fireEvent, wait } from '@testing-library/react';
-import { jsxEmptyExpression } from '@babel/types';
 import LiveChatCard from '.';
 
 describe('<LiveChatCard />', () => {
@@ -18,6 +17,9 @@ describe('<LiveChatCard />', () => {
 
 		expect(queryByRole('form')).toBeInTheDocument();
 		expect(getByText('Click to Leave')).toBeInTheDocument();
+
+		fireEvent.click(getByText('Click to Leave'));
+		expect(queryByRole('form')).not.toBeInTheDocument();
 	});
 
 	it('should go to the chat window and show the chat conversation', async () => {

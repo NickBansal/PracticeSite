@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import socket from '../../../../utils/socketIO';
 import {
 	spacing,
 	colors,
@@ -63,6 +64,7 @@ const ChatForm = ({ showMessageScreen }) => (
 		onSubmit={(values, actions) => {
 			actions.validateForm();
 			showMessageScreen();
+			socket.emit('joinRoom', values);
 		}}
 		validationSchema={schema}
 	>

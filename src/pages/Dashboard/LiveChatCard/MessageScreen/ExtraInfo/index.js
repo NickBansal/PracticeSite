@@ -68,10 +68,10 @@ const Description = styled.p`
 	font-size: ${fontSize.small};
 `;
 
-const ExtraInfo = ({ showInfo }) => (
+const ExtraInfo = ({ showInfo, room }) => (
 	<Container>
 		<ChatRoom>Chat room:</ChatRoom>
-		<RoomName>Blah</RoomName>
+		<RoomName>{room}</RoomName>
 		<HR />
 		<Table>
 			<tbody>
