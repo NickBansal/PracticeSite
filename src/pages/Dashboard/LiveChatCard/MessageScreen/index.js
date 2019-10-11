@@ -48,6 +48,13 @@ const SingleMessage = styled.p`
 	margin: 0 0 0 ${spacing.s1};
 `;
 
+const AlertMessage = styled.p`
+	font-size: ${fontSize.small};
+	line-height: 20px;
+	word-spacing: -1px;
+	text-align: center;
+`;
+
 const TimeStamp = styled.p`
 	margin: 0;
 	color: ${colors.pink};
@@ -80,15 +87,11 @@ const MessageScreen = () => {
 
 	socket.on('message', message => {
 		setRoom(message.room);
-		// if (viewMessages.some(item => item.message === message.message)) {
-		// 	setViewMessages(viewMessages);
-		// } else {
-		// }
+
 		const newMes = viewMessages.concat(message);
-
 		setViewMessages(newMes);
-		const chatScreen = document.getElementById('chatScreen');
 
+		const chatScreen = document.getElementById('chatScreen');
 		chatScreen.scrollTop = chatScreen.scrollHeight;
 	});
 
@@ -109,7 +112,11 @@ const MessageScreen = () => {
 								{`${message.username} - ${message.time}`}
 							</TimeStamp>
 						)}
-						<SingleMessage>{message.message} </SingleMessage>
+						{message.alert ? (
+							<AlertMessage>{message.message} </AlertMessage>
+						) : (
+							<SingleMessage>{message.message} </SingleMessage>
+						)}
 					</SingleChat>
 				))}
 			</ChatScreen>
