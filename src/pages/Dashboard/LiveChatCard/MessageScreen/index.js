@@ -16,7 +16,7 @@ const ChatScreen = styled.div`
 `;
 
 const Input = styled.input`
-	height: 100%;
+	height: 29%;
 	outline: none;
 	margin-top: ${spacing.s1};
 	width: 94%;
@@ -25,14 +25,13 @@ const Input = styled.input`
 	border: 1px solid black;
 	padding: ${spacing.s1};
 	${({ showInfo }) => (showInfo ? 'pointer-events: none' : null)};
-
-	&:hover {
-		cursor: ${({ showInfo }) => (showInfo ? 'not-allowed' : 'pointer')};
-	}
 `;
 
 const Form = styled.form`
-	height: 8%;
+	height: 28%;
+	&:hover {
+		cursor: ${({ showInfo }) => (showInfo ? 'not-allowed' : 'pointer')};
+	}
 `;
 
 const Container = styled.div`
@@ -106,6 +105,7 @@ const MessageScreen = () => {
 				))}
 			</ChatScreen>
 			<Form
+				showInfo={showInfo}
 				onSubmit={e => {
 					e.preventDefault();
 					socket.emit('sendMessage', e.target[0].value);

@@ -10,16 +10,14 @@ import { HR } from '../../../../../assets/globalStyles';
 const Container = styled.div`
 	position: absolute;
 	z-index: 200;
-	height: 282px;
+	height: 232px;
 	width: 50%;
-	background: ${colors.cardOverlay};
+	background-image: linear-gradient(${colors.cardOverlay}, white);
 	text-align: center;
-	bottom: 72px;
+	bottom: 122px;
 	right: 10px;
 	overflow: hidden;
 	padding: ${spacing.s1};
-	border-bottom-left-radius: 8px;
-	border-top-left-radius: 8px;
 	animation: slidein 0.3s 1 linear;
 
 	@keyframes slidein {
@@ -54,16 +52,19 @@ const Table = styled.table`
 	margin: ${spacing.s2} 0;
 `;
 
+const Row = styled.tr`
+	height: 50px;
+	&:hover {
+		cursor: pointer;
+		text-decoration: underline;
+	}
+`;
+
 const Description = styled.p`
 	margin: 0;
 	overflow: hidden;
 	white-space: nowrap;
 	font-size: ${fontSize.small};
-
-	&:hover {
-		cursor: pointer;
-		text-decoration: underline;
-	}
 `;
 
 const ExtraInfo = ({ showInfo }) => (
@@ -73,22 +74,22 @@ const ExtraInfo = ({ showInfo }) => (
 		<HR />
 		<Table>
 			<tbody>
-				<tr onClick={() => showInfo(false)}>
+				<Row onClick={() => showInfo(false)}>
 					<td>
 						<Icon className="i-link fas fa-globe-europe fa-2x" />
 					</td>
 					<td>
 						<Description>Share location</Description>
 					</td>
-				</tr>
-				<tr onClick={() => showInfo(false)}>
+				</Row>
+				<Row onClick={() => showInfo(false)}>
 					<td>
 						<Icon className="i-link fas fa-cloud-sun-rain fa-2x" />
 					</td>
 					<td>
 						<Description>Share weather</Description>
 					</td>
-				</tr>
+				</Row>
 			</tbody>
 		</Table>
 	</Container>
