@@ -13,7 +13,7 @@ const Container = styled.div`
 	position: absolute;
 	z-index: 200;
 	height: 232px;
-	width: 50%;
+	width: 60%;
 	background-image: linear-gradient(${colors.cardOverlay}, white);
 	text-align: center;
 	bottom: 122px;
