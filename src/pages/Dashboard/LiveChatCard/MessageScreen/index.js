@@ -45,7 +45,7 @@ const SingleMessage = styled.p`
 	font-size: ${fontSize.small};
 	line-height: 20px;
 	word-spacing: -1px;
-	margin: 0 0 0 ${spacing.s1};
+	margin: 0 ${spacing.s1};
 `;
 
 const AlertMessage = styled.p`
@@ -63,6 +63,7 @@ const TimeStamp = styled.p`
 
 const SingleChat = styled.div`
 	margin: 4px 0 0;
+	text-align: ${({ myMessage }) => (myMessage ? 'right' : 'left')};
 `;
 
 const Icon = styled.i`
@@ -85,9 +86,11 @@ const MessageScreen = () => {
 	const [showInfo, setShowInfo] = useState(false);
 	const [userDetails, setUserDetails] = useState({});
 
-	socket.on('message', message => {
-		setUserDetails({ room: message.room, name: message.username });
+	socket.on('user', ({ username, room }) => {
+		setUserDetails({ room, name: username });
+	});
 
+	socket.on('message', message => {
 		const newMes = viewMessages.concat(message);
 		setViewMessages(newMes);
 
@@ -107,20 +110,23 @@ const MessageScreen = () => {
 			)}
 
 			<ChatScreen id="chatScreen">
-				{viewMessages.map((message, index) => (
-					<SingleChat key={String(index)}>
-						{message.time && (
-							<TimeStamp>
-								{`${message.username} - ${message.time}`}
-							</TimeStamp>
-						)}
-						{message.alert ? (
-							<AlertMessage>{message.message}</AlertMessage>
-						) : (
-							<SingleMessage>{message.message}</SingleMessage>
-						)}
-					</SingleChat>
-				))}
+				{viewMessages.map((message, index) => {
+					const myMessage = message.username === userDetails.name;
+					return (
+						<SingleChat key={String(index)} myMessage={myMessage}>
+							{message.time && (
+								<TimeStamp>
+									{`${message.username} - ${message.time}`}
+								</TimeStamp>
+							)}
+							{message.alert ? (
+								<AlertMessage>{message.message}</AlertMessage>
+							) : (
+								<SingleMessage>{message.message}</SingleMessage>
+							)}
+						</SingleChat>
+					);
+				})}
 			</ChatScreen>
 			<Form
 				showInfo={showInfo}
