@@ -22,7 +22,7 @@ const Input = styled.input`
 	width: 94%;
 	border-radius: 4px;
 	font-size: ${fontSize.small};
-	border: 1px solid black;
+	border: 1px solid ${({ showInfo }) => (showInfo ? 'lightgrey' : 'black')};
 	padding: ${spacing.s1};
 	${({ showInfo }) => (showInfo ? 'pointer-events: none' : null)};
 `;
