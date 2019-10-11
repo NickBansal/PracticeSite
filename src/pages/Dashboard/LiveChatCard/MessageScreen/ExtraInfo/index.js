@@ -41,7 +41,7 @@ const RoomName = styled.p`
 	font-size: ${fontSize.title};
 	margin: 0;
 	overflow-x: hidden;
-	line-height: 19px;
+	line-height: 25px;
 `;
 
 const Icon = styled.i`

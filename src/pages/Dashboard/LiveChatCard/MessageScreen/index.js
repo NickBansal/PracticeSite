@@ -17,7 +17,7 @@ const ChatScreen = styled.div`
 `;
 
 const Input = styled.input`
-	height: 29%;
+	height: 54%;
 	outline: none;
 	margin-top: ${spacing.s1};
 	width: 94%;
@@ -31,7 +31,7 @@ const Input = styled.input`
 `;
 
 const Form = styled.form`
-	height: 28%;
+	height: 15%;
 	&:hover {
 		cursor: ${({ showInfo }) => (showInfo ? 'not-allowed' : 'pointer')};
 	}
@@ -80,12 +80,16 @@ const MessageScreen = () => {
 
 	socket.on('message', message => {
 		setRoom(message.room);
-		if (viewMessages.some(item => item.message === message.message)) {
-			setViewMessages(viewMessages);
-		} else {
-			const newMes = viewMessages.concat(message);
-			setViewMessages(newMes);
-		}
+		// if (viewMessages.some(item => item.message === message.message)) {
+		// 	setViewMessages(viewMessages);
+		// } else {
+		// }
+		const newMes = viewMessages.concat(message);
+
+		setViewMessages(newMes);
+		const chatScreen = document.getElementById('chatScreen');
+
+		chatScreen.scrollTop = chatScreen.scrollHeight;
 	});
 
 	return (
@@ -97,7 +101,7 @@ const MessageScreen = () => {
 			/>
 			{showInfo && <ExtraInfo showInfo={setShowInfo} room={room} />}
 
-			<ChatScreen>
+			<ChatScreen id="chatScreen">
 				{viewMessages.map((message, index) => (
 					<SingleChat key={String(index)}>
 						{message.time && (
