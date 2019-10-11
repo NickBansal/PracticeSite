@@ -112,11 +112,13 @@ const MessageScreen = () => {
 			<ChatScreen id="chatScreen">
 				{viewMessages.map((message, index) => {
 					const myMessage = message.username === userDetails.name;
+					const myText = myMessage ? 'You' : message.username;
+
 					return (
 						<SingleChat key={String(index)} myMessage={myMessage}>
 							{message.time && (
 								<TimeStamp>
-									{`${message.username} - ${message.time}`}
+									{`${myText} - ${message.time}`}
 								</TimeStamp>
 							)}
 							{message.alert ? (
