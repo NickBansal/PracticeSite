@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import {
 	spacing,
 	colors,
-	fontSize
+	fontSize,
+	transitionSpeed
 } from '../../../../../assets/globalStyles/constants';
 import { HR } from '../../../../../assets/globalStyles';
 
@@ -18,7 +19,7 @@ const Container = styled.div`
 	right: 10px;
 	overflow: hidden;
 	padding: ${spacing.s1};
-	animation: slidein 0.3s 1 linear;
+	animation: slidein ${transitionSpeed}; 1 linear;
 
 	@keyframes slidein {
 		from {

@@ -5,7 +5,8 @@ import socket from '../../../../utils/socketIO';
 import {
 	spacing,
 	fontSize,
-	colors
+	colors,
+	transitionSpeed
 } from '../../../../assets/globalStyles/constants';
 import ExtraInfo from './ExtraInfo';
 
@@ -25,6 +26,8 @@ const Input = styled.input`
 	border: 1px solid ${({ showInfo }) => (showInfo ? 'lightgrey' : 'black')};
 	padding: ${spacing.s1};
 	${({ showInfo }) => (showInfo ? 'pointer-events: none' : null)};
+
+	transition: border ${transitionSpeed};
 `;
 
 const Form = styled.form`
@@ -64,7 +67,7 @@ const Icon = styled.i`
 	right: 16px;
 	top: 16px;
 	transform: rotate(${({ showInfo }) => (showInfo ? '90deg' : '270deg')});
-	transition: transform 0.3s;
+	transition: transform ${transitionSpeed};
 	&:hover {
 		cursor: pointer;
 	}
