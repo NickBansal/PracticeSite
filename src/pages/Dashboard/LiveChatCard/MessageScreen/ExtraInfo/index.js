@@ -7,6 +7,7 @@ import {
 	transitionSpeed
 } from '../../../../../assets/globalStyles/constants';
 import { HR } from '../../../../../assets/globalStyles';
+import socket from '../../../../../utils/socketIO';
 
 const Container = styled.div`
 	position: absolute;
@@ -68,14 +69,22 @@ const Description = styled.p`
 	font-size: ${fontSize.small};
 `;
 
-const ExtraInfo = ({ showInfo, room }) => (
+const ExtraInfo = ({ showInfo, userDetails: { name, room } }) => (
 	<Container>
 		<ChatRoom>Chat room:</ChatRoom>
 		<RoomName>{room}</RoomName>
 		<HR />
 		<Table>
 			<tbody>
-				<Row onClick={() => showInfo(false)}>
+				<Row
+					onClick={() => {
+						socket.emit('sendLocation', {
+							location: 'hello',
+							name
+						});
+						showInfo(false);
+					}}
+				>
 					<td>
 						<Icon className="i-link fas fa-globe-europe fa-2x" />
 					</td>

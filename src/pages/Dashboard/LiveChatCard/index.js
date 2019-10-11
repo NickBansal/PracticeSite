@@ -7,12 +7,14 @@ import MessageScreen from './MessageScreen';
 const LiveChatCard = () => {
 	const [messageScreen, setMessageScreen] = useState(false);
 	const [userDetails, setuserDetails] = useState(false);
-	const chatRoomText = messageScreen || userDetails ? 'Leave' : 'Enter';
+	const chatRoomText = messageScreen ? 'Leave' : 'Enter';
 
 	const showMessageScreen = () => {
 		setMessageScreen(true);
 		setuserDetails(false);
 	};
+
+	const showChatForm = () => !messageScreen && userDetails;
 
 	return (
 		<Card fadeIn="2.0s">
@@ -20,24 +22,25 @@ const LiveChatCard = () => {
 				<LiveText>Live</LiveText> chat
 			</Card.Title>
 			<Card.Content>
-				{!messageScreen && userDetails && (
+				{showChatForm() && (
 					<ChatForm showMessageScreen={showMessageScreen} />
 				)}
 				{messageScreen && !userDetails && <MessageScreen />}
 			</Card.Content>
 
-			<Card.Button
-				onClick={() => {
-					if (!messageScreen && !userDetails) {
-						setuserDetails(true);
-					} else {
-						setuserDetails(false);
-						setMessageScreen(false);
-					}
-				}}
-			>
-				{`Click to ${chatRoomText}`}
-			</Card.Button>
+			{!showChatForm() && (
+				<Card.Button
+					onClick={() => {
+						if (!messageScreen && !userDetails) {
+							setuserDetails(true);
+						} else {
+							setMessageScreen(false);
+						}
+					}}
+				>
+					{`Click to ${chatRoomText}`}
+				</Card.Button>
+			)}
 		</Card>
 	);
 };

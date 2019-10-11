@@ -74,7 +74,7 @@ const ChatForm = ({ showMessageScreen }) => (
 				<Input type="text" name="username" />
 				<Error name="username" component="div" />
 				<Label htmlFor="room">Chat Room: </Label>
-				<Input type="text" name="room" />
+				<Input type="text" name="room" autoComplete="off" />
 				<Error name="room" component="div" />
 				<Button type="submit">Join room</Button>
 			</StyledForm>
