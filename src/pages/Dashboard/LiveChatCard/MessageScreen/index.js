@@ -119,6 +119,9 @@ const MessageScreen = () => {
 				{viewMessages.map((message, index) => {
 					const myMessage = message.username === userDetails.name;
 					const myText = myMessage ? 'You' : message.username;
+					const yourText = myMessage
+						? 'your'
+						: `${message.username}'s`;
 
 					return (
 						<SingleChat key={String(index)} myMessage={myMessage}>
@@ -139,7 +142,7 @@ const MessageScreen = () => {
 									target="_blank"
 									rel="noopener noreferrer"
 								>
-									Click here to see my location
+									{`Click here to see ${yourText} location`}
 								</LocationMessage>
 							)}
 						</SingleChat>

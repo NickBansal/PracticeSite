@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import {
 	spacing,
@@ -67,11 +67,14 @@ const Description = styled.p`
 	overflow: hidden;
 	white-space: nowrap;
 	font-size: ${fontSize.small};
+	cursor: ${({ isLoading }) => (isLoading ? 'not-allowed' : 'pointer')};
 `;
 
 const ExtraInfo = ({ showInfo, userDetails: { name, room } }) => {
 	let watcher;
 	const geo = navigator.geolocation;
+
+	const [isLoading, setLoading] = useState(false);
 
 	const showLocation = position => {
 		const { latitude, longitude } = position.coords;
@@ -80,6 +83,7 @@ const ExtraInfo = ({ showInfo, userDetails: { name, room } }) => {
 			name
 		});
 		geo.clearWatch(watcher);
+		setLoading(false);
 		showInfo(false);
 	};
 
@@ -92,6 +96,7 @@ const ExtraInfo = ({ showInfo, userDetails: { name, room } }) => {
 				<tbody>
 					<Row
 						onClick={() => {
+							setLoading(true);
 							watcher = geo.watchPosition(showLocation);
 						}}
 					>
@@ -99,7 +104,10 @@ const ExtraInfo = ({ showInfo, userDetails: { name, room } }) => {
 							<Icon className="i-link fas fa-globe-europe fa-2x" />
 						</td>
 						<td>
-							<Description>Share location</Description>
+							<Description isLoading={isLoading}>
+								Share location
+							</Description>
+							{isLoading && <Description>Loading...</Description>}
 						</td>
 					</Row>
 					<Row onClick={() => showInfo(false)}>
