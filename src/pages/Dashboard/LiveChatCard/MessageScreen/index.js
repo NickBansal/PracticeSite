@@ -41,18 +41,24 @@ const Container = styled.div`
 	height: 100%;
 `;
 
-const SingleMessage = styled.p`
+const Messages = styled.p`
 	font-size: ${fontSize.small};
 	line-height: 20px;
 	word-spacing: -1px;
+`;
+
+const SingleMessage = styled(Messages)`
 	margin: 0 ${spacing.s1};
 `;
 
-const AlertMessage = styled.p`
+const AlertMessage = styled(Messages)`
+	text-align: center;
+`;
+
+const LocationMessage = styled.a`
 	font-size: ${fontSize.small};
 	line-height: 20px;
 	word-spacing: -1px;
-	text-align: center;
 `;
 
 const TimeStamp = styled.p`
@@ -121,10 +127,20 @@ const MessageScreen = () => {
 									{`${myText} - ${message.time}`}
 								</TimeStamp>
 							)}
-							{message.alert ? (
+							{message.alert && !message.link && (
 								<AlertMessage>{message.message}</AlertMessage>
-							) : (
+							)}
+							{!message.alert && !message.link && (
 								<SingleMessage>{message.message}</SingleMessage>
+							)}
+							{message.link && (
+								<LocationMessage
+									href={message.message}
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									Click here to see my location
+								</LocationMessage>
 							)}
 						</SingleChat>
 					);

@@ -27,7 +27,7 @@ const Container = styled.div`
 			width: 0;
 		}
 		to {
-			width: 50%;
+			width: 60%;
 		}
 	}
 `;
@@ -69,40 +69,51 @@ const Description = styled.p`
 	font-size: ${fontSize.small};
 `;
 
-const ExtraInfo = ({ showInfo, userDetails: { name, room } }) => (
-	<Container>
-		<ChatRoom>Chat room:</ChatRoom>
-		<RoomName>{room}</RoomName>
-		<HR />
-		<Table>
-			<tbody>
-				<Row
-					onClick={() => {
-						socket.emit('sendLocation', {
-							location: 'hello',
-							name
-						});
-						showInfo(false);
-					}}
-				>
-					<td>
-						<Icon className="i-link fas fa-globe-europe fa-2x" />
-					</td>
-					<td>
-						<Description>Share location</Description>
-					</td>
-				</Row>
-				<Row onClick={() => showInfo(false)}>
-					<td>
-						<Icon className="i-link fas fa-cloud-sun-rain fa-2x" />
-					</td>
-					<td>
-						<Description>Share weather</Description>
-					</td>
-				</Row>
-			</tbody>
-		</Table>
-	</Container>
-);
+const ExtraInfo = ({ showInfo, userDetails: { name, room } }) => {
+	let watcher;
+	const geo = navigator.geolocation;
+
+	const showLocation = position => {
+		const { latitude, longitude } = position.coords;
+		socket.emit('sendLocation', {
+			location: { latitude, longitude },
+			name
+		});
+		geo.clearWatch(watcher);
+		showInfo(false);
+	};
+
+	return (
+		<Container>
+			<ChatRoom>Chat room:</ChatRoom>
+			<RoomName>{room}</RoomName>
+			<HR />
+			<Table>
+				<tbody>
+					<Row
+						onClick={() => {
+							watcher = geo.watchPosition(showLocation);
+						}}
+					>
+						<td>
+							<Icon className="i-link fas fa-globe-europe fa-2x" />
+						</td>
+						<td>
+							<Description>Share location</Description>
+						</td>
+					</Row>
+					<Row onClick={() => showInfo(false)}>
+						<td>
+							<Icon className="i-link fas fa-cloud-sun-rain fa-2x" />
+						</td>
+						<td>
+							<Description>Share weather</Description>
+						</td>
+					</Row>
+				</tbody>
+			</Table>
+		</Container>
+	);
+};
 
 export default ExtraInfo;
