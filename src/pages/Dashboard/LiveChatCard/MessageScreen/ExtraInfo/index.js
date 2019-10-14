@@ -6,6 +6,7 @@ import {
 	fontSize,
 	transitionSpeed
 } from '../../../../../assets/globalStyles/constants';
+import InlineLoader from '../../../../../components/InlineLoader';
 import { HR } from '../../../../../assets/globalStyles';
 import socket from '../../../../../utils/socketIO';
 
@@ -55,6 +56,7 @@ const Table = styled.table`
 `;
 
 const Row = styled.tr`
+	cursor: ${({ isLoading }) => (isLoading ? 'not-allowed' : 'pointer')};
 	height: 50px;
 	&:hover {
 		cursor: pointer;
@@ -62,12 +64,12 @@ const Row = styled.tr`
 	}
 `;
 
-const Description = styled.p`
+const Description = styled.div`
+	display: inline-block;
 	margin: 0;
 	overflow: hidden;
 	white-space: nowrap;
 	font-size: ${fontSize.small};
-	cursor: ${({ isLoading }) => (isLoading ? 'not-allowed' : 'pointer')};
 `;
 
 const ExtraInfo = ({ showInfo, userDetails: { name, room } }) => {
@@ -95,6 +97,7 @@ const ExtraInfo = ({ showInfo, userDetails: { name, room } }) => {
 			<Table>
 				<tbody>
 					<Row
+						isLoading={isLoading}
 						onClick={() => {
 							setLoading(true);
 							watcher = geo.watchPosition(showLocation);
@@ -104,10 +107,15 @@ const ExtraInfo = ({ showInfo, userDetails: { name, room } }) => {
 							<Icon className="i-link fas fa-globe-europe fa-2x" />
 						</td>
 						<td>
-							<Description isLoading={isLoading}>
-								Share location
-							</Description>
-							{isLoading && <Description>Loading...</Description>}
+							{isLoading && (
+								<Description>
+									<InlineLoader isLoading={isLoading} />{' '}
+									Loading...
+								</Description>
+							)}
+							{!isLoading && (
+								<Description>Share location</Description>
+							)}
 						</td>
 					</Row>
 					<Row onClick={() => showInfo(false)}>

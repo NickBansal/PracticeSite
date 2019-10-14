@@ -8,37 +8,27 @@ describe('<LiveChatCard />', () => {
 		expect(getByText('Live')).toBeInTheDocument();
 	});
 
-	it('should display a sign in form when the button is clicked', () => {
-		const { getByText, queryByRole } = render(<LiveChatCard />);
+	it('should display a sign in form when the button is clicked', async () => {
+		const { getByText, queryByRole, getAllByRole } = render(
+			<LiveChatCard />
+		);
 
 		expect(queryByRole('form')).not.toBeInTheDocument();
 		expect(getByText('Click to Enter')).toBeInTheDocument();
 		fireEvent.click(getByText('Click to Enter'));
 
-		expect(queryByRole('form')).toBeInTheDocument();
-		expect(getByText('Click to Leave')).toBeInTheDocument();
+		const username = getAllByRole('textbox')[0];
+		const room = getAllByRole('textbox')[1];
 
-		fireEvent.click(getByText('Click to Leave'));
-		expect(queryByRole('form')).not.toBeInTheDocument();
-	});
-
-	it('should go to the chat window and show the chat conversation', async () => {
-		const { getByText, getAllByRole, getByRole } = render(<LiveChatCard />);
-
-		fireEvent.click(getByText('Click to Enter'));
-
-		const usernameInput = getAllByRole('textbox')[0];
-		const chatRoom = getAllByRole('textbox')[1];
-
-		fireEvent.change(usernameInput, {
+		fireEvent.change(username, {
 			target: {
-				value: 'Username'
+				value: 'Nick'
 			}
 		});
 
-		fireEvent.change(chatRoom, {
+		fireEvent.change(room, {
 			target: {
-				value: 'Room 1'
+				value: '123'
 			}
 		});
 
@@ -46,6 +36,10 @@ describe('<LiveChatCard />', () => {
 
 		await wait();
 
-		expect(getByRole('form')).toBeInTheDocument();
+		expect(queryByRole('form')).toBeInTheDocument();
+		expect(getByText('Click to Leave')).toBeInTheDocument();
+
+		fireEvent.click(getByText('Click to Leave'));
+		expect(queryByRole('form')).not.toBeInTheDocument();
 	});
 });
