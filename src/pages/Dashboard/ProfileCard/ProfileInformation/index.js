@@ -49,7 +49,7 @@ const Title = styled.h1`
 	left: 0;
 	font-size: ${fontSize.title};
 	color: ${colors.orange};
-
+	letter-spacing: -1px;
 	@media (min-width: ${breakPoints.mobileMax}) {
 		font-size: ${fontSize.large};
 		display: inline-block;
