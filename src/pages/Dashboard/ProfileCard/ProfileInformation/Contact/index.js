@@ -4,7 +4,7 @@ import {
 	breakPoints,
 	transitionSpeed,
 	fontSize
-} from '../../../../../assets/globalStyles/constants';
+} from '../../../../../utils/globalStyles/constants';
 
 const ContactContainer = styled.div`
 	width: 100%;

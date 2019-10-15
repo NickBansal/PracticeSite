@@ -12,8 +12,9 @@ export const fontSize = {
 };
 
 export const breakPoints = {
-	smallMobile: '320px',
-	mobile: '375px',
+	smallMobile: '321px',
+	mobile: '376px',
+	largeMobile: '415px',
 	mobileMax: '767px'
 };
 

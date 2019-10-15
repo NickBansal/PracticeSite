@@ -6,7 +6,7 @@ import {
 	spacing,
 	transitionSpeed,
 	fontSize
-} from '../../../../assets/globalStyles/constants';
+} from '../../../../utils/globalStyles/constants';
 import placeholderImage from '../../../../assets/news/placeholder.png';
 
 const Container = styled.div`

@@ -2,7 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { bool, arrayOf, string, func } from 'prop-types';
 import BlurImageLoader from '../../../../components/BlurImageLoader';
-import { spacing, colors } from '../../../../assets/globalStyles/constants';
+import {
+	spacing,
+	colors,
+	breakPoints
+} from '../../../../utils/globalStyles/constants';
 
 const ModalStyled = styled.div`
 	height: ${({ show }) => (show ? '300px' : '0px')};
@@ -22,9 +26,21 @@ const Image = styled(BlurImageLoader)`
 	margin: ${spacing.s2} ${spacing.s2} 0;
 	border-radius: 16px;
 	border: 3px solid grey;
+	width: 80px !important;
+	height: 70px !important;
 
 	&:hover {
 		cursor: pointer;
+	}
+
+	@media (min-width: ${breakPoints.mobile}) {
+		width: 100px !important;
+		height: 90px !important;
+	}
+
+	@media (min-width: ${breakPoints.largeMobile}) {
+		width: 110px !important;
+		height: 100px !important;
 	}
 `;
 

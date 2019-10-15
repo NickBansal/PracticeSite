@@ -6,7 +6,7 @@ import {
 	breakPoints,
 	colors,
 	fontSize
-} from '../../../../assets/globalStyles/constants';
+} from '../../../../utils/globalStyles/constants';
 
 import Skills from './Skills';
 import Links from './Links';

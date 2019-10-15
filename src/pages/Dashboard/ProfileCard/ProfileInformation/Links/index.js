@@ -4,7 +4,7 @@ import {
 	breakPoints,
 	colors,
 	transitionSpeed
-} from '../../../../../assets/globalStyles/constants';
+} from '../../../../../utils/globalStyles/constants';
 
 const LinkIcon = styled.div`
 	display: inline-block;

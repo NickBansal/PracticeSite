@@ -5,9 +5,9 @@ import {
 	colors,
 	fontSize,
 	transitionSpeed
-} from '../../../../../assets/globalStyles/constants';
+} from '../../../../../utils/globalStyles/constants';
 import InlineLoader from '../../../../../components/InlineLoader';
-import { HR } from '../../../../../assets/globalStyles';
+import { HR } from '../../../../../utils/globalStyles';
 import socket from '../../../../../utils/socketIO';
 
 const Container = styled.div`

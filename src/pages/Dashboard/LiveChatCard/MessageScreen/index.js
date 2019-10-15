@@ -7,7 +7,7 @@ import {
 	fontSize,
 	colors,
 	transitionSpeed
-} from '../../../../assets/globalStyles/constants';
+} from '../../../../utils/globalStyles/constants';
 import ExtraInfo from './ExtraInfo';
 
 const ChatScreen = styled.div`

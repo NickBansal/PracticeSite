@@ -7,7 +7,7 @@ import {
 	colors,
 	fontSize,
 	transitionSpeed
-} from '../../../../assets/globalStyles/constants';
+} from '../../../../utils/globalStyles/constants';
 
 import schema from './schema';
 

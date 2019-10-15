@@ -1,7 +1,7 @@
 import React from 'react';
 import { bool, string } from 'prop-types';
 import styled, { keyframes } from 'styled-components';
-import { colors } from '../../assets/globalStyles/constants';
+import { colors } from '../../utils/globalStyles/constants';
 
 const Rotate = keyframes`
  {

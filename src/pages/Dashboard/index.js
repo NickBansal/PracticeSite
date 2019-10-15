@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import BlurImageLoader from '../../components/BlurImageLoader';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import backgroundImage from '../../assets/dashboard/thailand.JPG';
-import { GlobalStyle } from '../../assets/globalStyles';
+import { GlobalStyle } from '../../utils/globalStyles';
 import ProfileCard from './ProfileCard';
 import NewsFeedCard from './NewsFeedCard';
 import LiveChatCard from './LiveChatCard';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { CSSTransition } from 'react-transition-group';
 import styled from 'styled-components';
-import { breakPoints } from '../../assets/globalStyles/constants';
+import { breakPoints } from '../../utils/globalStyles/constants';
 
 const Background = styled.div`
 	width: 100%;

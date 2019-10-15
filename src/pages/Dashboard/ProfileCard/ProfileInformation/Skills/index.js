@@ -4,7 +4,7 @@ import {
 	spacing,
 	breakPoints,
 	colors
-} from '../../../../../assets/globalStyles/constants';
+} from '../../../../../utils/globalStyles/constants';
 
 const Icon = styled.i`
 	color: ${colors.orange};

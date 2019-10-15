@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Card from '../../../components/Card';
 import BlurImageLoader from '../../../components/BlurImageLoader';
 import drums from '../../../assets/drumMachine/drums.JPG';
-import { boxShadow } from '../../../assets/globalStyles/constants/index';
+import { boxShadow } from '../../../utils/globalStyles/constants/index';
 import Overlay from '../../../components/Overlay';
 
 const Image = styled(BlurImageLoader)`
