@@ -72,6 +72,10 @@ const Description = styled.div`
 	font-size: ${fontSize.small};
 `;
 
+const Loader = styled(InlineLoader)`
+	margin-right: 4px;
+`;
+
 const ExtraInfo = ({ showInfo, userDetails: { name, room } }) => {
 	let watcher;
 	const geo = navigator.geolocation;
@@ -104,13 +108,15 @@ const ExtraInfo = ({ showInfo, userDetails: { name, room } }) => {
 						}}
 					>
 						<td>
-							<Icon className="i-link fas fa-globe-europe fa-2x" />
+							<Icon
+								className="i-link fas fa-globe-europe fa-2x"
+								data-testid="open_location_modal"
+							/>
 						</td>
 						<td>
 							{isLoading && (
 								<Description>
-									<InlineLoader isLoading={isLoading} />{' '}
-									Loading...
+									<Loader isLoading={isLoading} /> Loading...
 								</Description>
 							)}
 							{!isLoading && (

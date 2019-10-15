@@ -34,19 +34,20 @@ export const LiveText = styled.div`
     animation: pulsate 2.0s infinite;
     width: 45px;
     display: inline-block;
+    letter-spacing: -1px;
 
     @keyframes pulsate {
         0% { 
             opacity: 0.5;
-            font-size: 1.45rem;
+            transform: scale(0.95)
         }
         50% { 
             opacity: 1.0;
-            font-size: 1.5rem;
+            transform: scale(1)
         }
         100% { 
             opacity: 0.5;
-            font-size: 1.45rem;
+            transform: scale(0.95)
         }
     }
 `;

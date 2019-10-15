@@ -7,6 +7,7 @@ import { fontSize } from '../../assets/globalStyles/constants/index';
 const Title = styled.h1`
 	font-size: ${fontSize.title};
 	margin: 0;
+	letter-spacing: -1px;
 `;
 
 const CardTitle = ({ children }) => (

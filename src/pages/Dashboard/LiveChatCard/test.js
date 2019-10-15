@@ -8,7 +8,7 @@ describe('<LiveChatCard />', () => {
 		expect(getByText('Live')).toBeInTheDocument();
 	});
 
-	it('should display a sign in form when the button is clicked', async () => {
+	it('should sign in and out of the chat room', async () => {
 		const { getByText, queryByRole, getAllByRole } = render(
 			<LiveChatCard />
 		);
