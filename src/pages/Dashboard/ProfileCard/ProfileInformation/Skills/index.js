@@ -12,14 +12,14 @@ const Icon = styled.i`
 
 	&:nth-child(1),
 	&:nth-child(5) {
-		font-size: 40px;
+		font-size: 30px;
 	}
 	&:nth-child(2),
 	&:nth-child(4) {
-		font-size: 60px;
+		font-size: 40px;
 	}
 	&:nth-child(3) {
-		font-size: 80px;
+		font-size: 50px;
 	}
 
 	@media (min-width: ${breakPoints.mobileMax}) {

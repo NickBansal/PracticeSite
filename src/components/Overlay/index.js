@@ -11,6 +11,7 @@ const Background = styled.div`
 	position: fixed;
 	top: 0;
 	left: 0;
+	overflow: scroll;
 `;
 
 const TransitionEffects = styled.div`
@@ -62,19 +63,14 @@ const Close = styled(TransitionEffects)`
 const Information = styled(TransitionEffects)`
 	position: absolute;
 	z-index: 500;
-	top: 65%;
+	top: 350px;
 	left: 50%;
 	border-radius: 8px;
 	transform: translate(-50%, -50%);
 	width: 95%;
 
-	@media (min-width: ${breakPoints.smallMobile}) {
-		top: 55%;
-	}
-
 	@media (min-width: ${breakPoints.mobile}) {
 		width: 90%;
-		top: 45%;
 	}
 
 	@media (min-width: ${breakPoints.mobileMax}) {
