@@ -35,9 +35,9 @@ const TransitionEffects = styled.div`
 `;
 
 const Close = styled(TransitionEffects)`
-	width: 50px;
+	width: 40px;
 	height: auto;
-	font-size: 34px;
+	font-size: 27px;
 	text-align: center;
 	right: 0;
 	position: absolute;

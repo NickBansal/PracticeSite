@@ -4,6 +4,7 @@ import BlurImageLoader from '../../components/BlurImageLoader';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import backgroundImage from '../../assets/dashboard/thailand.JPG';
 import { GlobalStyle } from '../../utils/globalStyles';
+import { breakPoints } from '../../utils/globalStyles/constants';
 import ProfileCard from './ProfileCard';
 import NewsFeedCard from './NewsFeedCard';
 import LiveChatCard from './LiveChatCard';
@@ -13,7 +14,11 @@ const CardContainer = styled.div`
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-around;
-	padding: 20px;
+	padding: 10px;
+
+	@media (min-width: ${breakPoints.mobileMax}) {
+		padding: 20px;
+	}
 `;
 
 const App = () => (
