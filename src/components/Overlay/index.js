@@ -62,11 +62,20 @@ const Close = styled(TransitionEffects)`
 const Information = styled(TransitionEffects)`
 	position: absolute;
 	z-index: 500;
-	top: 45%;
+	top: 65%;
 	left: 50%;
 	border-radius: 8px;
 	transform: translate(-50%, -50%);
-	width: 90%;
+	width: 95%;
+
+	@media (min-width: ${breakPoints.smallMobile}) {
+		top: 55%;
+	}
+
+	@media (min-width: ${breakPoints.mobile}) {
+		width: 90%;
+		top: 45%;
+	}
 
 	@media (min-width: ${breakPoints.mobileMax}) {
 		width: 700px;
