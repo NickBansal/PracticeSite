@@ -5,6 +5,7 @@ import BlurImageLoader from '../../../components/BlurImageLoader';
 import drums from '../../../assets/drumMachine/drums.JPG';
 import { boxShadow } from '../../../utils/globalStyles/constants/index';
 import Overlay from '../../../components/Overlay';
+import DrumLoop from './DrumLoop';
 
 const Image = styled(BlurImageLoader)`
 	-webkit-box-shadow: ${boxShadow};
@@ -27,7 +28,9 @@ const DrumMachineCard = () => {
 					placeholder="Profile picture"
 				/>
 			</Card.Content>
-			<Overlay showOverlay={showOverlay} handleClick={setShowOverlay} />
+			<Overlay showOverlay={showOverlay} handleClick={setShowOverlay}>
+				<DrumLoop />
+			</Overlay>
 			<Card.Button onClick={() => setShowOverlay(true)}>
 				Click to play
 			</Card.Button>
