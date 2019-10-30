@@ -26,7 +26,8 @@ const Sound = styled.div`
 	min-width: 35px;
 	height: 45px;
 	border: 1px solid #ffffff66;
-	background: ${({ playing }) => (!playing ? '#000000a8' : colors.orange)}
+	background: ${({ playing }) => (!playing ? '#000000a8' : colors.orange)};
+	transform: scale(${({ hit }) => (hit ? '1.1' : '1')});
 
 	&:hover {
 		cursor: pointer;
@@ -72,6 +73,7 @@ const DrumLoop = () => {
 						<Column key={String(i)} marker={beat === i}>
 							{col.map((sample, j) => (
 								<Sound
+									hit={beat === i && Boolean(sample)}
 									playing={sample}
 									key={String(j)}
 									onClick={() => {
