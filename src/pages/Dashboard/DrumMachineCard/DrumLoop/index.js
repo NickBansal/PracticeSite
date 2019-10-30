@@ -30,7 +30,7 @@ const Sound = styled.div`
 	height: 45px;
 	border: 1px solid #ffffff66;
 	background: #000000a8;
-
+	color: white;
 	&:hover {
 		cursor: pointer;
 		border: 1px solid white;
@@ -45,10 +45,8 @@ const Sound = styled.div`
 	transition: transform 0.1s;
 `;
 
-const drumsArray = Array(16).fill(Array(8).fill({ hit: false, value: null }));
-
 const DrumLoop = () => {
-	const [drums, setDrums] = useState(drumsArray);
+	const [drums, setDrums] = useState(Array(16).fill(Array(8).fill('X')));
 	return (
 		<>
 			<DrumContainer>
@@ -56,19 +54,18 @@ const DrumLoop = () => {
 				<Drums>
 					{drums.map((column, index) => (
 						<Column key={String(index)}>
-							{column.map((sound, i) => (
+							{column.map((sample, i) => (
 								<Sound
+									play={sample}
 									key={String(i)}
 									onClick={() => {
-										drumsArray[index][i] = {
-											hit: true,
-											value: null
-										};
-										setDrums(drumsArray);
-										console.log(drumsArray);
+										const newDrums = [...drums];
+										newDrums[index][i] = 'O';
+										setDrums(newDrums);
+										console.log(sample);
 									}}
 								>
-									{sound.value}
+									{sample}
 								</Sound>
 							))}
 						</Column>
