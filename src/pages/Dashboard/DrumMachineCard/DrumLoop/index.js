@@ -29,13 +29,13 @@ const Sound = styled.div`
 	min-width: 35px;
 	height: 45px;
 	border: 1px solid #ffffff66;
-	background: #000000a8;
-	color: white;
+	background: ${({ playing }) => (!playing ? '#000000a8' : colors.orange)}
+
 	&:hover {
 		cursor: pointer;
 		border: 1px solid white;
 		border-radius: 4px;
-		background: ${colors.cardOverlay};
+		background: ${colors.orange};
 	}
 
 	&:active {
@@ -46,27 +46,41 @@ const Sound = styled.div`
 `;
 
 const DrumLoop = () => {
-	const [drums, setDrums] = useState(Array(16).fill(Array(8).fill('X')));
+	const [drums, setDrums] = useState([
+		Array(8).fill(false),
+		Array(8).fill(false),
+		Array(8).fill(false),
+		Array(8).fill(false),
+		Array(8).fill(false),
+		Array(8).fill(false),
+		Array(8).fill(false),
+		Array(8).fill(false),
+		Array(8).fill(false),
+		Array(8).fill(false),
+		Array(8).fill(false),
+		Array(8).fill(false),
+		Array(8).fill(false),
+		Array(8).fill(false),
+		Array(8).fill(false),
+		Array(8).fill(false)
+	]);
 	return (
 		<>
 			<DrumContainer>
 				<Labels />
 				<Drums>
-					{drums.map((column, index) => (
-						<Column key={String(index)}>
-							{column.map((sample, i) => (
+					{drums.map((col, i) => (
+						<Column key={String(i)}>
+							{col.map((sample, j) => (
 								<Sound
-									play={sample}
-									key={String(i)}
+									playing={sample}
+									key={String(j)}
 									onClick={() => {
 										const newDrums = [...drums];
-										newDrums[index][i] = 'O';
+										newDrums[i][j] = !sample;
 										setDrums(newDrums);
-										console.log(sample);
 									}}
-								>
-									{sample}
-								</Sound>
+								/>
 							))}
 						</Column>
 					))}
