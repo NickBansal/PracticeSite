@@ -47,6 +47,7 @@ const DrumLoop = () => {
 	const [drums, setDrums] = useState(drumsArray);
 	const [beat, setBeat] = useState(0);
 	const [isPlaying, setPlaying] = useState(false);
+	const [bpm, setBpm] = useState(120);
 
 	useInterval(
 		() => {
@@ -58,7 +59,7 @@ const DrumLoop = () => {
 			}
 			setBeat(newBeat);
 		},
-		isPlaying ? 375 : null
+		isPlaying ? 60000 / bpm / 4 : null
 	);
 
 	return (
@@ -87,6 +88,8 @@ const DrumLoop = () => {
 				setPlaying={setPlaying}
 				isPlaying={isPlaying}
 				setBeat={setBeat}
+				bpm={bpm}
+				setBpm={setBpm}
 			/>
 		</>
 	);
