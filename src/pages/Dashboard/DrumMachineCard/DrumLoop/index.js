@@ -19,7 +19,6 @@ const Drums = styled.div`
 
 const Column = styled.div`
 	display: inline-block;
-
 	background: ${({ marker }) => (marker ? '#ffffff9e' : null)};
 `;
 
@@ -43,8 +42,10 @@ const Sound = styled.div`
 	transition: transform 0.1s;
 `;
 
+const drumsCopy = drumsArray.slice();
+
 const DrumLoop = () => {
-	const [drums, setDrums] = useState(drumsArray);
+	const [drums, setDrums] = useState(drumsCopy);
 	const [beat, setBeat] = useState(0);
 	const [isPlaying, setPlaying] = useState(false);
 	const [bpm, setBpm] = useState(120);
@@ -90,6 +91,7 @@ const DrumLoop = () => {
 				setBeat={setBeat}
 				bpm={bpm}
 				setBpm={setBpm}
+				setDrums={setDrums}
 			/>
 		</>
 	);

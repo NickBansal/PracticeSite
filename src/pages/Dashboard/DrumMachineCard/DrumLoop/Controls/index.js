@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { colors, spacing } from '../../../../../utils/globalStyles/constants';
+import drumsReset from '../drumsArray';
 
 const Container = styled.div`
 	margin-top: ${spacing.s2};
@@ -28,7 +29,7 @@ const Speed = styled.div`
 `;
 
 const BPM = styled.h3`
-	margin: 5px 0;
+	margin: 4px ${spacing.s1};
 	font-size: 1.3rem;
 	color: white;
 	width: 80px;
@@ -45,7 +46,14 @@ const Input = styled.input`
 	}
 `;
 
-const Controls = ({ setPlaying, isPlaying, setBeat, bpm, setBpm }) => {
+const Controls = ({
+	setPlaying,
+	isPlaying,
+	setBeat,
+	bpm,
+	setBpm,
+	setDrums
+}) => {
 	const playPause = isPlaying ? 'pause' : 'play';
 	return (
 		<Container>
@@ -72,6 +80,13 @@ const Controls = ({ setPlaying, isPlaying, setBeat, bpm, setBpm }) => {
 					setPlaying(!isPlaying);
 				}}
 				className={`i-link fas fa-${playPause} fa-2x`}
+			/>
+			<Icon
+				onClick={() => {
+					const newDrums = [...drumsReset];
+					setDrums(newDrums);
+				}}
+				className="i-link fas fa-undo fa-2x"
 			/>
 		</Container>
 	);
