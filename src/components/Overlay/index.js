@@ -74,8 +74,8 @@ const Information = styled(TransitionEffects)`
 	}
 
 	@media (min-width: ${breakPoints.mobileMax}) {
-		width: 700px;
 		top: 120px;
+		width: 700px;
 	}
 `;
 
