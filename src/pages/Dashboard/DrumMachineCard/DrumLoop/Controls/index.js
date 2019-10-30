@@ -21,16 +21,15 @@ const Icon = styled.i`
 	}
 `;
 
-const Controls = () => {
-	const [play, setPlay] = useState(false);
-	const isPlaying = play ? 'pause' : 'play';
+const Controls = ({ setPlaying, isPlaying }) => {
+	const playPause = isPlaying ? 'pause' : 'play';
 	return (
 		<Container>
 			<Icon
 				onClick={() => {
-					setPlay(!play);
+					setPlaying(!isPlaying);
 				}}
-				className={`i-link fas fa-${isPlaying} fa-2x`}
+				className={`i-link fas fa-${playPause} fa-2x`}
 			/>
 		</Container>
 	);

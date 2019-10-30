@@ -4,6 +4,7 @@ import { colors } from '../../../../utils/globalStyles/constants';
 import Labels from './Labels';
 import drumsArray from './drumsArray';
 import Controls from './Controls';
+import useInterval from '../../../../utils/hooks/useInterval';
 
 const DrumContainer = styled.div`
 	height: 376px;
@@ -45,6 +46,21 @@ const Sound = styled.div`
 const DrumLoop = () => {
 	const [drums, setDrums] = useState(drumsArray);
 	const [beat, setBeat] = useState(0);
+	const [isPlaying, setPlaying] = useState(false);
+
+	useInterval(
+		() => {
+			let newBeat;
+			if (beat === 15) {
+				newBeat = 0;
+			} else {
+				newBeat = beat + 1;
+			}
+			setBeat(newBeat);
+		},
+		isPlaying ? 500 : null
+	);
+
 	return (
 		<>
 			<DrumContainer>
@@ -67,7 +83,7 @@ const DrumLoop = () => {
 					))}
 				</Drums>
 			</DrumContainer>
-			<Controls />
+			<Controls setPlaying={setPlaying} isPlaying={isPlaying} />
 		</>
 	);
 };
