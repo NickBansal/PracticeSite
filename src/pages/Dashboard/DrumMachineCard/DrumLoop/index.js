@@ -1,25 +1,19 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { colors, spacing } from '../../../../utils/globalStyles/constants';
+import Labels from './Labels';
 
 const DrumContainer = styled.div`
-	height: 500px;
-	min-width: 700px;
+	height: 376px;
+	min-width: 730px;
 	display: flex;
-	align-items: center;
 `;
 
 const Controls = styled.div`
 	margin-top: ${spacing.s2};
 	background: ${colors.pink};
-	min-width: 700px;
+	min-width: 714px;
 	height: 40px;
-`;
-
-const Labels = styled.div`
-	height: 100%;
-	width: 15%
-	background: ${colors.orange};
 `;
 
 const Drums = styled.div`
@@ -35,11 +29,11 @@ const Sound = styled.div`
 	min-width: 35px;
 	height: 45px;
 	border: 1px solid #ffffff66;
+	background: #000000a8;
 
 	&:hover {
 		cursor: pointer;
 		border: 1px solid white;
-		background: black;
 	}
 
 	&:active {
