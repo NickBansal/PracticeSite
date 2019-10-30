@@ -27,7 +27,9 @@ const Controls = () => {
 	return (
 		<Container>
 			<Icon
-				onClick={() => setPlay(!play)}
+				onClick={() => {
+					setPlay(!play);
+				}}
 				className={`i-link fas fa-${isPlaying} fa-2x`}
 			/>
 		</Container>

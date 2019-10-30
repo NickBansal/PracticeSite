@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { colors, spacing } from '../../../../utils/globalStyles/constants';
+import { colors } from '../../../../utils/globalStyles/constants';
 import Labels from './Labels';
 import drumsArray from './drumsArray';
 import Controls from './Controls';
@@ -18,6 +18,8 @@ const Drums = styled.div`
 
 const Column = styled.div`
 	display: inline-block;
+
+	background: ${({ marker }) => (marker ? '#ffffff9e' : null)};
 `;
 
 const Sound = styled.div`
@@ -43,23 +45,13 @@ const Sound = styled.div`
 const DrumLoop = () => {
 	const [drums, setDrums] = useState(drumsArray);
 	const [beat, setBeat] = useState(0);
-
-	// useEffect(() => {
-	// 	const bpm = setInterval(() => {
-	// 		const newBeat = (beat += 1);
-	// 		setBeat(newBeat);
-	// 	}, 1000);
-
-	// 	return clearInterval(bpm);
-	// }, []);
-	// console.log(beat);
 	return (
 		<>
 			<DrumContainer>
 				<Labels />
 				<Drums>
 					{drums.map((col, i) => (
-						<Column key={String(i)}>
+						<Column key={String(i)} marker={beat === i}>
 							{col.map((sample, j) => (
 								<Sound
 									playing={sample}
