@@ -34,17 +34,21 @@ const Sound = styled.div`
 	&:hover {
 		cursor: pointer;
 		border: 1px solid white;
+		border-radius: 4px;
+		background: ${colors.cardOverlay};
 	}
 
 	&:active {
 		transform: scale(1.1);
 	}
 
-	transition: transform 0.3s;
+	transition: transform 0.1s;
 `;
 
+const drumsArray = Array(16).fill(Array(8).fill({ hit: false, value: null }));
+
 const DrumLoop = () => {
-	const [drums, setDrums] = useState(Array(16).fill(Array(8).fill(null)));
+	const [drums, setDrums] = useState(drumsArray);
 	return (
 		<>
 			<DrumContainer>
@@ -53,7 +57,19 @@ const DrumLoop = () => {
 					{drums.map((column, index) => (
 						<Column key={String(index)}>
 							{column.map((sound, i) => (
-								<Sound key={String(i)}>{sound}</Sound>
+								<Sound
+									key={String(i)}
+									onClick={() => {
+										drumsArray[index][i] = {
+											hit: true,
+											value: null
+										};
+										setDrums(drumsArray);
+										console.log(drumsArray);
+									}}
+								>
+									{sound.value}
+								</Sound>
 							))}
 						</Column>
 					))}
