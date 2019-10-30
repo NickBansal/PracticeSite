@@ -2,18 +2,13 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { colors, spacing } from '../../../../utils/globalStyles/constants';
 import Labels from './Labels';
+import drumsArray from './drumsArray';
+import Controls from './Controls';
 
 const DrumContainer = styled.div`
 	height: 376px;
 	min-width: 730px;
 	display: flex;
-`;
-
-const Controls = styled.div`
-	margin-top: ${spacing.s2};
-	background: ${colors.pink};
-	min-width: 714px;
-	height: 40px;
 `;
 
 const Drums = styled.div`
@@ -35,7 +30,7 @@ const Sound = styled.div`
 		cursor: pointer;
 		border: 1px solid white;
 		border-radius: 4px;
-		background: ${colors.orange};
+		background: #ff330078;
 	}
 
 	&:active {
@@ -46,24 +41,18 @@ const Sound = styled.div`
 `;
 
 const DrumLoop = () => {
-	const [drums, setDrums] = useState([
-		Array(8).fill(false),
-		Array(8).fill(false),
-		Array(8).fill(false),
-		Array(8).fill(false),
-		Array(8).fill(false),
-		Array(8).fill(false),
-		Array(8).fill(false),
-		Array(8).fill(false),
-		Array(8).fill(false),
-		Array(8).fill(false),
-		Array(8).fill(false),
-		Array(8).fill(false),
-		Array(8).fill(false),
-		Array(8).fill(false),
-		Array(8).fill(false),
-		Array(8).fill(false)
-	]);
+	const [drums, setDrums] = useState(drumsArray);
+	const [beat, setBeat] = useState(0);
+
+	// useEffect(() => {
+	// 	const bpm = setInterval(() => {
+	// 		const newBeat = (beat += 1);
+	// 		setBeat(newBeat);
+	// 	}, 1000);
+
+	// 	return clearInterval(bpm);
+	// }, []);
+	// console.log(beat);
 	return (
 		<>
 			<DrumContainer>
