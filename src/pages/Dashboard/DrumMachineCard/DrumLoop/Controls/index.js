@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { colors, spacing } from '../../../../../utils/globalStyles/constants';
 
@@ -21,7 +21,7 @@ const Icon = styled.i`
 	}
 `;
 
-const Controls = ({ setPlaying, isPlaying }) => {
+const Controls = ({ setPlaying, isPlaying, setBeat }) => {
 	const playPause = isPlaying ? 'pause' : 'play';
 	return (
 		<Container>
@@ -30,6 +30,13 @@ const Controls = ({ setPlaying, isPlaying }) => {
 					setPlaying(!isPlaying);
 				}}
 				className={`i-link fas fa-${playPause} fa-2x`}
+			/>
+			<Icon
+				onClick={() => {
+					setPlaying(false);
+					setBeat(0);
+				}}
+				className="i-link fas fa-stop fa-2x"
 			/>
 		</Container>
 	);

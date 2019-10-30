@@ -58,7 +58,7 @@ const DrumLoop = () => {
 			}
 			setBeat(newBeat);
 		},
-		isPlaying ? 500 : null
+		isPlaying ? 375 : null
 	);
 
 	return (
@@ -83,7 +83,11 @@ const DrumLoop = () => {
 					))}
 				</Drums>
 			</DrumContainer>
-			<Controls setPlaying={setPlaying} isPlaying={isPlaying} />
+			<Controls
+				setPlaying={setPlaying}
+				isPlaying={isPlaying}
+				setBeat={setBeat}
+			/>
 		</>
 	);
 };
