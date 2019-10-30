@@ -4,19 +4,18 @@ import { colors, spacing } from '../../../../../utils/globalStyles/constants';
 
 const Container = styled.div`
 	margin-top: ${spacing.s2};
-	background: ${colors.pink};
+	background: ${colors.purple};
 	min-width: 700px;
 	height: 40px;
 	text-align: center;
-	padding: 0 8px;
+	padding: ${spacing.s1};
 `;
 
 const Icon = styled.i`
 	margin: 4px 0;
-	border-right: 1px solid black;
-	border-left: 1px solid black;
-	width: 60px;
-
+	width: 50px;
+	color: white;
+	float: right;
 	&:hover {
 		cursor: pointer;
 	}
@@ -24,10 +23,26 @@ const Icon = styled.i`
 
 const Speed = styled.div`
 	float: left;
+	display: flex;
+	align-items: center;
 `;
 
 const BPM = styled.h3`
 	margin: 5px 0;
+	font-size: 1.3rem;
+	color: white;
+	width: 80px;
+`;
+
+const Input = styled.input`
+	outline: none;
+	height: 30px;
+	width: 130px;
+	margin-left: ${spacing.s2};
+
+	&::-webkit-slider-horizontal {
+		background: yellow;
+	}
 `;
 
 const Controls = ({ setPlaying, isPlaying, setBeat, bpm, setBpm }) => {
@@ -35,9 +50,8 @@ const Controls = ({ setPlaying, isPlaying, setBeat, bpm, setBpm }) => {
 	return (
 		<Container>
 			<Speed>
-				<BPM>BPM</BPM>
-				<input
-					id="typeinp"
+				<BPM>{bpm}bpm</BPM>
+				<Input
 					type="range"
 					min="60"
 					max="180"
@@ -48,16 +62,16 @@ const Controls = ({ setPlaying, isPlaying, setBeat, bpm, setBpm }) => {
 			</Speed>
 			<Icon
 				onClick={() => {
-					setPlaying(!isPlaying);
-				}}
-				className={`i-link fas fa-${playPause} fa-2x`}
-			/>
-			<Icon
-				onClick={() => {
 					setPlaying(false);
 					setBeat(0);
 				}}
 				className="i-link fas fa-stop fa-2x"
+			/>
+			<Icon
+				onClick={() => {
+					setPlaying(!isPlaying);
+				}}
+				className={`i-link fas fa-${playPause} fa-2x`}
 			/>
 		</Container>
 	);
