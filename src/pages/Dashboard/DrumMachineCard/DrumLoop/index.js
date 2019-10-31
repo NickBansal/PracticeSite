@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { colors } from '../../../../utils/globalStyles/constants';
 import Labels from './Labels';
 import drumsArray from './drumsArray';
 import Controls from './Controls';
 import useInterval from '../../../../utils/hooks/useInterval';
+import Samples from './Samples';
 
 const DrumContainer = styled.div`
 	height: 376px;
@@ -22,30 +22,8 @@ const Column = styled.div`
 	background: ${({ marker }) => (marker ? '#ffffff9e' : null)};
 `;
 
-const Sound = styled.div`
-	min-width: 35px;
-	height: 45px;
-	border: 1px solid #ffffff66;
-	background: ${({ playing }) => (!playing ? '#000000a8' : colors.orange)};
-	transform: scale(${({ hit }) => (hit ? '1.1' : '1')});
-
-	&:hover {
-		cursor: pointer;
-		border: 1px solid white;
-		border-radius: 4px;
-		background: #ff330078;
-	}
-
-	&:active {
-		transform: scale(1.1);
-	}
-
-	transition: transform 0.1s;
-`;
-
-const drumsCopy = drumsArray.slice();
-
 const DrumLoop = () => {
+	const drumsCopy = drumsArray.slice();
 	const [drums, setDrums] = useState(drumsCopy);
 	const [beat, setBeat] = useState(0);
 	const [isPlaying, setPlaying] = useState(false);
@@ -71,18 +49,22 @@ const DrumLoop = () => {
 				<Drums>
 					{drums.map((col, i) => (
 						<Column key={String(i)} marker={beat === i}>
-							{col.map((sample, j) => (
-								<Sound
-									hit={beat === i && Boolean(sample)}
-									playing={sample}
-									key={String(j)}
-									onClick={() => {
-										const newDrums = [...drums];
-										newDrums[i][j] = !sample;
-										setDrums(newDrums);
-									}}
-								/>
-							))}
+							{col.map((sample, j) => {
+								const handleClick = () => {
+									const newDrums = [...drums];
+									newDrums[i][j] = !sample;
+									setDrums(newDrums);
+								};
+								return (
+									<Samples
+										key={String(i) + String(j)}
+										sample={sample}
+										handleClick={handleClick}
+										hit={beat === i && sample}
+										yCoord={j}
+									/>
+								);
+							})}
 						</Column>
 					))}
 				</Drums>

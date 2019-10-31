@@ -23,7 +23,10 @@ export const colors = {
 	purple: '#87518b',
 	orange: '#ff3300',
 	red: '#C33C23',
-	cardOverlay: '#FECBA5'
+	cardOverlay: '#FECBA5',
+	yellow: '#FEC952',
+	green: '#1AB16C',
+	blue: '#189BC6'
 };
 
 export const transitionSpeed = '0.3s';

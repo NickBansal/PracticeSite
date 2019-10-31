@@ -1,7 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { colors, spacing } from '../../../../../utils/globalStyles/constants';
-import drumsReset from '../drumsArray';
+import {
+	colors,
+	spacing,
+	transitionSpeed
+} from '../../../../../utils/globalStyles/constants';
 
 const Container = styled.div`
 	margin-top: ${spacing.s2};
@@ -19,7 +22,10 @@ const Icon = styled.i`
 	float: right;
 	&:hover {
 		cursor: pointer;
+		color: lightgrey;
 	}
+
+	transition: color ${transitionSpeed};
 `;
 
 const Speed = styled.div`
@@ -83,8 +89,24 @@ const Controls = ({
 			/>
 			<Icon
 				onClick={() => {
-					const newDrums = [...drumsReset];
-					setDrums(newDrums);
+					setDrums([
+						Array(8).fill(false),
+						Array(8).fill(false),
+						Array(8).fill(false),
+						Array(8).fill(false),
+						Array(8).fill(false),
+						Array(8).fill(false),
+						Array(8).fill(false),
+						Array(8).fill(false),
+						Array(8).fill(false),
+						Array(8).fill(false),
+						Array(8).fill(false),
+						Array(8).fill(false),
+						Array(8).fill(false),
+						Array(8).fill(false),
+						Array(8).fill(false),
+						Array(8).fill(false)
+					]);
 				}}
 				className="i-link fas fa-undo fa-2x"
 			/>
