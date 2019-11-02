@@ -4,8 +4,8 @@ import Labels from './Labels';
 import drumsArray from './drumsArray';
 import Controls from './Controls';
 import useInterval from '../../../../utils/hooks/useInterval';
-import { colors } from '../../../../utils/globalStyles/constants';
 import samples from '../../../../assets/drumSamples';
+import colorScheme from './colorScheme';
 
 const DrumContainer = styled.div`
 	height: 376px;
@@ -27,14 +27,15 @@ const Sound = styled.div`
 	min-width: 35px;
 	height: 45px;
 	border: 1px solid #ffffff66;
-	background: ${({ playing }) => (!playing ? '#000000a8' : colors.yellow)};
+	background: ${({ playing, yCoord }) =>
+		!playing ? '#000000a8' : colorScheme[yCoord]};
 	transform: scale(${({ hit }) => (hit ? '1.1' : null)});
 	display: block;
 	&:hover {
 		cursor: pointer;
 		border: 1px solid white;
 		border-radius: 4px;
-		background: #fec95278;
+		background: ${({ yCoord }) => `${colorScheme[yCoord]}78`};
 	}
 
 	&:active {
@@ -90,6 +91,7 @@ const DrumLoop = () => {
 										}}
 										hit={hit}
 										playing={sample}
+										yCoord={j}
 									/>
 								);
 							})}
