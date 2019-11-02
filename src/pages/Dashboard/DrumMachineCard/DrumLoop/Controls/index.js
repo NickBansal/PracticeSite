@@ -7,7 +7,7 @@ import {
 } from '../../../../../utils/globalStyles/constants';
 
 const Container = styled.div`
-	margin-top: ${spacing.s2};
+	margin-top: 36px;
 	background: ${colors.purple};
 	min-width: 700px;
 	height: 40px;
@@ -67,7 +67,7 @@ const Controls = ({
 
 	switch (volume) {
 		case 0:
-			level = 'off';
+			level = 'mute';
 			break;
 		case 0.3:
 			level = 'down';

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import Labels from './Labels';
 import drumsArray from './drumsArray';
-import Controls from './Controls';
 import useInterval from '../../../../utils/hooks/useInterval';
 import samples from '../../../../assets/drumSamples';
 import colorScheme from './colorScheme';
+import Markers from './Markers';
+import Labels from './Labels';
+import Controls from './Controls';
 
 const DrumContainer = styled.div`
 	height: 376px;
@@ -51,7 +52,7 @@ const DrumLoop = () => {
 	const [beat, setBeat] = useState(0);
 	const [isPlaying, setPlaying] = useState(false);
 	const [bpm, setBpm] = useState(120);
-	const [volume, setVolume] = useState(0.7);
+	const [volume, setVolume] = useState(0);
 
 	useInterval(
 		() => {
@@ -69,6 +70,7 @@ const DrumLoop = () => {
 	return (
 		<>
 			<DrumContainer>
+				<Markers beat={beat} />
 				<Labels />
 				<Drums>
 					{drums.map((col, i) => (
