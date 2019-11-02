@@ -51,7 +51,6 @@ const DrumLoop = () => {
 	const [beat, setBeat] = useState(0);
 	const [isPlaying, setPlaying] = useState(false);
 	const [bpm, setBpm] = useState(120);
-	const [audio] = useState(new Audio(url1));
 
 	useInterval(
 		() => {
@@ -75,9 +74,12 @@ const DrumLoop = () => {
 						<Column key={String(i)} marker={beat === i}>
 							{col.map((sample, j) => {
 								const hit = beat === i && sample;
+
 								if (hit) {
+									const audio = new Audio(url1);
 									audio.play();
 								}
+
 								return (
 									<Sound
 										key={String(i) + String(j)}
