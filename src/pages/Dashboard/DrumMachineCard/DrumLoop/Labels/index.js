@@ -19,12 +19,12 @@ const Instrument = styled.div`
 
 const Labels = () => (
 	<Container>
-		<Instrument>Synth 2</Instrument>
-		<Instrument>Synth 1</Instrument>
-		<Instrument>Crash</Instrument>
-		<Instrument>Closed</Instrument>
-		<Instrument>Open</Instrument>
+		<Instrument>Maraca</Instrument>
+		<Instrument>Conga</Instrument>
+		<Instrument>Cowbell</Instrument>
 		<Instrument>Clap</Instrument>
+		<Instrument>Open</Instrument>
+		<Instrument>Closed</Instrument>
 		<Instrument>Snare</Instrument>
 		<Instrument>Kick</Instrument>
 	</Container>
