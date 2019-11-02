@@ -5,8 +5,7 @@ import drumsArray from './drumsArray';
 import Controls from './Controls';
 import useInterval from '../../../../utils/hooks/useInterval';
 import { colors } from '../../../../utils/globalStyles/constants';
-
-const url1 = 'https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3';
+import samples from '../../../../assets/drumSamples';
 
 const DrumContainer = styled.div`
 	height: 376px;
@@ -76,7 +75,7 @@ const DrumLoop = () => {
 								const hit = beat === i && sample;
 
 								if (hit) {
-									const audio = new Audio(url1);
+									const audio = new Audio(samples[j]);
 									audio.play();
 								}
 
