@@ -59,11 +59,23 @@ const Controls = ({
 	bpm,
 	setBpm,
 	setDrums,
-	muted,
-	setMuted
+	volume,
+	setVolume
 }) => {
 	const playPause = isPlaying ? 'pause' : 'play';
-	const isMuted = muted ? 'off' : 'up';
+	let level;
+
+	switch (volume) {
+		case 0:
+			level = 'off';
+			break;
+		case 0.3:
+			level = 'down';
+			break;
+		default:
+			level = 'up';
+	}
+
 	return (
 		<Container>
 			<Speed>
@@ -116,9 +128,22 @@ const Controls = ({
 			/>
 			<Icon
 				onClick={() => {
-					setMuted(!muted);
+					let value;
+
+					switch (volume) {
+						case 0:
+							value = 0.3;
+							break;
+						case 0.3:
+							value = 0.7;
+							break;
+						default:
+							value = 0;
+					}
+
+					setVolume(value);
 				}}
-				className={`i-link fas fa-volume-${isMuted} fa-2x`}
+				className={`i-link fas fa-volume-${level} fa-2x`}
 			/>
 		</Container>
 	);
