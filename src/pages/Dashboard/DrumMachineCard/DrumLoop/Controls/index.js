@@ -58,9 +58,12 @@ const Controls = ({
 	setBeat,
 	bpm,
 	setBpm,
-	setDrums
+	setDrums,
+	muted,
+	setMuted
 }) => {
 	const playPause = isPlaying ? 'pause' : 'play';
+	const isMuted = muted ? 'off' : 'up';
 	return (
 		<Container>
 			<Speed>
@@ -87,6 +90,7 @@ const Controls = ({
 				}}
 				className={`i-link fas fa-${playPause} fa-2x`}
 			/>
+
 			<Icon
 				onClick={() => {
 					setDrums([
@@ -109,6 +113,12 @@ const Controls = ({
 					]);
 				}}
 				className="i-link fas fa-undo fa-2x"
+			/>
+			<Icon
+				onClick={() => {
+					setMuted(!muted);
+				}}
+				className={`i-link fas fa-volume-${isMuted} fa-2x`}
 			/>
 		</Container>
 	);
