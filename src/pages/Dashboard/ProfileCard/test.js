@@ -8,15 +8,23 @@ describe('<ProfileCard />', () => {
 		expect(getByText('Nick Bansal')).toBeInTheDocument();
 		expect(getByText('Junior Web Developer')).toBeInTheDocument();
 	});
-	it('should show the overlay when the button is clicked', () => {
-		const { getByText, queryByLabelText, getByLabelText } = render(
-			<ProfileCard />
-		);
+	it('should show the profile card when the button is clicked', async () => {
+		const {
+			getByText,
+			queryByLabelText,
+			getByLabelText,
+			getByAltText,
+			getAllByLabelText,
+			getAllByRole
+		} = render(<ProfileCard />);
 
 		expect(queryByLabelText('Overlay modal')).toBeNull();
 
 		fireEvent.click(getByText('View full profile'));
 
 		expect(getByLabelText('Overlay modal')).toBeInTheDocument();
+		expect(getByAltText('Me')).toBeInTheDocument();
+		expect(getAllByLabelText('programming icons')).toHaveLength(5);
+		expect(getAllByRole('link')).toHaveLength(5);
 	});
 });

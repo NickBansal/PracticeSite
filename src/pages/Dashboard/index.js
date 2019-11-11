@@ -9,6 +9,7 @@ import ProfileCard from './ProfileCard';
 import NewsFeedCard from './NewsFeedCard';
 import LiveChatCard from './LiveChatCard';
 import DrumMachineCard from './DrumMachineCard';
+import SnakeCard from './SnakeCard';
 
 const CardContainer = styled.div`
 	display: flex;
@@ -36,6 +37,7 @@ const App = () => (
 				<NewsFeedCard />
 				<LiveChatCard />
 				<DrumMachineCard />
+				<SnakeCard />
 			</CardContainer>
 		</BlurImageLoader>
 	</>

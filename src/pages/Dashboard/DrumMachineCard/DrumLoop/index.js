@@ -51,7 +51,7 @@ const DrumLoop = () => {
 	const [drums, setDrums] = useState(drumsCopy);
 	const [beat, setBeat] = useState(0);
 	const [isPlaying, setPlaying] = useState(false);
-	const [bpm, setBpm] = useState(120);
+	const [bpm, setBpm] = useState(80);
 	const [volume, setVolume] = useState(0);
 
 	useInterval(

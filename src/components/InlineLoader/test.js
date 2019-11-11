@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 
-import { colors } from '../../assets/globalStyles/constants';
+import { colors } from '../../utils/globalStyles/constants';
 import InlineLoader from '.';
 
 describe('InlineLoader', () => {
