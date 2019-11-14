@@ -8,8 +8,8 @@ export const GlobalStyle = createGlobalStyle`
   body {
     padding: 0;
     font-family: 'Poppins', sans-serif;
-    filter: grayscale(0.5);
     margin: 0;
+    filter: grayscale(0.2)
   }
 `;
 
