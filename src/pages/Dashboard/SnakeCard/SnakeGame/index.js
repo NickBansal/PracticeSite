@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { colors, breakPoints } from '../../../../utils/globalStyles/constants';
-import apple from '../../../../assets/snake/apple.svg';
+import foods from '../../../../assets/snake';
 
 import { createEmptyGameBoard, generateFood } from './utils';
 
@@ -13,7 +13,10 @@ const Row = styled.div`
 	width: 25px;
 	height: 25px;
 	background: black
-	background-image: ${({ food }) => (food ? `url(${apple})` : 'none')};
+	background-image: ${({ food }) =>
+		food
+			? `url(${foods[Math.floor(Math.random() * foods.length)]})`
+			: 'none'};
 
 	@media (min-width: ${breakPoints.mobileMax}) {
 		width: 40px;
@@ -44,7 +47,6 @@ const SnakeGame = () => {
 						<Row
 							food={food[0] === i && food[1] === j}
 							key={String(j)}
-							onClick={() => console.log(i, j)}
 						/>
 					))}
 				</Column>
