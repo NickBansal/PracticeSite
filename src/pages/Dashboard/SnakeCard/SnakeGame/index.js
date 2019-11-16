@@ -58,23 +58,31 @@ const SnakeGame = () => {
 		const interval = setInterval(() => {
 			switch (direction) {
 				case 'up':
-					return setPosition(([x, y]) => [x, y - 1]);
+					return setPosition(([x, y]) =>
+						y < 1 ? [x, y + rowsLength] : [x, y - 1]
+					);
 				case 'down':
-					return setPosition(([x, y]) => [x, y + 1]);
+					return setPosition(([x, y]) =>
+						y > rowsLength ? [x, y - rowsLength - 1] : [x, y + 1]
+					);
 				case 'left':
-					return setPosition(([x, y]) => [x - 1, y]);
+					return setPosition(([x, y]) =>
+						x < 1 ? [x + rowsLength, y] : [x - 1, y]
+					);
+				case 'right':
+					return setPosition(([x, y]) =>
+						x > rowsLength ? [x - rowsLength - 1, y] : [x + 1, y]
+					);
 				default:
-					return setPosition(([x, y]) => [x + 1, y]);
 			}
-		}, 500);
-
+		}, 200);
 		return () => clearInterval(interval);
 	}, [direction]);
 
 	const [x, y] = position;
 
 	return (
-		<Container>
+		<Container id="snakeGame">
 			{grid.map((col, i) => (
 				<Column key={String(i)}>
 					{col.map((row, j) => (
