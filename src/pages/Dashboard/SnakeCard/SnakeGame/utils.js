@@ -14,3 +14,8 @@ export const generateFood = (num, array) => {
 		? generateFood(num, array)
 		: [i, j];
 };
+
+export const moveLeft = array => [array[0] - 1, array[1]];
+export const moveRight = array => [array[0] + 1, array[1]];
+export const moveUp = array => [array[0], array[1] - 1];
+export const moveDown = array => [array[0], array[1] + 1];

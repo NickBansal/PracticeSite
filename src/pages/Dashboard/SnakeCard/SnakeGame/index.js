@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { colors, breakPoints } from '../../../../utils/globalStyles/constants';
 import foods from '../../../../assets/snake';
@@ -38,6 +38,14 @@ const Container = styled.div`
 const SnakeGame = () => {
 	const [gameBoard, setBoard] = useState(createEmptyGameBoard(15, 15));
 	const [food, setFood] = useState(generateFood(12, gameBoard));
+
+	useEffect(() => {
+		const tick = setInterval(() => {
+			console.log('Hello');
+		}, 500);
+
+		return () => clearInterval(tick);
+	}, []);
 
 	return (
 		<Container>
