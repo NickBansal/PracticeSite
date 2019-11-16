@@ -1,6 +1,10 @@
-export const createEmptyGameBoard = (rows, array = []) =>
+export const createEmptyGameBoard = (rows, cols, array = []) =>
 	rows < 1
 		? array
-		: createEmptyGameBoard(rows - 1, array.concat([Array(9).fill(0)]));
+		: createEmptyGameBoard(
+				rows - 1,
+				cols,
+				array.concat([Array(cols).fill(0)])
+		  );
 
 export const updateGameBoard = () => {};
