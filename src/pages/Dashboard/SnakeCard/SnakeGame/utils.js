@@ -7,4 +7,10 @@ export const createEmptyGameBoard = (rows, cols, array = []) =>
 				array.concat([Array(cols).fill(0)])
 		  );
 
-export const updateGameBoard = () => {};
+export const generateFood = (num, array) => {
+	const i = Math.floor(Math.random() * num);
+	const j = Math.floor(Math.random() * num);
+	return array.some(item => item[0] === i && item[1] === j)
+		? generateFood(num, array)
+		: [i, j];
+};
