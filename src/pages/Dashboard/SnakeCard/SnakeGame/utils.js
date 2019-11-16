@@ -16,18 +16,16 @@ export const gameBoard = row => [
 	Array(row).fill(0)
 ];
 
-export const generateGameWithSnakeAndFood = val => {
+export const generateFood = (val, array) => {
 	const i = Math.floor(Math.random() * val);
 	const j = Math.floor(Math.random() * val);
 
 	if (
-		gameBoard[i][j] === 0 &&
-		gameBoard.some(item => item[0] !== i && item[1] !== j)
+		array[i][j] === 0 &&
+		array.some(item => item[0] !== i && item[1] !== j)
 	) {
-		gameBoard[7][7] = 1;
-		gameBoard[i][j] = 2;
-		return gameBoard;
+		return [i, j];
 	}
 
-	return generateGameWithSnakeAndFood(val);
+	return generateFood(val);
 };
