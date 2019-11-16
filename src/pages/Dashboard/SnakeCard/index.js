@@ -5,6 +5,7 @@ import BlurImageLoader from '../../../components/BlurImageLoader';
 import snake from '../../../assets/snake/snake.jpg';
 import { boxShadow } from '../../../utils/globalStyles/constants/index';
 import Overlay from '../../../components/Overlay';
+import SnakeGame from './SnakeGame';
 
 const Image = styled(BlurImageLoader)`
 	-webkit-box-shadow: ${boxShadow};
@@ -27,7 +28,9 @@ const SnakeCard = () => {
 					placeholder="Profile picture"
 				/>
 			</Card.Content>
-			<Overlay showOverlay={showOverlay} handleClick={setShowOverlay} />
+			<Overlay showOverlay={showOverlay} handleClick={setShowOverlay}>
+				<SnakeGame />
+			</Overlay>
 			<Card.Button onClick={() => setShowOverlay(true)}>
 				Click to play
 			</Card.Button>
