@@ -35,9 +35,43 @@ const rowsLength = 15;
 const grid = gameBoard(rowsLength);
 
 const SnakeGame = () => {
-	const [[x, y], setposition] = useState([7, 7]);
+	const [position, setPosition] = useState([7, 7]);
+	const [direction, setDirection] = useState(null);
 
-	useInterval(() => {}, 500);
+	useEffect(() => {
+		const [body] = document.getElementsByTagName('body');
+		body.onkeydown = ({ key }) => {
+			switch (key) {
+				case 'ArrowUp':
+					return setDirection('up');
+				case 'ArrowDown':
+					return setDirection('down');
+				case 'ArrowLeft':
+					return setDirection('left');
+				default:
+					setDirection('right');
+			}
+		};
+	}, []);
+
+	useEffect(() => {
+		const interval = setInterval(() => {
+			switch (direction) {
+				case 'up':
+					return setPosition(([x, y]) => [x, y - 1]);
+				case 'down':
+					return setPosition(([x, y]) => [x, y + 1]);
+				case 'left':
+					return setPosition(([x, y]) => [x - 1, y]);
+				default:
+					return setPosition(([x, y]) => [x + 1, y]);
+			}
+		}, 500);
+
+		return () => clearInterval(interval);
+	}, [direction]);
+
+	const [x, y] = position;
 
 	return (
 		<Container>
