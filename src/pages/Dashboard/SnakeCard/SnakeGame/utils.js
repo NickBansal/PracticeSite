@@ -1,6 +1,4 @@
-const row = 15;
-
-export const gameBoard = [
+export const gameBoard = row => [
 	Array(row).fill(0),
 	Array(row).fill(0),
 	Array(row).fill(0),

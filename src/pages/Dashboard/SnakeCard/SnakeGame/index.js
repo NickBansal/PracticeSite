@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { colors, breakPoints } from '../../../../utils/globalStyles/constants';
 import useInterval from '../../../../utils/hooks/useInterval';
-import pint from '../../../../assets/snake/pint.svg';
-
-import { generateGameWithSnakeAndFood } from './utils';
+import { gameBoard } from './utils';
+// import pint from '../../../../assets/snake/pint.svg';
 
 const Column = styled.div`
 	display: inline-block;
@@ -13,8 +12,7 @@ const Column = styled.div`
 const Row = styled.div`
 	width: 25px;
 	height: 25px;
-	background: ${({ snake }) => (snake ? 'green' : 'black')};
-	background-image: ${({ food }) => (food ? `url(${pint})` : 'none')};
+	background: ${({ snake }) => (snake ? colors.green : 'black')};
 
 	@media (min-width: ${breakPoints.mobileMax}) {
 		width: 40px;
@@ -33,40 +31,20 @@ const Container = styled.div`
 	}
 `;
 
+const rowsLength = 15;
+const grid = gameBoard(rowsLength);
+
 const SnakeGame = () => {
-	const [gameBoard, setBoard] = useState(generateGameWithSnakeAndFood(15));
-	const [keyPress, setKeyPress] = useState(false);
+	const [[x, y], setposition] = useState([7, 7]);
 
 	useInterval(() => {}, 500);
 
-	const handleKeyPress = e => {
-		switch (e.key) {
-			case 'ArrowUp':
-				setKeyPress('up');
-				break;
-			case 'ArrowDown':
-				setKeyPress('down');
-				break;
-			case 'ArrowRight':
-				setKeyPress('right');
-				break;
-			default:
-				setKeyPress('left');
-		}
-	};
-
-	// console.log(keyPress);
-
 	return (
-		<Container tabIndex={0} onKeyDown={handleKeyPress}>
-			{gameBoard.map((col, i) => (
+		<Container>
+			{grid.map((col, i) => (
 				<Column key={String(i)}>
 					{col.map((row, j) => (
-						<Row
-							food={row === 2}
-							key={String(j)}
-							snake={row === 1}
-						/>
+						<Row key={String(j)} snake={x === i && y === j} />
 					))}
 				</Column>
 			))}
@@ -75,8 +53,3 @@ const SnakeGame = () => {
 };
 
 export default SnakeGame;
-
-// background-image: ${({ food }) =>
-// food
-// 	? `url(${foods[Math.floor(Math.random() * foods.length)]})`
-// 	: 'none'};
