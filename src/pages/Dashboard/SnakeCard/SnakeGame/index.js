@@ -41,7 +41,7 @@ const Container = styled.div`
 
 const Score = styled.p`
 	color: white;
-	letter-spacing: 2px;
+	letter-spacing: 1px;
 	background: ${colors.pink};
 	font-size: ${fontSize.regular};
 	text-align: center;
@@ -54,6 +54,7 @@ const Score = styled.p`
 	@media (min-width: ${breakPoints.mobileMax}) {
 		width: 600px;
 		font-size: ${fontSize.title};
+		letter-spacing: 1.5px;
 	}
 `;
 
@@ -163,7 +164,7 @@ const SnakeGame = () => {
 		};
 
 		const checkSnakeHitItself = () => {
-			if (grid[movement[0]][movement[1]] === 1) {
+			if (grid[movement[0]][movement[1]] === 1 && snake.length > 1) {
 				setGameOver(true);
 				setDirection('pause');
 			}
