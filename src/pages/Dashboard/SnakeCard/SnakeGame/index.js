@@ -83,8 +83,8 @@ const SnakeGame = () => {
 					newSnake.unshift(food);
 					setFood(generateRandomFood(grid, rowsLength));
 				} else {
-					newSnake.pop();
 					newSnake.unshift(movement);
+					newSnake.pop();
 				}
 				break;
 			case 'down':
@@ -94,8 +94,8 @@ const SnakeGame = () => {
 					newSnake.unshift(food);
 					setFood(generateRandomFood(grid, rowsLength));
 				} else {
-					newSnake.pop();
 					newSnake.unshift(movement);
+					newSnake.pop();
 				}
 				break;
 			case 'left':
@@ -104,20 +104,20 @@ const SnakeGame = () => {
 					newSnake.unshift([i, j]);
 					setFood(generateRandomFood(grid, rowsLength));
 				}
-				newSnake.pop();
 				newSnake.unshift(movement);
+				newSnake.pop();
 
 				break;
 			case 'right':
 				movement =
 					x === rowsLength - 1 ? [x - rowsLength + 1, y] : [x + 1, y];
 				if (grid[movement[0]][movement[1]] === 2) {
-					newSnake.shift(food);
+					newSnake.unshift(food);
 					setFood(generateRandomFood(grid, rowsLength));
 				}
-				newSnake.pop();
 				newSnake.unshift(movement);
-
+				newSnake.pop();
+				console.log(newSnake);
 				break;
 			default:
 		}
@@ -127,7 +127,7 @@ const SnakeGame = () => {
 
 	document.addEventListener('keydown', changeDirectionWithKeys, false);
 
-	useInterval(moveSnake, direction !== 'pause' ? 100 : null);
+	useInterval(moveSnake, direction !== 'pause' ? 500 : null);
 
 	return (
 		<Container>
