@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import {
 	colors,
@@ -113,6 +113,10 @@ const SnakeGame = () => {
 		newGrid[food[0]][food[1]] = 2;
 		setGrid(newGrid);
 	};
+
+	useEffect(() => {
+		updateBoard();
+	}, [gameOver]);
 
 	const restartGame = () => {
 		setGameOver(false);
