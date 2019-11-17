@@ -30,6 +30,7 @@ const Cells = styled.div`
 
 const Container = styled.div`
 	width: fit-content;
+	min-width: 375px;
 	margin: 0 auto;
 	height: 375px;
 	border: 5px solid ${colors.pink};
@@ -50,6 +51,7 @@ const Score = styled.p`
 	border-left: 5px solid ${colors.pink};
 	border-right: 5px solid ${colors.pink};
 	width: 375px;
+	min-width: 375px;
 
 	@media (min-width: ${breakPoints.mobileMax}) {
 		width: 600px;
@@ -93,6 +95,21 @@ const Restart = styled.button`
 	}
 
 	transition: ${transitionSpeed};
+`;
+
+const Pause = styled.p`
+	color: white;
+	top: 80%;
+	position: absolute;
+	left: 50%;
+	transform: translate(-50%, 0);
+	font-size: ${fontSize.small};
+	width: 600px;
+	text-align: center;
+
+	@media (min-width: ${breakPoints.mobileMax}) {
+		font-size: ${fontSize.title};
+	}
 `;
 
 const rowsLength = 15;
@@ -236,6 +253,9 @@ const SnakeGame = () => {
 						Start again?
 					</Restart>
 				</Over>
+			)}
+			{direction === 'pause' && !gameOver && (
+				<Pause>Paused - Press the arrow keys to continue</Pause>
 			)}
 		</>
 	);
