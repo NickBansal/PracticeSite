@@ -44,7 +44,6 @@ const SnakeGame = () => {
 
 	const updateBoard = () => {
 		const newGrid = createEmptyGameBoard(rowsLength);
-
 		snake.forEach(([x, y]) => {
 			newGrid[x][y] = 1;
 		});
@@ -78,13 +77,13 @@ const SnakeGame = () => {
 		let movement;
 		switch (direction) {
 			case 'up':
-				movement = y < 0 ? [x, y + rowsLength] : [x, y - 1];
+				movement = y < 1 ? [x, y + rowsLength - 1] : [x, y - 1];
 				newSnake.shift();
 				newSnake.push(movement);
 				break;
 			case 'down':
 				movement =
-					y === rowsLength - 1 ? [x, y - rowsLength] : [x, y + 1];
+					y === rowsLength - 1 ? [x, y - rowsLength + 1] : [x, y + 1];
 				newSnake.shift();
 				newSnake.push(movement);
 				break;
@@ -108,7 +107,7 @@ const SnakeGame = () => {
 
 	document.addEventListener('keydown', changeDirectionWithKeys, false);
 
-	useInterval(moveSnake, direction !== 'pause' ? 1000 : null);
+	useInterval(moveSnake, direction !== 'pause' ? 200 : null);
 
 	return (
 		<Container>
