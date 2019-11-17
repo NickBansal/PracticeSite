@@ -1,9 +1,9 @@
 export const createEmptyGameBoard = rows => {
-	const arr = [];
-	for (let i = 0; i < rows; i++) {
-		arr[i] = Array(rows).fill(0);
-	}
-	return arr;
+	const outerArray = Array(rows).fill(null);
+	outerArray.forEach((_, index) => {
+		outerArray[index] = Array(rows).fill(0);
+	});
+	return outerArray;
 };
 
 export const generateRandomFood = (grid, rows) => {

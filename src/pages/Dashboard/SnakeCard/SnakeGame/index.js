@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { colors, breakPoints } from '../../../../utils/globalStyles/constants';
 import { createEmptyGameBoard, generateRandomFood } from './utils';
@@ -34,18 +34,22 @@ const Container = styled.div`
 
 const rowsLength = 15;
 
+const emptyBoard = createEmptyGameBoard(rowsLength);
+
 const SnakeGame = () => {
-	const [grid, setGrid] = useState(createEmptyGameBoard(rowsLength));
+	const [grid, setGrid] = useState(emptyBoard);
 	const [snake, setSnake] = useState([[7, 7]]);
 	const [food, setFood] = useState(generateRandomFood(grid, rowsLength));
 	const [direction, setDirection] = useState(null);
 
 	const updateBoard = () => {
-		const newGrid = grid.slice();
+		const newGrid = createEmptyGameBoard(rowsLength);
+
 		snake.forEach(([x, y]) => {
 			newGrid[x][y] = 1;
 		});
 		newGrid[food[0]][food[1]] = 2;
+
 		setGrid(newGrid);
 	};
 
@@ -64,6 +68,7 @@ const SnakeGame = () => {
 				setDirection('left');
 				break;
 			default:
+				setDirection('pause');
 		}
 	};
 
@@ -74,25 +79,25 @@ const SnakeGame = () => {
 		switch (direction) {
 			case 'up':
 				movement = y < 0 ? [x, y + rowsLength] : [x, y - 1];
-				newSnake.push(movement);
 				newSnake.shift();
+				newSnake.push(movement);
 				break;
 			case 'down':
 				movement =
 					y === rowsLength - 1 ? [x, y - rowsLength] : [x, y + 1];
-				newSnake.push(movement);
 				newSnake.shift();
+				newSnake.push(movement);
 				break;
 			case 'left':
 				movement = x < 1 ? [x + rowsLength - 1, y] : [x - 1, y];
-				newSnake.push(movement);
 				newSnake.shift();
+				newSnake.push(movement);
 				break;
 			case 'right':
 				movement =
 					x === rowsLength - 1 ? [x - rowsLength + 1, y] : [x + 1, y];
-				newSnake.push(movement);
 				newSnake.shift();
+				newSnake.push(movement);
 				break;
 			default:
 		}
@@ -103,15 +108,14 @@ const SnakeGame = () => {
 
 	document.addEventListener('keydown', changeDirectionWithKeys, false);
 
-	useInterval(moveSnake, 200);
+	useInterval(moveSnake, direction !== 'pause' ? 1000 : null);
 
 	return (
-		<Container id="snakeGame">
+		<Container>
 			{grid.map((col, i) => (
 				<Column key={String(i)}>
 					{col.map((row, j) => (
 						<Cells
-							onClick={() => console.log(i, j)}
 							key={String(j)}
 							snake={row === 1}
 							food={row === 2}
