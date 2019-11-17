@@ -38,6 +38,7 @@ const SnakeGame = () => {
 	const [grid, setGrid] = useState(createEmptyGameBoard(rowsLength));
 	const [snake, setSnake] = useState([[7, 7], [8, 7]]);
 	const [food, setFood] = useState(generateRandomFood(grid, rowsLength));
+	const [direction, setDirection] = useState(null);
 
 	const updateBoard = () => {
 		const newGrid = grid.slice();
@@ -55,16 +56,16 @@ const SnakeGame = () => {
 	const changeDirectionWithKeys = e => {
 		switch (e.key) {
 			case 'ArrowUp':
-				console.log('Up');
+				setDirection('up');
 				break;
 			case 'ArrowDown':
-				console.log('Down');
+				setDirection('down');
 				break;
 			case 'ArrowRight':
-				console.log('Right');
+				setDirection('right');
 				break;
 			case 'ArrowLeft':
-				console.log('Left');
+				setDirection('left');
 				break;
 			default:
 		}
@@ -74,20 +75,19 @@ const SnakeGame = () => {
 
 	// useInterval(moveSnake, 500);
 
+	console.log(direction);
+
 	return (
 		<Container id="snakeGame">
 			{grid.map((col, i) => (
 				<Column key={String(i)}>
-					{col.map((row, j) => {
-						console.log(row);
-						return (
-							<Cells
-								key={String(j)}
-								snake={row === 1}
-								food={row === 2}
-							/>
-						);
-					})}
+					{col.map((row, j) => (
+						<Cells
+							key={String(j)}
+							snake={row === 1}
+							food={row === 2}
+						/>
+					))}
 				</Column>
 			))}
 		</Container>
