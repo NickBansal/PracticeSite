@@ -10,6 +10,7 @@ import useInterval from '../../../../utils/hooks/useInterval';
 import Cells from './Cells';
 import GameOver from './GameOver';
 import Score from './Score';
+import splash from '../../../../assets/snake/splash.mp3';
 
 const Column = styled.div`
 	display: inline-block;
@@ -105,6 +106,9 @@ const SnakeGame = () => {
 				newSnake.unshift(food);
 				setFood(generateRandomFood(grid, rowsLength));
 				setScore(score + 1);
+				const sound = new Audio(splash);
+				sound.volume = 0.3;
+				sound.play();
 			}
 			newSnake.unshift(movement);
 			newSnake.pop();
