@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { colors, breakPoints } from '../../../../utils/globalStyles/constants';
+import {
+	colors,
+	breakPoints,
+	fontSize
+} from '../../../../utils/globalStyles/constants';
 import { createEmptyGameBoard, generateRandomFood } from './utils';
 import useInterval from '../../../../utils/hooks/useInterval';
 import pint from '../../../../assets/snake/pint.svg';
@@ -32,6 +36,23 @@ const Container = styled.div`
 	}
 `;
 
+const Score = styled.p`
+	color: white;
+	letter-spacing: 2px;
+	background: ${colors.pink};
+	font-size: ${fontSize.title};
+	text-align: center;
+	margin: 0 auto;
+	border-bottom: 5px solid ${colors.pink};
+	border-left: 5px solid ${colors.pink};
+	border-right: 5px solid ${colors.pink};
+	width: 375px;
+
+	@media (min-width: ${breakPoints.mobileMax}) {
+		width: 600px;
+	}
+`;
+
 const rowsLength = 15;
 
 const emptyBoard = createEmptyGameBoard(rowsLength);
@@ -41,6 +62,7 @@ const SnakeGame = () => {
 	const [snake, setSnake] = useState([[7, 7]]);
 	const [food, setFood] = useState(generateRandomFood(grid, rowsLength));
 	const [direction, setDirection] = useState(null);
+	const [score, setScore] = useState(0);
 
 	const updateBoard = () => {
 		const newGrid = createEmptyGameBoard(rowsLength);
@@ -74,50 +96,36 @@ const SnakeGame = () => {
 	const moveSnake = () => {
 		const newSnake = snake.slice();
 		const [x, y] = newSnake[0];
-		const [i, j] = food;
 		let movement;
+
+		const isFoodCaught = () => {
+			if (grid[movement[0]][movement[1]] === 2) {
+				newSnake.unshift(food);
+				setFood(generateRandomFood(grid, rowsLength));
+				setScore(score + 1);
+			}
+			newSnake.unshift(movement);
+			newSnake.pop();
+		};
+
 		switch (direction) {
 			case 'up':
 				movement = y < 1 ? [x, y + rowsLength - 1] : [x, y - 1];
-				if (grid[movement[0]][movement[1]] === 2) {
-					newSnake.unshift(food);
-					setFood(generateRandomFood(grid, rowsLength));
-				} else {
-					newSnake.unshift(movement);
-					newSnake.pop();
-				}
+				isFoodCaught();
 				break;
 			case 'down':
 				movement =
 					y === rowsLength - 1 ? [x, y - rowsLength + 1] : [x, y + 1];
-				if (grid[movement[0]][movement[1]] === 2) {
-					newSnake.unshift(food);
-					setFood(generateRandomFood(grid, rowsLength));
-				} else {
-					newSnake.unshift(movement);
-					newSnake.pop();
-				}
+				isFoodCaught();
 				break;
 			case 'left':
 				movement = x < 1 ? [x + rowsLength - 1, y] : [x - 1, y];
-				if (grid[movement[0]][movement[1]] === 2) {
-					newSnake.unshift([i, j]);
-					setFood(generateRandomFood(grid, rowsLength));
-				}
-				newSnake.unshift(movement);
-				newSnake.pop();
-
+				isFoodCaught();
 				break;
 			case 'right':
 				movement =
 					x === rowsLength - 1 ? [x - rowsLength + 1, y] : [x + 1, y];
-				if (grid[movement[0]][movement[1]] === 2) {
-					newSnake.unshift(food);
-					setFood(generateRandomFood(grid, rowsLength));
-				}
-				newSnake.unshift(movement);
-				newSnake.pop();
-				console.log(newSnake);
+				isFoodCaught();
 				break;
 			default:
 		}
@@ -127,22 +135,25 @@ const SnakeGame = () => {
 
 	document.addEventListener('keydown', changeDirectionWithKeys, false);
 
-	useInterval(moveSnake, direction !== 'pause' ? 500 : null);
+	useInterval(moveSnake, direction !== 'pause' ? 100 : null);
 
 	return (
-		<Container>
-			{grid.map((col, i) => (
-				<Column key={String(i)}>
-					{col.map((row, j) => (
-						<Cells
-							key={String(j)}
-							snake={row === 1}
-							food={row === 2}
-						/>
-					))}
-				</Column>
-			))}
-		</Container>
+		<>
+			<Container>
+				{grid.map((col, i) => (
+					<Column key={String(i)}>
+						{col.map((row, j) => (
+							<Cells
+								key={String(j)}
+								snake={row === 1}
+								food={row === 2}
+							/>
+						))}
+					</Column>
+				))}
+			</Container>
+			<Score>Score: {score}</Score>
+		</>
 	);
 };
 
