@@ -36,7 +36,7 @@ const rowsLength = 15;
 
 const SnakeGame = () => {
 	const [grid, setGrid] = useState(createEmptyGameBoard(rowsLength));
-	const [snake, setSnake] = useState([[7, 7], [8, 7]]);
+	const [snake, setSnake] = useState([[7, 7]]);
 	const [food, setFood] = useState(generateRandomFood(grid, rowsLength));
 	const [direction, setDirection] = useState(null);
 
@@ -48,10 +48,6 @@ const SnakeGame = () => {
 		newGrid[food[0]][food[1]] = 2;
 		setGrid(newGrid);
 	};
-
-	useEffect(() => {
-		updateBoard();
-	}, []);
 
 	const changeDirectionWithKeys = e => {
 		switch (e.key) {
@@ -71,11 +67,42 @@ const SnakeGame = () => {
 		}
 	};
 
+	const moveSnake = () => {
+		const newSnake = snake.slice();
+		const [x, y] = newSnake[0];
+		let movement;
+		switch (direction) {
+			case 'up':
+				movement = y < 0 ? [x, y + rowsLength] : [x, y - 1];
+				newSnake.push(movement);
+				newSnake.shift();
+				break;
+			case 'down':
+				movement =
+					y === rowsLength - 1 ? [x, y - rowsLength] : [x, y + 1];
+				newSnake.push(movement);
+				newSnake.shift();
+				break;
+			case 'left':
+				movement = [x - 1, y];
+				newSnake.push(movement);
+				newSnake.shift();
+				break;
+			case 'right':
+				movement = [x + 1, y];
+				newSnake.push(movement);
+				newSnake.shift();
+				break;
+			default:
+		}
+
+		setSnake(newSnake);
+		updateBoard();
+	};
+
 	document.addEventListener('keydown', changeDirectionWithKeys, false);
 
-	// useInterval(moveSnake, 500);
-
-	console.log(direction);
+	useInterval(moveSnake, 200);
 
 	return (
 		<Container id="snakeGame">
