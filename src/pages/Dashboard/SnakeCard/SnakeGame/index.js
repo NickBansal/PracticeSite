@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { colors, breakPoints } from '../../../../utils/globalStyles/constants';
 import { createEmptyGameBoard, generateRandomFood } from './utils';
 import useInterval from '../../../../utils/hooks/useInterval';
-// import pint from '../../../../assets/snake/pint.svg';
+import pint from '../../../../assets/snake/pint.svg';
 
 const Column = styled.div`
 	display: inline-block;
@@ -13,6 +13,7 @@ const Cells = styled.div`
 	width: 25px;
 	height: 25px;
 	background: ${({ snake }) => (snake ? 'green' : 'black')};
+	background-image: ${({ food }) => (food ? `url(${pint})` : 'none')};
 
 	@media (min-width: ${breakPoints.mobileMax}) {
 		width: 40px;
@@ -61,7 +62,13 @@ const SnakeGame = () => {
 				<Column key={String(i)}>
 					{col.map((row, j) => {
 						console.log(row);
-						return <Cells key={String(j)} snake={row === 1} />;
+						return (
+							<Cells
+								key={String(j)}
+								snake={row === 1}
+								food={row === 2}
+							/>
+						);
 					})}
 				</Column>
 			))}
