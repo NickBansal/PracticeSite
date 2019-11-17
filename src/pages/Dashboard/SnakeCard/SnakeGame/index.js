@@ -120,7 +120,7 @@ const SnakeGame = () => {
 				setGameOver(true);
 				setDirection('pause');
 				const sound = new Audio(over);
-				sound.volume = 0.3;
+				sound.volume = 0.6;
 				setTimeout(() => sound.play(), 500);
 			}
 		};
