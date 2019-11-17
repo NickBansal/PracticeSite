@@ -52,7 +52,25 @@ const SnakeGame = () => {
 		updateBoard();
 	}, []);
 
-	// document.addEventListener('keydown', changeDirectionWithKeys, false);
+	const changeDirectionWithKeys = e => {
+		switch (e.key) {
+			case 'ArrowUp':
+				console.log('Up');
+				break;
+			case 'ArrowDown':
+				console.log('Down');
+				break;
+			case 'ArrowRight':
+				console.log('Right');
+				break;
+			case 'ArrowLeft':
+				console.log('Left');
+				break;
+			default:
+		}
+	};
+
+	document.addEventListener('keydown', changeDirectionWithKeys, false);
 
 	// useInterval(moveSnake, 500);
 
