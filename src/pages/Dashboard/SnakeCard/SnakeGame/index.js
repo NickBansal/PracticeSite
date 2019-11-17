@@ -80,7 +80,7 @@ const SnakeGame = () => {
 			case 'up':
 				movement = y < 1 ? [x, y + rowsLength - 1] : [x, y - 1];
 				if (grid[movement[0]][movement[1]] === 2) {
-					newSnake.unshift([i, j]);
+					newSnake.unshift(food);
 					setFood(generateRandomFood(grid, rowsLength));
 				} else {
 					newSnake.pop();
@@ -91,7 +91,7 @@ const SnakeGame = () => {
 				movement =
 					y === rowsLength - 1 ? [x, y - rowsLength + 1] : [x, y + 1];
 				if (grid[movement[0]][movement[1]] === 2) {
-					newSnake.unshift([i, j]);
+					newSnake.unshift(food);
 					setFood(generateRandomFood(grid, rowsLength));
 				} else {
 					newSnake.pop();
@@ -101,10 +101,10 @@ const SnakeGame = () => {
 			case 'left':
 				movement = x < 1 ? [x + rowsLength - 1, y] : [x - 1, y];
 				if (grid[movement[0]][movement[1]] === 2) {
-					// newSnake.unshift([i - 1, j]);
-					console.log(food);
+					newSnake.unshift([i, j]);
+					setFood(generateRandomFood(grid, rowsLength));
 				}
-				newSnake.shift();
+				newSnake.pop();
 				newSnake.unshift(movement);
 
 				break;
@@ -112,10 +112,10 @@ const SnakeGame = () => {
 				movement =
 					x === rowsLength - 1 ? [x - rowsLength + 1, y] : [x + 1, y];
 				if (grid[movement[0]][movement[1]] === 2) {
-					// newSnake.unshift([i + 1, j]);
-					console.log(food);
+					newSnake.shift(food);
+					setFood(generateRandomFood(grid, rowsLength));
 				}
-				newSnake.shift();
+				newSnake.pop();
 				newSnake.unshift(movement);
 
 				break;
@@ -127,7 +127,7 @@ const SnakeGame = () => {
 
 	document.addEventListener('keydown', changeDirectionWithKeys, false);
 
-	useInterval(moveSnake, direction !== 'pause' ? 200 : null);
+	useInterval(moveSnake, direction !== 'pause' ? 100 : null);
 
 	return (
 		<Container>
