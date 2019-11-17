@@ -11,6 +11,7 @@ import Cells from './Cells';
 import GameOver from './GameOver';
 import Score from './Score';
 import splash from '../../../../assets/snake/splash.mp3';
+import over from '../../../../assets/snake/gameOver.mp3';
 
 const Column = styled.div`
 	display: inline-block;
@@ -118,6 +119,9 @@ const SnakeGame = () => {
 			if (grid[movement[0]][movement[1]] === 1 && snake.length > 1) {
 				setGameOver(true);
 				setDirection('pause');
+				const sound = new Audio(over);
+				sound.volume = 0.3;
+				setTimeout(() => sound.play(), 500);
 			}
 		};
 
