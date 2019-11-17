@@ -3,29 +3,16 @@ import styled from 'styled-components';
 import {
 	colors,
 	breakPoints,
-	fontSize,
-	spacing,
-	transitionSpeed
+	fontSize
 } from '../../../../utils/globalStyles/constants';
-import { HR } from '../../../../utils/globalStyles';
 import { createEmptyGameBoard, generateRandomFood } from './utils';
 import useInterval from '../../../../utils/hooks/useInterval';
-import pint from '../../../../assets/snake/pint.svg';
+import Cells from './Cells';
+import GameOver from './GameOver';
+import Score from './Score';
 
 const Column = styled.div`
 	display: inline-block;
-`;
-
-const Cells = styled.div`
-	width: 25px;
-	height: 25px;
-	background: ${({ snake }) => (snake ? colors.green : 'black')};
-	background-image: ${({ food }) => (food ? `url(${pint})` : 'none')};
-
-	@media (min-width: ${breakPoints.mobileMax}) {
-		width: 40px;
-		height: 40px;
-	}
 `;
 
 const Container = styled.div`
@@ -38,63 +25,6 @@ const Container = styled.div`
 	@media (min-width: ${breakPoints.mobileMax}) {
 		height: 600px;
 	}
-`;
-
-const Score = styled.p`
-	color: white;
-	letter-spacing: 1px;
-	background: ${colors.pink};
-	font-size: ${fontSize.regular};
-	text-align: center;
-	margin: 0 auto;
-	border-bottom: 5px solid ${colors.pink};
-	border-left: 5px solid ${colors.pink};
-	border-right: 5px solid ${colors.pink};
-	width: 375px;
-	min-width: 375px;
-
-	@media (min-width: ${breakPoints.mobileMax}) {
-		width: 600px;
-		font-size: ${fontSize.title};
-		letter-spacing: 1.5px;
-	}
-`;
-
-const Over = styled.div`
-	padding: ${spacing.s1};
-	color: white;
-	position: absolute;
-	transform: translate(-50%, 0);
-	left: 50%;
-	top: 20%;
-	width: 300px;
-	height: 150px;
-	background: black;
-	color: white;
-	text-align: center;
-	border: 5px solid ${colors.pink};
-	border-radius: 10px;
-	font-size: 1.5rem;
-`;
-
-const Restart = styled.button`
-	display: block;
-	margin: ${spacing.s2} auto ${spacing.s1};
-	height: 35px;
-	width: 110px;
-	border: 2px solid ${colors.pink};
-	border-radius: 5px;
-	font-size: 1rem;
-	background: black;
-	color: white;
-
-	&:hover {
-		cursor: pointer;
-		background: ${colors.pink};
-		color: black;
-	}
-
-	transition: ${transitionSpeed};
 `;
 
 const Pause = styled.p`
@@ -243,17 +173,8 @@ const SnakeGame = () => {
 					</Column>
 				))}
 			</Container>
-			<Score>Score: {score}</Score>
-			{gameOver && (
-				<Over>
-					GAMEOVER
-					<HR />
-					Final Score: {score}
-					<Restart type="button" onClick={restartGame}>
-						Start again?
-					</Restart>
-				</Over>
-			)}
+			<Score score={score} />
+			{gameOver && <GameOver restartGame={restartGame} score={score} />}
 			{direction === 'pause' && !gameOver && (
 				<Pause>Paused - Press the arrow keys to continue</Pause>
 			)}

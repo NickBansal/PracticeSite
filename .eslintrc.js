@@ -44,6 +44,7 @@ module.exports = {
             }
         ],
         "consistent-return": 0,
+        "react-hooks/exhaustive-deps": 0,
         "no-tabs": 0,
         "no-plusplus": 0,
         "import/no-extraneous-dependencies": [
