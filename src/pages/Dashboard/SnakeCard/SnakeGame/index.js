@@ -74,33 +74,53 @@ const SnakeGame = () => {
 	const moveSnake = () => {
 		const newSnake = snake.slice();
 		const [x, y] = newSnake[0];
+		const [i, j] = food;
 		let movement;
 		switch (direction) {
 			case 'up':
 				movement = y < 1 ? [x, y + rowsLength - 1] : [x, y - 1];
-				newSnake.shift();
-				newSnake.push(movement);
+				if (grid[movement[0]][movement[1]] === 2) {
+					newSnake.unshift([i, j]);
+					setFood(generateRandomFood(grid, rowsLength));
+				} else {
+					newSnake.pop();
+					newSnake.unshift(movement);
+				}
 				break;
 			case 'down':
 				movement =
 					y === rowsLength - 1 ? [x, y - rowsLength + 1] : [x, y + 1];
-				newSnake.shift();
-				newSnake.push(movement);
+				if (grid[movement[0]][movement[1]] === 2) {
+					newSnake.unshift([i, j]);
+					setFood(generateRandomFood(grid, rowsLength));
+				} else {
+					newSnake.pop();
+					newSnake.unshift(movement);
+				}
 				break;
 			case 'left':
 				movement = x < 1 ? [x + rowsLength - 1, y] : [x - 1, y];
+				if (grid[movement[0]][movement[1]] === 2) {
+					// newSnake.unshift([i - 1, j]);
+					console.log(food);
+				}
 				newSnake.shift();
-				newSnake.push(movement);
+				newSnake.unshift(movement);
+
 				break;
 			case 'right':
 				movement =
 					x === rowsLength - 1 ? [x - rowsLength + 1, y] : [x + 1, y];
+				if (grid[movement[0]][movement[1]] === 2) {
+					// newSnake.unshift([i + 1, j]);
+					console.log(food);
+				}
 				newSnake.shift();
-				newSnake.push(movement);
+				newSnake.unshift(movement);
+
 				break;
 			default:
 		}
-
 		setSnake(newSnake);
 		updateBoard();
 	};
