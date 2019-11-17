@@ -84,12 +84,13 @@ const SnakeGame = () => {
 				newSnake.shift();
 				break;
 			case 'left':
-				movement = [x - 1, y];
+				movement = x < 1 ? [x + rowsLength - 1, y] : [x - 1, y];
 				newSnake.push(movement);
 				newSnake.shift();
 				break;
 			case 'right':
-				movement = [x + 1, y];
+				movement =
+					x === rowsLength - 1 ? [x - rowsLength + 1, y] : [x + 1, y];
 				newSnake.push(movement);
 				newSnake.shift();
 				break;
@@ -110,6 +111,7 @@ const SnakeGame = () => {
 				<Column key={String(i)}>
 					{col.map((row, j) => (
 						<Cells
+							onClick={() => console.log(i, j)}
 							key={String(j)}
 							snake={row === 1}
 							food={row === 2}
