@@ -164,7 +164,7 @@ const SnakeGame = () => {
 
 	document.addEventListener('keydown', changeDirectionWithKeys, false);
 
-	useInterval(moveSnake, direction !== 'pause' ? 100 : null);
+	useInterval(moveSnake, direction !== 'pause' ? 80 : null);
 
 	return (
 		<>

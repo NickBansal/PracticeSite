@@ -7,14 +7,15 @@ import {
 } from '../../../../../utils/globalStyles/constants';
 
 const Tile = styled.div`
-	width: 25px;
-	height: 25px;
+	width: ${({ snake }) => (snake ? '23px' : '25px')};
+	height: ${({ snake }) => (snake ? '23px' : '25px')};
 	background: ${({ snake }) => (snake ? colors.green : 'black')};
 	background-image: ${({ food }) => (food ? `url(${pints})` : 'none')};
+	border: ${({ snake }) => (snake ? '1px solid black' : 'none')};
 
 	@media (min-width: ${breakPoints.mobileMax}) {
-		width: 40px;
-		height: 40px;
+		width: ${({ snake }) => (snake ? '38px' : '40px')};
+		height: ${({ snake }) => (snake ? '38px' : '40px')};
 	}
 `;
 
