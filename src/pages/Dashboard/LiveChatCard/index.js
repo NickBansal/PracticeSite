@@ -4,7 +4,7 @@ import { LiveText } from '../../../utils/globalStyles/index';
 import ChatForm from './ChatForm';
 import MessageScreen from './MessageScreen';
 
-const LiveChatCard = () => {
+const LiveChatCard = ({ rand }) => {
 	const [messageScreen, setMessageScreen] = useState(false);
 	const [userDetails, setuserDetails] = useState(false);
 	const chatRoomText = messageScreen ? 'Leave' : 'Enter';
@@ -17,7 +17,7 @@ const LiveChatCard = () => {
 	const showChatForm = () => !messageScreen && userDetails;
 
 	return (
-		<Card fadeIn="2.0s">
+		<Card fadeIn={rand}>
 			<Card.Title>
 				<LiveText>Live</LiveText> chat
 			</Card.Title>

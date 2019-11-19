@@ -35,11 +35,11 @@ const Name = styled.p`
 	font-family: 'Dancing Script', cursive;
 `;
 
-const ProfileCard = () => {
+const ProfileCard = ({ rand }) => {
 	const [showOverlay, setShowOverlay] = useState(false);
 
 	return (
-		<Card fadeIn="1.0s">
+		<Card fadeIn={rand}>
 			<Image
 				width="210px"
 				height="220px"

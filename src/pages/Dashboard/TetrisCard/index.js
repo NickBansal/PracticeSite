@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Card from '../../../components/Card';
 import BlurImageLoader from '../../../components/BlurImageLoader';
-import drums from '../../../assets/drumMachine/drums.JPG';
+import tetris from '../../../assets/tetris/tetris.jpg';
 import { boxShadow } from '../../../utils/globalStyles/constants/index';
 import Overlay from '../../../components/Overlay';
-import DrumLoop from './DrumLoop';
+import TetrisGame from './TetrisGame';
 
 const Image = styled(BlurImageLoader)`
 	-webkit-box-shadow: ${boxShadow};
@@ -14,22 +14,22 @@ const Image = styled(BlurImageLoader)`
 	border-radius: 10px;
 `;
 
-const DrumMachineCard = ({ rand }) => {
+const SnakeCard = ({ rand }) => {
 	const [showOverlay, setShowOverlay] = useState(false);
 	return (
 		<Card fadeIn={rand}>
-			<Card.Title>Drum Machine</Card.Title>
+			<Card.Title>Tetris</Card.Title>
 			<Card.Content>
 				<Image
 					width="100%"
 					height="85%"
-					image={drums}
-					aria-label="Profile picture"
-					placeholder="Profile picture"
+					image={tetris}
+					aria-label="Tetris game"
+					placeholder="Tetris game"
 				/>
 			</Card.Content>
 			<Overlay showOverlay={showOverlay} handleClick={setShowOverlay}>
-				<DrumLoop />
+				<TetrisGame />
 			</Overlay>
 			<Card.Button onClick={() => setShowOverlay(true)}>
 				Click to play
@@ -38,4 +38,4 @@ const DrumMachineCard = ({ rand }) => {
 	);
 };
 
-export default DrumMachineCard;
+export default SnakeCard;

@@ -14,10 +14,10 @@ const Image = styled(BlurImageLoader)`
 	border-radius: 10px;
 `;
 
-const SnakeCard = () => {
+const SnakeCard = ({ rand }) => {
 	const [showOverlay, setShowOverlay] = useState(false);
 	return (
-		<Card fadeIn="3.0s">
+		<Card fadeIn={rand}>
 			<Card.Title>Snake</Card.Title>
 			<Card.Content>
 				<Image

@@ -19,7 +19,7 @@ const Image = styled.img`
 	}
 `;
 
-const NewsFeedCard = () => {
+const NewsFeedCard = ({ rand }) => {
 	const [newsFeed, setNewsFeed] = useState([]);
 	const [country, setCountry] = useState('united-kingdom');
 	const [modal, setModal] = useState(false);
@@ -44,7 +44,7 @@ const NewsFeedCard = () => {
 	);
 
 	return (
-		<Card fadeIn="1.5s">
+		<Card fadeIn={rand}>
 			<Card.Title>
 				<LiveText>Live</LiveText> news feed
 			</Card.Title>
