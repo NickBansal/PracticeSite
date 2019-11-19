@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-	render,
-	fireEvent,
-	wait,
-	getByLabelText
-} from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import DrumLoop from '.';
 
 jest.useFakeTimers();

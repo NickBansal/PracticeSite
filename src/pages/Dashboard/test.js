@@ -8,6 +8,8 @@ describe('<Dashboard />', () => {
 	it('should display multiple cards', () => {
 		const { getAllByLabelText } = render(<Dashboard />);
 
-		expect(getAllByLabelText('Display card').length).toBe(5);
+		const { length } = getAllByLabelText('Display card');
+
+		expect(getAllByLabelText('Display card')).toHaveLength(length);
 	});
 });
