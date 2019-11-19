@@ -95,12 +95,14 @@ const Controls = ({
 					setBeat(0);
 				}}
 				className="i-link fas fa-stop fa-2x"
+				aria-label="Stop button"
 			/>
 			<Icon
 				onClick={() => {
 					setPlaying(!isPlaying);
 				}}
 				className={`i-link fas fa-${playPause} fa-2x`}
+				aria-label="Play/Pause button"
 			/>
 
 			<Icon
@@ -144,6 +146,7 @@ const Controls = ({
 					setVolume(value);
 				}}
 				className={`i-link fas fa-volume-${level} fa-2x`}
+				aria-label="Volume button"
 			/>
 		</Container>
 	);
