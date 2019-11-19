@@ -19,6 +19,16 @@ const Tile = styled.div`
 	}
 `;
 
-const Cells = ({ snake, food }) => <Tile snake={snake} food={food} />;
+const Cells = ({ snake, food }) => {
+	let testId;
+	if (snake) {
+		testId = 'snake';
+	} else if (food) {
+		testId = 'food';
+	} else {
+		testId = 'emptyCell';
+	}
+	return <Tile snake={snake} food={food} data-testid={testId} />;
+};
 
 export default Cells;

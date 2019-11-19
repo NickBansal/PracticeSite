@@ -24,8 +24,8 @@ const SnakeCard = () => {
 					width="100%"
 					height="85%"
 					image={snake}
-					aria-label="Profile picture"
-					placeholder="Profile picture"
+					aria-label="Snake game"
+					placeholder="Snake game"
 				/>
 			</Card.Content>
 			<Overlay showOverlay={showOverlay} handleClick={setShowOverlay}>
