@@ -34,7 +34,7 @@ describe('<DrumLoop />', () => {
 	});
 
 	it('should start a new drum loop', () => {
-		const { getByText, debug, getByLabelText } = render(<DrumLoop />);
+		const { getByText, getByLabelText } = render(<DrumLoop />);
 
 		fireEvent.click(getByText('Click to play'));
 
@@ -46,6 +46,20 @@ describe('<DrumLoop />', () => {
 
 		expect(getByText('1')).toHaveStyleRule('transform', 'scale(1)');
 		expect(getByText('2')).toHaveStyleRule('transform', 'scale(1.3)');
+	});
+
+	it('should add a new drum sample when a square is clicked and change color', () => {
+		const { getAllByLabelText, debug, getByText } = render(<DrumLoop />);
+
+		fireEvent.click(getByText('Click to play'));
+
+		const drumSample = getAllByLabelText('drum-sample')[0];
+
+		expect(drumSample).toHaveStyleRule('background', '#000000a8');
+
+		fireEvent.click(drumSample);
+
+		expect(drumSample).toHaveStyleRule('background', '#c27f82');
 
 		debug();
 	});

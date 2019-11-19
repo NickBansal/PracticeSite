@@ -95,6 +95,7 @@ const DrumLoop = () => {
 										hit={hit}
 										playing={sample}
 										yCoord={j}
+										aria-label="drum-sample"
 									/>
 								);
 							})}
