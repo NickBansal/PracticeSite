@@ -127,6 +127,7 @@ const Controls = ({
 					]);
 				}}
 				className="i-link fas fa-undo fa-2x"
+				aria-label="Reset button"
 			/>
 			<Icon
 				onClick={() => {

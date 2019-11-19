@@ -1,5 +1,10 @@
 import React from 'react';
-import { render, fireEvent, wait } from '@testing-library/react';
+import {
+	render,
+	fireEvent,
+	wait,
+	getByLabelText
+} from '@testing-library/react';
 import DrumLoop from '.';
 
 jest.useFakeTimers();
@@ -49,7 +54,7 @@ describe('<DrumLoop />', () => {
 	});
 
 	it('should add a new drum sample when a square is clicked and change color', () => {
-		const { getAllByLabelText, debug, getByText } = render(<DrumLoop />);
+		const { getAllByLabelText, getByText } = render(<DrumLoop />);
 
 		fireEvent.click(getByText('Click to play'));
 
@@ -60,7 +65,5 @@ describe('<DrumLoop />', () => {
 		fireEvent.click(drumSample);
 
 		expect(drumSample).toHaveStyleRule('background', '#c27f82');
-
-		debug();
 	});
 });

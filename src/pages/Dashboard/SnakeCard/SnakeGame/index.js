@@ -66,6 +66,7 @@ const SnakeGame = () => {
 
 	useEffect(() => {
 		updateBoard();
+		// eslint-disable-next-line
 	}, [gameOver]);
 
 	const restartGame = () => {
