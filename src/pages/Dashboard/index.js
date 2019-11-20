@@ -23,7 +23,7 @@ const CardContainer = styled.div`
 	}
 `;
 
-const cards = [
+const components = [
 	ProfileCard,
 	NewsFeedCard,
 	LiveChatCard,
@@ -32,7 +32,7 @@ const cards = [
 	TetrisCard
 ];
 
-const rand = Array(cards.length)
+const randomOrder = Array(components.length)
 	.fill(null)
 	.map((_, item) => 1 + item * 0.5)
 	.sort(() => Math.random() - 0.5);
@@ -48,8 +48,11 @@ const App = () => (
 			placeholder="Thailand picture"
 		>
 			<CardContainer>
-				{cards.map((Card, index) => (
-					<Card rand={`${rand[index]}s`} key={String(Card)} />
+				{components.map((Component, index) => (
+					<Component
+						rand={`${randomOrder[index]}s`}
+						key={String(Component)}
+					/>
 				))}
 			</CardContainer>
 		</BlurImageLoader>

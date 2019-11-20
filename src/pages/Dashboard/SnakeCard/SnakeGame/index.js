@@ -45,7 +45,7 @@ const Pause = styled.p`
 `;
 
 const rowsLength = 15;
-const emptyBoard = createEmptyGameBoard(rowsLength);
+const emptyBoard = createEmptyGameBoard(rowsLength, rowsLength);
 
 const SnakeGame = () => {
 	const [grid, setGrid] = useState(emptyBoard);
@@ -56,7 +56,7 @@ const SnakeGame = () => {
 	const [gameOver, setGameOver] = useState(false);
 
 	const updateBoard = () => {
-		const newGrid = createEmptyGameBoard(rowsLength);
+		const newGrid = createEmptyGameBoard(rowsLength, rowsLength);
 		snake.forEach(([x, y]) => {
 			newGrid[x][y] = 1;
 		});
@@ -73,7 +73,10 @@ const SnakeGame = () => {
 		setGameOver(false);
 		setScore(0);
 		setFood(
-			generateRandomFood(createEmptyGameBoard(rowsLength), rowsLength)
+			generateRandomFood(
+				createEmptyGameBoard(rowsLength, rowsLength),
+				rowsLength
+			)
 		);
 		setSnake([[7, 7]]);
 		updateBoard();
