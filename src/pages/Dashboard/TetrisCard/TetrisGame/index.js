@@ -7,12 +7,8 @@ import { colors, breakPoints } from '../../../../utils/globalStyles/constants';
 const Game = styled.div`
 	width: fit-content;
 
-	height: 570px;
+	height: 600px;
 	border: 5px solid ${colors.pink};
-
-	@media (min-width: ${breakPoints.mobileMax}) {
-		height: 570px;
-	}
 `;
 
 const Column = styled.div`
@@ -21,8 +17,8 @@ const Column = styled.div`
 `;
 
 const Cells = styled.div`
-	width: 38px;
-	height: 38px;
+	width: 30px;
+	height: 30px;
 	background: black;
 `;
 
@@ -34,11 +30,11 @@ const Container = styled.div`
 
 	@media (min-width: ${breakPoints.mobileMax}) {
 		flex-direction: row;
-		align-items: baseline;
+		align-items: flex-start;
 	}
 `;
 
-const grid = createEmptyGameBoard(15, 9);
+const grid = createEmptyGameBoard(20, 12);
 
 const TetrisGame = () => (
 	<Container>
