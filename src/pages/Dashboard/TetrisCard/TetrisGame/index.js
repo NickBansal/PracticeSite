@@ -6,8 +6,7 @@ import { colors, breakPoints } from '../../../../utils/globalStyles/constants';
 
 const Game = styled.div`
 	width: fit-content;
-
-	height: 600px;
+	height: fit-content;
 	border: 5px solid ${colors.pink};
 `;
 
@@ -20,6 +19,7 @@ const Cells = styled.div`
 	width: 30px;
 	height: 30px;
 	background: black;
+	border: 0.05px solid #fffafa26;
 `;
 
 const Container = styled.div`
