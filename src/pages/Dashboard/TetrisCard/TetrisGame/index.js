@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import Information from './Information';
 import { createEmptyGameBoard } from '../../SnakeCard/SnakeGame/utils';
 import { colors, breakPoints } from '../../../../utils/globalStyles/constants';
+import usePlayer from './hooks/usePlayer';
+import useStage from './hooks/useStage';
 
 const Game = styled.div`
 	width: fit-content;
@@ -11,8 +13,7 @@ const Game = styled.div`
 `;
 
 const Column = styled.div`
-	display: flex;
-	flex-direction: row;
+	display: inline-block;
 `;
 
 const Cells = styled.div`
@@ -34,7 +35,7 @@ const Container = styled.div`
 	}
 `;
 
-const grid = createEmptyGameBoard(20, 12);
+const grid = createEmptyGameBoard(12, 20);
 
 const TetrisGame = () => (
 	<Container>
