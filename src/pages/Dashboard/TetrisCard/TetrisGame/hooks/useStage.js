@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { createEmptyGameBoard } from '../../../SnakeCard/SnakeGame/utils';
+import createEmptyGame from '../../../../../utils/functions/createEmptyGame';
 
 export default () => {
-	const [stage, setStage] = useState(createEmptyGameBoard(20, 12));
+	const [stage, setStage] = useState(createEmptyGame(12, 20));
 
 	return [stage, setStage];
 };

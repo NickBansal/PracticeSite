@@ -5,7 +5,7 @@ import {
 	breakPoints,
 	fontSize
 } from '../../../../utils/globalStyles/constants';
-import { createEmptyGameBoard, generateRandomFood } from './utils';
+import createEmptyGame from '../../../../utils/functions/createEmptyGame';
 import useInterval from '../../../../utils/hooks/useInterval';
 import Cells from './Cells';
 import GameOver from './GameOver';
@@ -45,7 +45,13 @@ const Pause = styled.p`
 `;
 
 const rowsLength = 15;
-const emptyBoard = createEmptyGameBoard(rowsLength, rowsLength);
+const emptyBoard = createEmptyGame(rowsLength, rowsLength);
+
+const generateRandomFood = (grid, rows) => {
+	const i = Math.floor(Math.random() * rows);
+	const j = Math.floor(Math.random() * rows);
+	return grid[i][j] === 0 ? [i, j] : generateRandomFood(grid, rows);
+};
 
 const SnakeGame = () => {
 	const [grid, setGrid] = useState(emptyBoard);
@@ -56,7 +62,7 @@ const SnakeGame = () => {
 	const [gameOver, setGameOver] = useState(false);
 
 	const updateBoard = () => {
-		const newGrid = createEmptyGameBoard(rowsLength, rowsLength);
+		const newGrid = createEmptyGame(rowsLength, rowsLength);
 		snake.forEach(([x, y]) => {
 			newGrid[x][y] = 1;
 		});
@@ -74,7 +80,7 @@ const SnakeGame = () => {
 		setScore(0);
 		setFood(
 			generateRandomFood(
-				createEmptyGameBoard(rowsLength, rowsLength),
+				createEmptyGame(rowsLength, rowsLength),
 				rowsLength
 			)
 		);
@@ -125,7 +131,7 @@ const SnakeGame = () => {
 				setDirection('pause');
 				const sound = new Audio(over);
 				sound.volume = 0.6;
-				setTimeout(() => sound.play(), 500);
+				setTimeout(() => sound.play(), 400);
 			}
 		};
 

@@ -1,14 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import Information from './Information';
-import { createEmptyGameBoard } from '../../SnakeCard/SnakeGame/utils';
+import createEmptyGame from '../../../../utils/functions/createEmptyGame';
 import { colors, breakPoints } from '../../../../utils/globalStyles/constants';
-import usePlayer from './hooks/usePlayer';
-import useStage from './hooks/useStage';
+// import usePlayer from './hooks/usePlayer';
+// import useStage from './hooks/useStage';
 
 const Game = styled.div`
 	width: fit-content;
-	height: fit-content;
+	height: 602px;
+	min-width: 361px;
 	border: 5px solid ${colors.pink};
 `;
 
@@ -35,18 +36,15 @@ const Container = styled.div`
 	}
 `;
 
-const grid = createEmptyGameBoard(12, 20);
+const grid = createEmptyGame(12, 20);
 
 const TetrisGame = () => (
 	<Container>
 		<Game>
 			{grid.map((col, i) => (
 				<Column key={String(i)}>
-					{col.map((row, j) => (
-						<Cells
-							key={String(j)}
-							onClick={() => console.log(i, j)}
-						/>
+					{col.map((_, j) => (
+						<Cells key={String(j)} />
 					))}
 				</Column>
 			))}
