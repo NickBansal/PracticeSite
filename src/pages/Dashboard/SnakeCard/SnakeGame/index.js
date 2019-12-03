@@ -13,6 +13,8 @@ import Score from './Score';
 import splash from '../../../../assets/snake/splash.mp3';
 import over from '../../../../assets/snake/gameOver.mp3';
 
+const HEARTBEAT = 80;
+
 const Column = styled.div`
 	display: inline-block;
 `;
@@ -47,7 +49,24 @@ const Pause = styled.p`
 const rowsLength = 15;
 const emptyBoard = createEmptyGame(rowsLength, rowsLength);
 
-const reducer = (state, action) => {};
+const reducer = (state, action) => {
+	const { payload, type } = action;
+
+	console.log(action);
+
+	if (type === 'newGrid') {
+		return { ...state, grid: payload };
+	}
+	if (type === 'snake') {
+		return { ...state, snake: payload };
+	}
+	if (type === 'food') {
+		return { ...state, food: payload };
+	}
+	if (type === 'direction') {
+		return { ...state, direction: payload };
+	}
+};
 
 const generateRandomFood = (grid, rows) => {
 	const i = Math.floor(Math.random() * rows);
@@ -56,15 +75,18 @@ const generateRandomFood = (grid, rows) => {
 };
 
 const SnakeGame = () => {
-	const [state, dispatch] = useReducer(reducer, { grid: emptyBoard });
+	console.log('new render');
 
-	const { grid } = state;
+	const [state, dispatch] = useReducer(reducer, {
+		grid: emptyBoard,
+		snake: [[7, 7]],
+		food: generateRandomFood(emptyBoard, rowsLength),
+		direction: null
+	});
 
-	// const [grid, setGrid] = useState(emptyBoard);
+	const { grid, snake, food, direction } = state;
 
-	const [snake, setSnake] = useState([[7, 7]]);
-	const [food, setFood] = useState(generateRandomFood(grid, rowsLength));
-	const [direction, setDirection] = useState(null);
+	// const [direction, setDirection] = useState(null);
 	const [score, setScore] = useState(0);
 	const [gameOver, setGameOver] = useState(false);
 
@@ -85,34 +107,39 @@ const SnakeGame = () => {
 	const restartGame = () => {
 		setGameOver(false);
 		setScore(0);
-		setFood(
-			generateRandomFood(
+		dispatch({
+			type: 'food',
+			payload: generateRandomFood(
 				createEmptyGame(rowsLength, rowsLength),
 				rowsLength
 			)
-		);
-		setSnake([[7, 7]]);
+		});
+		dispatch({ type: 'snake', payload: [[7, 7]] });
 		updateBoard();
 	};
 
 	const changeDirectionWithKeys = e => {
 		switch (e.key) {
 			case 'ArrowUp':
-				setDirection('up');
+				dispatch({ type: 'direction', payload: 'up' });
 				break;
 			case 'ArrowDown':
-				setDirection('down');
+				dispatch({ type: 'direction', payload: 'down' });
 				break;
 			case 'ArrowRight':
-				setDirection('right');
+				dispatch({ type: 'direction', payload: 'right' });
 				break;
 			case 'ArrowLeft':
-				setDirection('left');
+				dispatch({ type: 'direction', payload: 'left' });
 				break;
 			default:
-				setDirection('pause');
+				dispatch({ type: 'direction', payload: 'pause' });
 		}
 	};
+
+	useEffect(() => {
+		document.addEventListener('keydown', changeDirectionWithKeys, false);
+	}, []);
 
 	const moveSnake = () => {
 		const newSnake = snake.slice();
@@ -122,7 +149,10 @@ const SnakeGame = () => {
 		const isFoodCaught = () => {
 			if (grid[movement[0]][movement[1]] === 2) {
 				newSnake.unshift(food);
-				setFood(generateRandomFood(grid, rowsLength));
+				dispatch({
+					type: 'food',
+					payload: generateRandomFood(grid, rowsLength)
+				});
 				setScore(score + 1);
 				const sound = new Audio(splash);
 				sound.volume = 0.3;
@@ -135,7 +165,7 @@ const SnakeGame = () => {
 		const checkSnakeHitItself = () => {
 			if (grid[movement[0]][movement[1]] === 1 && snake.length > 1) {
 				setGameOver(true);
-				setDirection('pause');
+				dispatch({ type: 'direction', payload: 'pause' });
 				const sound = new Audio(over);
 				sound.volume = 0.6;
 				setTimeout(() => sound.play(), 400);
@@ -175,13 +205,12 @@ const SnakeGame = () => {
 			}
 		}
 
-		setSnake(newSnake);
+		dispatch({ type: 'snake', payload: newSnake });
+
 		updateBoard();
 	};
 
-	document.addEventListener('keydown', changeDirectionWithKeys, false);
-
-	useInterval(moveSnake, direction !== 'pause' ? 80 : null);
+	useInterval(moveSnake, direction !== 'pause' ? HEARTBEAT : null);
 
 	return (
 		<>
