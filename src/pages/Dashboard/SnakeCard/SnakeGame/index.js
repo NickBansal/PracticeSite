@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import styled from 'styled-components';
 import {
 	colors,
@@ -47,6 +47,8 @@ const Pause = styled.p`
 const rowsLength = 15;
 const emptyBoard = createEmptyGame(rowsLength, rowsLength);
 
+const reducer = (state, action) => {};
+
 const generateRandomFood = (grid, rows) => {
 	const i = Math.floor(Math.random() * rows);
 	const j = Math.floor(Math.random() * rows);
@@ -54,7 +56,12 @@ const generateRandomFood = (grid, rows) => {
 };
 
 const SnakeGame = () => {
-	const [grid, setGrid] = useState(emptyBoard);
+	const [state, dispatch] = useReducer(reducer, { grid: emptyBoard });
+
+	const { grid } = state;
+
+	// const [grid, setGrid] = useState(emptyBoard);
+
 	const [snake, setSnake] = useState([[7, 7]]);
 	const [food, setFood] = useState(generateRandomFood(grid, rowsLength));
 	const [direction, setDirection] = useState(null);
@@ -67,7 +74,7 @@ const SnakeGame = () => {
 			newGrid[x][y] = 1;
 		});
 		newGrid[food[0]][food[1]] = 2;
-		setGrid(newGrid);
+		dispatch({ type: 'newGrid', payload: newGrid });
 	};
 
 	useEffect(() => {

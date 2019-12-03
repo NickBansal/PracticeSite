@@ -10,7 +10,7 @@ const Container = styled.div`
 	display: block;
 `;
 
-const Score = styled.div`
+const Info = styled.div`
 	border: 4px solid white;
 	background: black;
 	height: 40px;
@@ -35,9 +35,9 @@ const Score = styled.div`
 
 const Information = () => (
 	<Container>
-		<Score>Score: 0</Score>
-		<Score>Rows: 0</Score>
-		<Score>Level: 0</Score>
+		<Info>Score: 0</Info>
+		<Info>Rows: 0</Info>
+		<Info>Level: 0</Info>
 	</Container>
 );
 
