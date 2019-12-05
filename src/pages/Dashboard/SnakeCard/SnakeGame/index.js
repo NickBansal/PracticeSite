@@ -52,8 +52,6 @@ const emptyBoard = createEmptyGame(rowsLength, rowsLength);
 const reducer = (state, action) => {
 	const { payload, type } = action;
 
-	console.log(action);
-
 	if (type === 'newGrid') {
 		return { ...state, grid: payload };
 	}
@@ -66,6 +64,9 @@ const reducer = (state, action) => {
 	if (type === 'direction') {
 		return { ...state, direction: payload };
 	}
+	if (type === 'score') {
+		return { ...state, score: payload };
+	}
 };
 
 const generateRandomFood = (grid, rows) => {
@@ -75,19 +76,18 @@ const generateRandomFood = (grid, rows) => {
 };
 
 const SnakeGame = () => {
-	console.log('new render');
-
 	const [state, dispatch] = useReducer(reducer, {
 		grid: emptyBoard,
 		snake: [[7, 7]],
 		food: generateRandomFood(emptyBoard, rowsLength),
-		direction: null
+		direction: null,
+		score: 0
 	});
 
-	const { grid, snake, food, direction } = state;
+	const { grid, snake, food, direction, score } = state;
 
 	// const [direction, setDirection] = useState(null);
-	const [score, setScore] = useState(0);
+	// const [score, dispatch]{ type: 'score', payload:  }= useState(0);
 	const [gameOver, setGameOver] = useState(false);
 
 	const updateBoard = () => {
@@ -106,7 +106,7 @@ const SnakeGame = () => {
 
 	const restartGame = () => {
 		setGameOver(false);
-		setScore(0);
+		dispatch({ type: 'score', payload: 0 });
 		dispatch({
 			type: 'food',
 			payload: generateRandomFood(
@@ -153,7 +153,7 @@ const SnakeGame = () => {
 					type: 'food',
 					payload: generateRandomFood(grid, rowsLength)
 				});
-				setScore(score + 1);
+				dispatch({ type: 'score', payload: score + 1 });
 				const sound = new Audio(splash);
 				sound.volume = 0.3;
 				sound.play();
