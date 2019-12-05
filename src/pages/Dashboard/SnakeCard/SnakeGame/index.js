@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import styled from 'styled-components';
 import {
 	colors,
@@ -52,7 +52,7 @@ const emptyBoard = createEmptyGame(rowsLength, rowsLength);
 const reducer = (state, action) => {
 	const { payload, type } = action;
 
-	if (type === 'newGrid') {
+	if (type === 'grid') {
 		return { ...state, grid: payload };
 	}
 	if (type === 'snake') {
@@ -66,6 +66,9 @@ const reducer = (state, action) => {
 	}
 	if (type === 'score') {
 		return { ...state, score: payload };
+	}
+	if (type === 'gameOver') {
+		return { ...state, gameOver: payload };
 	}
 };
 
@@ -81,14 +84,11 @@ const SnakeGame = () => {
 		snake: [[7, 7]],
 		food: generateRandomFood(emptyBoard, rowsLength),
 		direction: null,
-		score: 0
+		score: 0,
+		gameOver: false
 	});
 
-	const { grid, snake, food, direction, score } = state;
-
-	// const [direction, setDirection] = useState(null);
-	// const [score, dispatch]{ type: 'score', payload:  }= useState(0);
-	const [gameOver, setGameOver] = useState(false);
+	const { grid, snake, food, direction, score, gameOver } = state;
 
 	const updateBoard = () => {
 		const newGrid = createEmptyGame(rowsLength, rowsLength);
@@ -96,7 +96,7 @@ const SnakeGame = () => {
 			newGrid[x][y] = 1;
 		});
 		newGrid[food[0]][food[1]] = 2;
-		dispatch({ type: 'newGrid', payload: newGrid });
+		dispatch({ type: 'grid', payload: newGrid });
 	};
 
 	useEffect(() => {
@@ -105,7 +105,7 @@ const SnakeGame = () => {
 	}, [gameOver]);
 
 	const restartGame = () => {
-		setGameOver(false);
+		dispatch({ type: 'gameOver', payload: false });
 		dispatch({ type: 'score', payload: 0 });
 		dispatch({
 			type: 'food',
@@ -164,7 +164,7 @@ const SnakeGame = () => {
 
 		const checkSnakeHitItself = () => {
 			if (grid[movement[0]][movement[1]] === 1 && snake.length > 1) {
-				setGameOver(true);
+				dispatch({ type: 'gameOver', payload: true });
 				dispatch({ type: 'direction', payload: 'pause' });
 				const sound = new Audio(over);
 				sound.volume = 0.6;
