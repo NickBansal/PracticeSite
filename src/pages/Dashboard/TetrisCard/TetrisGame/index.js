@@ -3,8 +3,6 @@ import styled from 'styled-components';
 import Information from './Information';
 import createEmptyGame from '../../../../utils/functions/createEmptyGame';
 import { colors, breakPoints } from '../../../../utils/globalStyles/constants';
-// import usePlayer from './hooks/usePlayer';
-// import useStage from './hooks/useStage';
 
 const Game = styled.div`
 	width: fit-content;
@@ -38,19 +36,21 @@ const Container = styled.div`
 
 const grid = createEmptyGame(12, 20);
 
-const TetrisGame = () => (
-	<Container>
-		<Game>
-			{grid.map((col, i) => (
-				<Column key={String(i)}>
-					{col.map((_, j) => (
-						<Cells key={String(j)} />
-					))}
-				</Column>
-			))}
-		</Game>
-		<Information />
-	</Container>
-);
+const TetrisGame = () => {
+	return (
+		<Container>
+			<Game>
+				{grid.map((col, i) => (
+					<Column key={String(i)}>
+						{col.map((_, j) => (
+							<Cells key={String(j)} />
+						))}
+					</Column>
+				))}
+			</Game>
+			<Information />
+		</Container>
+	);
+};
 
 export default TetrisGame;
