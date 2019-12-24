@@ -87,8 +87,6 @@ const moveSnake = (snake, direction) => {
 };
 
 const reducer = (state, action) => {
-	console.log(action);
-
 	const { payload, type } = action;
 
 	if (type === 'grid') {
@@ -166,7 +164,6 @@ const SnakeGame = () => {
 	};
 
 	const changeDirectionWithKeys = e => {
-		console.log('changeDirectionWithKeys', Date.now() - timeStart);
 		switch (e.key) {
 			case 'ArrowUp':
 				dispatch({ type: 'direction', payload: 'up' });
@@ -190,11 +187,6 @@ const SnakeGame = () => {
 	}, []);
 
 	const moveSnake = () => {
-		console.log('move', Date.now() - timeStart);
-		const newSnake = snake.slice();
-		const [x, y] = newSnake[0];
-		let movement;
-
 		// const isFoodCaught = () => {
 		// 	if (grid[movement[0]][movement[1]] === 2) {
 		// 		newSnake.unshift(food);
@@ -267,7 +259,6 @@ const SnakeGame = () => {
 		},
 		direction !== 'pause' ? 80 : null
 	);
-	console.log('render', state.snake, Date.now() - timeStart);
 	return (
 		<>
 			<Container>
