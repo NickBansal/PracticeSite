@@ -13,8 +13,6 @@ import Score from './Score';
 import splash from '../../../../assets/snake/splash.mp3';
 import over from '../../../../assets/snake/gameOver.mp3';
 
-const HEARTBEAT = 10;
-
 const Column = styled.div`
 	display: inline-block;
 `;
@@ -49,8 +47,6 @@ const Pause = styled.p`
 const rowsLength = 15;
 const emptyBoard = createEmptyGame(rowsLength, rowsLength);
 
-const timeStart = Date.now();
-
 const createUpdatedGrid = (snake, food) => {
 	const newGrid = createEmptyGame(rowsLength, rowsLength);
 	snake.forEach(([x, y]) => {
@@ -58,6 +54,12 @@ const createUpdatedGrid = (snake, food) => {
 	});
 	newGrid[food[0]][food[1]] = 2;
 	return newGrid;
+};
+
+const generateRandomFood = grid => {
+	const i = Math.floor(Math.random() * rowsLength);
+	const j = Math.floor(Math.random() * rowsLength);
+	return grid[i][j] === 0 ? [i, j] : generateRandomFood(grid);
 };
 
 const moveSnake = (snake, direction) => {
@@ -86,6 +88,18 @@ const moveSnake = (snake, direction) => {
 	return newSnake;
 };
 
+const isFoodCaught = (snake, grid) => {
+	const newSnake = snake.slice();
+	const [x, y] = newSnake[0];
+	if (grid[x][y] === 2) {
+		const sound = new Audio(splash);
+		sound.volume = 0.3;
+		sound.play();
+		return true;
+	}
+	return false;
+};
+
 const reducer = (state, action) => {
 	const { payload, type } = action;
 
@@ -95,7 +109,11 @@ const reducer = (state, action) => {
 	if (type === 'heartbeat') {
 		const newSnake = moveSnake(state.snake, state.direction);
 		const newGrid = createUpdatedGrid(newSnake, state.food);
-		return { ...state, snake: newSnake, grid: newGrid };
+		const newFood = isFoodCaught(newSnake, newGrid)
+			? generateRandomFood(newGrid)
+			: state.food;
+
+		return { ...state, snake: newSnake, grid: newGrid, food: newFood };
 	}
 	if (type === 'snake') {
 		return { ...state, snake: payload };
@@ -117,17 +135,11 @@ const reducer = (state, action) => {
 	return state;
 };
 
-const generateRandomFood = (grid, rows) => {
-	const i = Math.floor(Math.random() * rows);
-	const j = Math.floor(Math.random() * rows);
-	return grid[i][j] === 0 ? [i, j] : generateRandomFood(grid, rows);
-};
-
 const SnakeGame = () => {
 	const [state, dispatch] = useReducer(reducer, {
 		grid: emptyBoard,
 		snake: [[7, 7]],
-		food: generateRandomFood(emptyBoard, rowsLength),
+		food: generateRandomFood(emptyBoard),
 		direction: 'pause',
 		score: 0,
 		gameOver: false
@@ -154,10 +166,7 @@ const SnakeGame = () => {
 		dispatch({ type: 'score', payload: 0 });
 		dispatch({
 			type: 'food',
-			payload: generateRandomFood(
-				createEmptyGame(rowsLength, rowsLength),
-				rowsLength
-			)
+			payload: generateRandomFood(createEmptyGame(rowsLength, rowsLength))
 		});
 		dispatch({ type: 'snake', payload: [[7, 7]] });
 		updateBoard();
