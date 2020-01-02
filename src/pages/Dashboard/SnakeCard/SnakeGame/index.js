@@ -62,7 +62,19 @@ const generateRandomFood = grid => {
 	return grid[i][j] === 0 ? [i, j] : generateRandomFood(grid);
 };
 
-const moveSnake = (snake, direction) => {
+const isFoodCaught = (snake, grid) => {
+	const newSnake = snake.slice();
+	const [x, y] = newSnake[0];
+	if (grid[x][y] === 2) {
+		const sound = new Audio(splash);
+		sound.volume = 0.3;
+		sound.play();
+		return true;
+	}
+	return false;
+};
+
+const moveSnake = (snake, direction, grid) => {
 	const newSnake = snake.slice();
 	const [x, y] = newSnake[0];
 	let movement;
@@ -84,44 +96,29 @@ const moveSnake = (snake, direction) => {
 		default:
 	}
 	newSnake.unshift(movement);
-	newSnake.pop();
-	return newSnake;
-};
 
-const isFoodCaught = (snake, grid) => {
-	const newSnake = snake.slice();
-	const [x, y] = newSnake[0];
-	if (grid[x][y] === 2) {
-		const sound = new Audio(splash);
-		sound.volume = 0.3;
-		sound.play();
-		return true;
+	if (!isFoodCaught(newSnake, grid)) {
+		newSnake.pop();
 	}
-	return false;
+	return newSnake;
 };
 
 const reducer = (state, action) => {
 	const { payload, type } = action;
 
-	// if (type === 'grid') {
-	// 	return { ...state, grid: payload };
-	// }
 	if (type === 'heartbeat') {
-		const newSnake = moveSnake(state.snake, state.direction);
+		const newSnake = moveSnake(state.snake, state.direction, state.grid);
 		const newGrid = createUpdatedGrid(newSnake, state.food);
+
 		const newFood = isFoodCaught(newSnake, newGrid)
 			? generateRandomFood(newGrid)
 			: state.food;
+
 		return { ...state, snake: newSnake, grid: newGrid, food: newFood };
 	}
-	// if (type === 'snake') {
-	// 	return { ...state, snake: payload };
-	// }
-	// if (type === 'food') {
-	// 	return { ...state, food: payload };
-	// }
+
 	if (type === 'direction') {
-		const newSnake = moveSnake(state.snake, payload);
+		const newSnake = moveSnake(state.snake, payload, state.grid);
 		const newGrid = createUpdatedGrid(newSnake, state.food);
 		const newFood = isFoodCaught(newSnake, newGrid)
 			? generateRandomFood(newGrid)
@@ -134,12 +131,6 @@ const reducer = (state, action) => {
 			food: newFood
 		};
 	}
-	// if (type === 'score') {
-	// 	return { ...state, score: payload };
-	// }
-	// if (type === 'gameOver') {
-	// 	return { ...state, gameOver: payload };
-	// }
 	return state;
 };
 
