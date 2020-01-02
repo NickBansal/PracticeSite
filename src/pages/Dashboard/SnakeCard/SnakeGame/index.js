@@ -103,35 +103,43 @@ const isFoodCaught = (snake, grid) => {
 const reducer = (state, action) => {
 	const { payload, type } = action;
 
-	if (type === 'grid') {
-		return { ...state, grid: payload };
-	}
+	// if (type === 'grid') {
+	// 	return { ...state, grid: payload };
+	// }
 	if (type === 'heartbeat') {
 		const newSnake = moveSnake(state.snake, state.direction);
 		const newGrid = createUpdatedGrid(newSnake, state.food);
 		const newFood = isFoodCaught(newSnake, newGrid)
 			? generateRandomFood(newGrid)
 			: state.food;
-
 		return { ...state, snake: newSnake, grid: newGrid, food: newFood };
 	}
-	if (type === 'snake') {
-		return { ...state, snake: payload };
-	}
-	if (type === 'food') {
-		return { ...state, food: payload };
-	}
+	// if (type === 'snake') {
+	// 	return { ...state, snake: payload };
+	// }
+	// if (type === 'food') {
+	// 	return { ...state, food: payload };
+	// }
 	if (type === 'direction') {
 		const newSnake = moveSnake(state.snake, payload);
 		const newGrid = createUpdatedGrid(newSnake, state.food);
-		return { ...state, direction: payload, snake: newSnake, grid: newGrid };
+		const newFood = isFoodCaught(newSnake, newGrid)
+			? generateRandomFood(newGrid)
+			: state.food;
+		return {
+			...state,
+			direction: payload,
+			snake: newSnake,
+			grid: newGrid,
+			food: newFood
+		};
 	}
-	if (type === 'score') {
-		return { ...state, score: payload };
-	}
-	if (type === 'gameOver') {
-		return { ...state, gameOver: payload };
-	}
+	// if (type === 'score') {
+	// 	return { ...state, score: payload };
+	// }
+	// if (type === 'gameOver') {
+	// 	return { ...state, gameOver: payload };
+	// }
 	return state;
 };
 
