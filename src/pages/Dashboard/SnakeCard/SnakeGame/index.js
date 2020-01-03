@@ -132,13 +132,16 @@ const reducer = (state, action) => {
 		const newFood = isFoodCaught(newSnake, newGrid)
 			? generateRandomFood(newGrid)
 			: state.food;
-
+		const newScore = isFoodCaught(newSnake, newGrid)
+			? state.score + 1
+			: state.score;
 		return {
 			...state,
 			snake: newSnake,
 			grid: newGrid,
 			food: newFood,
-			gameStart: true
+			gameStart: true,
+			score: newScore
 		};
 	}
 
