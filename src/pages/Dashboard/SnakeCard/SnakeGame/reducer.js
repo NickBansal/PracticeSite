@@ -12,15 +12,19 @@ export default (state, action) => {
 
 	if (type === 'heartbeat') {
 		if (state.direction === 'pause') {
-			return { ...state };
+			return state;
 		}
+
 		const newSnake = moveSnake(state.snake, state.direction, state.grid);
 		const newGrid = createUpdatedGrid(newSnake, state.food);
-
 		const newState = isFoodCaught(newSnake, newGrid)
 			? {
 					food: generateRandomFood(newGrid),
-					score: state.score + 1
+					score: state.score + 1,
+					speed:
+						(state.score + 1) % 10 === 0 && state.score > 0
+							? state.speed - 5
+							: state.speed
 			  }
 			: {
 					...state

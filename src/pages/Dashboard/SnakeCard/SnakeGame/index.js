@@ -5,7 +5,8 @@ import {
 	breakPoints,
 	fontSize
 } from '../../../../utils/globalStyles/constants';
-import { createEmptyGame, initialState, rowsLength } from './utils';
+import { initialState, rowsLength } from './utils';
+import createEmptyGame from '../../../../utils/functions/createEmptyGame';
 import reducer from './reducer';
 import useInterval from '../../../../utils/hooks/useInterval';
 import Cells from './Cells';
@@ -50,7 +51,16 @@ const Begin = styled(Pause)`
 const SnakeGame = () => {
 	const [state, dispatch] = useReducer(reducer, initialState);
 
-	const { grid, snake, food, direction, score, gameOver, gameStart } = state;
+	const {
+		grid,
+		snake,
+		food,
+		direction,
+		score,
+		gameOver,
+		gameStart,
+		speed
+	} = state;
 
 	const updateBoard = () => {
 		const newGrid = createEmptyGame(rowsLength, rowsLength);
@@ -60,7 +70,7 @@ const SnakeGame = () => {
 		newGrid[food[0]][food[1]] = 2;
 		dispatch({ type: 'grid', payload: newGrid });
 	};
-
+	console.log(speed);
 	const restartGame = () => dispatch({ type: 'restart' });
 
 	useEffect(() => {
@@ -93,7 +103,7 @@ const SnakeGame = () => {
 
 	useInterval(
 		() => dispatch({ type: 'heartbeat' }),
-		direction !== 'pause' && !gameOver ? 80 : null
+		direction !== 'pause' && !gameOver ? speed : null
 	);
 	return (
 		<>

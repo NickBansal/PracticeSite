@@ -1,10 +1,6 @@
 import splash from '../../../../assets/snake/splash.mp3';
 import over from '../../../../assets/snake/gameOver.mp3';
-
-export const createEmptyGame = (rows, cols) =>
-	Array(rows)
-		.fill(0)
-		.map(() => Array(cols).fill(0));
+import createEmptyGame from '../../../../utils/functions/createEmptyGame';
 
 export const rowsLength = 15;
 const emptyBoard = createEmptyGame(rowsLength, rowsLength);
@@ -22,7 +18,8 @@ export const initialState = {
 	direction: 'pause',
 	gameStart: false,
 	score: 0,
-	gameOver: false
+	gameOver: false,
+	speed: 60
 };
 
 export const createUpdatedGrid = (snake, food) => {
