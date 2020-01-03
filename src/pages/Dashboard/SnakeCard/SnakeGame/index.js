@@ -105,6 +105,9 @@ const SnakeGame = () => {
 		() => dispatch({ type: 'heartbeat' }),
 		direction !== 'pause' && !gameOver ? speed : null
 	);
+
+	const paused = direction === 'pause' && gameStart && !gameOver;
+
 	return (
 		<>
 			<Container>
@@ -121,17 +124,17 @@ const SnakeGame = () => {
 				))}
 			</Container>
 			<Score score={score} />
+			{paused && (
+				<Pause>
+					<h3 style={{ margin: 0 }}>Game paused</h3>
+					Please press any arrow key to continue
+				</Pause>
+			)}
 			{!gameStart && (
 				<Begin>
 					<h2>Welcome</h2>
 					Please press any arrow key to begin the game
 				</Begin>
-			)}
-			{direction === 'pause' && gameStart && !gameOver && (
-				<Pause>
-					<h3 style={{ margin: 0 }}>Game paused</h3>
-					Please press any arrow key to continue
-				</Pause>
 			)}
 			{gameOver && <GameOver score={score} restartGame={restartGame} />}
 		</>
