@@ -78,17 +78,17 @@ const isFoodCaught = (snake, grid) => {
 	return false;
 };
 
-// const hasSnakeHitItself = (snake, grid) => {
-// 	const newSnake = snake.slice();
-// 	const [x, y] = newSnake[0];
-// 	if (grid[x][y] === 1 && snake.length > 1) {
-// 		const sound = new Audio(over);
-// 		sound.volume = 0.6;
-// 		setTimeout(() => sound.play(), 400);
-// 		return true;
-// 	}
-// 	return false;
-// };
+const hasSnakeHitItself = (snake, grid) => {
+	const newSnake = snake.slice();
+	const [x, y] = newSnake[0];
+	if (grid[x][y] === 1 && snake.length > 1) {
+		const sound = new Audio(over);
+		sound.volume = 0.6;
+		setTimeout(() => sound.play(), 400);
+		return true;
+	}
+	return false;
+};
 
 const moveSnake = (snake, direction, grid) => {
 	const newSnake = snake.slice();
@@ -135,13 +135,17 @@ const reducer = (state, action) => {
 		const newScore = isFoodCaught(newSnake, newGrid)
 			? state.score + 1
 			: state.score;
+
+		const isGameOver = hasSnakeHitItself(newSnake, state.grid);
+
 		return {
 			...state,
 			snake: newSnake,
 			grid: newGrid,
 			food: newFood,
 			gameStart: true,
-			score: newScore
+			score: newScore,
+			gameOver: isGameOver
 		};
 	}
 
@@ -208,7 +212,7 @@ const SnakeGame = () => {
 		() => {
 			dispatch({ type: 'heartbeat' });
 		},
-		direction !== 'pause' ? 80 : null
+		direction !== 'pause' && !gameOver ? 80 : null
 	);
 	return (
 		<>
@@ -232,12 +236,13 @@ const SnakeGame = () => {
 					Please press any arrow key to begin the game
 				</Begin>
 			)}
-			{direction === 'pause' && gameStart && (
+			{direction === 'pause' && gameStart && !gameOver && (
 				<Pause>
 					<h3 style={{ margin: 0 }}>Game paused</h3>Please press any
 					arrow key to continue
 				</Pause>
 			)}
+			{gameOver && <GameOver score={score} restartGame={() => {}} />}
 		</>
 	);
 };
