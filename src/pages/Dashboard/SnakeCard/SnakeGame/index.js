@@ -74,6 +74,18 @@ const isFoodCaught = (snake, grid) => {
 	return false;
 };
 
+const hasSnakeHitItself = (snake, grid) => {
+	const newSnake = snake.slice();
+	const [x, y] = newSnake[0];
+	if (grid[x][y] === 1 && snake.length > 1) {
+		const sound = new Audio(over);
+		sound.volume = 0.6;
+		setTimeout(() => sound.play(), 400);
+		return true;
+	}
+	return false;
+};
+
 const moveSnake = (snake, direction, grid) => {
 	const newSnake = snake.slice();
 	const [x, y] = newSnake[0];
@@ -100,6 +112,7 @@ const moveSnake = (snake, direction, grid) => {
 	if (!isFoodCaught(newSnake, grid)) {
 		newSnake.pop();
 	}
+
 	return newSnake;
 };
 
@@ -114,21 +127,18 @@ const reducer = (state, action) => {
 			? generateRandomFood(newGrid)
 			: state.food;
 
-		return { ...state, snake: newSnake, grid: newGrid, food: newFood };
-	}
-
-	if (type === 'direction') {
-		const newSnake = moveSnake(state.snake, payload, state.grid);
-		const newGrid = createUpdatedGrid(newSnake, state.food);
-		const newFood = isFoodCaught(newSnake, newGrid)
-			? generateRandomFood(newGrid)
-			: state.food;
 		return {
 			...state,
-			direction: payload,
 			snake: newSnake,
 			grid: newGrid,
 			food: newFood
+		};
+	}
+
+	if (type === 'direction') {
+		return {
+			...state,
+			direction: payload
 		};
 	}
 	return state;
@@ -171,8 +181,8 @@ const SnakeGame = () => {
 		updateBoard();
 	};
 
-	const changeDirectionWithKeys = e => {
-		switch (e.key) {
+	const changeDirectionWithKeys = ({ key }) => {
+		switch (key) {
 			case 'ArrowUp':
 				dispatch({ type: 'direction', payload: 'up' });
 				break;
@@ -265,7 +275,7 @@ const SnakeGame = () => {
 		() => {
 			dispatch({ type: 'heartbeat' });
 		},
-		direction !== 'pause' ? 80 : null
+		direction !== 'pause' ? 500 : null
 	);
 	return (
 		<>
