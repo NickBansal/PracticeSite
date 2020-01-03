@@ -51,6 +51,22 @@ const Begin = styled(Pause)`
 const rowsLength = 15;
 const emptyBoard = createEmptyGame(rowsLength, rowsLength);
 
+const generateRandomFood = grid => {
+	const i = Math.floor(Math.random() * rowsLength);
+	const j = Math.floor(Math.random() * rowsLength);
+	return grid[i][j] === 0 ? [i, j] : generateRandomFood(grid);
+};
+
+const initialState = {
+	grid: emptyBoard,
+	snake: [[7, 7]],
+	food: generateRandomFood(emptyBoard),
+	direction: 'pause',
+	gameStart: false,
+	score: 0,
+	gameOver: false
+};
+
 const createUpdatedGrid = (snake, food) => {
 	const newGrid = createEmptyGame(rowsLength, rowsLength);
 	snake.forEach(([x, y]) => {
@@ -58,12 +74,6 @@ const createUpdatedGrid = (snake, food) => {
 	});
 	newGrid[food[0]][food[1]] = 2;
 	return newGrid;
-};
-
-const generateRandomFood = grid => {
-	const i = Math.floor(Math.random() * rowsLength);
-	const j = Math.floor(Math.random() * rowsLength);
-	return grid[i][j] === 0 ? [i, j] : generateRandomFood(grid);
 };
 
 const isFoodCaught = (snake, grid) => {
@@ -149,6 +159,10 @@ const reducer = (state, action) => {
 		};
 	}
 
+	if (type === 'restart') {
+		return initialState;
+	}
+
 	if (type === 'direction') {
 		return {
 			...state,
@@ -159,15 +173,7 @@ const reducer = (state, action) => {
 };
 
 const SnakeGame = () => {
-	const [state, dispatch] = useReducer(reducer, {
-		grid: emptyBoard,
-		snake: [[7, 7]],
-		food: generateRandomFood(emptyBoard),
-		direction: 'pause',
-		gameStart: false,
-		score: 0,
-		gameOver: false
-	});
+	const [state, dispatch] = useReducer(reducer, initialState);
 
 	const { grid, snake, food, direction, score, gameOver, gameStart } = state;
 
@@ -179,6 +185,8 @@ const SnakeGame = () => {
 		newGrid[food[0]][food[1]] = 2;
 		dispatch({ type: 'grid', payload: newGrid });
 	};
+
+	const restartGame = () => dispatch({ type: 'restart' });
 
 	useEffect(() => {
 		updateBoard();
@@ -209,9 +217,7 @@ const SnakeGame = () => {
 	}, []);
 
 	useInterval(
-		() => {
-			dispatch({ type: 'heartbeat' });
-		},
+		() => dispatch({ type: 'heartbeat' }),
 		direction !== 'pause' && !gameOver ? 80 : null
 	);
 	return (
@@ -242,7 +248,7 @@ const SnakeGame = () => {
 					arrow key to continue
 				</Pause>
 			)}
-			{gameOver && <GameOver score={score} restartGame={() => {}} />}
+			{gameOver && <GameOver score={score} restartGame={restartGame} />}
 		</>
 	);
 };
