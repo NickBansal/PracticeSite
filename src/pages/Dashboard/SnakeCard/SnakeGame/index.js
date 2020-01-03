@@ -31,7 +31,7 @@ const Container = styled.div`
 
 const Pause = styled.div`
 	color: white;
-	top: 80%;
+	top: 75%;
 	position: absolute;
 	left: 50%;
 	transform: translate(-50%, 0);
@@ -124,6 +124,9 @@ const reducer = (state, action) => {
 	const { payload, type } = action;
 
 	if (type === 'heartbeat') {
+		if (state.direction === 'pause') {
+			return { ...state };
+		}
 		const newSnake = moveSnake(state.snake, state.direction, state.grid);
 		const newGrid = createUpdatedGrid(newSnake, state.food);
 		const newFood = isFoodCaught(newSnake, newGrid)
@@ -225,6 +228,12 @@ const SnakeGame = () => {
 					<h2>Welcome</h2>
 					Please press any arrow key to begin the game
 				</Begin>
+			)}
+			{direction === 'pause' && gameStart && (
+				<Pause>
+					<h3 style={{ margin: 0 }}>Game paused</h3>Please press any
+					arrow key to continue
+				</Pause>
 			)}
 		</>
 	);
