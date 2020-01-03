@@ -74,17 +74,17 @@ const isFoodCaught = (snake, grid) => {
 	return false;
 };
 
-const hasSnakeHitItself = (snake, grid) => {
-	const newSnake = snake.slice();
-	const [x, y] = newSnake[0];
-	if (grid[x][y] === 1 && snake.length > 1) {
-		const sound = new Audio(over);
-		sound.volume = 0.6;
-		setTimeout(() => sound.play(), 400);
-		return true;
-	}
-	return false;
-};
+// const hasSnakeHitItself = (snake, grid) => {
+// 	const newSnake = snake.slice();
+// 	const [x, y] = newSnake[0];
+// 	if (grid[x][y] === 1 && snake.length > 1) {
+// 		const sound = new Audio(over);
+// 		sound.volume = 0.6;
+// 		setTimeout(() => sound.play(), 400);
+// 		return true;
+// 	}
+// 	return false;
+// };
 
 const moveSnake = (snake, direction, grid) => {
 	const newSnake = snake.slice();
@@ -204,78 +204,11 @@ const SnakeGame = () => {
 		document.addEventListener('keydown', changeDirectionWithKeys, false);
 	}, []);
 
-	const moveSnake = () => {
-		// const isFoodCaught = () => {
-		// 	if (grid[movement[0]][movement[1]] === 2) {
-		// 		newSnake.unshift(food);
-		// 		dispatch({
-		// 			type: 'food',
-		// 			payload: generateRandomFood(grid, rowsLength)
-		// 		});
-		// 		dispatch({ type: 'score', payload: score + 1 });
-		// 		const sound = new Audio(splash);
-		// 		sound.volume = 0.3;
-		// 		sound.play();
-		// 	}
-		// newSnake.unshift(movement);
-		// newSnake.pop();
-		// };
-
-		// const checkSnakeHitItself = () => {
-		// 	if (grid[movement[0]][movement[1]] === 1 && snake.length > 1) {
-		// 		dispatch({ type: 'gameOver', payload: true });
-		// 		dispatch({ type: 'direction', payload: 'pause' });
-		// 		const sound = new Audio(over);
-		// 		sound.volume = 0.6;
-		// 		setTimeout(() => sound.play(), 400);
-		// 	}
-		// };
-
-		// const checkMovement = () => {
-		// 	checkSnakeHitItself();
-		// 	isFoodCaught();
-		// };
-
-		if (!gameOver) {
-			// switch (direction) {
-			// 	case 'up':
-			// 		movement = y < 1 ? [x, y + rowsLength - 1] : [x, y - 1];
-			// 		// checkMovement();
-			// 		break;
-			// 	case 'down':
-			// 		movement =
-			// 			y === rowsLength - 1
-			// 				? [x, y - rowsLength + 1]
-			// 				: [x, y + 1];
-			// 		// checkMovement();
-			// 		break;
-			// 	case 'left':
-			// 		movement = x < 1 ? [x + rowsLength - 1, y] : [x - 1, y];
-			// 		// checkMovement();
-			// 		break;
-			// 	case 'right':
-			// 		movement =
-			// 			x === rowsLength - 1
-			// 				? [x - rowsLength + 1, y]
-			// 				: [x + 1, y];
-			// 		// checkMovement();
-			// 		break;
-			// 	default:
-			// }
-			// newSnake.unshift(movement);
-			// newSnake.pop();
-		}
-
-		// dispatch({ type: 'snake', payload: newSnake });
-
-		updateBoard();
-	};
-
 	useInterval(
 		() => {
 			dispatch({ type: 'heartbeat' });
 		},
-		direction !== 'pause' ? 500 : null
+		direction !== 'pause' ? 80 : null
 	);
 	return (
 		<>
