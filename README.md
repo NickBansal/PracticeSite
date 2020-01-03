@@ -10,13 +10,13 @@ The dream is - in time this should represent a good collection of ideas and skil
 - [X] Profile card
 - [X] Animated modals
 - [X] Using web sockets
-- [] Testing web sockets
+- [ ] Testing web sockets
 - [X] Live news feed
 - [X] Live chat app
 - [X] new Audio()
 - [X] Drum machine
 - [X] Snake
 - [X] useReducers
-- [] HTML canvas
-- [] Tetris
-- [] User authentication
+- [ ] HTML canvas
+- [ ] Tetris
+- [ ] User authentication
