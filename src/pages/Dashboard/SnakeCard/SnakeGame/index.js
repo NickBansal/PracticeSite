@@ -70,7 +70,7 @@ const SnakeGame = () => {
 		newGrid[food[0]][food[1]] = 2;
 		dispatch({ type: 'grid', payload: newGrid });
 	};
-	console.log(speed);
+
 	const restartGame = () => dispatch({ type: 'restart' });
 
 	useEffect(() => {

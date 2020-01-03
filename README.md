@@ -8,5 +8,15 @@ The dream is - in time this should represent a good collection of ideas and skil
 
 - [X] Lazy load images
 - [X] Profile card
+- [X] Animated modals
+- [X] Using web sockets
+- [] Testing web sockets
 - [X] Live news feed
-- [ ] Live chat app
+- [X] Live chat app
+- [X] new Audio()
+- [X] Drum machine
+- [X] Snake
+- [X] useReducers
+- [] HTML canvas
+- [] Tetris
+- [] User authentication
