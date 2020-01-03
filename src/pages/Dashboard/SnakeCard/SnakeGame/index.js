@@ -29,7 +29,7 @@ const Container = styled.div`
 	}
 `;
 
-const Pause = styled.p`
+const Pause = styled.div`
 	color: white;
 	top: 80%;
 	position: absolute;
@@ -42,6 +42,10 @@ const Pause = styled.p`
 	@media (min-width: ${breakPoints.mobileMax}) {
 		font-size: ${fontSize.title};
 	}
+`;
+
+const Begin = styled(Pause)`
+	top: 30%;
 `;
 
 const rowsLength = 15;
@@ -122,7 +126,6 @@ const reducer = (state, action) => {
 	if (type === 'heartbeat') {
 		const newSnake = moveSnake(state.snake, state.direction, state.grid);
 		const newGrid = createUpdatedGrid(newSnake, state.food);
-
 		const newFood = isFoodCaught(newSnake, newGrid)
 			? generateRandomFood(newGrid)
 			: state.food;
@@ -131,7 +134,8 @@ const reducer = (state, action) => {
 			...state,
 			snake: newSnake,
 			grid: newGrid,
-			food: newFood
+			food: newFood,
+			gameStart: true
 		};
 	}
 
@@ -150,11 +154,12 @@ const SnakeGame = () => {
 		snake: [[7, 7]],
 		food: generateRandomFood(emptyBoard),
 		direction: 'pause',
+		gameStart: false,
 		score: 0,
 		gameOver: false
 	});
 
-	const { grid, snake, food, direction, score, gameOver } = state;
+	const { grid, snake, food, direction, score, gameOver, gameStart } = state;
 
 	const updateBoard = () => {
 		const newGrid = createEmptyGame(rowsLength, rowsLength);
@@ -169,17 +174,6 @@ const SnakeGame = () => {
 		updateBoard();
 		// eslint-disable-next-line
 	}, [gameOver]);
-
-	const restartGame = () => {
-		dispatch({ type: 'gameOver', payload: false });
-		dispatch({ type: 'score', payload: 0 });
-		dispatch({
-			type: 'food',
-			payload: generateRandomFood(createEmptyGame(rowsLength, rowsLength))
-		});
-		dispatch({ type: 'snake', payload: [[7, 7]] });
-		updateBoard();
-	};
 
 	const changeDirectionWithKeys = ({ key }) => {
 		switch (key) {
@@ -226,9 +220,11 @@ const SnakeGame = () => {
 				))}
 			</Container>
 			<Score score={score} />
-			{gameOver && <GameOver restartGame={restartGame} score={score} />}
-			{direction === 'pause' && !gameOver && (
-				<Pause>Paused - Press the arrow keys to continue</Pause>
+			{!gameStart && (
+				<Begin>
+					<h2>Welcome</h2>
+					Please press any arrow key to begin the game
+				</Begin>
 			)}
 		</>
 	);
