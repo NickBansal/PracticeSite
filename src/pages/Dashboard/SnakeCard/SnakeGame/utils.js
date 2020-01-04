@@ -1,18 +1,20 @@
 import createEmptyGame from '../../../../utils/functions/createEmptyGame';
+import CONSTANTS from '../../../../constants';
 
-const rowsLength = 15;
-const emptyBoard = createEmptyGame(rowsLength, rowsLength);
+const { SNAKE_ROWS_LENGTH } = CONSTANTS;
+
+const emptyBoard = createEmptyGame(SNAKE_ROWS_LENGTH, SNAKE_ROWS_LENGTH);
 
 export const generateRandomFood = grid => {
-	const i = Math.floor(Math.random() * rowsLength);
-	const j = Math.floor(Math.random() * rowsLength);
+	const i = Math.floor(Math.random() * SNAKE_ROWS_LENGTH);
+	const j = Math.floor(Math.random() * SNAKE_ROWS_LENGTH);
 	return grid[i][j] === 0 ? [i, j] : generateRandomFood(grid);
 };
 
 export const initialState = {
 	grid: emptyBoard,
 	snake: [[7, 7]],
-	food: generateRandomFood(emptyBoard, rowsLength),
+	food: generateRandomFood(emptyBoard, SNAKE_ROWS_LENGTH),
 	direction: 'pause',
 	gameStart: false,
 	score: 0,
@@ -21,7 +23,7 @@ export const initialState = {
 };
 
 export const createUpdatedGrid = (snake, food) => {
-	const newGrid = createEmptyGame(rowsLength, rowsLength);
+	const newGrid = createEmptyGame(SNAKE_ROWS_LENGTH, SNAKE_ROWS_LENGTH);
 	snake.forEach(([x, y]) => {
 		newGrid[x][y] = 1;
 	});
@@ -50,18 +52,22 @@ export const moveSnake = (snake, direction, grid) => {
 	let movement;
 	switch (direction) {
 		case 'up':
-			movement = y < 1 ? [x, y + rowsLength - 1] : [x, y - 1];
+			movement = y < 1 ? [x, y + SNAKE_ROWS_LENGTH - 1] : [x, y - 1];
 			break;
 		case 'down':
 			movement =
-				y === rowsLength - 1 ? [x, y - rowsLength + 1] : [x, y + 1];
+				y === SNAKE_ROWS_LENGTH - 1
+					? [x, y - SNAKE_ROWS_LENGTH + 1]
+					: [x, y + 1];
 			break;
 		case 'left':
-			movement = x < 1 ? [x + rowsLength - 1, y] : [x - 1, y];
+			movement = x < 1 ? [x + SNAKE_ROWS_LENGTH - 1, y] : [x - 1, y];
 			break;
 		case 'right':
 			movement =
-				x === rowsLength - 1 ? [x - rowsLength + 1, y] : [x + 1, y];
+				x === SNAKE_ROWS_LENGTH - 1
+					? [x - SNAKE_ROWS_LENGTH + 1, y]
+					: [x + 1, y];
 			break;
 		default:
 	}
