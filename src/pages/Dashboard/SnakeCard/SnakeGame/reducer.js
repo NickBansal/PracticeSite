@@ -26,9 +26,7 @@ export default (state, action) => {
 							? state.speed - 5
 							: state.speed
 			  }
-			: {
-					...state
-			  };
+			: state;
 
 		const isGameOver = hasSnakeHitItself(newSnake, state.grid);
 

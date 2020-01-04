@@ -5,8 +5,7 @@ import {
 	breakPoints,
 	fontSize
 } from '../../../../utils/globalStyles/constants';
-import { initialState, rowsLength } from './utils';
-import createEmptyGame from '../../../../utils/functions/createEmptyGame';
+import { initialState } from './utils';
 import reducer from './reducer';
 import useInterval from '../../../../utils/hooks/useInterval';
 import Cells from './Cells';
@@ -51,32 +50,9 @@ const Begin = styled(Pause)`
 const SnakeGame = () => {
 	const [state, dispatch] = useReducer(reducer, initialState);
 
-	const {
-		grid,
-		snake,
-		food,
-		direction,
-		score,
-		gameOver,
-		gameStart,
-		speed
-	} = state;
-
-	const updateBoard = () => {
-		const newGrid = createEmptyGame(rowsLength, rowsLength);
-		snake.forEach(([x, y]) => {
-			newGrid[x][y] = 1;
-		});
-		newGrid[food[0]][food[1]] = 2;
-		dispatch({ type: 'grid', payload: newGrid });
-	};
+	const { grid, direction, score, gameOver, gameStart, speed } = state;
 
 	const restartGame = () => dispatch({ type: 'restart' });
-
-	useEffect(() => {
-		updateBoard();
-		// eslint-disable-next-line
-	}, [gameOver]);
 
 	const changeDirectionWithKeys = ({ key }) => {
 		switch (key) {

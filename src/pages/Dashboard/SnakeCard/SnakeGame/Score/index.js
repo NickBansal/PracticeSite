@@ -6,7 +6,7 @@ import {
 	fontSize
 } from '../../../../../utils/globalStyles/constants';
 
-const Text = styled.p`
+const Text = styled.div`
 	color: white;
 	letter-spacing: 1px;
 	background: ${colors.pink};

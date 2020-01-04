@@ -2,7 +2,7 @@ import splash from '../../../../assets/snake/splash.mp3';
 import over from '../../../../assets/snake/gameOver.mp3';
 import createEmptyGame from '../../../../utils/functions/createEmptyGame';
 
-export const rowsLength = 15;
+const rowsLength = 15;
 const emptyBoard = createEmptyGame(rowsLength, rowsLength);
 
 export const generateRandomFood = grid => {
@@ -14,12 +14,12 @@ export const generateRandomFood = grid => {
 export const initialState = {
 	grid: emptyBoard,
 	snake: [[7, 7]],
-	food: generateRandomFood(emptyBoard),
+	food: generateRandomFood(emptyBoard, rowsLength),
 	direction: 'pause',
 	gameStart: false,
 	score: 0,
 	gameOver: false,
-	speed: 60
+	speed: 600
 };
 
 export const createUpdatedGrid = (snake, food) => {

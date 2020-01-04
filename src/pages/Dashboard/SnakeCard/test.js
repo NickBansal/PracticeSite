@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, waitForElement } from '@testing-library/react';
 import Snake from '.';
 
 describe('<Snake />', () => {
@@ -13,6 +13,8 @@ describe('<Snake />', () => {
 
 		fireEvent.click(getByText('Click to play'));
 		fireEvent.keyDown(document.body, { key: 'ArrowUp' });
+
+		await waitForElement(() => getByTestId('food'));
 
 		expect(getByTestId('food')).toBeInTheDocument();
 		expect(getByTestId('snake')).toBeInTheDocument();
