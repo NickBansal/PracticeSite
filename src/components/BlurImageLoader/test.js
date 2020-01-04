@@ -1,6 +1,8 @@
 import React from 'react';
-import { render, wait } from '@testing-library/react';
+import { render, act } from '@testing-library/react';
 import BlurImageLoader from '.';
+
+jest.useFakeTimers();
 
 describe('<BlurImageLoader />', () => {
 	let wrapper;
@@ -23,13 +25,13 @@ describe('<BlurImageLoader />', () => {
 	it('should render the image blurry', () => {
 		expect(wrapper.getByText('Test')).toBeInTheDocument();
 	});
-	it('should render a clear image when the image has loaded', async () => {
+	it('should render a clear image when the image has loaded', () => {
 		expect(wrapper.getByText('Test')).toHaveStyleRule(
 			'filter',
 			'blur(30px)'
 		);
 
-		await wait();
+		act(() => jest.runOnlyPendingTimers());
 
 		expect(wrapper.getByText('Test')).toHaveStyleRule('filter', 'none');
 	});

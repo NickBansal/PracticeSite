@@ -8,7 +8,7 @@ describe('<ProfileCard />', () => {
 		expect(getByText('Nick Bansal')).toBeInTheDocument();
 		expect(getByText('Junior Web Developer')).toBeInTheDocument();
 	});
-	it('should show the profile card when the button is clicked', async () => {
+	it('should show the profile card when the button is clicked', () => {
 		const {
 			getByText,
 			queryByLabelText,
