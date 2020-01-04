@@ -2,7 +2,6 @@ import React from 'react';
 import { render, fireEvent, act } from '@testing-library/react';
 import Snake from '.';
 
-jest.useFakeTimers();
 describe('<Snake />', () => {
 	it('should start a new game of snake', () => {
 		const { getByText, queryByTestId, getByTestId } = render(

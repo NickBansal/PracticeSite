@@ -2,8 +2,6 @@ import React from 'react';
 import { render, fireEvent, act } from '@testing-library/react';
 import DrumLoop from '.';
 
-jest.useFakeTimers();
-
 describe('<DrumLoop />', () => {
 	beforeEach(() => {
 		Object.defineProperty(

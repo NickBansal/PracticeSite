@@ -6,4 +6,6 @@ const mockGeolocation = {
 	watchPosition: jest.fn()
 };
 
+jest.useFakeTimers();
+
 global.navigator.geolocation = mockGeolocation;
