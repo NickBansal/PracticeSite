@@ -6,6 +6,8 @@ import {
 	hasSnakeHitItself,
 	moveSnake
 } from './utils';
+import splash from '../../../../assets/snake/splash.mp3';
+import over from '../../../../assets/snake/gameOver.mp3';
 
 export default (state, action) => {
 	const { payload, type } = action;
@@ -15,20 +17,31 @@ export default (state, action) => {
 			return state;
 		}
 
+		let newState = {};
+		let isGameOver = false;
 		const newSnake = moveSnake(state.snake, state.direction, state.grid);
 		const newGrid = createUpdatedGrid(newSnake, state.food);
-		const newState = isFoodCaught(newSnake, newGrid)
-			? {
-					food: generateRandomFood(newGrid),
-					score: state.score + 1,
-					speed:
-						(state.score + 1) % 10 === 0 && state.score > 0
-							? state.speed - 5
-							: state.speed
-			  }
-			: state;
 
-		const isGameOver = hasSnakeHitItself(newSnake, state.grid);
+		if (isFoodCaught(newSnake, newGrid)) {
+			const sound = new Audio(splash);
+			sound.volume = 0.3;
+			sound.play();
+			newState = {
+				food: generateRandomFood(newGrid),
+				score: state.score + 1,
+				speed:
+					(state.score + 1) % 10 === 0 && state.score > 0
+						? state.speed - 5
+						: state.speed
+			};
+		}
+
+		if (hasSnakeHitItself(newSnake, state.grid)) {
+			const sound = new Audio(over);
+			sound.volume = 0.6;
+			setTimeout(() => sound.play(), 400);
+			isGameOver = true;
+		}
 
 		return {
 			...state,

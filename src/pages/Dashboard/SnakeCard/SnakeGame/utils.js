@@ -1,5 +1,3 @@
-import splash from '../../../../assets/snake/splash.mp3';
-import over from '../../../../assets/snake/gameOver.mp3';
 import createEmptyGame from '../../../../utils/functions/createEmptyGame';
 
 const rowsLength = 15;
@@ -34,22 +32,13 @@ export const createUpdatedGrid = (snake, food) => {
 export const isFoodCaught = (snake, grid) => {
 	const newSnake = snake.slice();
 	const [x, y] = newSnake[0];
-	if (grid[x][y] === 2) {
-		const sound = new Audio(splash);
-		sound.volume = 0.3;
-		sound.play();
-		return true;
-	}
-	return false;
+	return grid[x][y] === 2;
 };
 
 export const hasSnakeHitItself = (snake, grid) => {
 	const newSnake = snake.slice();
 	const [x, y] = newSnake[0];
 	if (grid[x][y] === 1 && snake.length > 1) {
-		const sound = new Audio(over);
-		sound.volume = 0.6;
-		setTimeout(() => sound.play(), 400);
 		return true;
 	}
 	return false;
