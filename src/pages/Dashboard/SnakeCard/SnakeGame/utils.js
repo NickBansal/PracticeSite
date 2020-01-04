@@ -19,7 +19,7 @@ export const initialState = {
 	gameStart: false,
 	score: 0,
 	gameOver: false,
-	speed: 600
+	speed: 60
 };
 
 export const createUpdatedGrid = (snake, food) => {
