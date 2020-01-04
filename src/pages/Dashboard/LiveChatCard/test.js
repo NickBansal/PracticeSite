@@ -4,13 +4,13 @@ import LiveChatCard from '.';
 
 describe('<LiveChatCard />', () => {
 	it('should render a title', () => {
-		const { getByText } = render(<LiveChatCard />);
+		const { getByText } = render(<LiveChatCard rand="0" />);
 		expect(getByText('Live')).toBeInTheDocument();
 	});
 
 	it('should sign in and out of the chat room', async () => {
 		const { getByText, queryByRole, getAllByRole } = render(
-			<LiveChatCard />
+			<LiveChatCard rand="0" />
 		);
 
 		expect(queryByRole('form')).not.toBeInTheDocument();

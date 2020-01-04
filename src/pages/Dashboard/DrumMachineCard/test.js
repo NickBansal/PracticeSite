@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, act } from '@testing-library/react';
 import DrumLoop from '.';
 
 jest.useFakeTimers();
@@ -20,7 +20,7 @@ describe('<DrumLoop />', () => {
 		);
 	});
 	it('should display a drum track', () => {
-		const { getByText, queryByText } = render(<DrumLoop />);
+		const { getByText, queryByText } = render(<DrumLoop rand="0" />);
 
 		expect(queryByText('Kick')).not.toBeInTheDocument();
 		expect(queryByText('Snare')).not.toBeInTheDocument();
@@ -34,7 +34,7 @@ describe('<DrumLoop />', () => {
 	});
 
 	it('should start a new drum loop', () => {
-		const { getByText, getByLabelText } = render(<DrumLoop />);
+		const { getByText, getByLabelText } = render(<DrumLoop rand="0" />);
 
 		fireEvent.click(getByText('Click to play'));
 
@@ -42,14 +42,14 @@ describe('<DrumLoop />', () => {
 
 		fireEvent.click(getByLabelText('Play/Pause button'));
 
-		jest.runOnlyPendingTimers();
+		act(() => jest.runOnlyPendingTimers());
 
 		expect(getByText('1')).toHaveStyleRule('transform', 'scale(1)');
 		expect(getByText('2')).toHaveStyleRule('transform', 'scale(1.3)');
 	});
 
 	it('should add a new drum sample when a square is clicked and change color', () => {
-		const { getAllByLabelText, getByText } = render(<DrumLoop />);
+		const { getAllByLabelText, getByText } = render(<DrumLoop rand="0" />);
 
 		fireEvent.click(getByText('Click to play'));
 

@@ -4,7 +4,7 @@ import ProfileCard from '.';
 
 describe('<ProfileCard />', () => {
 	it('should render a title', () => {
-		const { getByText } = render(<ProfileCard />);
+		const { getByText } = render(<ProfileCard rand="0" />);
 		expect(getByText('Nick Bansal')).toBeInTheDocument();
 		expect(getByText('Junior Web Developer')).toBeInTheDocument();
 	});
@@ -16,7 +16,7 @@ describe('<ProfileCard />', () => {
 			getByAltText,
 			getAllByLabelText,
 			getAllByRole
-		} = render(<ProfileCard />);
+		} = render(<ProfileCard rand="0" />);
 
 		expect(queryByLabelText('Overlay modal')).toBeNull();
 
