@@ -56,7 +56,7 @@ describe('<Snake />', () => {
 			getByText('Please press any arrow key to continue')
 		).toBeInTheDocument();
 
-		fireEvent.keyDown(document.body, { key: 'ArrowUp' });
+		fireEvent.keyDown(document.body, { key: 'ArrowLeft' });
 
 		expect(
 			queryByText('Please press any arrow key to continue')
@@ -81,7 +81,7 @@ describe('<Snake />', () => {
 		expect(getByText('Score: 1', { exact: false })).toBeInTheDocument();
 	});
 
-	it.only('should inform the player when game is over and restart the game when restart is clicked', () => {
+	it('should inform the player when game is over and restart the game when restart is clicked', () => {
 		const { getByText } = render(<Snake rand="0" />);
 
 		fireEvent.click(getByText('Click to play'));
