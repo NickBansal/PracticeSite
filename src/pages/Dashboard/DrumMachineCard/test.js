@@ -127,6 +127,23 @@ describe('<DrumLoop />', () => {
 		expect(getByText('3')).toHaveStyleRule('transform', 'scale(1.3)');
 	});
 
+	it('should reset the drumloop when the reset button is pressed', () => {
+		const { getByText, getByLabelText, getAllByLabelText } = render(
+			<DrumLoop rand="0" />
+		);
+
+		fireEvent.click(getByText('Click to play'));
+		fireEvent.click(getByLabelText('Play/Pause button'));
+
+		fireEvent.click(getByLabelText('Reset button'));
+
+		const drumSamples = getAllByLabelText('drum-sample');
+
+		drumSamples.forEach(drum => {
+			expect(drum).toHaveStyleRule('background', '#000000a8');
+		});
+	});
+
 	it('should add a new drum sample when a square is clicked and change color', () => {
 		const { getAllByLabelText, getByText } = render(<DrumLoop rand="0" />);
 
