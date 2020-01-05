@@ -52,7 +52,9 @@ const SnakeGame = () => {
 
 	const { grid, direction, score, gameOver, gameStart, speed } = state;
 
-	const restartGame = () => dispatch({ type: 'restart' });
+	const restartGame = () => {
+		dispatch({ type: 'restart' });
+	};
 
 	const changeDirectionWithKeys = ({ key }) => {
 		switch (key) {
@@ -78,7 +80,9 @@ const SnakeGame = () => {
 	}, []);
 
 	useInterval(
-		() => dispatch({ type: 'heartbeat' }),
+		() => {
+			dispatch({ type: 'heartbeat' });
+		},
 		direction !== 'pause' && !gameOver ? speed : null
 	);
 
