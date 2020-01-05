@@ -14,7 +14,7 @@ export const generateRandomFood = grid => {
 export const initialState = {
 	grid: emptyBoard,
 	snake: [[7, 7]],
-	food: generateRandomFood(emptyBoard, SNAKE_ROWS_LENGTH),
+	food: [9, 7],
 	direction: 'pause',
 	gameStart: false,
 	score: 0,
