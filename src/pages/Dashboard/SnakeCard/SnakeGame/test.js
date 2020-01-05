@@ -79,8 +79,8 @@ describe('Util functions testing', () => {
 		expect(moveSnake(snake4, 'down', grid)).toEqual([[1, 0]]);
 
 		// RIGHT
-		const snake5 = [[0, 0], [0, 1]];
-		expect(moveSnake(snake5, 'right', grid)).toEqual([[1, 0], [0, 0]]);
+		const snake5 = [[0, 2], [0, 1]];
+		expect(moveSnake(snake5, 'right', grid)).toEqual([[1, 2], [0, 2]]);
 		const snake6 = [[1, 2]];
 		expect(moveSnake(snake6, 'right', grid)).toEqual([[2, 2]]);
 
