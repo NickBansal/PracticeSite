@@ -5,21 +5,6 @@ import Snake from '.';
 jest.useFakeTimers();
 
 describe('<Snake />', () => {
-	beforeEach(() => {
-		Object.defineProperty(
-			global.window.HTMLMediaElement.prototype,
-			'play',
-			{
-				configurable: true,
-
-				get() {
-					setTimeout(() => this.onloadeddata && this.onloadeddata());
-					return () => {};
-				}
-			}
-		);
-	});
-
 	it('should start a new game of snake', () => {
 		const { getByText, queryByTestId, getByTestId } = render(
 			<Snake rand="0" />
@@ -56,7 +41,7 @@ describe('<Snake />', () => {
 			getByText('Please press any arrow key to continue')
 		).toBeInTheDocument();
 
-		fireEvent.keyDown(document.body, { key: 'ArrowLeft' });
+		fireEvent.keyDown(document.body, { key: 'ArrowDown' });
 
 		expect(
 			queryByText('Please press any arrow key to continue')

@@ -5,20 +5,6 @@ import DrumLoop from '.';
 jest.useFakeTimers();
 
 describe('<DrumLoop />', () => {
-	beforeEach(() => {
-		Object.defineProperty(
-			global.window.HTMLMediaElement.prototype,
-			'play',
-			{
-				configurable: true,
-
-				get() {
-					setTimeout(() => this.onloadeddata && this.onloadeddata());
-					return () => {};
-				}
-			}
-		);
-	});
 	it('should display a drum track', () => {
 		const { getByText, queryByText } = render(<DrumLoop rand="0" />);
 

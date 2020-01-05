@@ -7,3 +7,12 @@ const mockGeolocation = {
 };
 
 global.navigator.geolocation = mockGeolocation;
+
+Object.defineProperty(global.window.HTMLMediaElement.prototype, 'play', {
+	configurable: true,
+
+	get() {
+		setTimeout(() => this.onloadeddata && this.onloadeddata());
+		return () => {};
+	}
+});
