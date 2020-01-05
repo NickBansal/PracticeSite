@@ -135,6 +135,7 @@ const Controls = ({
 				}}
 				className={`i-link fas fa-volume-${level} fa-2x`}
 				aria-label="Volume button"
+				data-testid={`volume-${level}`}
 			/>
 		</Container>
 	);

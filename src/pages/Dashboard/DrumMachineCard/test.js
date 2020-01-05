@@ -144,6 +144,24 @@ describe('<DrumLoop />', () => {
 		});
 	});
 
+	it('should change the volume levels when the volume button is pressed', () => {
+		const { getByText, getByLabelText, getByTestId } = render(
+			<DrumLoop rand="0" />
+		);
+
+		fireEvent.click(getByText('Click to play'));
+
+		expect(getByTestId('volume-mute')).toBeInTheDocument();
+
+		fireEvent.click(getByLabelText('Volume button'));
+
+		expect(getByTestId('volume-down')).toBeInTheDocument();
+
+		fireEvent.click(getByLabelText('Volume button'));
+
+		expect(getByTestId('volume-up')).toBeInTheDocument();
+	});
+
 	it('should add a new drum sample when a square is clicked and change color', () => {
 		const { getAllByLabelText, getByText } = render(<DrumLoop rand="0" />);
 
