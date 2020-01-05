@@ -3,8 +3,10 @@ import {
 	createUpdatedGrid,
 	isFoodCaught,
 	hasSnakeHitItself,
-	moveSnake
+	moveSnake,
+	initialState
 } from './utils';
+import reducer from './reducer';
 
 jest.mock('../../../../constants', () => ({ SNAKE_ROWS_LENGTH: 3 }));
 
@@ -98,5 +100,15 @@ describe('Util functions testing', () => {
 			[0, 1],
 			[0, 2]
 		]);
+	});
+});
+
+describe('Reducer function', () => {
+	it('should return the initial state if game is paused', () => {
+		expect(reducer(initialState, { type: 'heartbeat' })).toBe(initialState);
+	});
+
+	it('should return the initial state if type is unknown', () => {
+		expect(reducer(initialState, { type: 'unknown' })).toBe(initialState);
 	});
 });
