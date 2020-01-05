@@ -48,6 +48,20 @@ describe('<DrumLoop />', () => {
 		expect(getByText('2')).toHaveStyleRule('transform', 'scale(1.3)');
 	});
 
+	it('should restart the drum loop once its hit the end', () => {
+		const { getByText, getByLabelText } = render(<DrumLoop rand="0" />);
+
+		fireEvent.click(getByText('Click to play'));
+
+		expect(getByText('1')).toHaveStyleRule('transform', 'scale(1.3)');
+
+		fireEvent.click(getByLabelText('Play/Pause button'));
+
+		act(() => jest.advanceTimersByTime(3000));
+
+		expect(getByText('1')).toHaveStyleRule('transform', 'scale(1.3)');
+	});
+
 	it('should add a new drum sample when a square is clicked and change color', () => {
 		const { getAllByLabelText, getByText } = render(<DrumLoop rand="0" />);
 
