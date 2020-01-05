@@ -21,4 +21,30 @@ describe('<Snake />', () => {
 		expect(getByTestId('food')).toBeInTheDocument();
 		expect(getByTestId('snake')).toBeInTheDocument();
 	});
+
+	it('should show a start meassage and a pause message when needed', () => {
+		const { getByText, queryByText } = render(<Snake rand="0" />);
+
+		fireEvent.click(getByText('Click to play'));
+
+		expect(
+			getByText('Please press any arrow key to begin the game')
+		).toBeInTheDocument();
+
+		fireEvent.keyDown(document.body, { key: 'ArrowUp' });
+
+		act(() => jest.advanceTimersByTime(60));
+
+		fireEvent.keyDown(document.body, { key: 'Enter' });
+
+		expect(
+			getByText('Please press any arrow key to continue')
+		).toBeInTheDocument();
+
+		fireEvent.keyDown(document.body, { key: 'ArrowUp' });
+
+		expect(
+			queryByText('Please press any arrow key to continue')
+		).not.toBeInTheDocument();
+	});
 });
