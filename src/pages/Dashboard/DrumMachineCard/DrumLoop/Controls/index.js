@@ -107,24 +107,11 @@ const Controls = ({
 
 			<Icon
 				onClick={() => {
-					setDrums([
-						Array(8).fill(false),
-						Array(8).fill(false),
-						Array(8).fill(false),
-						Array(8).fill(false),
-						Array(8).fill(false),
-						Array(8).fill(false),
-						Array(8).fill(false),
-						Array(8).fill(false),
-						Array(8).fill(false),
-						Array(8).fill(false),
-						Array(8).fill(false),
-						Array(8).fill(false),
-						Array(8).fill(false),
-						Array(8).fill(false),
-						Array(8).fill(false),
-						Array(8).fill(false)
-					]);
+					setDrums(
+						Array(16)
+							.fill(0)
+							.map(() => Array(8).fill(0))
+					);
 				}}
 				className="i-link fas fa-undo fa-2x"
 				aria-label="Reset button"
