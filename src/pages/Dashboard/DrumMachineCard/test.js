@@ -160,6 +160,10 @@ describe('<DrumLoop />', () => {
 		fireEvent.click(getByLabelText('Volume button'));
 
 		expect(getByTestId('volume-up')).toBeInTheDocument();
+
+		fireEvent.click(getByLabelText('Volume button'));
+
+		expect(getByTestId('volume-mute')).toBeInTheDocument();
 	});
 
 	it('should add a new drum sample when a square is clicked and change color', () => {
