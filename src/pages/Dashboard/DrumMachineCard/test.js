@@ -62,7 +62,7 @@ describe('<DrumLoop />', () => {
 		expect(getByText('1')).toHaveStyleRule('transform', 'scale(1.3)');
 	});
 
-	it('should increase the speed of the bpm is increased', () => {
+	it('should increase the speed of the loop when the bpm is increased', () => {
 		const { getByText, getByLabelText, getByRole } = render(
 			<DrumLoop rand="0" />
 		);
@@ -105,6 +105,26 @@ describe('<DrumLoop />', () => {
 		expect(getByText('1')).toHaveStyleRule('transform', 'scale(1.3)');
 		act(() => jest.advanceTimersByTime(200));
 		expect(getByText('1')).toHaveStyleRule('transform', 'scale(1.3)');
+	});
+
+	it('should pause the loop stop playing when the pause button is pressed', () => {
+		const { getByText, getByLabelText } = render(<DrumLoop rand="0" />);
+
+		fireEvent.click(getByText('Click to play'));
+
+		expect(getByText('1')).toHaveStyleRule('transform', 'scale(1.3)');
+
+		fireEvent.click(getByLabelText('Play/Pause button'));
+
+		act(() => jest.advanceTimersByTime(200));
+		expect(getByText('2')).toHaveStyleRule('transform', 'scale(1.3)');
+		act(() => jest.advanceTimersByTime(200));
+		expect(getByText('3')).toHaveStyleRule('transform', 'scale(1.3)');
+
+		fireEvent.click(getByLabelText('Play/Pause button'));
+
+		act(() => jest.advanceTimersByTime(200));
+		expect(getByText('3')).toHaveStyleRule('transform', 'scale(1.3)');
 	});
 
 	it('should add a new drum sample when a square is clicked and change color', () => {
