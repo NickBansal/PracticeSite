@@ -76,7 +76,9 @@ const SnakeGame = () => {
 	};
 
 	useEffect(() => {
-		document.addEventListener('keydown', changeDirectionWithKeys, false);
+		document.addEventListener('keydown', changeDirectionWithKeys);
+		return () =>
+			document.removeEventListener('keydown', changeDirectionWithKeys);
 	}, []);
 
 	useInterval(
