@@ -103,7 +103,7 @@ const SnakeGame = () => {
 					</Column>
 				))}
 			</Container>
-			<Score score={score} />
+			<Score score={score} speed={speed} />
 			{paused && (
 				<Pause>
 					<h3 style={{ margin: 0 }}>Game paused</h3>

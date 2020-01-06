@@ -105,10 +105,38 @@ describe('Util functions testing', () => {
 
 describe('Reducer function', () => {
 	it('should return the initial state if game is paused', () => {
-		expect(reducer(initialState, { type: 'heartbeat' })).toBe(initialState);
+		expect(
+			reducer(
+				{
+					...initialState,
+					direction: 'pause'
+				},
+				{
+					type: 'heartbeat'
+				}
+			)
+		).toEqual(initialState);
 	});
 
 	it('should return the initial state if type is unknown', () => {
 		expect(reducer(initialState, { type: 'unknown' })).toBe(initialState);
 	});
+
+	// it('should return the increase the speed if food is caught and score is equal to 10', () => {
+	// 	expect(
+	// 		reducer(
+	// 			{
+	// 				...initialState,
+	// 				snake: [[7, 7], [8, 7]],
+	// 				food: [9, 7],
+	// 				score: 10,
+	// 				speed: 60,
+	// 				direction: 'right'
+	// 			},
+	// 			{
+	// 				type: 'heartbeat'
+	// 			}
+	// 		)
+	// 	).toEqual(initialState);
+	// });
 });

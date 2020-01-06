@@ -34,7 +34,7 @@ export default (state, action) => {
 				food: generateRandomFood(newGrid),
 				score: state.score + 1,
 				speed:
-					(state.score + 1) % 10 === 0 && state.score > 0
+					(state.score + 1) % 5 === 0 && state.score > 0
 						? state.speed - 5
 						: state.speed
 			};
