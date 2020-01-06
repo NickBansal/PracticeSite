@@ -1,26 +1,8 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
+import { breakPoints, colors } from '../../../../utils/globalStyles/constants';
+
 import Information from './Information';
-import createEmptyGame from '../../../../utils/functions/createEmptyGame';
-import { colors, breakPoints } from '../../../../utils/globalStyles/constants';
-
-const Game = styled.div`
-	width: fit-content;
-	height: 602px;
-	min-width: 361px;
-	border: 5px solid ${colors.pink};
-`;
-
-const Column = styled.div`
-	display: inline-block;
-`;
-
-const Cells = styled.div`
-	width: 30px;
-	height: 30px;
-	background: black;
-	border: 0.05px solid #fffafa26;
-`;
 
 const Container = styled.div`
 	display: flex;
@@ -34,12 +16,31 @@ const Container = styled.div`
 	}
 `;
 
-const grid = createEmptyGame(12, 20);
+const Canvas = styled.canvas`
+	border: 5px solid black;
+`;
 
-const TetrisGame = () => {
+const TetrisGame = (props = {}) => {
+	const { width = 300, height = 600, pixelRatio = 30 } = props;
+
+	const canvas = useRef(null);
+
+	useEffect(() => {
+		const context = canvas.current.getContext('2d');
+
+		context.save();
+		context.scale(pixelRatio, pixelRatio);
+		context.fillStyle = colors.yellow;
+		context.fillRect(0, 0, width, height);
+	}, []);
+
+	const dw = Math.floor(pixelRatio * width);
+	const dh = Math.floor(pixelRatio * height);
+	const style = { width, height };
+
 	return (
 		<Container>
-			<Game>
+			{/* <Game>
 				{grid.map((col, i) => (
 					<Column key={String(i)}>
 						{col.map((_, j) => (
@@ -47,7 +48,8 @@ const TetrisGame = () => {
 						))}
 					</Column>
 				))}
-			</Game>
+			</Game> */}
+			<Canvas ref={canvas} width={dw} height={dh} style={style} />
 			<Information />
 		</Container>
 	);
