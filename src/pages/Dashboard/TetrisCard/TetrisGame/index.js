@@ -18,19 +18,38 @@ const Container = styled.div`
 
 const Canvas = styled.canvas`
 	border: 5px solid black;
+	border-radius: 10px;
 `;
 
-const TetrisGame = (props = {}) => {
-	const { width = 300, height = 600, pixelRatio = 30 } = props;
+const TetrisGame = () => {
+	const width = 300;
+	const height = 600;
+	const pixelRatio = 30;
 
 	const canvas = useRef(null);
 
 	useEffect(() => {
 		const context = canvas.current.getContext('2d');
-		context.save();
+
 		context.scale(pixelRatio, pixelRatio);
 		context.fillStyle = colors.yellow;
 		context.fillRect(0, 0, width, height);
+
+		const matrix = [[0, 0, 3], [3, 3, 3], [0, 0, 0]];
+
+		const drawShape = shape => {
+			context.scale(pixelRatio, pixelRatio);
+			shape.forEach((row, y) => {
+				row.forEach((value, x) => {
+					if (value !== 0) {
+						context.fillStyle = 'red';
+						context.fillRect(x, y, 1, 1);
+					}
+				});
+			});
+		};
+
+		drawShape(matrix);
 		// eslint-disable-next-line
 	}, []);
 

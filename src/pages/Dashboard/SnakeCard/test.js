@@ -48,15 +48,10 @@ describe('<Snake />', () => {
 		).not.toBeInTheDocument();
 	});
 
-	it('should increase the snakes size when food is caught', () => {
+	it('should increase the snakes size and increase the score when food is caught', () => {
 		const { getByText, getAllByTestId } = render(<Snake rand="0" />);
 
 		fireEvent.click(getByText('Click to play'));
-
-		expect(
-			getByText('Please press any arrow key to begin the game')
-		).toBeInTheDocument();
-
 		fireEvent.keyDown(document.body, { key: 'ArrowRight' });
 
 		act(() => jest.advanceTimersByTime(180));
@@ -70,11 +65,6 @@ describe('<Snake />', () => {
 		const { getByText } = render(<Snake rand="0" />);
 
 		fireEvent.click(getByText('Click to play'));
-
-		expect(
-			getByText('Please press any arrow key to begin the game')
-		).toBeInTheDocument();
-
 		fireEvent.keyDown(document.body, { key: 'ArrowRight' });
 
 		act(() => jest.advanceTimersByTime(180));
