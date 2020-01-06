@@ -5,7 +5,7 @@ import {
 	createUpdatedGrid,
 	hasSnakeHitItself,
 	moveSnake
-} from './utils';
+} from './snake';
 import createEmptyGame from '../../../../utils/functions/createEmptyGame';
 import splash from '../../../../assets/snake/splash.mp3';
 import over from '../../../../assets/snake/gameOver.mp3';

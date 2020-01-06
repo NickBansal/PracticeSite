@@ -27,11 +27,11 @@ const TetrisGame = (props = {}) => {
 
 	useEffect(() => {
 		const context = canvas.current.getContext('2d');
-
 		context.save();
 		context.scale(pixelRatio, pixelRatio);
 		context.fillStyle = colors.yellow;
 		context.fillRect(0, 0, width, height);
+		// eslint-disable-next-line
 	}, []);
 
 	const dw = Math.floor(pixelRatio * width);

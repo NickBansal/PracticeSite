@@ -5,7 +5,7 @@ import {
 	hasSnakeHitItself,
 	moveSnake,
 	initialState
-} from './utils';
+} from './snake';
 import reducer from './reducer';
 
 jest.mock('../../../../constants', () => ({ SNAKE_ROWS_LENGTH: 3 }));

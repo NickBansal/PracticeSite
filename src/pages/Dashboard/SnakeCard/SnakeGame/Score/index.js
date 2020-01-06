@@ -6,7 +6,7 @@ import {
 	fontSize,
 	spacing
 } from '../../../../../utils/globalStyles/constants';
-import { speedLevel } from '../utils';
+import { speedLevel } from '../snake';
 
 const Text = styled.div`
 	color: white;
