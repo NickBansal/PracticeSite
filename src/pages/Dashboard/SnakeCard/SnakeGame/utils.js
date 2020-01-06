@@ -79,3 +79,18 @@ export const moveSnake = (snake, direction, grid) => {
 
 	return newSnake;
 };
+
+export const speedLevel = {
+	12: 12.5,
+	11: 25,
+	10: 37.5,
+	9: 50,
+	8: 62.5,
+	7: 75,
+	6: 87.5,
+	5: 100,
+	4: 112.5,
+	3: 120.5,
+	2: 137.5,
+	1: 150
+};
