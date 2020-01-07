@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useReducer } from 'react';
 import styled from 'styled-components';
 import {
 	colors,
@@ -8,6 +8,7 @@ import {
 import { initialState } from './snake';
 import reducer from './reducer';
 import useInterval from '../../../../utils/hooks/useInterval';
+import useEvent from '../../../../utils/hooks/useEvents';
 import Cells from './Cells';
 import GameOver from './GameOver';
 import Score from './Score';
@@ -75,11 +76,7 @@ const SnakeGame = () => {
 		}
 	};
 
-	useEffect(() => {
-		document.addEventListener('keydown', changeDirectionWithKeys);
-		return () =>
-			document.removeEventListener('keydown', changeDirectionWithKeys);
-	}, []);
+	useEvent('keydown', changeDirectionWithKeys);
 
 	useInterval(
 		() => {

@@ -23,7 +23,7 @@ const SpaceInvadersGame = () => {
 		context.fillRect(0, 0, width, height);
 
 		// eslint-disable-next-line
-	}, []);
+    }, []);
 
 	const dw = state.width * state.pixelRatio;
 	const dh = state.height * state.pixelRatio;
