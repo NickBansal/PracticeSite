@@ -1,28 +1,16 @@
 import createEmptyGame from '../../../../utils/functions/createEmptyGame';
 import CONSTANTS from '../../../../constants';
 
-const { SNAKE_ROWS_LENGTH } = CONSTANTS;
-
-const emptyBoard = createEmptyGame(SNAKE_ROWS_LENGTH, SNAKE_ROWS_LENGTH);
-
 export const generateRandomFood = grid => {
+	const { SNAKE_ROWS_LENGTH } = CONSTANTS();
 	const i = Math.floor(Math.random() * SNAKE_ROWS_LENGTH);
 	const j = Math.floor(Math.random() * SNAKE_ROWS_LENGTH);
 	return grid[i][j] === 0 ? [i, j] : generateRandomFood(grid);
 };
 
-export const initialState = {
-	grid: emptyBoard,
-	snake: [[7, 7]],
-	food: [9, 7],
-	direction: 'pause',
-	gameStart: false,
-	score: 0,
-	gameOver: false,
-	speed: 60
-};
-
 export const createUpdatedGrid = (snake, food) => {
+	const { SNAKE_ROWS_LENGTH } = CONSTANTS();
+
 	const newGrid = createEmptyGame(SNAKE_ROWS_LENGTH, SNAKE_ROWS_LENGTH);
 	snake.forEach(([x, y]) => {
 		newGrid[x][y] = 1;
@@ -47,6 +35,7 @@ export const hasSnakeHitItself = (snake, grid) => {
 };
 
 export const moveSnake = (snake, direction, grid) => {
+	const { SNAKE_ROWS_LENGTH } = CONSTANTS();
 	const newSnake = snake.slice();
 	const [x, y] = newSnake[0];
 	let movement;

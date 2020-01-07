@@ -3,6 +3,18 @@ import { render, fireEvent, act } from '@testing-library/react';
 import Snake from '.';
 
 jest.useFakeTimers();
+jest.mock('./SnakeGame/initialState', () => ({
+	grid: Array(15)
+		.fill(0)
+		.map(() => Array(15).fill(0)),
+	snake: [[7, 7]],
+	food: [9, 7],
+	direction: 'pause',
+	gameStart: false,
+	score: 0,
+	gameOver: false,
+	speed: 60
+}));
 
 describe('<Snake />', () => {
 	it('should start a new game of snake', () => {

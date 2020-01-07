@@ -1,17 +1,15 @@
 import {
 	generateRandomFood,
-	initialState,
 	isFoodCaught,
 	createUpdatedGrid,
 	hasSnakeHitItself,
 	moveSnake
 } from './snake';
+import initialState from './initialState';
 import createEmptyGame from '../../../../utils/functions/createEmptyGame';
 import splash from '../../../../assets/snake/splash.mp3';
 import over from '../../../../assets/snake/gameOver.mp3';
 import CONSTANTS from '../../../../constants';
-
-const { SNAKE_ROWS_LENGTH } = CONSTANTS;
 
 export default (state, action) => {
 	const { payload, type } = action;
@@ -58,6 +56,8 @@ export default (state, action) => {
 	}
 
 	if (type === 'restart') {
+		const { SNAKE_ROWS_LENGTH } = CONSTANTS();
+
 		return {
 			...initialState,
 			food: generateRandomFood(

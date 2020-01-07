@@ -3,20 +3,29 @@ import {
 	createUpdatedGrid,
 	isFoodCaught,
 	hasSnakeHitItself,
-	moveSnake,
-	initialState
+	moveSnake
 } from './snake';
+import initialState from './initialState';
 import reducer from './reducer';
 
-jest.mock('../../../../constants', () => ({ SNAKE_ROWS_LENGTH: 3 }));
+import CONSTANTS from '../../../../constants';
+
+jest.mock('../../../../constants', () =>
+	jest.fn(() => ({ SNAKE_ROWS_LENGTH: 3 }))
+);
 
 describe('Util functions testing', () => {
+	beforeEach(() => {
+		CONSTANTS.mockReturnValue({ SNAKE_ROWS_LENGTH: 3 });
+	});
 	it('generateRandomFood', () => {
-		const grid1 = [[1, 1, 1], [1, 0, 1], [1, 1, 1]];
+		CONSTANTS.mockReturnValue({ SNAKE_ROWS_LENGTH: 2 });
+
+		const grid1 = [[1, 1], [1, 0]];
 		expect(generateRandomFood(grid1)).toEqual([1, 1]);
 
-		const grid2 = [[1, 1, 1], [1, 1, 1], [1, 1, 0]];
-		expect(generateRandomFood(grid2)).toEqual([2, 2]);
+		const grid2 = [[1, 1], [0, 1]];
+		expect(generateRandomFood(grid2)).toEqual([1, 0]);
 	});
 
 	it('createUpdatedGrid', () => {
@@ -104,6 +113,7 @@ describe('Util functions testing', () => {
 });
 
 describe('Reducer function', () => {
+	beforeEach(() => jest.resetModules());
 	it('should return the initial state if game is paused', () => {
 		expect(
 			reducer(
@@ -122,21 +132,23 @@ describe('Reducer function', () => {
 		expect(reducer(initialState, { type: 'unknown' })).toBe(initialState);
 	});
 
-	// it('should return the increase the speed if food is caught and score is equal to 10', () => {
-	// 	expect(
-	// 		reducer(
-	// 			{
-	// 				...initialState,
-	// 				snake: [[7, 7], [8, 7]],
-	// 				food: [9, 7],
-	// 				score: 10,
-	// 				speed: 60,
-	// 				direction: 'right'
-	// 			},
-	// 			{
-	// 				type: 'heartbeat'
-	// 			}
-	// 		)
-	// 	).toEqual(initialState);
-	// });
+	it.only('should return the increase the speed if food is caught and score is equal to 10', () => {
+		const reducers = require('./reducer').default;
+		CONSTANTS.mockReturnValue({ SNAKE_ROWS_LENGTH: 15 });
+		expect(
+			reducers(
+				{
+					...initialState,
+					snake: [[7, 7], [8, 7]],
+					food: [9, 7],
+					score: 10,
+					speed: 60,
+					direction: 'right'
+				},
+				{
+					type: 'heartbeat'
+				}
+			)
+		).toEqual(initialState);
+	});
 });

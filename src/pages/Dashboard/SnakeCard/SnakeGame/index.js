@@ -5,7 +5,7 @@ import {
 	breakPoints,
 	fontSize
 } from '../../../../utils/globalStyles/constants';
-import { initialState } from './snake';
+import initialState from './initialState';
 import reducer from './reducer';
 import useInterval from '../../../../utils/hooks/useInterval';
 import Cells from './Cells';

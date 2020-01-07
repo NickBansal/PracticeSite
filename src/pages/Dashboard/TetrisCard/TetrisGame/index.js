@@ -30,26 +30,30 @@ const TetrisGame = () => {
 
 	useEffect(() => {
 		const context = canvas.current.getContext('2d');
-
 		context.scale(pixelRatio, pixelRatio);
 		context.fillStyle = colors.yellow;
 		context.fillRect(0, 0, width, height);
 
 		const matrix = [[0, 0, 3], [3, 3, 3], [0, 0, 0]];
 
-		const drawShape = shape => {
+		const player = {
+			pos: { x: 5, y: 5 },
+			matrix
+		};
+
+		const drawShape = (shape, offset) => {
 			context.scale(pixelRatio, pixelRatio);
 			shape.forEach((row, y) => {
 				row.forEach((value, x) => {
 					if (value !== 0) {
 						context.fillStyle = 'red';
-						context.fillRect(x, y, 1, 1);
+						context.fillRect(x + offset.x, y + offset.y, 1, 1);
 					}
 				});
 			});
 		};
 
-		drawShape(matrix);
+		drawShape(player.matrix, player.pos);
 		// eslint-disable-next-line
 	}, []);
 
