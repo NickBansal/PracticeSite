@@ -5,12 +5,14 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import backgroundImage from '../../assets/dashboard/thailand.JPG';
 import { GlobalStyle } from '../../utils/globalStyles';
 import { breakPoints } from '../../utils/globalStyles/constants';
+
 import ProfileCard from './ProfileCard';
 import NewsFeedCard from './NewsFeedCard';
 import LiveChatCard from './LiveChatCard';
 import DrumMachineCard from './DrumMachineCard';
 import SnakeCard from './SnakeCard';
 import TetrisCard from './TetrisCard';
+import SpaceInvaders from './SpaceInvadersCard';
 
 const CardContainer = styled.div`
 	display: flex;
@@ -29,7 +31,8 @@ const components = [
 	LiveChatCard,
 	DrumMachineCard,
 	SnakeCard,
-	TetrisCard
+	TetrisCard,
+	SpaceInvaders
 ];
 
 const randomOrder = Array(components.length)

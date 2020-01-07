@@ -59,15 +59,6 @@ const TetrisGame = () => {
 
 	return (
 		<Container>
-			{/* <Game>
-				{grid.map((col, i) => (
-					<Column key={String(i)}>
-						{col.map((_, j) => (
-							<Cells key={String(j)} />
-						))}
-					</Column>
-				))}
-			</Game> */}
 			<Canvas ref={canvas} width={dw} height={dh} style={style} />
 			<Information />
 		</Container>
