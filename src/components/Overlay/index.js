@@ -68,6 +68,7 @@ const Information = styled(TransitionEffects)`
 	border-radius: 8px;
 	transform: translate(-50%, 0);
 	width: 95%;
+	text-align: center;
 
 	@media (min-width: ${breakPoints.mobile}) {
 		width: 90%;

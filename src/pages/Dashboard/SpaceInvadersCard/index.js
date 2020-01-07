@@ -5,6 +5,7 @@ import BlurImageLoader from '../../../components/BlurImageLoader';
 import spaceinvaders from '../../../assets/spaceInvaders/spaceinvaders.jpg';
 import { boxShadow } from '../../../utils/globalStyles/constants/index';
 import Overlay from '../../../components/Overlay';
+import SpaceInvadersGame from './SpaceInvaders';
 
 const Image = styled(BlurImageLoader)`
 	-webkit-box-shadow: ${boxShadow};
@@ -28,7 +29,7 @@ const SpaceInvadersCard = ({ rand }) => {
 				/>
 			</Card.Content>
 			<Overlay showOverlay={showOverlay} handleClick={setShowOverlay}>
-				{/* <TetrisGame /> */}
+				<SpaceInvadersGame />
 			</Overlay>
 			<Card.Button onClick={() => setShowOverlay(true)}>
 				Click to play
