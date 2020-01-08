@@ -20,10 +20,10 @@ const Game = styled.div`
 `;
 
 const Arena = () => {
-	const [game, setGame] = useState('snake');
+	const [game, setGame] = useState('Snake');
 	return (
 		<Container>
-			<Selections setGame={setGame} />
+			<Selections setGame={setGame} game={game} />
 			<Game game={game} />
 		</Container>
 	);

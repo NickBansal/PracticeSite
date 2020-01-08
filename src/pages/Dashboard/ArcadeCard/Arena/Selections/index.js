@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { colors, spacing } from '../../../../../utils/globalStyles/constants';
+import {
+	colors,
+	spacing,
+	transitionSpeed
+} from '../../../../../utils/globalStyles/constants';
 import { HR } from '../../../../../utils/globalStyles';
 
 const Selection = styled.div`
@@ -13,16 +17,18 @@ const Selection = styled.div`
 	font-weight: bold;
 `;
 
-const GameItem = styled.p`
+const GameItem = styled.div`
 	margin: 0;
 	padding: ${spacing.s3};
+	background: ${({ current }) =>
+		current ? colors.darkYellow : colors.yellow};
 	font-size: 1.2rem
 	&:hover {
 		cursor: pointer;
 		background: ${colors.darkYellow};
 	}
 
-	transition: background 0.3s;
+	transition: background ${transitionSpeed};
 `;
 
 const HRStyle = styled(HR)`
@@ -31,12 +37,15 @@ const HRStyle = styled(HR)`
 
 const gameList = ['Snake', 'Tetris', 'Space Invaders'];
 
-const Selections = ({ setGame }) => (
+const Selections = ({ setGame, game }) => (
 	<Selection>
-		{gameList.map(game => {
+		{gameList.map(item => {
+			const current = game === item;
 			return (
-				<React.Fragment key={game}>
-					<GameItem>{game}</GameItem>
+				<React.Fragment key={item}>
+					<GameItem current={current} onClick={() => setGame(item)}>
+						{item}
+					</GameItem>
 					<HRStyle />
 				</React.Fragment>
 			);
