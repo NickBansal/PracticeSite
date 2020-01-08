@@ -1,38 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { colors } from '../../../../utils/globalStyles/constants';
+import Selections from './Selections';
 
 const Container = styled.div`
 	width: 800px;
 	height: 600px;
-`;
-
-const Selection = styled.div`
-	display: inline-block;
-	height: 100%;
-	width: 25%;
-	border: 5px solid black;
-	background: ${colors.yellow};
-	border-top-left-radius: 8px;
-	border-bottom-left-radius: 8px;
+	display: flex;
 `;
 
 const Game = styled.div`
-	display: inline-block;
 	height: 100%;
-	width: 73%;
 	border: 5px solid black;
-	border-left: 0;
 	background: ${colors.yellow};
+	width: 73%;
+	border-left: 0;
 	border-top-right-radius: 8px;
 	border-bottom-right-radius: 8px;
 `;
 
-const Arena = () => (
-	<Container>
-		<Selection />
-		<Game />
-	</Container>
-);
+const Arena = () => {
+	const [game, setGame] = useState('snake');
+	return (
+		<Container>
+			<Selections setGame={setGame} />
+			<Game game={game} />
+		</Container>
+	);
+};
 
 export default Arena;

@@ -14,7 +14,7 @@ const LiveChatCard = ({ rand }) => {
 		setuserDetails(false);
 	};
 
-	const showChatForm = () => !messageScreen && userDetails;
+	const showChatForm = !messageScreen && userDetails;
 
 	return (
 		<Card fadeIn={rand}>
@@ -22,13 +22,13 @@ const LiveChatCard = ({ rand }) => {
 				<LiveText>Live</LiveText> chat
 			</Card.Title>
 			<Card.Content>
-				{showChatForm() && (
+				{showChatForm && (
 					<ChatForm showMessageScreen={showMessageScreen} />
 				)}
 				{messageScreen && !userDetails && <MessageScreen />}
 			</Card.Content>
 
-			{!showChatForm() && (
+			{!showChatForm && (
 				<Card.Button
 					onClick={() => {
 						if (!messageScreen && !userDetails) {
