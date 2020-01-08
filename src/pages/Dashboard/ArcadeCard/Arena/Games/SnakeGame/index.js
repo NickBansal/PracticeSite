@@ -103,7 +103,7 @@ const SnakeGame = () => {
 			)}
 			{!gameStart && (
 				<Begin>
-					<h2>Welcome</h2>
+					<h2>Welcome to snake</h2>
 					Please press any arrow key to begin the game
 				</Begin>
 			)}
