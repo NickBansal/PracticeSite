@@ -14,20 +14,16 @@ const Text = styled.div`
 	display: flex;
 	justify-content: space-around;
 	background: ${colors.pink};
-	font-size: ${fontSize.regular};
+	font-size: ${fontSize.title};
 	text-align: center;
 	margin: 0 auto;
-	border-bottom: 5px solid ${colors.pink};
-	border-left: 5px solid ${colors.pink};
-	border-right: 5px solid ${colors.pink};
-	width: 375px;
-	min-width: 375px;
+	border: 5px solid ${colors.pink};
+	border-top: 0;
 
-	@media (min-width: ${breakPoints.mobileMax}) {
-		width: 600px;
-		font-size: ${fontSize.title};
-		letter-spacing: 1.5px;
-	}
+	border-bottom-right-radius: 4px;
+	width: 530px;
+	letter-spacing: 1.5px;
+	padding: 5px;
 `;
 
 const Level = styled.div`

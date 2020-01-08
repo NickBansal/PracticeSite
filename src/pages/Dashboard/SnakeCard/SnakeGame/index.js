@@ -18,15 +18,11 @@ const Column = styled.div`
 `;
 
 const Container = styled.div`
-	width: fit-content;
-	min-width: 375px;
+	width: 540px;
 	margin: 0 auto;
-	height: 375px;
+	height: 540px;
 	border: 5px solid ${colors.pink};
-
-	@media (min-width: ${breakPoints.mobileMax}) {
-		height: 600px;
-	}
+	border-top-right-radius: 4px;
 `;
 
 const Pause = styled.div`
