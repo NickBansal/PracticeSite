@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import pints from '../../../../../assets/snake/pint.svg';
-import { colors } from '../../../../../utils/globalStyles/constants';
+import pints from '../../../../../../../assets/snake/pint.svg';
+import { colors } from '../../../../../../../utils/globalStyles/constants';
 
 const Tile = styled.div`
 	width: ${({ snake }) => (snake ? '34px' : '36px')};

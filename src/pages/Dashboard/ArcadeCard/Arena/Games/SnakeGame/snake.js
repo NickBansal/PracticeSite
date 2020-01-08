@@ -1,5 +1,5 @@
-import createEmptyGame from '../../../../utils/functions/createEmptyGame';
-import CONSTANTS from '../../../../constants';
+import createEmptyGame from '../../../../../../utils/functions/createEmptyGame';
+import CONSTANTS from '../../../../../../constants';
 
 const { SNAKE_ROWS_LENGTH } = CONSTANTS;
 

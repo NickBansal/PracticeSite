@@ -2,13 +2,12 @@ import React, { useReducer } from 'react';
 import styled from 'styled-components';
 import {
 	colors,
-	breakPoints,
 	fontSize
-} from '../../../../utils/globalStyles/constants';
+} from '../../../../../../utils/globalStyles/constants';
 import { initialState } from './snake';
 import reducer from './reducer';
-import useInterval from '../../../../utils/hooks/useInterval';
-import useEvent from '../../../../utils/hooks/useEvents';
+import useInterval from '../../../../../../utils/hooks/useInterval';
+import useEvent from '../../../../../../utils/hooks/useEvents';
 import Cells from './Cells';
 import GameOver from './GameOver';
 import Score from './Score';
@@ -27,17 +26,14 @@ const Container = styled.div`
 
 const Pause = styled.div`
 	color: white;
-	top: 75%;
+	top: 78%;
 	position: absolute;
-	left: 50%;
+	left: 70%;
 	transform: translate(-50%, 0);
 	font-size: ${fontSize.small};
-	width: 600px;
+	width: 490px;
 	text-align: center;
-
-	@media (min-width: ${breakPoints.mobileMax}) {
-		font-size: ${fontSize.title};
-	}
+	font-size: 1.2rem;
 `;
 
 const Begin = styled(Pause)`

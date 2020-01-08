@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Selections from './Selections';
-import Game from './Game';
+import Games from './Games';
 
 const Container = styled.div`
 	width: 800px;
@@ -14,7 +14,7 @@ const Arena = () => {
 	return (
 		<Container>
 			<Selections setGame={setGame} game={game} />
-			<Game game={game} />
+			<Games game={game} />
 		</Container>
 	);
 };

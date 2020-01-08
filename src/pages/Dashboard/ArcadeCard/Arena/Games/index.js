@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { colors } from '../../../../../utils/globalStyles/constants';
 
-import SnakeGame from '../../../SnakeCard/SnakeGame';
+import SnakeGame from './SnakeGame';
 
 const Container = styled.div`
 	height: 100%;
@@ -14,8 +14,12 @@ const Container = styled.div`
 	border-bottom-right-radius: 8px;
 `;
 
-const Game = ({ game }) => (
-	<Container>{game === 'Snake' && <SnakeGame />}</Container>
+const Games = ({ game }) => (
+	<Container>
+		{game === 'Snake' && <SnakeGame />}
+		{game === 'Tetris' && <div>TETRIS</div>}
+		{game === 'Space Invaders' && <div> SPACE INVADERS</div>}
+	</Container>
 );
 
-export default Game;
+export default Games;

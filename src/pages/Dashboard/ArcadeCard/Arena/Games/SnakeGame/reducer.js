@@ -6,10 +6,10 @@ import {
 	hasSnakeHitItself,
 	moveSnake
 } from './snake';
-import createEmptyGame from '../../../../utils/functions/createEmptyGame';
-import splash from '../../../../assets/snake/splash.mp3';
-import over from '../../../../assets/snake/gameOver.mp3';
-import CONSTANTS from '../../../../constants';
+import createEmptyGame from '../../../../../../utils/functions/createEmptyGame';
+import splash from '../../../../../../assets/snake/splash.mp3';
+import over from '../../../../../../assets/snake/gameOver.mp3';
+import CONSTANTS from '../../../../../../constants';
 
 const { SNAKE_ROWS_LENGTH } = CONSTANTS;
 

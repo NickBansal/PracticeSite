@@ -4,8 +4,8 @@ import {
 	colors,
 	spacing,
 	transitionSpeed
-} from '../../../../../utils/globalStyles/constants';
-import { HR } from '../../../../../utils/globalStyles';
+} from '../../../../../../../utils/globalStyles/constants';
+import { HR } from '../../../../../../../utils/globalStyles';
 
 const Restart = styled.button`
 	display: block;
@@ -32,7 +32,7 @@ const Over = styled.div`
 	color: white;
 	position: absolute;
 	transform: translate(-50%, 0);
-	left: 50%;
+	left: 70%;
 	top: 20%;
 	width: 300px;
 	height: 150px;

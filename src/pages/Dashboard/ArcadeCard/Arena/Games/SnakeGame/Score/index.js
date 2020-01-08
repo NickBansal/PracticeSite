@@ -5,7 +5,7 @@ import {
 	breakPoints,
 	fontSize,
 	spacing
-} from '../../../../../utils/globalStyles/constants';
+} from '../../../../../../../utils/globalStyles/constants';
 import { speedLevel } from '../snake';
 
 const Text = styled.div`
@@ -19,7 +19,6 @@ const Text = styled.div`
 	margin: 0 auto;
 	border: 5px solid ${colors.pink};
 	border-top: 0;
-
 	border-bottom-right-radius: 4px;
 	width: 530px;
 	letter-spacing: 1.5px;

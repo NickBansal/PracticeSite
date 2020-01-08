@@ -10,7 +10,6 @@ import ProfileCard from './ProfileCard';
 import NewsFeedCard from './NewsFeedCard';
 import LiveChatCard from './LiveChatCard';
 import DrumMachineCard from './DrumMachineCard';
-import SnakeCard from './SnakeCard';
 import TetrisCard from './TetrisCard';
 import SpaceInvaders from './SpaceInvadersCard';
 import ArcadeCard from './ArcadeCard';
@@ -31,7 +30,6 @@ const components = [
 	NewsFeedCard,
 	LiveChatCard,
 	DrumMachineCard,
-	SnakeCard,
 	TetrisCard,
 	SpaceInvaders,
 	ArcadeCard
