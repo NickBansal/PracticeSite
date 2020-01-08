@@ -5,7 +5,7 @@ import BlurImageLoader from '../../../components/BlurImageLoader';
 import arcade from '../../../assets/arcade/arcade.jpg';
 import { boxShadow } from '../../../utils/globalStyles/constants/index';
 import Overlay from '../../../components/Overlay';
-import Games from './Games';
+import Arena from './Arena';
 
 const Image = styled(BlurImageLoader)`
 	-webkit-box-shadow: ${boxShadow};
@@ -14,7 +14,7 @@ const Image = styled(BlurImageLoader)`
 	border-radius: 10px;
 `;
 
-const SpaceInvadersCard = ({ rand }) => {
+const ArcadeCard = ({ rand }) => {
 	const [showOverlay, setShowOverlay] = useState(false);
 	return (
 		<Card fadeIn={rand}>
@@ -29,7 +29,7 @@ const SpaceInvadersCard = ({ rand }) => {
 				/>
 			</Card.Content>
 			<Overlay showOverlay={showOverlay} handleClick={setShowOverlay}>
-				<Games />
+				<Arena />
 			</Overlay>
 			<Card.Button onClick={() => setShowOverlay(true)}>
 				Click to play
@@ -38,4 +38,4 @@ const SpaceInvadersCard = ({ rand }) => {
 	);
 };
 
-export default SpaceInvadersCard;
+export default ArcadeCard;
