@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { colors } from '../../../../../utils/globalStyles/constants';
 
 import SnakeGame from './SnakeGame';
+import TetrisGame from './TetrisGame';
 
 const Container = styled.div`
 	height: 100%;
@@ -17,7 +18,7 @@ const Container = styled.div`
 const Games = ({ game }) => (
 	<Container>
 		{game === 'Snake' && <SnakeGame />}
-		{game === 'Tetris' && <div>TETRIS</div>}
+		{game === 'Tetris' && <TetrisGame />}
 		{game === 'Space Invaders' && <div> SPACE INVADERS</div>}
 	</Container>
 );

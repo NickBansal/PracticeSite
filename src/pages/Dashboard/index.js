@@ -10,8 +10,6 @@ import ProfileCard from './ProfileCard';
 import NewsFeedCard from './NewsFeedCard';
 import LiveChatCard from './LiveChatCard';
 import DrumMachineCard from './DrumMachineCard';
-import TetrisCard from './TetrisCard';
-import SpaceInvaders from './SpaceInvadersCard';
 import ArcadeCard from './ArcadeCard';
 
 const CardContainer = styled.div`
@@ -30,8 +28,6 @@ const components = [
 	NewsFeedCard,
 	LiveChatCard,
 	DrumMachineCard,
-	TetrisCard,
-	SpaceInvaders,
 	ArcadeCard
 ];
 

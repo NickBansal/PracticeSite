@@ -28,7 +28,7 @@ const Pause = styled.div`
 	color: white;
 	top: 78%;
 	position: absolute;
-	left: 70%;
+	left: 485px;
 	transform: translate(-50%, 0);
 	font-size: ${fontSize.small};
 	width: 490px;

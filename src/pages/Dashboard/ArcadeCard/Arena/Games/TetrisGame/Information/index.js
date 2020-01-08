@@ -4,7 +4,7 @@ import {
 	spacing,
 	fontSize,
 	breakPoints
-} from '../../../../../utils/globalStyles/constants';
+} from '../../../../../../../utils/globalStyles/constants';
 
 const Container = styled.div`
 	display: block;

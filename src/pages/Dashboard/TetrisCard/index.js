@@ -5,7 +5,6 @@ import BlurImageLoader from '../../../components/BlurImageLoader';
 import tetris from '../../../assets/tetris/tetris.jpg';
 import { boxShadow } from '../../../utils/globalStyles/constants/index';
 import Overlay from '../../../components/Overlay';
-import TetrisGame from './TetrisGame';
 
 const Image = styled(BlurImageLoader)`
 	-webkit-box-shadow: ${boxShadow};
@@ -28,9 +27,7 @@ const TetrisCard = ({ rand }) => {
 					placeholder="Tetris game"
 				/>
 			</Card.Content>
-			<Overlay showOverlay={showOverlay} handleClick={setShowOverlay}>
-				<TetrisGame />
-			</Overlay>
+			<Overlay showOverlay={showOverlay} handleClick={setShowOverlay} />
 			<Card.Button onClick={() => setShowOverlay(true)}>
 				Click to play
 			</Card.Button>

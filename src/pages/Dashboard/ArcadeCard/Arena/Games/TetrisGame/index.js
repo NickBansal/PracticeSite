@@ -1,19 +1,14 @@
 import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
-import { breakPoints, colors } from '../../../../utils/globalStyles/constants';
+import { colors } from '../../../../../../utils/globalStyles/constants';
 
 import Information from './Information';
 
 const Container = styled.div`
 	display: flex;
-	flex-direction: column;
-	align-items: center;
+	flex-direction: row;
+	align-items: flex-start;
 	justify-content: center;
-
-	@media (min-width: ${breakPoints.mobileMax}) {
-		flex-direction: row;
-		align-items: flex-start;
-	}
 `;
 
 const Canvas = styled.canvas`
