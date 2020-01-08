@@ -13,15 +13,14 @@ const pixelRatio = window.devicePixelRatio || 1;
 
 const SpaceInvadersGame = () => {
 	const canvas = useRef(null);
+	// eslint-disable-next-line no-unused-vars
 	const [state, setState] = useState({ width, height, pixelRatio });
 
 	useEffect(() => {
 		const context = canvas.current.getContext('2d');
-
 		context.scale(pixelRatio, pixelRatio);
 		context.fillStyle = colors.blue;
 		context.fillRect(0, 0, width, height);
-
 		// eslint-disable-next-line
     }, []);
 

@@ -13,6 +13,7 @@ import DrumMachineCard from './DrumMachineCard';
 import SnakeCard from './SnakeCard';
 import TetrisCard from './TetrisCard';
 import SpaceInvaders from './SpaceInvadersCard';
+import ArcadeCard from './ArcadeCard';
 
 const CardContainer = styled.div`
 	display: flex;
@@ -32,7 +33,8 @@ const components = [
 	DrumMachineCard,
 	SnakeCard,
 	TetrisCard,
-	SpaceInvaders
+	SpaceInvaders,
+	ArcadeCard
 ];
 
 const randomOrder = Array(components.length)
