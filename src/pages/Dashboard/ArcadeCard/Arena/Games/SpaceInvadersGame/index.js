@@ -1,14 +1,13 @@
 import React, { useRef, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { colors } from '../../../../utils/globalStyles/constants';
+import { colors } from '../../../../../../utils/globalStyles/constants';
 
 const Canvas = styled.canvas`
-	border: 5px solid white;
-	border-radius: 10px;
+	border: 5px solid ${colors.pink};
 `;
 
-const width = 500;
-const height = 500;
+const width = 540;
+const height = 580;
 const pixelRatio = window.devicePixelRatio || 1;
 
 const SpaceInvadersGame = () => {
@@ -19,7 +18,7 @@ const SpaceInvadersGame = () => {
 	useEffect(() => {
 		const context = canvas.current.getContext('2d');
 		context.scale(pixelRatio, pixelRatio);
-		context.fillStyle = colors.blue;
+		context.fillStyle = colors.black;
 		context.fillRect(0, 0, width, height);
 		// eslint-disable-next-line
     }, []);

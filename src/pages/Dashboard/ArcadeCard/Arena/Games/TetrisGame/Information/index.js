@@ -1,21 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
-import {
-	fontSize,
-	spacing
-} from '../../../../../../../utils/globalStyles/constants';
+import { spacing } from '../../../../../../../utils/globalStyles/constants';
 import { HR } from '../../../../../../../utils/globalStyles';
 
 const Container = styled.div`
 	display: block;
-	padding: ${spacing.s2} 0;
+	padding: ${spacing.s1} 0;
 `;
 
 const Info = styled.div`
 	height: 40px;
 	width: 250px;
 	border-radius: 1rem;
-	line-height: 1.6;
+	line-height: 2;
 	text-align: center;
 	padding: 0;
 	font-size: 1.3rem;

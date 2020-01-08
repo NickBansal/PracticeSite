@@ -1,142 +1,77 @@
-import {
-	generateRandomFood,
-	createUpdatedGrid,
-	isFoodCaught,
-	hasSnakeHitItself,
-	moveSnake,
-	initialState
-} from './snake';
-import reducer from './reducer';
+import React from 'react';
+import { render, fireEvent, act } from '@testing-library/react';
+import Snake from '.';
 
-jest.mock('../../../../constants', () => ({ SNAKE_ROWS_LENGTH: 3 }));
+jest.useFakeTimers();
 
-describe('Util functions testing', () => {
-	it('generateRandomFood', () => {
-		const grid1 = [[1, 1, 1], [1, 0, 1], [1, 1, 1]];
-		expect(generateRandomFood(grid1)).toEqual([1, 1]);
+describe('<Snake />', () => {
+	it('should start a new game of snake', () => {
+		const { queryByTestId, getByTestId } = render(<Snake />);
 
-		const grid2 = [[1, 1, 1], [1, 1, 1], [1, 1, 0]];
-		expect(generateRandomFood(grid2)).toEqual([2, 2]);
+		expect(queryByTestId('food')).not.toBeInTheDocument();
+		expect(queryByTestId('snake')).not.toBeInTheDocument();
+
+		fireEvent.keyDown(document.body, { key: 'ArrowUp' });
+
+		act(() => jest.advanceTimersByTime(60));
+
+		expect(getByTestId('food')).toBeInTheDocument();
+		expect(getByTestId('snake')).toBeInTheDocument();
 	});
 
-	it('createUpdatedGrid', () => {
-		const snake1 = [[0, 2]];
-		const food1 = [2, 1];
-		expect(createUpdatedGrid(snake1, food1)).toEqual([
-			[0, 0, 1],
-			[0, 0, 0],
-			[0, 2, 0]
-		]);
+	it('should show a start meassage and a pause message when needed', () => {
+		const { getByText, queryByText } = render(<Snake />);
 
-		const snake2 = [[0, 0]];
-		const food2 = [2, 2];
-		expect(createUpdatedGrid(snake2, food2)).toEqual([
-			[1, 0, 0],
-			[0, 0, 0],
-			[0, 0, 2]
-		]);
-
-		const snake3 = [[1, 1]];
-		const food3 = [2, 0];
-		expect(createUpdatedGrid(snake3, food3)).toEqual([
-			[0, 0, 0],
-			[0, 1, 0],
-			[2, 0, 0]
-		]);
-	});
-
-	it('isFoodCaught', () => {
-		const grid1 = [[2, 0, 0], [0, 0, 0], [0, 0, 0]];
-		const snake1 = [[0, 0], [0, 1]];
-		expect(isFoodCaught(snake1, grid1)).toBe(true);
-
-		const grid2 = [[2, 0, 0], [0, 0, 0], [0, 0, 0]];
-		const snake2 = [[1, 1], [2, 1]];
-		expect(isFoodCaught(snake2, grid2)).toBe(false);
-	});
-
-	it('hasSnakeHitItself', () => {
-		const grid1 = [[1, 0, 0], [0, 0, 0], [0, 0, 0]];
-		const snake1 = [[0, 0], [0, 1]];
-		expect(hasSnakeHitItself(snake1, grid1)).toBe(true);
-
-		const grid2 = [[1, 0, 0], [0, 0, 0], [0, 0, 0]];
-		const snake2 = [[1, 1], [2, 1]];
-		expect(isFoodCaught(snake2, grid2)).toBe(false);
-	});
-
-	it('moveSnake', () => {
-		const grid = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
-
-		// UP
-		const snake1 = [[0, 0], [0, 1]];
-		expect(moveSnake(snake1, 'up', grid)).toEqual([[0, 2], [0, 0]]);
-		const snake2 = [[1, 2]];
-		expect(moveSnake(snake2, 'up', grid)).toEqual([[1, 1]]);
-
-		// DOWN
-		const snake3 = [[0, 0], [0, 1]];
-		expect(moveSnake(snake3, 'down', grid)).toEqual([[0, 1], [0, 0]]);
-		const snake4 = [[1, 2]];
-		expect(moveSnake(snake4, 'down', grid)).toEqual([[1, 0]]);
-
-		// RIGHT
-		const snake5 = [[2, 0], [1, 0]];
-		expect(moveSnake(snake5, 'right', grid)).toEqual([[0, 0], [2, 0]]);
-		const snake6 = [[1, 2]];
-		expect(moveSnake(snake6, 'right', grid)).toEqual([[2, 2]]);
-
-		// LEFT
-		const snake7 = [[0, 0], [0, 1]];
-		expect(moveSnake(snake7, 'left', grid)).toEqual([[2, 0], [0, 0]]);
-		const snake8 = [[1, 2]];
-		expect(moveSnake(snake8, 'left', grid)).toEqual([[0, 2]]);
-
-		// SNAKE CATCHES FOOD
-		const gridWithFood = [[2, 0, 0], [0, 0, 0], [0, 0, 0]];
-		const snake9 = [[0, 1], [0, 2]];
-		expect(moveSnake(snake9, 'up', gridWithFood)).toEqual([
-			[0, 0],
-			[0, 1],
-			[0, 2]
-		]);
-	});
-});
-
-describe('Reducer function', () => {
-	it('should return the initial state if game is paused', () => {
 		expect(
-			reducer(
-				{
-					...initialState,
-					direction: 'pause'
-				},
-				{
-					type: 'heartbeat'
-				}
-			)
-		).toEqual(initialState);
+			getByText('Please press any arrow key to begin the game')
+		).toBeInTheDocument();
+
+		fireEvent.keyDown(document.body, { key: 'ArrowUp' });
+
+		act(() => jest.advanceTimersByTime(60));
+
+		fireEvent.keyDown(document.body, { key: 'Enter' });
+
+		expect(
+			getByText('Please press any arrow key to continue')
+		).toBeInTheDocument();
+
+		fireEvent.keyDown(document.body, { key: 'ArrowDown' });
+
+		expect(
+			queryByText('Please press any arrow key to continue')
+		).not.toBeInTheDocument();
 	});
 
-	it('should return the initial state if type is unknown', () => {
-		expect(reducer(initialState, { type: 'unknown' })).toBe(initialState);
+	it('should increase the snakes size and increase the score when food is caught', () => {
+		const { getByText, getAllByTestId } = render(<Snake />);
+
+		fireEvent.keyDown(document.body, { key: 'ArrowRight' });
+
+		act(() => jest.advanceTimersByTime(180));
+
+		const snakeLength = getAllByTestId('snake');
+		expect(snakeLength).toHaveLength(2);
+		expect(getByText('Score: 1', { exact: false })).toBeInTheDocument();
 	});
 
-	// it('should return the increase the speed if food is caught and score is equal to 10', () => {
-	// 	expect(
-	// 		reducer(
-	// 			{
-	// 				...initialState,
-	// 				snake: [[7, 7], [8, 7]],
-	// 				food: [9, 7],
-	// 				score: 10,
-	// 				speed: 60,
-	// 				direction: 'right'
-	// 			},
-	// 			{
-	// 				type: 'heartbeat'
-	// 			}
-	// 		)
-	// 	).toEqual(initialState);
-	// });
+	it('should inform the player when game is over and restart the game when restart is clicked', () => {
+		const { getByText } = render(<Snake />);
+
+		fireEvent.keyDown(document.body, { key: 'ArrowRight' });
+
+		act(() => jest.advanceTimersByTime(180));
+
+		fireEvent.keyDown(document.body, { key: 'ArrowLeft' });
+
+		act(() => jest.advanceTimersByTime(60));
+
+		expect(getByText('GAMEOVER', { exact: false })).toBeInTheDocument();
+
+		fireEvent.click(getByText('Start again?'));
+
+		expect(
+			getByText('Please press any arrow key to begin the game')
+		).toBeInTheDocument();
+	});
 });

@@ -25,7 +25,6 @@ const TetrisGame = () => {
 
 	useEffect(() => {
 		const context = canvas.current.getContext('2d');
-
 		context.scale(pixelRatio, pixelRatio);
 		context.fillStyle = colors.black;
 		context.fillRect(0, 0, width, height);
