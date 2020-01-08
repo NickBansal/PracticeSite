@@ -5,7 +5,7 @@ import Games from './Games';
 
 const Container = styled.div`
 	width: 800px;
-	height: 600px;
+	height: 590px;
 	display: flex;
 `;
 

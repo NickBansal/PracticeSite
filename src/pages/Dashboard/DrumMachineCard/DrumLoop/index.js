@@ -15,7 +15,7 @@ const DrumContainer = styled.div`
 `;
 
 const Drums = styled.div`
-	width: 550px;
+	text-align: left;
 	width: 85%;
 `;
 

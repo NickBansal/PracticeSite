@@ -20,9 +20,8 @@ const Text = styled.div`
 	border: 5px solid ${colors.pink};
 	border-top: 0;
 	border-bottom-right-radius: 4px;
-	width: 530px;
+	width: 540px;
 	letter-spacing: 1.5px;
-	padding: 5px;
 `;
 
 const Level = styled.div`
