@@ -37,7 +37,13 @@ const TetrisGame = () => {
 
 	return (
 		<Container>
-			<Canvas ref={canvas} width={dw} height={dh} style={style} />
+			<Canvas
+				ref={canvas}
+				width={dw}
+				height={dh}
+				style={style}
+				data-testid="tetris"
+			/>
 			<Information />
 		</Container>
 	);

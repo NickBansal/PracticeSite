@@ -27,7 +27,15 @@ const SpaceInvadersGame = () => {
 	const dh = state.height * state.pixelRatio;
 	const style = { width, height };
 
-	return <Canvas ref={canvas} width={dw} height={dh} style={style} />;
+	return (
+		<Canvas
+			ref={canvas}
+			width={dw}
+			height={dh}
+			style={style}
+			data-testid="spaceInvaders"
+		/>
+	);
 };
 
 export default SpaceInvadersGame;
