@@ -48,7 +48,8 @@ export default function Engine() {
 			}
 
 			// if the game has not been initialized return
-			if (engine === null) return;
+			// if (engine === null) {
+			// }
 
 			// otherwise jump
 			// engine.jump();

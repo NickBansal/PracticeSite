@@ -18,29 +18,50 @@ const Canvas = styled.canvas`
 	border: 5px solid ${colors.pink};
 `;
 
+let myReq;
+
+function createEngine() {
+	let dropCounter = 0;
+	const dropInterval = 1000;
+	let lastTime = 0;
+
+	function update(time = 0) {
+		const deltaTime = time - lastTime;
+
+		dropCounter += deltaTime;
+
+		lastTime = time;
+
+		console.log(lastTime);
+		myReq = window.requestAnimationFrame(update);
+	}
+
+	update();
+	return () => {};
+}
+
 const TetrisGame = () => {
 	const canvas = useRef(null);
-	// eslint-disable-next-line no-unused-vars
-	const [state, setState] = useState({});
 
 	useEffect(() => {
 		const context = canvas.current.getContext('2d');
 		context.scale(PIXEL_RATIO, PIXEL_RATIO);
 		context.fillStyle = colors.black;
 		context.fillRect(0, 0, TETRIS_WIDTH, TETRIS_HEIGHT);
+
+		createEngine();
+		return () => window.cancelAnimationFrame(myReq);
 		// eslint-disable-next-line
 	}, []);
 
-	const dw = TETRIS_WIDTH * PIXEL_RATIO;
-	const dh = TETRIS_HEIGHT * PIXEL_RATIO;
 	const style = { TETRIS_WIDTH, TETRIS_HEIGHT };
 
 	return (
 		<Container>
 			<Canvas
 				ref={canvas}
-				width={dw}
-				height={dh}
+				width={TETRIS_WIDTH}
+				height={TETRIS_HEIGHT}
 				style={style}
 				data-testid="tetris"
 			/>
