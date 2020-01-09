@@ -5,6 +5,20 @@ import Snake from '.';
 jest.useFakeTimers();
 
 describe('<Snake />', () => {
+	beforeEach(() => {
+		Object.defineProperty(
+			global.window.HTMLMediaElement.prototype,
+			'play',
+			{
+				configurable: true,
+
+				get() {
+					setTimeout(() => this.onloadeddata && this.onloadeddata());
+					return () => {};
+				}
+			}
+		);
+	});
 	it('should start a new game of snake', () => {
 		const { queryByTestId, getByTestId } = render(<Snake />);
 

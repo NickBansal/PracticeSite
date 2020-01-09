@@ -13,7 +13,7 @@ describe('<ArcadeCard />', () => {
 		expect(getByText('Welcome to snake')).toBeInTheDocument();
 	});
 
-	it.only('should show the tetris game', () => {
+	it('should show the tetris game', () => {
 		const { getByText, queryByTestId, getByTestId } = render(
 			<ArcadeCard rand="0" />
 		);

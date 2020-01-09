@@ -21,6 +21,7 @@ const pixelRatio = window.devicePixelRatio || 1;
 
 const TetrisGame = () => {
 	const canvas = useRef(null);
+	// eslint-disable-next-line no-unused-vars
 	const [state, setState] = useState({ width, height, pixelRatio });
 
 	useEffect(() => {
