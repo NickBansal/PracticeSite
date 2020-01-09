@@ -12,7 +12,6 @@ const Container = styled.div`
 	display: flex;
 	flex-direction: row;
 	align-items: flex-start;
-	justify-content: center;
 `;
 
 const Canvas = styled.canvas`

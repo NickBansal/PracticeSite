@@ -10,7 +10,7 @@ const Container = styled.div`
 
 const Info = styled.div`
 	height: 40px;
-	width: 250px;
+	width: 180px;
 	border-radius: 1rem;
 	line-height: 2;
 	text-align: center;
