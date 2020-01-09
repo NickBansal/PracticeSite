@@ -1,8 +1,11 @@
 import React, { useRef, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { colors } from '../../../../../../utils/globalStyles/constants';
+import CONSTANTS from '../../../../../../constants';
 
 import Information from './Information';
+
+const { TETRIS_HEIGHT, TETRIS_WIDTH, PIXEL_RATIO } = CONSTANTS;
 
 const Container = styled.div`
 	display: flex;
@@ -15,26 +18,22 @@ const Canvas = styled.canvas`
 	border: 5px solid ${colors.pink};
 `;
 
-const width = 290;
-const height = 580;
-const pixelRatio = window.devicePixelRatio || 1;
-
 const TetrisGame = () => {
 	const canvas = useRef(null);
 	// eslint-disable-next-line no-unused-vars
-	const [state, setState] = useState({ width, height, pixelRatio });
+	const [state, setState] = useState({});
 
 	useEffect(() => {
 		const context = canvas.current.getContext('2d');
-		context.scale(pixelRatio, pixelRatio);
+		context.scale(PIXEL_RATIO, PIXEL_RATIO);
 		context.fillStyle = colors.black;
-		context.fillRect(0, 0, width, height);
+		context.fillRect(0, 0, TETRIS_WIDTH, TETRIS_HEIGHT);
 		// eslint-disable-next-line
 	}, []);
 
-	const dw = state.width * state.pixelRatio;
-	const dh = state.height * state.pixelRatio;
-	const style = { width, height };
+	const dw = TETRIS_WIDTH * PIXEL_RATIO;
+	const dh = TETRIS_HEIGHT * PIXEL_RATIO;
+	const style = { TETRIS_WIDTH, TETRIS_HEIGHT };
 
 	return (
 		<Container>
