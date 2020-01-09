@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { colors } from '../../../../../../utils/globalStyles/constants';
 import CONSTANTS from '../../../../../../constants';
@@ -21,23 +21,11 @@ const Canvas = styled.canvas`
 let myReq;
 
 function createEngine() {
-	let dropCounter = 0;
-	const dropInterval = 1000;
-	let lastTime = 0;
-
 	function update(time = 0) {
-		const deltaTime = time - lastTime;
-
-		dropCounter += deltaTime;
-
-		lastTime = time;
-
-		console.log(lastTime);
+		console.log(time);
 		myReq = window.requestAnimationFrame(update);
 	}
-
 	update();
-	return () => {};
 }
 
 const TetrisGame = () => {
