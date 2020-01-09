@@ -36,11 +36,11 @@ const Canvas = styled.canvas`
 // update();
 // }
 
-const matrix = () => pieces[Math.floor(Math.random() * pieces.length + 1)][0];
+const matrix = [[2, 0, 0], [2, 2, 2], [0, 0, 0]];
 
 const drawShape = context => {
-	context.scale(10, 10);
-	matrix().forEach((row, y) => {
+	context.scale(30, 30);
+	matrix.forEach((row, y) => {
 		row.forEach((value, x) => {
 			if (value !== 0) {
 				context.fillStyle = 'red';
@@ -55,7 +55,6 @@ const TetrisGame = () => {
 
 	useEffect(() => {
 		const context = ref.current.getContext('2d');
-		context.scale(PIXEL_RATIO, PIXEL_RATIO);
 		context.fillStyle = colors.black;
 		context.fillRect(0, 0, ref.current.width, ref.current.height);
 		context.stroke();
