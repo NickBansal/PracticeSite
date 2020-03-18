@@ -18,7 +18,7 @@ const Icon = styled.i`
 		color: #a92301;
 	}
 
-	transition: ${transitionSpeed};
+	transition: color ${transitionSpeed};
 `;
 
 const LinksContainer = styled.div`

@@ -24,7 +24,7 @@ const Restart = styled.button`
 		color: black;
 	}
 
-	transition: ${transitionSpeed};
+	transition: color ${transitionSpeed}, background ${transitionSpeed};
 `;
 
 const Over = styled.div`

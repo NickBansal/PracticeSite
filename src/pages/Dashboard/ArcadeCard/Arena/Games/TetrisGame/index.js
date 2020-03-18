@@ -22,7 +22,6 @@ let myReq;
 
 function createEngine() {
 	function update(time = 0) {
-		console.log(time);
 		myReq = window.requestAnimationFrame(update);
 	}
 	update();

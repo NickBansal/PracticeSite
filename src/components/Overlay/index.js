@@ -1,7 +1,10 @@
 import React from 'react';
 import { CSSTransition } from 'react-transition-group';
 import styled from 'styled-components';
-import { breakPoints } from '../../utils/globalStyles/constants';
+import {
+	breakPoints,
+	transitionSpeed
+} from '../../utils/globalStyles/constants';
 
 const Background = styled.div`
 	width: 100%;
@@ -52,7 +55,7 @@ const Close = styled(TransitionEffects)`
 		border: white solid 2px;
 	}
 
-	transition: 0.3s;
+	transition: color ${transitionSpeed}, border ${transitionSpeed};
 
 	@media (min-width: ${breakPoints.mobileMax}) {
 		width: 60px;

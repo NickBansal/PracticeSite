@@ -18,7 +18,7 @@ const Container = styled.div`
 		background: lightgrey;
 	}
 
-	transition: ${transitionSpeed};
+	transition: background ${transitionSpeed};
 `;
 
 const Image = styled(BlurImageLoader)`

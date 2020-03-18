@@ -1,6 +1,7 @@
 import React from 'react';
 import { node, func } from 'prop-types';
 import styled from 'styled-components';
+import { transitionSpeed } from '../../utils/globalStyles/constants';
 
 const DashboardBtns = styled.button`
 	width: 90%;
@@ -21,7 +22,7 @@ const DashboardBtns = styled.button`
 		cursor: pointer;
 	}
 
-	transition: 0.3s;
+	transition: color ${transitionSpeed}, background-color ${transitionSpeed};
 `;
 
 const CardButton = ({ children, onClick, props }) => (

@@ -72,8 +72,6 @@ const InlineLoader = ({ isLoading, standalone, size, ...rest }) => {
 	);
 };
 
-InlineLoader.displayName = 'InlineLoader';
-
 InlineLoader.propTypes = {
 	isLoading: bool.isRequired,
 	standalone: bool,

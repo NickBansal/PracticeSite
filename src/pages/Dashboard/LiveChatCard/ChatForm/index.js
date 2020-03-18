@@ -55,7 +55,8 @@ const Button = styled.button`
 		border: 2px solid black;
 	}
 
-	transition: ${transitionSpeed};
+	transition: color ${transitionSpeed}, border ${transitionSpeed},
+		background ${transitionSpeed};
 `;
 
 const ChatForm = ({ showMessageScreen }) => (

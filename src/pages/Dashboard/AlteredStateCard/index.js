@@ -5,6 +5,7 @@ import BlurImageLoader from '../../../components/BlurImageLoader';
 import AS from '../../../assets/alteredState/alteredState.jpg';
 import { boxShadow } from '../../../utils/globalStyles/constants/index';
 import Overlay from '../../../components/Overlay';
+import Timeline from './Timeline';
 
 const Image = styled(BlurImageLoader)`
 	-webkit-box-shadow: ${boxShadow};
@@ -27,7 +28,9 @@ const AlteredStateCard = ({ rand }) => {
 					placeholder="Profile picture"
 				/>
 			</Card.Content>
-			<Overlay showOverlay={showOverlay} handleClick={setShowOverlay} />
+			<Overlay showOverlay={showOverlay} handleClick={setShowOverlay}>
+				<Timeline />
+			</Overlay>
 			<Card.Button onClick={() => setShowOverlay(true)}>
 				Click to see timeline
 			</Card.Button>
