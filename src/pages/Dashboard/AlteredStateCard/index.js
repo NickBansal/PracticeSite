@@ -32,7 +32,7 @@ const AlteredStateCard = ({ rand }) => {
 				<Timeline />
 			</Overlay>
 			<Card.Button onClick={() => setShowOverlay(true)}>
-				Click to see timeline
+				Click for timeline
 			</Card.Button>
 		</Card>
 	);

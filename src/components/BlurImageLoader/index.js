@@ -12,7 +12,6 @@ const LoadableImage = styled.div.attrs(props => ({
 	filter: ${({ loaded }) => (!loaded ? 'blur(30px)' : 'none')};
 	transition: filter 1s ease;
 	background-position: 50% 50%;
-	background-origin: border-box;
 	background-size: cover;
 	flex-shrink: 0;
 	text-align: justify;

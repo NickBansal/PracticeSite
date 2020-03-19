@@ -8,7 +8,7 @@ import {
 
 const Background = styled.div`
 	width: 100%;
-	height: 100%;
+	height: 100vh;
 	background: #000000c2;
 	z-index: 400;
 	position: fixed;
