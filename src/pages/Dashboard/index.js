@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import BlurImageLoader from '../../components/BlurImageLoader';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import backgroundImage from '../../assets/dashboard/thailand.JPG';
 import { GlobalStyle } from '../../utils/globalStyles';
@@ -24,6 +23,15 @@ const CardContainer = styled.div`
 	}
 `;
 
+const Container = styled.div`
+	width: 100%;
+	height: 100vh;
+	background-image: url(${backgroundImage});
+	background-position: 50% 50%;
+	background-size: cover;
+	overflow: scroll;
+`;
+
 const components = [
 	ProfileCard,
 	NewsFeedCard,
@@ -39,25 +47,17 @@ const randomOrder = Array(components.length)
 	.sort(() => Math.random() - 0.5);
 
 const App = () => (
-	<>
+	<Container>
 		<GlobalStyle />
-		<BlurImageLoader
-			width="100%"
-			height="100vh"
-			image={backgroundImage}
-			alt="Thailand picture"
-			placeholder="Thailand picture"
-		>
-			<CardContainer>
-				{components.map((Component, index) => (
-					<Component
-						rand={`${randomOrder[index]}s`}
-						key={String(Component)}
-					/>
-				))}
-			</CardContainer>
-		</BlurImageLoader>
-	</>
+		<CardContainer>
+			{components.map((Component, index) => (
+				<Component
+					rand={`${randomOrder[index]}s`}
+					key={String(Component)}
+				/>
+			))}
+		</CardContainer>
+	</Container>
 );
 
 export default App;
