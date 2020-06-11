@@ -5,6 +5,7 @@ import BlurImageLoader from '../../../components/BlurImageLoader';
 import covid19 from '../../../assets/covid19/covid19.jpg';
 import { boxShadow } from '../../../utils/globalStyles/constants/index';
 import Overlay from '../../../components/Overlay';
+import Map from './Map';
 
 const Image = styled(BlurImageLoader)`
 	-webkit-box-shadow: ${boxShadow};
@@ -28,7 +29,7 @@ const Covid19Card = ({ rand }) => {
 				/>
 			</Card.Content>
 			<Overlay showOverlay={showOverlay} handleClick={setShowOverlay}>
-				<p>THINGS</p>
+				<Map />
 			</Overlay>
 			<Card.Button onClick={() => setShowOverlay(true)}>
 				Click to view
