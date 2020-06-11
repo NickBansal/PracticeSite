@@ -4,6 +4,7 @@ import LiveChatCard from './LiveChatCard';
 import DrumMachineCard from './DrumMachineCard';
 import ArcadeCard from './ArcadeCard';
 import MusicPlayerCard from './MusicPlayerCard';
+import Covid19Card from './Covid19Card';
 
 export default [
 	ProfileCard,
@@ -11,5 +12,6 @@ export default [
 	LiveChatCard,
 	DrumMachineCard,
 	ArcadeCard,
-	MusicPlayerCard
+	MusicPlayerCard,
+	Covid19Card
 ];
