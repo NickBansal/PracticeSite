@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import GoogleMapReact from 'google-map-react';
 import axios from 'axios';
 
-import API_KEY from '../../../../keys/googleAPI';
+import API_KEY from '../../../../../keys/googleAPI';
 
 const CountriesData = styled.div`
 	color: white;
@@ -47,7 +47,7 @@ const Map = () => {
 	});
 
 	return (
-		<div style={{ height: '600px', width: '100%' }}>
+		<div style={{ height: '535px', width: '100%' }}>
 			<GoogleMapReact
 				bootstrapURLKeys={{ key: API_KEY }}
 				defaultCenter={{
