@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import socket from '../../../utils/socketIO';
 import NewsItem from './NewsItem';
 import Card from '../../../components/Card';
-import { LiveText } from '../../../utils/globalStyles/index';
+import LiveText from '../../../components/LiveText';
 import NewsSelect from './NewsSelect';
 import flags from '../../../assets/flags';
 

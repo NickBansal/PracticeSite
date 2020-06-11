@@ -7,7 +7,7 @@ import {
 	transitionSpeed
 } from '../../../../../utils/globalStyles/constants';
 import InlineLoader from '../../../../../components/InlineLoader';
-import { HR } from '../../../../../utils/globalStyles';
+import HR from '../../../../../components/HR';
 import socket from '../../../../../utils/socketIO';
 
 const Container = styled.div`

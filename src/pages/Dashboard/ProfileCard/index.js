@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import Card from '../../../components/Card';
 import profilePicture from '../../../assets/profile/me.JPG';
 import BlurImageLoader from '../../../components/BlurImageLoader';
-import { HR } from '../../../utils/globalStyles/index';
+import HR from '../../../components/HR';
+
 import {
 	spacing,
 	fontSize,

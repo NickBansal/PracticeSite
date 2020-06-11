@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import backgroundImage from './assets/dashboard/thailand.JPG';
-import { GlobalStyle } from './utils/globalStyles';
+import GlobalStyle from './utils/globalStyles';
 import { breakPoints } from './utils/globalStyles/constants';
 
 import AllCards from './pages/Dashboard';

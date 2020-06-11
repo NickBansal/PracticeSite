@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { node } from 'prop-types';
-import { HR } from '../../utils/globalStyles/index';
+import HR from '../HR';
 import { fontSize } from '../../utils/globalStyles/constants/index';
 
 const Title = styled.h1`

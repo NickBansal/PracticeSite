@@ -5,7 +5,7 @@ import {
 	spacing,
 	transitionSpeed
 } from '../../../../../../../utils/globalStyles/constants';
-import { HR } from '../../../../../../../utils/globalStyles';
+import HR from '../../../../../../../components/HR';
 
 const Restart = styled.button`
 	display: block;

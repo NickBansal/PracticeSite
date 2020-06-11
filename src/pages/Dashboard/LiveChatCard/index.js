@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Card from '../../../components/Card';
-import { LiveText } from '../../../utils/globalStyles/index';
+import LiveText from '../../../components/LiveText';
 import ChatForm from './ChatForm';
 import MessageScreen from './MessageScreen';
 

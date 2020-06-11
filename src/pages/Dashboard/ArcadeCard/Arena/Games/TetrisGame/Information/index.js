@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { spacing } from '../../../../../../../utils/globalStyles/constants';
-import { HR } from '../../../../../../../utils/globalStyles';
+import HR from '../../../../../../../components/HR';
 
 const Container = styled.div`
 	display: block;
