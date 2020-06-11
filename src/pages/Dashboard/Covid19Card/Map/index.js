@@ -6,10 +6,12 @@ import axios from 'axios';
 import API_KEY from '../../../../keys/googleAPI';
 
 const CountriesData = styled.div`
-	color: red;
-	background-color: '#fff';
-	height: 25px;
-	width: 35px;
+	color: white;
+	border: 2px solid red;
+	background: lightcoral;
+	padding: 12px;
+	width: fit-content;
+	border-radius: 80%;
 `;
 
 const Map = () => {
@@ -37,7 +39,9 @@ const Map = () => {
 				lat={data.countryInfo.lat}
 				lng={data.countryInfo.long}
 			>
-				{data.cases}
+				{data.cases
+					.toString()
+					.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}
 			</CountriesData>
 		);
 	});
