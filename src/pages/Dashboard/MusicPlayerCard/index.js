@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import ReactPlayer from 'react-player/lazy';
 import Card from '../../../components/Card';
 import BlurImageLoader from '../../../components/BlurImageLoader';
 import musicProd from '../../../assets/musicProd/musicProd.jpg';
 import { boxShadow } from '../../../utils/globalStyles/constants/index';
 import Overlay from '../../../components/Overlay';
-import Playlist from './Playlist';
 
 const Image = styled(BlurImageLoader)`
 	-webkit-box-shadow: ${boxShadow};
@@ -29,7 +29,13 @@ const ArcadeCard = ({ rand }) => {
 				/>
 			</Card.Content>
 			<Overlay showOverlay={showOverlay} handleClick={setShowOverlay}>
-				<Playlist />
+				<ReactPlayer
+					playing={false}
+					url="https://soundcloud.com/bansal321/sets/lockdown"
+					style={{
+						margin: 'auto'
+					}}
+				/>
 			</Overlay>
 			<Card.Button onClick={() => setShowOverlay(true)}>
 				Click to play
