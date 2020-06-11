@@ -1,8 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 import GoogleMapReact from 'google-map-react';
 import axios from 'axios';
 
 import API_KEY from '../../../../keys/googleAPI';
+
+const CountriesData = styled.div`
+	color: red;
+	background-color: '#fff';
+	height: 25px;
+	width: 35px;
+`;
 
 const Map = () => {
 	const [latest, SetLatest] = useState([]);
@@ -22,21 +30,29 @@ const Map = () => {
 			.catch(err => setError(err));
 	}, []);
 
+	const countriesLocation = results.map(data => {
+		return (
+			<CountriesData
+				key={data.country}
+				lat={data.countryInfo.lat}
+				lng={data.countryInfo.long}
+			>
+				{data.cases}
+			</CountriesData>
+		);
+	});
+
 	return (
-		<div style={{ height: '100vh', width: '100%' }}>
+		<div style={{ height: '600px', width: '100%' }}>
 			<GoogleMapReact
 				bootstrapURLKeys={{ key: API_KEY }}
 				defaultCenter={{
-					lat: 59.95,
-					lng: 30.33
+					lat: 54,
+					lng: -2
 				}}
-				defaultZoom={10}
+				defaultZoom={4}
 			>
-				{/* <AnyReactComponent
-					lat={59.955413}
-					lng={30.337844}
-					text="My Marker"
-				/> */}
+				{countriesLocation}
 			</GoogleMapReact>
 		</div>
 	);
