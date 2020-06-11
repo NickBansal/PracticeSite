@@ -4,6 +4,7 @@ export default createGlobalStyle`
   html {
     background: #1e3127;
   }
+
   body {
     padding: 0;
     font-family: 'Poppins', sans-serif;
