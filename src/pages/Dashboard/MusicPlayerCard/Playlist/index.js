@@ -1,5 +1,11 @@
 import React from 'react';
+import ReactPlayer from 'react-player/lazy';
 
-const Playlist = () => <h1>MUSIC</h1>;
+const Playlist = () => (
+	<ReactPlayer
+		playing={false}
+		url="https://soundcloud.com/bansal321/sets/lockdown"
+	/>
+);
 
 export default Playlist;
