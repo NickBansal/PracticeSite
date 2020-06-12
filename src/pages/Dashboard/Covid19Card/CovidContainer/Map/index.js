@@ -5,6 +5,7 @@ import GoogleMapReact from 'google-map-react';
 import API_KEY from '../../../../../keys/googleAPI';
 
 import MapSelection from './Selection';
+import MAP_CATEGORIES from '../../../../../constants/map_categories';
 
 const CountriesData = styled.div`
 	color: white;
@@ -16,12 +17,6 @@ const CountriesData = styled.div`
 `;
 
 const Map = ({ results }) => {
-	const MAP_CATEGORIES = {
-		cases: 'cases',
-		deaths: 'deaths',
-		tests: 'tests'
-	};
-
 	const [category, setCategory] = useState(MAP_CATEGORIES.cases);
 
 	const countriesLocation = results.map(data => {

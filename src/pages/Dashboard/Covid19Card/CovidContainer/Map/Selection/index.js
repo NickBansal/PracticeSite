@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 import { breakPoints } from '../../../../../../utils/globalStyles/constants';
 
+import MAP_CATEGORIES from '../../../../../../constants/map_categories';
+
 const Title = styled.h2`
 	position: absolute;
 	top: 60px;
@@ -29,7 +31,8 @@ const Selections = styled.div`
 const Button = styled.button`
 	display: block;
 	width: 70px;
-	background: none;
+	background: ${({ selected }) => (selected ? 'black' : 'none')};
+	color: ${({ selected }) => (selected ? 'white' : 'black')};
 	font-size: 15px;
 	cursor: pointer;
 	border-top: none;
@@ -55,9 +58,15 @@ const Button = styled.button`
 const MapSelection = ({ title, setCategory }) => (
 	<>
 		<Selections>
-			<Button onClick={() => setCategory('cases')}>Cases</Button>
-			<Button onClick={() => setCategory('deaths')}>Deaths</Button>
-			<Button onClick={() => setCategory('tests')}>Tests</Button>
+			{Object.keys(MAP_CATEGORIES).map(cat => (
+				<Button
+					onClick={() => setCategory(cat)}
+					selected={cat === title}
+					key={cat}
+				>
+					{cat[0].toUpperCase() + cat.slice(1)}
+				</Button>
+			))}
 		</Selections>
 		<Title>
 			<u>Total {title}</u>
