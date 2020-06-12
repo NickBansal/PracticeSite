@@ -16,7 +16,7 @@ const CovidContainer = () => {
 	const [latest, SetLatest] = useState([]);
 	const [results, SetResults] = useState([]);
 	const [error, setError] = useState(false);
-
+	console.log(latest);
 	useEffect(() => {
 		axios
 			.all([
@@ -37,7 +37,7 @@ const CovidContainer = () => {
 			{tab === 'Map' ? (
 				<Map results={results} />
 			) : (
-				<Graph latest={latest} />
+				<Graph results={results} />
 			)}
 		</Container>
 	);
