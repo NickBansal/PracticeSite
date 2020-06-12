@@ -35,6 +35,11 @@ const Button = styled.button`
 	border-top: none;
 	outline: none;
 
+	&:hover {
+		background: black;
+		color: white;
+	}
+
 	&:first-child {
 		border-top: 1px solid black;
 		border-top-left-radius: 5px;
