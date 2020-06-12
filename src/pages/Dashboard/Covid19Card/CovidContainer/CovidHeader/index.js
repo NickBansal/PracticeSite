@@ -7,12 +7,11 @@ const Container = styled.div`
 	border-bottom: 5px solid ${colors.darkYellow};
 	width: 100%;
 	height: 60px;
-	font-size: 22px;
+	font-size: 18px;
 	text-align: left;
 `;
 
 const Tab = styled.div`
-	width: 100px;
 	display: inline-block;
 	color: white;
 	height: 30px;
@@ -22,7 +21,7 @@ const Tab = styled.div`
 	border-bottom: none;
 	border-top-left-radius: 18px;
 	border-top-right-radius: 18px;
-	background: ${({ selected }) => (selected ? colors.yellow : 'none')}
+	background: ${({ selected }) => (selected ? colors.darkYellow : 'none')}
 
 	&:hover {
 		background: #FEC952;
@@ -33,7 +32,7 @@ const Tab = styled.div`
 const CovidHeader = ({ setTab, tab }) => (
 	<Container>
 		<Tab onClick={() => setTab('Map')} selected={tab === 'Map'}>
-			Map
+			Total cases
 		</Tab>
 		<Tab onClick={() => setTab('Graph')} selected={tab === 'Graph'}>
 			Graph

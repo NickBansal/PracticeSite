@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import GoogleMapReact from 'google-map-react';
-import axios from 'axios';
 
 import API_KEY from '../../../../../keys/googleAPI';
 
@@ -14,24 +13,7 @@ const CountriesData = styled.div`
 	border-radius: 80%;
 `;
 
-const Map = () => {
-	const [latest, SetLatest] = useState([]);
-	const [results, SetResults] = useState([]);
-	const [error, setError] = useState(false);
-
-	useEffect(() => {
-		axios
-			.all([
-				axios.get('https://corona.lmao.ninja/v2/all'),
-				axios.get('https://corona.lmao.ninja/v2/countries')
-			])
-			.then(res => {
-				SetLatest(res[0].data);
-				SetResults(res[1].data);
-			})
-			.catch(err => setError(err));
-	}, []);
-
+const Map = ({ results }) => {
 	const countriesLocation = results.map(data => {
 		return (
 			<CountriesData
@@ -47,7 +29,7 @@ const Map = () => {
 	});
 
 	return (
-		<div style={{ height: '535px', width: '100%' }}>
+		<div style={{ height: '535px', width: '100%', overflow: 'hidden' }}>
 			<GoogleMapReact
 				bootstrapURLKeys={{ key: API_KEY }}
 				defaultCenter={{
