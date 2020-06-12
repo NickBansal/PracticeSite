@@ -16,13 +16,13 @@ const CountriesData = styled.div`
 `;
 
 const Map = ({ results }) => {
-	const objMap = {
+	const MAP_CATEGORIES = {
 		cases: 'cases',
 		deaths: 'deaths',
 		tests: 'tests'
 	};
 
-	const [category, setCategory] = useState(objMap.cases);
+	const [category, setCategory] = useState(MAP_CATEGORIES.cases);
 
 	const countriesLocation = results.map(data => {
 		return (
@@ -40,7 +40,10 @@ const Map = ({ results }) => {
 
 	return (
 		<div style={{ height: '535px', width: '100%', overflow: 'hidden' }}>
-			<MapSelection title={objMap[category]} />
+			<MapSelection
+				title={MAP_CATEGORIES[category]}
+				setCategory={setCategory}
+			/>
 			<GoogleMapReact
 				bootstrapURLKeys={{ key: API_KEY }}
 				defaultCenter={{
