@@ -3,7 +3,8 @@ import styled from 'styled-components';
 
 import {
 	colors,
-	transitionSpeed
+	transitionSpeed,
+	breakPoints
 } from '../../../../../utils/globalStyles/constants/index';
 
 const Container = styled.div`
@@ -21,6 +22,7 @@ const Header = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	position: relative;
 `;
 
 const Icon = styled.i`
@@ -35,10 +37,19 @@ const Options = styled.ul`
 	padding: 0 20px;
 	list-style: none;
 	width: 50%;
+	bottom: 62px;
 	height: 280px;
 	overflow: scroll;
 	border: 2px solid yellow;
 	border-top: none;
+	position: absolute;
+	z-index: 500;
+	left: 50%;
+	transform: translate(-50%, -50%);
+
+	@media (min-width: ${breakPoints.mobileMax}) {
+		bottom: 52px;
+	}
 `;
 
 const Option = styled.li`
@@ -58,6 +69,8 @@ const Option = styled.li`
 const Graph = ({ results }) => {
 	const [selection, setSelection] = useState(undefined);
 	const [dropdown, setDropdown] = useState(false);
+
+	console.log(results);
 
 	return (
 		<Container>
@@ -86,6 +99,7 @@ const Graph = ({ results }) => {
 					</Options>
 				)}
 			</Dropdown>
+			<h1>{selection}</h1>
 		</Container>
 	);
 };

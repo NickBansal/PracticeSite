@@ -13,19 +13,14 @@ const Container = styled.div`
 
 const CovidContainer = () => {
 	const [tab, setTab] = useState('Map');
-	const [latest, SetLatest] = useState([]);
-	const [results, SetResults] = useState([]);
+	const [results, setResults] = useState([]);
 	const [error, setError] = useState(false);
-	console.log(latest);
+
 	useEffect(() => {
 		axios
-			.all([
-				axios.get('https://corona.lmao.ninja/v2/all'),
-				axios.get('https://corona.lmao.ninja/v2/countries')
-			])
+			.get('https://corona.lmao.ninja/v2/countries')
 			.then(res => {
-				SetLatest(res[0].data);
-				SetResults(res[1].data);
+				setResults(res.data);
 			})
 			.catch(err => setError(err));
 	}, []);

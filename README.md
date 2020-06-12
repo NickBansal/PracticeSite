@@ -18,6 +18,9 @@ The dream is - in time this should represent a good collection of ideas and skil
 - [X] Drum machine
 - [X] Snake
 - [X] useReducers
+- [X] Custom hooks
 - [ ] HTML canvas
 - [ ] Tetris
 - [ ] User authentication
+- [x] D3.js
+- [ ] GraphQL
