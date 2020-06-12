@@ -30,26 +30,61 @@ const Icon = styled.i`
 	cursor: pointer;
 `;
 
+const Options = styled.ul`
+	margin: 0 auto;
+	padding: 0 20px;
+	list-style: none;
+	width: 50%;
+	height: 280px;
+	overflow: scroll;
+	border: 2px solid yellow;
+	border-top: none;
+`;
+
+const Option = styled.li`
+	cursor: pointer;
+
+	&:nth-child(odd) {
+		background: #928e8e42;
+		margin: 0 -20px;
+	}
+
+	&:hover {
+		background: ${colors.yellow};
+		margin: 0 -20px;
+	}
+`;
+
 const Graph = ({ results }) => {
-	const [country, setCountry] = useState(undefined);
+	const [selection, setSelection] = useState(undefined);
 	const [dropdown, setDropdown] = useState(false);
 
 	return (
 		<Container>
 			<Dropdown>
 				<Header>
-					<p>{country || 'Please select a country'}</p>
+					<p>{selection || 'Please select a country'}</p>
 					<Icon
 						className="i-link fas fa-chevron-up fa-2x"
 						onClick={() => setDropdown(!dropdown)}
 						dropdown={dropdown}
 					/>
 				</Header>
-				{/* <ul className="dd-list">
-					<li className="dd-list-item" />
-					<li className="dd-list-item" />
-					<li className="dd-list-item" />
-				</ul> */}
+				{dropdown && (
+					<Options>
+						{results.map(({ country }) => (
+							<Option
+								key={country}
+								onClick={() => {
+									setSelection(country);
+									setDropdown(false);
+								}}
+							>
+								{country}
+							</Option>
+						))}
+					</Options>
+				)}
 			</Dropdown>
 		</Container>
 	);
