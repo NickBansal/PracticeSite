@@ -9,6 +9,7 @@ export default createGlobalStyle`
     padding: 0;
     font-family: 'Poppins', sans-serif;
     margin: 0;
-    filter: grayscale(0.2)
+    filter: grayscale(0.2);
+    box-sizing: border-box;
   }
 `;

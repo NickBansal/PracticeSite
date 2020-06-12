@@ -28,10 +28,7 @@ const CovidContainer = () => {
 				SetResults(res[1].data);
 			})
 			.catch(err => setError(err));
-		console.log('RUN AGAIN');
 	}, []);
-
-	console.log(results);
 
 	return (
 		<Container>

@@ -18,7 +18,7 @@ const ArcadeCard = ({ rand }) => {
 	const [showOverlay, setShowOverlay] = useState(false);
 	return (
 		<Card fadeIn={rand}>
-			<Card.Title>Music Player</Card.Title>
+			<Card.Title>Music Playlist</Card.Title>
 			<Card.Content>
 				<Image
 					width="100%"
