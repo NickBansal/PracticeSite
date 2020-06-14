@@ -15,14 +15,20 @@ const CovidContainer = () => {
 	const [tab, setTab] = useState('Map');
 	const [results, setResults] = useState([]);
 	const [error, setError] = useState(false);
+	const [countryData] = useState({});
 
 	useEffect(() => {
 		axios
 			.get('https://corona.lmao.ninja/v2/countries')
-			.then(res => {
-				setResults(res.data);
+			.then(({ data }) => {
+				setResults(data);
+
+				data.forEach(info => {
+					countryData[info.country] = info;
+				});
 			})
 			.catch(err => setError(err));
+		// eslint-disable-next-line
 	}, []);
 
 	return (
@@ -32,7 +38,7 @@ const CovidContainer = () => {
 			{tab === 'Map' ? (
 				<Map results={results} />
 			) : (
-				<Graph results={results} />
+				<Graph results={results} countryData={countryData} />
 			)}
 		</Container>
 	);

@@ -66,11 +66,9 @@ const Option = styled.li`
 	}
 `;
 
-const Graph = ({ results }) => {
+const Graph = ({ countryData }) => {
 	const [selection, setSelection] = useState(undefined);
 	const [dropdown, setDropdown] = useState(false);
-
-	console.log(results);
 
 	return (
 		<Container>
@@ -85,7 +83,7 @@ const Graph = ({ results }) => {
 				</Header>
 				{dropdown && (
 					<Options>
-						{results.map(({ country }) => (
+						{Object.keys(countryData).map(country => (
 							<Option
 								key={country}
 								onClick={() => {
