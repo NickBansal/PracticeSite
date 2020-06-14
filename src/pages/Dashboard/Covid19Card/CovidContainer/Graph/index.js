@@ -23,6 +23,8 @@ const Header = styled.div`
 	align-items: center;
 	justify-content: space-between;
 	position: relative;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
 `;
 
 const Icon = styled.i`
@@ -66,8 +68,7 @@ const Option = styled.li`
 	}
 `;
 
-const Graph = ({ countryData }) => {
-	const [selection, setSelection] = useState(undefined);
+const Graph = ({ countryData, selection, setSelection }) => {
 	const [dropdown, setDropdown] = useState(false);
 
 	return (
@@ -97,7 +98,15 @@ const Graph = ({ countryData }) => {
 					</Options>
 				)}
 			</Dropdown>
-			<h1>{selection}</h1>
+			{!dropdown && (
+				<>
+					{countryData[selection] ? (
+						<h2>{countryData[selection].country}</h2>
+					) : (
+						<h1>No data to show </h1>
+					)}
+				</>
+			)}
 		</Container>
 	);
 };

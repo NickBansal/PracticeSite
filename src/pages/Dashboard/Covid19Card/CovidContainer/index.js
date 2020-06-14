@@ -16,6 +16,7 @@ const CovidContainer = () => {
 	const [results, setResults] = useState([]);
 	const [error, setError] = useState(false);
 	const [countryData] = useState({});
+	const [selection, setSelection] = useState(undefined);
 
 	useEffect(() => {
 		axios
@@ -38,7 +39,11 @@ const CovidContainer = () => {
 			{tab === 'Map' ? (
 				<Map results={results} />
 			) : (
-				<Graph results={results} countryData={countryData} />
+				<Graph
+					countryData={countryData}
+					selection={selection}
+					setSelection={setSelection}
+				/>
 			)}
 		</Container>
 	);
