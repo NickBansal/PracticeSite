@@ -7,6 +7,8 @@ import {
 	breakPoints
 } from '../../../../../utils/globalStyles/constants/index';
 
+import Visuals from './Visuals';
+
 const Container = styled.div`
 	color: white;
 `;
@@ -98,15 +100,7 @@ const Graph = ({ countryData, selection, setSelection }) => {
 					</Options>
 				)}
 			</Dropdown>
-			{!dropdown && (
-				<>
-					{countryData[selection] ? (
-						<h2>{countryData[selection].country}</h2>
-					) : (
-						<h1>No data to show </h1>
-					)}
-				</>
-			)}
+			{!dropdown && <Visuals countryData={countryData[selection]} />}
 		</Container>
 	);
 };

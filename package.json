@@ -5,6 +5,7 @@
   "dependencies": {
     "@testing-library/react": "^9.1.4",
     "axios": "^0.19.2",
+    "d3": "^5.16.0",
     "formik": "^1.5.8",
     "google-map-react": "^1.1.7",
     "lodash.get": "^4.4.2",
