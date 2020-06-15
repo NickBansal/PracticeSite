@@ -2,50 +2,16 @@ import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 
 import { colors } from '../../../../../../utils/globalStyles/constants';
+import { graphData, percentages } from './utils';
 
 const Visuals = ({ countryData }) => {
 	const ref = useRef();
 
 	useEffect(() => {
-		const {
-			active,
-			cases,
-			deaths,
-			recovered,
-			tests,
-			population
-		} = countryData;
+		const { tests, population, country } = countryData;
 
-		const percentages = value => (value / population) * 100;
-
-		const sample = [
-			{
-				option: 'Active',
-				value: percentages(active),
-				color: '#000000'
-			},
-			{
-				option: 'Cases',
-				value: percentages(cases),
-				color: '#00a2ee'
-			},
-			{
-				option: 'Deaths',
-				value: percentages(deaths),
-				color: '#fbcb39'
-			},
-			{
-				option: 'Recovered',
-				value: percentages(recovered),
-				color: '#007bc8'
-			},
-			{
-				option: 'Tests',
-				value: percentages(tests),
-				color: '#65cedb'
-			}
-		];
-		const margin = 30;
+		const sample = graphData(countryData);
+		const margin = 60;
 		const width = 600 - 2 * margin;
 		const height = 400 - 2 * margin;
 
@@ -64,7 +30,7 @@ const Visuals = ({ countryData }) => {
 		const yScale = d3
 			.scaleLinear()
 			.range([height, 0])
-			.domain([0, Math.round(percentages(tests)) + 1]);
+			.domain([0, Math.round(percentages(tests, population)) + 1]);
 
 		chart
 			.append('g')
@@ -98,65 +64,13 @@ const Visuals = ({ countryData }) => {
 			.attr('y', g => yScale(g.value))
 			.attr('height', g => height - yScale(g.value))
 			.attr('width', xScale.bandwidth())
-			.style('fill', colors.darkYellow)
-			.style('font-size', '18px');
-
-		// .on('mouseenter', (actual, i) => {
-		// 	d3.selectAll('.value').attr('opacity', 0);
-
-		// 	d3.select(this)
-		// 		.transition()
-		// 		.duration(300)
-		// 		.attr('opacity', 0.6)
-		// 		.attr('x', a => xScale(a.option) - 5)
-		// 		.attr('width', xScale.bandwidth() + 10);
-
-		// 	const y = yScale(actual.value);
-
-		// 	chart
-		// 		.append('line')
-		// 		.attr('id', 'limit')
-		// 		.attr('x1', 0)
-		// 		.attr('y1', y)
-		// 		.attr('x2', width)
-		// 		.attr('y2', y);
-
-		// 	barGroups
-		// 		.append('text')
-		// 		.attr('class', 'divergence')
-		// 		.attr('x', a => xScale(a.option) + xScale.bandwidth() / 2)
-		// 		.attr('y', a => yScale(a.value) + 30)
-		// 		.attr('fill', 'white')
-		// 		.attr('text-anchor', 'middle')
-		// 		.text((a, idx) => {
-		// 			const divergence = (a.value - actual.value).toFixed(1);
-
-		// 			let text = '';
-		// 			if (divergence > 0) text += '+';
-		// 			text += `${divergence}%`;
-
-		// 			return idx !== i ? text : '';
-		// 		});
-		// })
-		// .on('mouseleave', () => {
-		// 	d3.selectAll('.value').attr('opacity', 1);
-
-		// 	d3.select(this)
-		// 		.transition()
-		// 		.duration(300)
-		// 		.attr('opacity', 1)
-		// 		.attr('x', a => xScale(a.option))
-		// 		.attr('width', xScale.bandwidth());
-
-		// 	chart.selectAll('#limit').remove();
-		// 	chart.selectAll('.divergence').remove();
-		// });
+			.style('fill', colors.darkYellow);
 
 		barGroups
 			.append('text')
 			.attr('class', 'value')
 			.attr('x', a => xScale(a.option) + xScale.bandwidth() / 2)
-			.attr('y', a => yScale(a.value) - 10)
+			.attr('y', a => yScale(a.value) - 6)
 			.attr('text-anchor', 'middle')
 			.style('font-size', '18px')
 			.style('fill', 'white')
@@ -168,7 +82,9 @@ const Visuals = ({ countryData }) => {
 			.attr('y', margin / 2.4)
 			.attr('transform', 'rotate(-90)')
 			.attr('text-anchor', 'middle')
-			.text('Love meter (%)');
+			.style('font-size', '18px')
+			.style('fill', 'white')
+			.text('Percentages by population (%)');
 
 		svg.append('text')
 			.attr('class', 'title')
@@ -176,23 +92,22 @@ const Visuals = ({ countryData }) => {
 			.attr('y', 40)
 			.attr('text-anchor', 'middle')
 			.style('fill', colors.darkYellow)
-			.text('Percentages by country')
-			.style('font-size', '18px');
+			.text(`${country}`)
+			.style('font-size', '22px');
+
+		console.log(svg.select('x').selectAll('text'));
 	}, [countryData]);
 
 	return (
 		<>
 			{countryData ? (
-				<>
-					<h2>{countryData.country}</h2>
-					<svg
-						ref={ref}
-						style={{
-							height: '400px',
-							width: '600px'
-						}}
-					/>
-				</>
+				<svg
+					ref={ref}
+					style={{
+						height: '400px',
+						width: '600px'
+					}}
+				/>
 			) : (
 				<h1>No data to show </h1>
 			)}
