@@ -7,30 +7,41 @@ const Visuals = ({ countryData }) => {
 	console.log(countryData);
 
 	useEffect(() => {
+		const {
+			active,
+			cases,
+			deaths,
+			recovered,
+			tests,
+			population
+		} = countryData;
+
+		const percentages = value => (value / population) * 100;
+
 		const sample = [
 			{
 				language: 'Active',
-				value: 78.9,
+				value: percentages(active),
 				color: '#000000'
 			},
 			{
 				language: 'Cases',
-				value: 75.1,
+				value: percentages(cases),
 				color: '#00a2ee'
 			},
 			{
 				language: 'Deaths',
-				value: 68.0,
+				value: percentages(deaths),
 				color: '#fbcb39'
 			},
 			{
 				language: 'Recovered',
-				value: 67.0,
+				value: percentages(recovered),
 				color: '#007bc8'
 			},
 			{
 				language: 'Tests',
-				value: 65.6,
+				value: percentages(tests),
 				color: '#65cedb'
 			}
 		];
@@ -62,14 +73,17 @@ const Visuals = ({ countryData }) => {
 
 		chart.append('g').call(d3.axisLeft(yScale));
 
-		// const makeYLines = () => d3.axisLeft().scale(yScale);
+		const makeYLines = () => d3.axisLeft().scale(yScale);
 
-		// chart.append('g').attr('class', 'grid');
-		// .call(
-		// 	makeYLines()
-		// 		.tickSize(-width, 0, 0)
-		// 		.tickFormat('')
-		// );
+		chart
+			.append('g')
+			.attr('class', 'grid')
+			.call(
+				makeYLines()
+					.tickSize(-width, 0, 0)
+					.tickFormat('')
+			)
+			.style('color', '#fffcfc47');
 
 		const barGroups = chart
 			.selectAll()
@@ -145,8 +159,8 @@ const Visuals = ({ countryData }) => {
 			.attr('x', a => xScale(a.language) + xScale.bandwidth() / 2)
 			.attr('y', a => yScale(a.value) + 30)
 			.attr('text-anchor', 'middle')
-			.text(a => `${a.value}%`)
-			.style('font-size', '18px');
+			.style('font-size', '18px')
+			.text(a => `${a.value}%`);
 
 		svg.append('text')
 			.attr('class', 'label')
