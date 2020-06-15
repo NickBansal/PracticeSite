@@ -64,7 +64,7 @@ const Visuals = ({ countryData }) => {
 		const yScale = d3
 			.scaleLinear()
 			.range([height, 0])
-			.domain([0, Math.round(percentages(tests)) + 2]);
+			.domain([0, Math.round(percentages(tests)) + 1]);
 
 		chart
 			.append('g')
@@ -156,7 +156,7 @@ const Visuals = ({ countryData }) => {
 			.append('text')
 			.attr('class', 'value')
 			.attr('x', a => xScale(a.option) + xScale.bandwidth() / 2)
-			.attr('y', a => yScale(a.value) - 20)
+			.attr('y', a => yScale(a.value) - 10)
 			.attr('text-anchor', 'middle')
 			.style('font-size', '18px')
 			.style('fill', 'white')
