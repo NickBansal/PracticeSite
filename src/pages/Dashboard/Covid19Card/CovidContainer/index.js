@@ -16,7 +16,7 @@ const CovidContainer = () => {
 	const [results, setResults] = useState([]);
 	const [error, setError] = useState(false);
 	const [countryData] = useState({});
-	const [selection, setSelection] = useState(undefined);
+	const [selection, setSelection] = useState('UK');
 
 	useEffect(() => {
 		axios
