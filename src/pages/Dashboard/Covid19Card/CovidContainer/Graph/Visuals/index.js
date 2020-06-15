@@ -1,10 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 
+import { colors } from '../../../../../../utils/globalStyles/constants';
+
 const Visuals = ({ countryData }) => {
 	const ref = useRef();
-
-	console.log(countryData);
 
 	useEffect(() => {
 		const {
@@ -20,27 +20,27 @@ const Visuals = ({ countryData }) => {
 
 		const sample = [
 			{
-				language: 'Active',
+				option: 'Active',
 				value: percentages(active),
 				color: '#000000'
 			},
 			{
-				language: 'Cases',
+				option: 'Cases',
 				value: percentages(cases),
 				color: '#00a2ee'
 			},
 			{
-				language: 'Deaths',
+				option: 'Deaths',
 				value: percentages(deaths),
 				color: '#fbcb39'
 			},
 			{
-				language: 'Recovered',
+				option: 'Recovered',
 				value: percentages(recovered),
 				color: '#007bc8'
 			},
 			{
-				language: 'Tests',
+				option: 'Tests',
 				value: percentages(tests),
 				color: '#65cedb'
 			}
@@ -58,13 +58,13 @@ const Visuals = ({ countryData }) => {
 		const xScale = d3
 			.scaleBand()
 			.range([0, width])
-			.domain(sample.map(s => s.language))
+			.domain(sample.map(s => s.option))
 			.padding(0.4);
 
 		const yScale = d3
 			.scaleLinear()
 			.range([height, 0])
-			.domain([0, 100]);
+			.domain([0, Math.round(percentages(tests)) + 2]);
 
 		chart
 			.append('g')
@@ -89,17 +89,16 @@ const Visuals = ({ countryData }) => {
 			.selectAll()
 			.data(sample)
 			.enter()
-			.append('g')
-			.attr('background', 'yellow');
+			.append('g');
 
 		barGroups
 			.append('rect')
 			.attr('class', 'bar')
-			.attr('x', g => xScale(g.language))
+			.attr('x', g => xScale(g.option))
 			.attr('y', g => yScale(g.value))
 			.attr('height', g => height - yScale(g.value))
 			.attr('width', xScale.bandwidth())
-			.style('fill', 'yellow')
+			.style('fill', colors.darkYellow)
 			.style('font-size', '18px');
 
 		// .on('mouseenter', (actual, i) => {
@@ -109,7 +108,7 @@ const Visuals = ({ countryData }) => {
 		// 		.transition()
 		// 		.duration(300)
 		// 		.attr('opacity', 0.6)
-		// 		.attr('x', a => xScale(a.language) - 5)
+		// 		.attr('x', a => xScale(a.option) - 5)
 		// 		.attr('width', xScale.bandwidth() + 10);
 
 		// 	const y = yScale(actual.value);
@@ -125,7 +124,7 @@ const Visuals = ({ countryData }) => {
 		// 	barGroups
 		// 		.append('text')
 		// 		.attr('class', 'divergence')
-		// 		.attr('x', a => xScale(a.language) + xScale.bandwidth() / 2)
+		// 		.attr('x', a => xScale(a.option) + xScale.bandwidth() / 2)
 		// 		.attr('y', a => yScale(a.value) + 30)
 		// 		.attr('fill', 'white')
 		// 		.attr('text-anchor', 'middle')
@@ -146,7 +145,7 @@ const Visuals = ({ countryData }) => {
 		// 		.transition()
 		// 		.duration(300)
 		// 		.attr('opacity', 1)
-		// 		.attr('x', a => xScale(a.language))
+		// 		.attr('x', a => xScale(a.option))
 		// 		.attr('width', xScale.bandwidth());
 
 		// 	chart.selectAll('#limit').remove();
@@ -156,11 +155,12 @@ const Visuals = ({ countryData }) => {
 		barGroups
 			.append('text')
 			.attr('class', 'value')
-			.attr('x', a => xScale(a.language) + xScale.bandwidth() / 2)
-			.attr('y', a => yScale(a.value) + 30)
+			.attr('x', a => xScale(a.option) + xScale.bandwidth() / 2)
+			.attr('y', a => yScale(a.value) - 20)
 			.attr('text-anchor', 'middle')
 			.style('font-size', '18px')
-			.text(a => `${a.value}%`);
+			.style('fill', 'white')
+			.text(a => `${a.value.toFixed(2)}%`);
 
 		svg.append('text')
 			.attr('class', 'label')
@@ -175,7 +175,7 @@ const Visuals = ({ countryData }) => {
 			.attr('x', width / 2 + margin)
 			.attr('y', 40)
 			.attr('text-anchor', 'middle')
-			.style('fill', 'yellow')
+			.style('fill', colors.darkYellow)
 			.text('Percentages by country')
 			.style('font-size', '18px');
 	}, [countryData]);
