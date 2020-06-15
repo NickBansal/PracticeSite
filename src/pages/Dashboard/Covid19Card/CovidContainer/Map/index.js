@@ -16,7 +16,7 @@ const CountriesData = styled.div`
 	border-radius: 80%;
 `;
 
-const Map = ({ results }) => {
+const Map = ({ results, countryData }) => {
 	const [category, setCategory] = useState(MAP_CATEGORIES.cases);
 
 	const countriesLocation = results.map(data => {
@@ -42,10 +42,10 @@ const Map = ({ results }) => {
 			<GoogleMapReact
 				bootstrapURLKeys={{ key: API_KEY }}
 				defaultCenter={{
-					lat: 54,
-					lng: -2
+					lat: countryData ? countryData.countryInfo.lat : 54,
+					lng: countryData ? countryData.countryInfo.long : -2
 				}}
-				defaultZoom={4}
+				defaultZoom={5}
 			>
 				{countriesLocation}
 			</GoogleMapReact>

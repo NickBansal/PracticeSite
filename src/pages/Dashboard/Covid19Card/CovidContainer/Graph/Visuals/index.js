@@ -94,8 +94,6 @@ const Visuals = ({ countryData }) => {
 			.style('fill', colors.darkYellow)
 			.text(`${country}`)
 			.style('font-size', '22px');
-
-		console.log(svg.select('x').selectAll('text'));
 	}, [countryData]);
 
 	return (
