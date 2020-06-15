@@ -1,8 +1,8 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import Dashboard from '.';
+import Dashboard from './App';
 
-jest.mock('../../assets/flags');
+jest.mock('./assets/flags');
 
 describe('<Dashboard />', () => {
 	it('should display multiple cards', () => {
