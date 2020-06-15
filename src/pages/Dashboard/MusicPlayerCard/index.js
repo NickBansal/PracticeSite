@@ -14,7 +14,7 @@ const Image = styled(BlurImageLoader)`
 	border-radius: 10px;
 `;
 
-const ArcadeCard = ({ rand }) => {
+const MusicPlayerCard = ({ rand }) => {
 	const [showOverlay, setShowOverlay] = useState(false);
 	return (
 		<Card fadeIn={rand}>
@@ -24,8 +24,8 @@ const ArcadeCard = ({ rand }) => {
 					width="100%"
 					height="85%"
 					image={musicProd}
-					aria-label="Arcade card"
-					placeholder="Arcade card"
+					aria-label="Music playlist card"
+					placeholder="Music playlist card"
 				/>
 			</Card.Content>
 			<Overlay showOverlay={showOverlay} handleClick={setShowOverlay}>
@@ -38,4 +38,4 @@ const ArcadeCard = ({ rand }) => {
 	);
 };
 
-export default ArcadeCard;
+export default MusicPlayerCard;

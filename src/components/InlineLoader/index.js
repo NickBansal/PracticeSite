@@ -56,6 +56,7 @@ const InlineLoader = ({ isLoading, standalone, size, ...rest }) => {
 			className="circular"
 			viewBox="24 24 48 48"
 			size={size}
+			data-testid="loader"
 			{...rest}
 		>
 			<Circle

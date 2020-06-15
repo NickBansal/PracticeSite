@@ -18,7 +18,7 @@ const Covid19Card = ({ rand }) => {
 	const [showOverlay, setShowOverlay] = useState(false);
 	return (
 		<Card fadeIn={rand}>
-			<Card.Title>COVID 19 map</Card.Title>
+			<Card.Title>COVID 19</Card.Title>
 			<Card.Content>
 				<Image
 					width="100%"
