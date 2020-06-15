@@ -61,13 +61,14 @@ const Option = styled.li`
 
 	&:nth-child(odd) {
 		background: #928e8e42;
-		margin: 0 -20px;
 	}
 
 	&:hover {
 		background: ${colors.yellow};
-		margin: 0 -20px;
 	}
+
+	background: ${({ selected }) => (selected ? colors.yellow : 'none')};
+	margin: 0 -20px;
 `;
 
 const Graph = ({ countryData, selection, setSelection }) => {
@@ -77,7 +78,7 @@ const Graph = ({ countryData, selection, setSelection }) => {
 		<Container>
 			<Dropdown>
 				<Header>
-					<p>{selection || 'Please select a country'}</p>
+					<p>{selection}</p>
 					<Icon
 						className="i-link fas fa-chevron-up fa-2x"
 						onClick={() => setDropdown(!dropdown)}
@@ -93,6 +94,7 @@ const Graph = ({ countryData, selection, setSelection }) => {
 									setSelection(country);
 									setDropdown(false);
 								}}
+								selected={selection === country}
 							>
 								{country}
 							</Option>
