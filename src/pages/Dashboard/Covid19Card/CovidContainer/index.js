@@ -34,16 +34,24 @@ const CovidContainer = () => {
 
 	return (
 		<Container>
-			{error && <h1>Error</h1>}
-			<CovidHeader setTab={setTab} tab={tab} />
-			{tab === 'Map' ? (
-				<Map results={results} countryData={countryData[selection]} />
+			{error ? (
+				<h1>Error</h1>
 			) : (
-				<Graph
-					countryData={countryData}
-					selection={selection}
-					setSelection={setSelection}
-				/>
+				<>
+					<CovidHeader setTab={setTab} tab={tab} />
+					{tab === 'Map' ? (
+						<Map
+							results={results}
+							countryData={countryData[selection]}
+						/>
+					) : (
+						<Graph
+							countryData={countryData}
+							selection={selection}
+							setSelection={setSelection}
+						/>
+					)}
+				</>
 			)}
 		</Container>
 	);

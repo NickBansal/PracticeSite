@@ -81,6 +81,7 @@ const Graph = ({ countryData, selection, setSelection }) => {
 					<p>{selection}</p>
 					<Icon
 						className="i-link fas fa-chevron-up fa-2x"
+						data-testid="dropdown"
 						onClick={() => setDropdown(!dropdown)}
 						dropdown={dropdown}
 					/>
