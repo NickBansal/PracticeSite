@@ -8,7 +8,7 @@ const Visuals = ({ countryData }) => {
 	const ref = useRef();
 
 	useEffect(() => {
-		const { tests, population, country } = countryData;
+		const { tests, population, country, updated } = countryData;
 
 		const sample = graphData(countryData);
 		const margin = 60;
@@ -19,7 +19,7 @@ const Visuals = ({ countryData }) => {
 
 		const chart = svg
 			.append('g')
-			.attr('transform', `translate(${margin}, ${margin})`);
+			.attr('transform', `translate(${margin}, ${margin + 10})`);
 
 		const xScale = d3
 			.scaleBand()
@@ -94,6 +94,20 @@ const Visuals = ({ countryData }) => {
 			.style('fill', colors.darkYellow)
 			.text(`${country}`)
 			.style('font-size', '22px');
+
+		svg.append('text')
+			.attr('class', 'title')
+			.attr('x', width / 2 + margin)
+			.attr('y', 60)
+			.attr('text-anchor', 'middle')
+			.style('fill', colors.darkYellow)
+			.text(
+				`Updated: ${new Date(updated)
+					.toString()
+					.split('G')[0]
+					.trim()} GMT`
+			)
+			.style('font-size', '14px');
 	}, [countryData]);
 
 	return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, wait, act } from '@testing-library/react';
+import { render, fireEvent, wait } from '@testing-library/react';
 import axios from 'axios';
 
 import Covid19Card from '.';
@@ -21,7 +21,8 @@ describe('<Covid19Card />', () => {
 					countryInfo: {
 						lat: 12,
 						long: -13
-					}
+					},
+					updated: 1592399363141
 				},
 				{
 					population: 1234,
@@ -34,7 +35,8 @@ describe('<Covid19Card />', () => {
 					countryInfo: {
 						lat: -54,
 						long: 43
-					}
+					},
+					updated: 1392899363911
 				}
 			]
 		});
@@ -48,6 +50,7 @@ describe('<Covid19Card />', () => {
 
 	it('should show correct covid 19 data on the map', () => {
 		resolvedData();
+
 		const { getByText } = render(<Covid19Card rand="" />);
 
 		fireEvent.click(getByText('Click to view'));
@@ -62,6 +65,7 @@ describe('<Covid19Card />', () => {
 
 	it('should show correct covid 19 data on the graph', async () => {
 		resolvedData();
+
 		const { getAllByText, getByText, getByTestId } = render(
 			<Covid19Card rand="" />
 		);
@@ -72,11 +76,17 @@ describe('<Covid19Card />', () => {
 
 		fireEvent.click(getByText('Graph'));
 		expect(getAllByText('UK')[1]).toBeInTheDocument();
+		expect(
+			getByText('Updated: Wed Jun 17 2020 14:09:23 GMT')
+		).toBeInTheDocument();
 
 		fireEvent.click(getByTestId('dropdown'));
 
 		fireEvent.click(getByText('USA'));
 		expect(getAllByText('USA')[1]).toBeInTheDocument();
+		expect(
+			getByText('Updated: Thu Feb 20 2014 12:29:23 GMT')
+		).toBeInTheDocument();
 	});
 
 	it('should switch between graph data and map data', async () => {
@@ -99,6 +109,7 @@ describe('<Covid19Card />', () => {
 
 	it('should show an error message if api call fails', async () => {
 		rejectedData();
+
 		const { getByText } = render(<Covid19Card rand="" />);
 
 		fireEvent.click(getByText('Click to view'));
