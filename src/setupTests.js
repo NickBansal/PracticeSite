@@ -8,3 +8,6 @@ const mockGeolocation = {
 };
 
 global.navigator.geolocation = mockGeolocation;
+global.SC = {
+	Widget: jest.fn()
+};
