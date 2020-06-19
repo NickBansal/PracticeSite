@@ -13,6 +13,8 @@ const StyledCell = styled.div`
 	border-left-color: rgba(${props => props.color}, 0.3);
 `;
 
-const Cell = ({ type }) => <StyledCell type="L" color={TETROMINOS.L.color} />;
+const Cell = ({ type }) => (
+	<StyledCell type={type} color={TETROMINOS[type].color} />
+);
 
 export default Cell;
