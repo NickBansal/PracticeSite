@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { colors } from '../../../../../../utils/globalStyles/constants';
+// import { colors } from '../../../../../../utils/globalStyles/constants';
 
-import Information from './Information';
+import Tetris from './Tetris';
 
 const Container = styled.div`
 	display: flex;
@@ -11,18 +11,17 @@ const Container = styled.div`
 	justify-content: center;
 `;
 
-const Canvas = styled.div`
-	border: 5px solid ${colors.pink};
-	height: 580px;
-	width: 290px;
-	background: black;
-`;
+// const Canvas = styled.div`
+// 	border: 5px solid ${colors.pink};
+// 	height: 580px;
+// 	width: 290px;
+// 	background: black;
+// `;
 
 const TetrisGame = () => {
 	return (
 		<Container>
-			<Canvas />
-			<Information />
+			<Tetris />
 		</Container>
 	);
 };
