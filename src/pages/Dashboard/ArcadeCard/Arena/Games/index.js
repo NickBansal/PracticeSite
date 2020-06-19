@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { colors } from '../../../../../utils/globalStyles/constants';
 
 import SnakeGame from './SnakeGame';
-import TetrisGame from './TetrisGame/Tetris';
+import TetrisGame from './TetrisGame';
 import SpaceInvadersGame from './SpaceInvadersGame';
 
 const Container = styled.div`

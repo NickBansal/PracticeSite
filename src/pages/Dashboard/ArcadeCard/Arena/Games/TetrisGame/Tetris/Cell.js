@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { TETROMINOS } from './tetrominos';
+import { TETROMINOS } from '../utils/tetrominos';
 
 const StyledCell = styled.div`
 	width: auto;
