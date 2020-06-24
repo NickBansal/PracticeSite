@@ -1,11 +1,14 @@
 import { useState, useCallback } from 'react';
 
-import { randomTetromino } from '../../pages/Dashboard/ArcadeCard/Arena/Games/TetrisGame/utils/tetrominos';
+import {
+	TETROMINOS,
+	randomTetromino
+} from '../../pages/Dashboard/ArcadeCard/Arena/Games/TetrisGame/utils/tetrominos';
 
 export const usePlayer = () => {
 	const [player, setPlayer] = useState({
 		pos: { x: 0, y: 0 },
-		tetromino: randomTetromino().shape,
+		tetromino: TETROMINOS[0].shape,
 		collided: false
 	});
 
