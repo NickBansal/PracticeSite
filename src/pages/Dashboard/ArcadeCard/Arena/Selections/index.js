@@ -35,7 +35,7 @@ const HRStyle = styled(HR)`
 	margin: 0;
 `;
 
-const gameList = ['Snake', 'Tetris', 'Space Invaders'];
+const gameList = ['Snake', 'Tetris', 'SpaceInvaders'];
 
 const Selections = ({ setGame, game }) => (
 	<Selection>

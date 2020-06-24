@@ -16,12 +16,12 @@ const Container = styled.div`
 	border-bottom-right-radius: 8px;
 `;
 
-const Games = ({ game }) => (
-	<Container>
-		{game === 'Snake' && <SnakeGame />}
-		{game === 'Tetris' && <TetrisGame />}
-		{game === 'Space Invaders' && <SpaceInvadersGame />}
-	</Container>
-);
+const gameSelection = {
+	Snake: <SnakeGame />,
+	Tetris: <TetrisGame />,
+	SpaceInvaders: <SpaceInvadersGame />
+};
+
+const Games = ({ game }) => <Container>{gameSelection[game]}</Container>;
 
 export default Games;

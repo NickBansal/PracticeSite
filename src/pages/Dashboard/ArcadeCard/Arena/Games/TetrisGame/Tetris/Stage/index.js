@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { colors } from '../../../../../../../../utils/globalStyles/constants';
 
 import Cell from './Cell';
 
@@ -8,7 +9,7 @@ const StyledStage = styled.div`
 	grid-template-rows: repeat(${props => props.height}, 28px);
 	grid-template-columns: repeat(${props => props.width}, 28px);
 	grid-gap: 1px;
-	border: 5.5px solid #111;
+	border: 5px solid ${colors.pink};
 	width: 100%;
 	background: #111;
 `;

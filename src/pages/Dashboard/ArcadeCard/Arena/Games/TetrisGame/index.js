@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Stage from './Tetris/Stage';
+import Stage from './Tetris/Stage/index';
 import Display from './Tetris/Display';
 import StartButton from './Tetris/StartButton';
 
