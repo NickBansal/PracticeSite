@@ -7,8 +7,8 @@ import StartButton from './Tetris/StartButton';
 
 import { createStage, checkCollision } from './utils/gameHelpers';
 
-import { usePlayer } from '../../../../../../utils/hooks/usePlayer';
-import { useStage } from '../../../../../../utils/hooks/useStage';
+import usePlayer from '../../../../../../utils/hooks/usePlayer';
+import useStage from '../../../../../../utils/hooks/useStage';
 
 const StyledTetris = styled.div`
 	display: flex;
@@ -71,23 +71,21 @@ const Tetris = () => {
 	};
 
 	return (
-		<div role="button" tabIndex={0} onKeyDown={e => move(e)}>
-			<StyledTetris>
-				<Stage stage={stage} />
-				<aside>
-					{gameOver ? (
-						<Display gameOver={gameOver} text="Game over" />
-					) : (
-						<div>
-							<Display text="Score" />
-							<Display text="Rows" />
-							<Display text="Level" />
-						</div>
-					)}
-					<StartButton callBack={startGame} />
-				</aside>
-			</StyledTetris>
-		</div>
+		<StyledTetris role="button" tabIndex={0} onKeyDown={e => move(e)}>
+			<Stage stage={stage} />
+			<aside>
+				{gameOver ? (
+					<Display gameOver={gameOver} text="Game over" />
+				) : (
+					<div>
+						<Display text="Score" />
+						<Display text="Rows" />
+						<Display text="Level" />
+					</div>
+				)}
+				<StartButton callBack={startGame} />
+			</aside>
+		</StyledTetris>
 	);
 };
 

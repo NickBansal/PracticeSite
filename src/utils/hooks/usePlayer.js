@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import { useState, useCallback } from 'react';
 
 import {
@@ -5,7 +6,7 @@ import {
 	randomTetromino
 } from '../../pages/Dashboard/ArcadeCard/Arena/Games/TetrisGame/utils/tetrominos';
 
-export const usePlayer = () => {
+export default () => {
 	const [player, setPlayer] = useState({
 		pos: { x: 0, y: 0 },
 		tetromino: TETROMINOS[0].shape,
@@ -13,6 +14,7 @@ export const usePlayer = () => {
 	});
 
 	const updatePlayerPos = ({ x, y, collided }) => {
+		// eslint-disable-next-line no-return-assign
 		setPlayer(prev => ({
 			...prev,
 			pos: {

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { createStage } from '../../pages/Dashboard/ArcadeCard/Arena/Games/TetrisGame/utils/gameHelpers';
 
-export const useStage = (player, resetPlayer) => {
+export default (player, resetPlayer) => {
 	const [stage, setStage] = useState(createStage());
 
 	useEffect(() => {
