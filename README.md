@@ -23,4 +23,5 @@ In time this should represent a good collection of ideas and skills
 - [ ] Tetris
 - [ ] User authentication
 - [x] D3.js
+- [x] Google graph API
 - [ ] GraphQL
