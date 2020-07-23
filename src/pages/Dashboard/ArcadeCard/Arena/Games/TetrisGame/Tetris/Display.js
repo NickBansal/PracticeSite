@@ -6,6 +6,7 @@ const StyledDisplay = styled.div`
 	padding: 10px;
 	text-align: left;
 	color: ${props => (props.gameOver ? 'red' : 'black')};
+	border-bottom: 2px solid black;
 `;
 
 const Display = ({ gameOver, text }) => (
