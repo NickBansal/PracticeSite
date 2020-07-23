@@ -13,6 +13,20 @@ export default () => {
 		collided: false
 	});
 
+	const rotate = (matrix, dir) => {
+		// Make rows to cols
+		const rotatedTetro = matrix.map((_, index) =>
+			matrix.map(col => col[index])
+		);
+
+		// Reverse each row
+		return dir > 0
+			? rotatedTetro.map(row => row.reverse())
+			: rotatedTetro.reverse();
+	};
+
+	const playerRotate = (stage, dir) => {};
+
 	const updatePlayerPos = ({ x, y, collided }) => {
 		// eslint-disable-next-line no-return-assign
 		setPlayer(prev => ({
