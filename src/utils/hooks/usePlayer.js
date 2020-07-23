@@ -25,7 +25,12 @@ export default () => {
 			: rotatedTetro.reverse();
 	};
 
-	const playerRotate = (stage, dir) => {};
+	const playerRotate = (stage, dir) => {
+		const clonedPlayer = JSON.parse(JSON.stringify(player));
+		clonedPlayer.tetromino = rotate(clonedPlayer.tetromino, dir);
+
+		setPlayer(clonedPlayer);
+	};
 
 	const updatePlayerPos = ({ x, y, collided }) => {
 		// eslint-disable-next-line no-return-assign
@@ -47,5 +52,5 @@ export default () => {
 		});
 	}, []);
 
-	return [player, updatePlayerPos, resetPlayer];
+	return [player, updatePlayerPos, resetPlayer, playerRotate];
 };
