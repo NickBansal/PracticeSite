@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { colors } from '../../../../../../../../utils/globalStyles/constants';
 
 import Cell from './Cell';
+import GameOver from '../../../SnakeGame/GameOver';
 
 const StyledStage = styled.div`
 	display: grid;
@@ -14,11 +15,12 @@ const StyledStage = styled.div`
 	background: #111;
 `;
 
-const Stage = ({ stage }) => (
+const Stage = ({ stage, gameOver, score, restartGame }) => (
 	<StyledStage width={stage[0].length} height={stage.length}>
 		{stage.map(row =>
 			row.map((cell, x) => <Cell key={String(x)} type={cell[0]} />)
 		)}
+		{gameOver && <GameOver score={score} restartGame={restartGame} />}
 	</StyledStage>
 );
 

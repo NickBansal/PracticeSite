@@ -104,7 +104,12 @@ const Tetris = () => {
 			onKeyDown={e => move(e)}
 			onKeyUp={keyUp}
 		>
-			<Stage stage={stage} />
+			<Stage
+				stage={stage}
+				gameOver={gameOver}
+				score={score}
+				restartGame={() => startGame()}
+			/>
 			<aside>
 				{gameOver ? (
 					<Display gameOver={gameOver} text="Game over" />
