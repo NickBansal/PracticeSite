@@ -9,7 +9,7 @@ import reducer from './reducer';
 import useInterval from '../../../../../../utils/hooks/useInterval';
 import useEvent from '../../../../../../utils/hooks/useEvents';
 import Cells from './Cells';
-import GameOver from './GameOver';
+import GameOver from '../../../../../../components/GameOver';
 import Score from './Score';
 
 const Column = styled.div`

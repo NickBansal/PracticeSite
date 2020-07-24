@@ -49,6 +49,11 @@ const Tetris = () => {
 		setLevel(0);
 	};
 
+	const startNewGame = () => {
+		setStage(createStage());
+		setGameOver(false);
+	};
+
 	const drop = () => {
 		if (rows >= (level + 1) * 10) {
 			setLevel(prev => prev + 1);
@@ -108,7 +113,7 @@ const Tetris = () => {
 				stage={stage}
 				gameOver={gameOver}
 				score={score}
-				restartGame={() => startGame()}
+				restartGame={() => startNewGame()}
 			/>
 			<aside>
 				{gameOver ? (

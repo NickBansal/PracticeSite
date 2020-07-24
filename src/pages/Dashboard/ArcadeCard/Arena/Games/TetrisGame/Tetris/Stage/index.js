@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { colors } from '../../../../../../../../utils/globalStyles/constants';
 
 import Cell from './Cell';
-import GameOver from '../../../SnakeGame/GameOver';
+import GameOver from '../../../../../../../../components/GameOver';
 
 const StyledStage = styled.div`
 	display: grid;
