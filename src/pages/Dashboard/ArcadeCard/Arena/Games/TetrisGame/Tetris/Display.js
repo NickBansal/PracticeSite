@@ -3,8 +3,9 @@ import styled from 'styled-components';
 
 const StyledDisplay = styled.div`
 	box-sizing: border-box;
+	font-size: 20px;
 	padding: 10px;
-	text-align: left;
+	text-align: ${({ gameOver }) => (gameOver ? 'center' : 'left')};
 	color: ${props => (props.gameOver ? 'red' : 'black')};
 	border-bottom: 2px solid black;
 `;
